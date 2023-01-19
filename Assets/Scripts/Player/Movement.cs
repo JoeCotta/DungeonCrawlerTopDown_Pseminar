@@ -7,10 +7,18 @@ public class Movement : MonoBehaviour
     public float maxMovementSpeed;
     public Rigidbody2D rb;
     public float acceleration;
+    public Camera cam;
 
     private Vector2 inputMovement;
+    private Vector2 mousePosition;
+    private Vector2 lookDir;
+    private float angleToMouse;
 
-    // Update is called once per frame
+    void Start()
+    {
+        cam.orthographic = true;
+    }
+
     void Update()
     {
         // getting Keyboard Input
@@ -18,7 +26,19 @@ public class Movement : MonoBehaviour
         inputMovement += Input.GetKey("a") ? Vector2.left : Vector2.zero;
         inputMovement += Input.GetKey("s") ? Vector2.down : Vector2.zero;
         inputMovement += Input.GetKey("d") ? Vector2.right : Vector2.zero;
+
+        // getting mouse Input
+        // transform the screen mouse Position to a world point
+        mousePosition =  cam.ScreenToWorldPoint(Input.mousePosition);
+
+        // calculating the angle between the player and the mouse
+        lookDir = rb.position - mousePosition;
+        angleToMouse = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
+
+        // set the rotation of the player
+        rb.SetRotation(angleToMouse);
     }
+
     void FixedUpdate()
     {
         // calculating the horizontal speed the rb should have
