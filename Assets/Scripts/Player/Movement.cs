@@ -41,19 +41,13 @@ public class Movement : MonoBehaviour
 
     void FixedUpdate()
     {
-        // calculating the horizontal speed the rb should have
-        float targetSpeedHorizontal = inputMovement.x * maxMovementSpeed;
-        // difference between the speed the rb should have and the actual one
-        float speedDifferenceHorizontal = targetSpeedHorizontal - rb.velocity.x;
+        // calculating the velocity the rb should have
+        Vector2 targetVelocity = inputMovement * maxMovementSpeed;
+        // difference between the velocity the rb should have and the actual one
+        Vector2 velocityDifference = targetVelocity - rb.velocity;
         // F = m*a (m=1) and a = v/t (t=1) => F = v 
-        // ==> force is the speed difference multiplied by an optional factor to speed up and brake faster
-        float forceHorizontal = speedDifferenceHorizontal * acceleration;
-        rb.AddForce(forceHorizontal * Vector2.right);
-
-        // same thing for the y Axis
-        float targetSpeedVertical = inputMovement.y * maxMovementSpeed;
-        float speedDifferenceVertical = targetSpeedVertical - rb.velocity.y;
-        float forceVertical = speedDifferenceVertical * acceleration;
-        rb.AddForce(forceVertical * Vector2.up);
+        // ==> force is the velocity difference multiplied by an optional factor to speed up and brake faster
+        Vector2 force = velocityDifference * acceleration;
+        rb.AddForce(force);
     }
 }
