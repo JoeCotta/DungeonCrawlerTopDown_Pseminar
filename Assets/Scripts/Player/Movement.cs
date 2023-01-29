@@ -8,15 +8,27 @@ public class Movement : MonoBehaviour
     public Rigidbody2D rb;
     public float acceleration;
     public Camera cam;
+    public float dashForce;
+    public float dashCooldown;
+    public float dashTime;
+    public GameObject dashEffect;
+    public float dashDamage;
+    public Animator camShake;
 
     private Vector2 inputMovement;
     private Vector2 mousePosition;
     private Vector2 lookDir;
     private float angleToMouse;
+    private float dashCooldownLeft;
+    private float dashTimeLeft;
+    private bool isDashing;
 
     void Start()
     {
         cam.orthographic = true;
+        dashCooldownLeft = 0;
+        dashTimeLeft = dashTime;
+        isDashing = false;
     }
 
     void Update()
@@ -37,6 +49,40 @@ public class Movement : MonoBehaviour
 
         // set the rotation of the player
         rb.SetRotation(angleToMouse);
+
+        // dash
+        // if dash cooldown is finished and dash-Key is pressed
+        if (dashCooldownLeft <= 0 && Input.GetKey(KeyCode.LeftShift))
+        {
+            isDashing = true;
+            dashCooldownLeft = dashCooldown;
+            
+            // dash particles
+            Instantiate(dashEffect, rb.position, Quaternion.identity);
+
+            // shake camera
+            // camShake.Play("CamShake");
+            // camShake.enabled = true;
+            camShake.SetBool("isDashing", true);
+
+        }
+        // decrease the cooldown
+        else if(dashCooldownLeft > 0){dashCooldownLeft -= Time.deltaTime;}
+
+        // while dashing
+        if(isDashing && dashTimeLeft > 0)
+        {
+            dash();
+            dashTimeLeft -= Time.deltaTime;
+        }
+        // if dash is over
+        else if(dashTimeLeft <= 0)
+        {
+            // camShake.enabled = false;
+            camShake.SetBool("isDashing", false);
+            dashTimeLeft = dashTime;
+            isDashing = false;
+        }
     }
 
     void FixedUpdate()
@@ -49,5 +95,22 @@ public class Movement : MonoBehaviour
         // ==> force is the velocity difference multiplied by an optional factor to speed up and brake faster
         Vector2 force = velocityDifference * acceleration;
         rb.AddForce(force);
+    }
+
+    void dash(){
+        rb.AddForce(dashForce * inputMovement.normalized);
+    }
+
+    void hit(float damage)
+    {
+        if (isDashing) return;
+    }
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy" && isDashing)
+        {
+            collision.gameObject.SendMessage("hit", dashDamage);
+        }
     }
 }
