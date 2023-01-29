@@ -4,16 +4,17 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public float maxMovementSpeed;
     public Rigidbody2D rb;
-    public float acceleration;
     public Camera cam;
+    public float maxMovementSpeed;
+    public float acceleration;
     public float dashForce;
     public float dashCooldown;
     public float dashTime;
-    public GameObject dashEffect;
     public float dashDamage;
+    public GameObject dashEffect;
     public Animator camShake;
+
 
     private Vector2 inputMovement;
     private Vector2 mousePosition;
@@ -60,9 +61,7 @@ public class Movement : MonoBehaviour
             // dash particles
             Instantiate(dashEffect, rb.position, Quaternion.identity);
 
-            // shake camera
-            // camShake.Play("CamShake");
-            // camShake.enabled = true;
+            // starts camera shake animation
             camShake.SetBool("isDashing", true);
 
         }
@@ -78,8 +77,9 @@ public class Movement : MonoBehaviour
         // if dash is over
         else if(dashTimeLeft <= 0)
         {
-            // camShake.enabled = false;
+            // stops camera shake animation
             camShake.SetBool("isDashing", false);
+
             dashTimeLeft = dashTime;
             isDashing = false;
         }
@@ -103,11 +103,13 @@ public class Movement : MonoBehaviour
 
     void hit(float damage)
     {
+        // player can't be hit while dashing
         if (isDashing) return;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        // if player hits an enemy while dashing it deals damage
         if (collision.gameObject.tag == "Enemy" && isDashing)
         {
             collision.gameObject.SendMessage("hit", dashDamage);
