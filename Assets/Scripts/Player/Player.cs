@@ -14,18 +14,26 @@ public class Player : MonoBehaviour
     public float dashDamage; // 10
     public GameObject dashEffect;
     public Animator camShake;
+    public GameObject weaponPrefab;
 
-
+    private Transform weaponSlot; 
+    private GameObject weapon;
     private Vector2 inputMovement;
     private Vector2 mousePosition;
     private Vector2 lookDir;
     private float angleToMouse;
     private float dashCooldownLeft;
     private float dashTimeLeft;
+    private Vector2 dashDirection;
+    private float health;
     private bool isDashing;
+    private bool isDead;
 
     void Start()
     {
+        weaponSlot = transform.GetChild(0);
+        weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);        
+
         cam.orthographic = true;
         dashCooldownLeft = 0;
         dashTimeLeft = dashTime;
@@ -61,6 +69,12 @@ public class Player : MonoBehaviour
             // dash particles
             Instantiate(dashEffect, rb.position, Quaternion.identity);
 
+            // dashes in "Mouse direction"
+            dashDirection = -lookDir.normalized;
+
+            // dashes in "Keyboard direction"
+            // dashDirection = inputMovement.normalized;        
+
             // starts camera shake animation
             camShake.SetBool("isDashing", true);
 
@@ -83,6 +97,13 @@ public class Player : MonoBehaviour
             dashTimeLeft = dashTime;
             isDashing = false;
         }
+
+        // update the position and rotation of the weapon
+        weapon.transform.position = weaponSlot.position;
+        weapon.transform.rotation = weaponSlot.rotation;
+
+        // shoot if clicked
+        if(Input.GetMouseButtonDown(0)) shoot();
     }
 
     void FixedUpdate()
@@ -98,13 +119,16 @@ public class Player : MonoBehaviour
     }
 
     void dash(){
-        rb.AddForce(dashForce * inputMovement.normalized);
+        rb.AddForce(dashForce * dashDirection);
     }
 
     void hit(float damage)
     {
         // player can't be hit while dashing
         if (isDashing) return;
+        
+        health -= damage;
+        isDead = true;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -114,5 +138,10 @@ public class Player : MonoBehaviour
         {
             collision.gameObject.SendMessage("hit", dashDamage);
         }
+    }
+
+    void shoot()
+    {
+        weapon.SendMessage("shoot");
     }
 }
