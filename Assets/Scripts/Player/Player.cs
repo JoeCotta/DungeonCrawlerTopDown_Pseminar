@@ -22,9 +22,7 @@ public class Player : MonoBehaviour
     private float angleToMouse;
     private float dashCooldownLeft;
     private float dashTimeLeft;
-    private float health;
     private bool isDashing;
-    private bool isDead;
 
     void Start()
     {
@@ -107,9 +105,6 @@ public class Player : MonoBehaviour
     {
         // player can't be hit while dashing
         if (isDashing) return;
-        
-        health -= damage;
-        isDead = true;
     }
 
     void OnCollisionEnter2D(Collision2D collision)
