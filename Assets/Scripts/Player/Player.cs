@@ -144,4 +144,8 @@ public class Player : MonoBehaviour
     {
         weapon.SendMessage("shoot");
     }
+
+    void swapWeapons()
+    {
+    }
 }
