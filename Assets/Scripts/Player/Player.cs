@@ -103,7 +103,7 @@ public class Player : MonoBehaviour
         weapon.transform.rotation = weaponSlot.rotation;
 
         // shoot if clicked
-        if(Input.GetMouseButtonDown(0)) shoot();
+        if(Input.GetMouseButton(0)) shoot();
     }
 
     void FixedUpdate()
