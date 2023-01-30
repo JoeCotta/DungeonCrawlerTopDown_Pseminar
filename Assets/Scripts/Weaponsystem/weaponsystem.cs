@@ -24,9 +24,23 @@ public class weaponsystem : MonoBehaviour
         {
             // Pistol
             case 0:
-                fireCooldown = 0.5f;
-                damage = 2;
+                fireCooldown = 0.25f;
+                damage = 5;
                 shootForce = 10;
+                break;
+            
+            // rifle
+            case 1:
+                fireCooldown = 0.15f;
+                damage = 2;
+                shootForce = 20;
+                break;
+
+            // sniper
+            case 2:
+                fireCooldown = 2f;
+                damage = 50;
+                shootForce = 50;
                 break;
         }
     }
