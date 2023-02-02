@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public float dashCooldown; // 2
     public float dashTime; // 0.15
     public float dashDamage; // 10
+    public float weaponPickUpRadius;
+    public float weaponDropDistance;
     public GameObject dashEffect;
     public Animator camShake;
     public GameObject weaponPrefab;
@@ -98,12 +100,18 @@ public class Player : MonoBehaviour
             isDashing = false;
         }
 
-        // update the position and rotation of the weapon
-        weapon.transform.position = weaponSlot.position;
-        weapon.transform.rotation = weaponSlot.rotation;
+        // update the position and rotation of the weapon if the player has one
+        if(weapon)
+        {
+            weapon.transform.position = weaponSlot.position;
+            weapon.transform.rotation = weaponSlot.rotation;
+        }
 
         // shoot if clicked
         if(Input.GetMouseButton(0)) shoot();
+
+        // pickup / swap weapon
+        if(Input.GetKeyDown("f")) swapWeapons();
     }
 
     void FixedUpdate()
@@ -142,10 +150,43 @@ public class Player : MonoBehaviour
 
     void shoot()
     {
+        // if the player has no weapon you can't shoot
+        if(!weapon) return;
+
         weapon.SendMessage("shoot");
     }
 
     void swapWeapons()
     {
-    }
+        GameObject bestWeapon = null;
+        // as a start value the set radius plus a little bit is good that you can find a weapon which is exactly on and not in the radius 
+        float lowestWeaponDistance = weaponPickUpRadius + 10;
+
+        // finds every weapon in the game
+        GameObject[] weapons = GameObject.FindGameObjectsWithTag("weapon");
+        
+        Debug.Log(weapons);
+
+        // finds the weapon which is the nearest to the player
+        foreach(GameObject foundWeapon in weapons)
+        {
+            // if its not the players weapon
+            if(foundWeapon == weapon) continue;
+
+            float weaponDistance = (rb.position - new Vector2(foundWeapon.transform.position.x, foundWeapon.transform.position.y)).magnitude;
+            if (weaponDistance < lowestWeaponDistance)
+            {
+                bestWeapon = foundWeapon;
+                lowestWeaponDistance = weaponDistance;
+            }
+        }
+        // gives the "old" weapon a force to kick to weapon away - a drop animation
+        if (weapon) weapon.GetComponent<Rigidbody2D>().AddForce(-lookDir.normalized * weaponDropDistance);
+
+        // if there is no weapon to pickup
+        if(bestWeapon == null || lowestWeaponDistance > weaponPickUpRadius) weapon = null;
+        // change the weapons
+        else weapon = bestWeapon;
+
+    } 
 }
