@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     private float countdownLeft;
     private GameObject weapon;
     private RaycastHit2D checkCanSeePlayer;
+    private bool follow;
 
     void Start()
     { 
@@ -102,12 +103,16 @@ public class Enemy : MonoBehaviour
         if (hitUpLeft) inputMovement += new Vector2(transform.right.x, transform.right.y) * 0.25f;
 
         // if the player is in a certain range the enemy will move to him
-        if((rbPlayer.position - rb.position).sqrMagnitude >= 7 * 7)
-        {
-            inputMovement = toPlayer;
-        }
-        
+        if ((rbPlayer.position - rb.position).sqrMagnitude <= 10 * 10 && (rbPlayer.position - rb.position).sqrMagnitude >= 8 * 8) follow = true;
 
+        // if the enemy is close enough the enemy will stop moving to him
+        if ((rbPlayer.position - rb.position).sqrMagnitude <= 3 * 3 && (rbPlayer.position - rb.position).sqrMagnitude >= 2 * 2) follow = false;
+        
+        // if the enemy is not moving and close enough to the player he will shoot
+        if (!follow && (rbPlayer.position - rb.position).sqrMagnitude <= 8 * 8) shoot();
+
+        // moves the enemy
+        if(follow) inputMovement = toPlayer;
 
         // manages the rotation of the enemy
         if(toPlayer == Vector2.zero) return;
@@ -115,6 +120,14 @@ public class Enemy : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(Vector3.forward * angleToPlayer);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 7);
 
+    }
+
+    void shoot()
+    {
+        // if the enemy has no weapon you can't shoot
+        if(!weapon) return;
+
+        weapon.SendMessage("shoot");
     }
 
 }
