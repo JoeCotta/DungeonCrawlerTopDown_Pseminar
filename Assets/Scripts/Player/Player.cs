@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public float dashTime; // 0.15
     public float dashDamage; // 10
     public float weaponPickUpRadius;
-    public float weaponDropDistance;
+    public float weaponDropForce; // 500
     public GameObject dashEffect;
     public Animator camShake;
     public GameObject weaponPrefab;
@@ -59,7 +59,7 @@ public class Player : MonoBehaviour
         angleToMouse = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
 
         // set the rotation of the player
-        rb.SetRotation(angleToMouse);
+        rb.SetRotation(angleToMouse + 90f);
 
         // dash
         // if dash cooldown is finished and dash-Key is pressed
@@ -104,7 +104,7 @@ public class Player : MonoBehaviour
         if(weapon)
         {
             weapon.transform.position = weaponSlot.position;
-            weapon.transform.rotation = weaponSlot.rotation;
+            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, -90);;
         }
 
         // shoot if clicked
@@ -165,8 +165,6 @@ public class Player : MonoBehaviour
         // finds every weapon in the game
         GameObject[] weapons = GameObject.FindGameObjectsWithTag("weapon");
         
-        Debug.Log(weapons);
-
         // finds the weapon which is the nearest to the player
         foreach(GameObject foundWeapon in weapons)
         {
@@ -181,7 +179,7 @@ public class Player : MonoBehaviour
             }
         }
         // gives the "old" weapon a force to kick to weapon away - a drop animation
-        if (weapon) weapon.GetComponent<Rigidbody2D>().AddForce(-lookDir.normalized * weaponDropDistance);
+        if (weapon) weapon.GetComponent<Rigidbody2D>().AddForce(-lookDir.normalized * weaponDropForce);
 
         // if there is no weapon to pickup
         if(bestWeapon == null || lowestWeaponDistance > weaponPickUpRadius) weapon = null;
