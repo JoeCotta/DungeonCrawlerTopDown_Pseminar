@@ -4,8 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Weapon_Pistol
+  - SpawnPoint
+  - Rooms
+  - Door
   - weapon
+  - Doorvrt
   layers:
   - Default
   - TransparentFX

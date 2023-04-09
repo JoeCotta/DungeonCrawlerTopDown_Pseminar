@@ -13,6 +13,7 @@ public class RoomSpawner : MonoBehaviour
 
     public RoomTemplates templates;
     private GameObject door;
+    private GameObject doorvrt;
     public Vector3 offset;
     public Vector3 rotation;
     private int rand;
@@ -25,6 +26,7 @@ public class RoomSpawner : MonoBehaviour
         Destroy(gameObject, waitTime);
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         door = GameObject.FindGameObjectWithTag("Door");
+        doorvrt = GameObject.FindGameObjectWithTag("Doorvrt");
         Invoke("Spawn",0.1f);
     }
 
@@ -68,25 +70,34 @@ public class RoomSpawner : MonoBehaviour
                 Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
+
+
             
-            //if(doorDir == 1)
-            //{
-            //    offset = new Vector3(0,-4.5f,0);
-            //    rotation = new Vector3(0, 0, 0);
-            //}else if(doorDir == 2)
-            //{
-            //    offset = new Vector3(0, 4.5f, 0);
-            //    rotation = new Vector3(0, 0, 0);
-            //}else if(doorDir == 3)
-            //{
-            //    offset = new Vector3(-4.5f, 0, 0);
-            //    rotation = new Vector3(0, 0, 90);
-            //}else if(doorDir == 4)
-            //{
-            //    offset = new Vector3(4.5f, 0, 0);
-            //    rotation = new Vector3(0, 0, 90);
-            //}
-            //Instantiate(door, transform.position + offset, Quaternion.Euler(rotation.x, rotation.y, rotation.z));
+            /*if(doorDir == 1)
+            {
+                offset = new Vector3(0,-4.5f,0);
+                Instantiate(door, transform.position + offset, Quaternion.identity);
+                //    rotation = new Vector3(0, 0, 0);
+            }
+            else if(doorDir == 2)
+            {
+                offset = new Vector3(0, 4.5f, 0);
+                Instantiate(door, transform.position + offset, Quaternion.identity);
+                //    rotation = new Vector3(0, 0, 0);
+            }
+            else if(doorDir == 3)
+            {
+                offset = new Vector3(-4.5f, 0, 0);
+                Instantiate(doorvrt, transform.position + offset, Quaternion.identity);
+                //    rotation = new Vector3(0, 0, 90);
+            }
+            else if(doorDir == 4)
+            {
+                offset = new Vector3(4.5f, 0, 0);
+                Instantiate(doorvrt, transform.position + offset, Quaternion.identity);
+                //    rotation = new Vector3(0, 0, 90);
+            }
+            */
 
             spawned = true;
         }
