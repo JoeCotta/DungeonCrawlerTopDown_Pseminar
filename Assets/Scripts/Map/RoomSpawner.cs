@@ -4,30 +4,33 @@ using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
 {
+    // Gameobjects
+    public RoomTemplates templates;
+    private GameObject door;
+    private GameObject doorvrt;
 
+    //previously set variables
+    public float waitTime = 4f;
     public int doorDir;
     //1 -> needs Bottom
     //2 -> needs Top
     //3 -> needs Left
     //4 -> needs Right
 
-    public RoomTemplates templates;
-    private GameObject door;
-    private GameObject doorvrt;
+    //temporary variables for functions
     public Vector3 offset;
     public Vector3 rotation;
     private int rand;
     public bool spawned = false;
-
-    public float waitTime = 4f;
+    
 
     private void Start()
     {
-        Destroy(gameObject, waitTime);
-        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
-        door = GameObject.FindGameObjectWithTag("Door");
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>(); // grab list of rooms avaiable
+        door = GameObject.FindGameObjectWithTag("Door"); 
         doorvrt = GameObject.FindGameObjectWithTag("Doorvrt");
-        Invoke("Spawn",0.1f);
+        Invoke("Spawn",0.2f); //little pause before spawn of room
+        Destroy(gameObject, waitTime); // delete after a amout of time
     }
 
 
@@ -70,10 +73,9 @@ public class RoomSpawner : MonoBehaviour
                 Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
-
-
             
-            /*if(doorDir == 1)
+            /*
+            if(doorDir == 1)
             {
                 offset = new Vector3(0,-4.5f,0);
                 Instantiate(door, transform.position + offset, Quaternion.identity);

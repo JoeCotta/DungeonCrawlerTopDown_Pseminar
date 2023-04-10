@@ -65,6 +65,6 @@ MonoBehaviour:
   - {fileID: 3808407306506069082, guid: 551afa7dbab1a5248bcffc51a8c2396b, type: 3}
   - {fileID: 7570222803161022609, guid: 7b0620e12490b49498f04f0606385dff, type: 3}
   closedRoom: {fileID: 5671171784681260837, guid: 5e460559eff164d4f878b93ceebf8b93, type: 3}
-  rooms: []
-  waitTime: 1
+  waitTime: 4
   boss: {fileID: 5595307601685894801, guid: 0b5a3af5aa177be4383f9e541a396123, type: 3}
+  rooms: []
