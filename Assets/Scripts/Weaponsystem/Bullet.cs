@@ -14,10 +14,10 @@ public class Bullet : MonoBehaviour
     }
 
     // if the bullet hits another object
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         // tries to apply damage to the object
-        collision.gameObject.SendMessage("hit", damage);
+        other.gameObject.SendMessage("hit", damage);
 
         // destroys itself
         Destroy(gameObject);
