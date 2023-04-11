@@ -231,7 +231,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 948870281565238835}
-  - component: {fileID: -6944944831759587301}
+  - component: {fileID: 5626157905056463663}
   m_Layer: 0
   m_Name: U
   m_TagString: Untagged
@@ -260,7 +260,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-6944944831759587301
+--- !u!114 &5626157905056463663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -269,9 +269,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 3122803732523200162}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6ef9de1689f0c24887df66a426893a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 725d7cf452b66aa469c1ecd28f880a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  door: {fileID: 0}
+  doorvrt: {fileID: 0}
+  templates: {fileID: 0}
+  thisRoom: {fileID: 0}
+  doors:
+  - U
+  oben: 0
+  rechts: 0
+  unten: 0
+  links: 0
 --- !u!1 &6057955923498266640
 GameObject:
   m_ObjectHideFlags: 0
@@ -610,6 +620,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 948870281565238835}
     m_Modifications:
     - target: {fileID: 2389154214451337142, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
@@ -665,6 +676,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
 --- !u!4 &5719305407860002446 stripped
 Transform:

@@ -564,7 +564,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2676510683511495759}
-  - component: {fileID: 8076142157166948482}
+  - component: {fileID: -8333777087622643836}
   m_Layer: 0
   m_Name: UL
   m_TagString: Untagged
@@ -595,7 +595,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8076142157166948482
+--- !u!114 &-8333777087622643836
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -604,9 +604,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 6081415181510433996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6ef9de1689f0c24887df66a426893a7, type: 3}
+  m_Script: {fileID: 11500000, guid: 725d7cf452b66aa469c1ecd28f880a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  door: {fileID: 0}
+  doorvrt: {fileID: 0}
+  templates: {fileID: 0}
+  thisRoom: {fileID: 0}
+  doors:
+  - U
+  - L
+  oben: 0
+  rechts: 0
+  unten: 0
+  links: 0
 --- !u!1 &8226905975303133555
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,6 +734,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 2676510683511495759}
     m_Modifications:
     - target: {fileID: 2389154214451337142, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
@@ -778,6 +790,7 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
 --- !u!4 &7411500761704232475 stripped
 Transform:
@@ -789,6 +802,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 2676510683511495759}
     m_Modifications:
     - target: {fileID: 2389154214451337142, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
@@ -844,6 +858,7 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
 --- !u!4 &5119932819231103646 stripped
 Transform:
