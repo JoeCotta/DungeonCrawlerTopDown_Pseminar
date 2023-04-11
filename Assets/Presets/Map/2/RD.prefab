@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6483435445709468662}
   - component: {fileID: 1861405072539191619}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: RD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   - component: {fileID: 7841160103732705723}
   - component: {fileID: 2781667013179930622}
   - component: {fileID: 6943944416203993176}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -185,7 +185,7 @@ GameObject:
   - component: {fileID: 5107775336650382863}
   - component: {fileID: 1659861011840884382}
   - component: {fileID: 6588742499600886088}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -296,7 +296,7 @@ GameObject:
   - component: {fileID: 4797267774253999608}
   - component: {fileID: 6381908620862806991}
   - component: {fileID: 7563141226195603583}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -407,7 +407,7 @@ GameObject:
   - component: {fileID: 8837538819536178051}
   - component: {fileID: 2295048929930365146}
   - component: {fileID: 7139409155744260462}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -518,7 +518,7 @@ GameObject:
   - component: {fileID: 6208537526106374395}
   - component: {fileID: 1748796970354812229}
   - component: {fileID: 7709204209292157341}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -629,7 +629,7 @@ GameObject:
   - component: {fileID: 6961694229683396334}
   - component: {fileID: 6282133891689203295}
   - component: {fileID: 8140545514030311272}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -734,12 +734,15 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 6483435445709468662}
     m_Modifications:
     - target: {fileID: 2389154214451337142, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
       propertyPath: m_Name
       value: Spawnpoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389154214451337142, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3271307913830081117, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
       propertyPath: m_RootOrder
@@ -790,7 +793,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
 --- !u!4 &8939007685775593824 stripped
 Transform:
@@ -802,12 +804,15 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 6483435445709468662}
     m_Modifications:
     - target: {fileID: 2389154214451337142, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
       propertyPath: m_Name
       value: Spawnpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 2389154214451337142, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3271307913830081117, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
       propertyPath: m_RootOrder
@@ -858,7 +863,6 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
 --- !u!4 &6552685121759820692 stripped
 Transform:

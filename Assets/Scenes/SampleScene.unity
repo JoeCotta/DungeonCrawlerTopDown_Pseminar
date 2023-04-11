@@ -466,7 +466,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 886307159}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: weaponSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -502,7 +502,7 @@ GameObject:
   - component: {fileID: 1381236167}
   - component: {fileID: 1381236171}
   - component: {fileID: 1381236172}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -523,7 +523,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 1544928006}
   speed: 500
-  nextWaypointDistance: 4
+  nextWaypointDistance: 1
+  weaponPrefab: {fileID: 4382214503651565149, guid: 85ca61a2f59b7d9e0a436efd4cae65a1, type: 3}
 --- !u!50 &1381236168
 Rigidbody2D:
   serializedVersion: 4
@@ -682,7 +683,7 @@ GameObject:
   - component: {fileID: 1544928007}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

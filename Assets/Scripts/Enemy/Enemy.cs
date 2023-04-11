@@ -24,6 +24,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {   
+        // scans the Map to create Obstacles for the AI 1s after the program started
+        InvokeRepeating("ScanMap", 1f, 0f);
+
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -34,6 +37,9 @@ public class Enemy : MonoBehaviour
         weaponSlot = transform.GetChild(0);
         weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);
         
+    }
+    void ScanMap(){
+        AstarPath.active.Scan();
     }
 
     void UpdatePath(){
@@ -58,6 +64,8 @@ public class Enemy : MonoBehaviour
             weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, -90);;
         }
 
+        if(path == null) return;
+
         // check if enemy can hit the target (maybe a wall blocks the shot)
         RaycastHit2D hit = Physics2D.Raycast(rb.position, ((Vector2)target.position - rb.position).normalized);
 
@@ -76,6 +84,9 @@ public class Enemy : MonoBehaviour
         if (!follow) {shoot(); return;}
         if(path == null) return;
         
+        // checks if the end of the path is reached
+        if(currentWaypoint >= path.vectorPath.Count) return;
+ 
         // calculates the force to follow the path
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime * 10;
@@ -111,4 +122,6 @@ public class Enemy : MonoBehaviour
 
         weapon.SendMessage("shoot");
     }
+    void hit(float damage){}
+
 }
