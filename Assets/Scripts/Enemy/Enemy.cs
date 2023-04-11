@@ -1,133 +1,114 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
+
 
 public class Enemy : MonoBehaviour
 {
-
-    public Rigidbody2D rb;
-    public Rigidbody2D rbPlayer;
-    public float maxMovementSpeed; // 7
-    public float acceleration; // 50
-    public float countdownFollowPlayerIfRayCastFails;
-    public float checkAntiCollisionRadius;
-    public float radiusEnemySeesPlayer;
+    public Transform target;
+    public float speed;
+    public float nextWaypointDistance;
     public GameObject weaponPrefab;
 
-    private Transform weaponSlot;
-    private Vector2 inputMovement;
-    private Vector2 toPlayer;
-    private Vector2 playerLastSeen;
-    private float countdownLeft;
+    private Transform weaponSlot; 
     private GameObject weapon;
-    private RaycastHit2D checkCanSeePlayer;
-    private bool follow;
+
+    Path path;
+    int currentWaypoint = 0;
+
+    Seeker seeker;
+    Rigidbody2D rb;
+
+    bool follow = true;
 
     void Start()
-    { 
-        rb.rotation = 0;
-        weaponSlot = transform.GetChild(0);
-        weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);        
+    {   
+        seeker = GetComponent<Seeker>();
+        rb = GetComponent<Rigidbody2D>();
 
+        // updates the Path every half seconds
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
+
+        // initialises the weaponSystem
+        weaponSlot = transform.GetChild(0);
+        weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);
+        
     }
 
+    void UpdatePath(){
+        if(seeker.IsDone()) seeker.StartPath(rb.position, target.position, OnPathComplete);
+    }
+
+    // if the next part of the path is generated
+    void OnPathComplete(Path p)
+    {
+        if(!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
     void Update()
-    { 
-
-        checkCanSeePlayer = Physics2D.Raycast(transform.position, (rbPlayer.position - rb.position).normalized, radiusEnemySeesPlayer);
-
-        
-
-        moveDirection(rbPlayer.position);
-        moveController();
-        move();
-
-        if(countdownLeft > 0) countdownLeft -= Time.deltaTime;
-    
-        // update the position and rotation of the weapon if the player has one
+    {
+        // update the position and rotation of the weapon if the enemy has one
         if(weapon)
         {
             weapon.transform.position = weaponSlot.position;
-            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, -90);
+            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, -90);;
         }
+
+        // check if enemy can hit the target (maybe a wall blocks the shot)
+        RaycastHit2D hit = Physics2D.Raycast(rb.position, ((Vector2)target.position - rb.position).normalized);
+
+        float DistanceToTarget = path.GetTotalLength();
+
+        // if the Distance to the target is lower than 4 the enemy shouldn't follow the target, instead he should shoot at the target
+        if (DistanceToTarget < 6 ) follow = false;
+        // if the Distance to the target is grater than 8 the enemy should follow the target
+        // or the enemy's shot is blocked -> should rather follow the target
+        if (DistanceToTarget > 8 || hit.collider.gameObject.tag != "Player") follow = true;
     }
 
-    void move()
+    void FixedUpdate()
     {
-        // calculating the velocity the rb should have
-        Vector2 targetVelocity = inputMovement * maxMovementSpeed;
-        // difference between the velocity the rb should have and the actual one
-        Vector2 velocityDifference = targetVelocity - rb.velocity;
-        // F = m*a (m=1) and a = v/t (t=1) => F = v 
-        // ==> force is the velocity difference multiplied by an optional factor to speed up and brake faster
-        Vector2 force = velocityDifference * acceleration;
-        rb.AddForce(force);
-    }
-
-    void moveDirection(Vector2 position)
-    {        
-        // calculates the Vector between the enemy and the player
-        // if the player can't be seen and the countdown isn't over the enemy will walk to the last seen position of the player
-        // if the countdown is over the enemy won't follow the player
-        if (!checkCanSeePlayer || checkCanSeePlayer.collider.transform.gameObject.layer != LayerMask.NameToLayer("Map"))
-        {
-            toPlayer = (position - rb.position).normalized;
-            playerLastSeen = position;
-            countdownLeft = countdownFollowPlayerIfRayCastFails;
-        }
-        else if(countdownLeft > 0)
-        {
-            toPlayer = (playerLastSeen - rb.position).normalized;
-        }
-        else
-        {
-            toPlayer = Vector2.zero;
-        }
-    }
-
-    void moveController()
-    {
-        // avoid hitting obstacles, enemies or the player
-        RaycastHit2D hitRight = Physics2D.Raycast(transform.position, transform.right, checkAntiCollisionRadius);
-        RaycastHit2D hitLeft = Physics2D.Raycast(transform.position, -transform.right, checkAntiCollisionRadius);
-
-        RaycastHit2D hitUpRight = Physics2D.Raycast(transform.position, transform.up + transform.right, checkAntiCollisionRadius);
-        RaycastHit2D hitUpLeft = Physics2D.Raycast(transform.position, transform.up - transform.right, checkAntiCollisionRadius);
-
-        inputMovement = Vector2.zero;
-
-        // if there is an obstacle in the enemy's path it will move around
-        if (hitRight) inputMovement -= new Vector2(transform.right.x, transform.right.y) * 0.5f;
-        if (hitLeft) inputMovement += new Vector2(transform.right.x, transform.right.y) * 0.5f;
-        if (hitUpRight) inputMovement -= new Vector2(transform.right.x, transform.right.y) * 0.25f;
-        if (hitUpLeft) inputMovement += new Vector2(transform.right.x, transform.right.y) * 0.25f;
-
-        // if the player is in a certain range the enemy will move to him
-        if ((rbPlayer.position - rb.position).sqrMagnitude <= 10 * 10 && (rbPlayer.position - rb.position).sqrMagnitude >= 8 * 8) follow = true;
-
-        // if the enemy is close enough the enemy will stop moving to him
-        if ((rbPlayer.position - rb.position).sqrMagnitude <= 3 * 3 && (rbPlayer.position - rb.position).sqrMagnitude >= 2 * 2) follow = false;
+        // shoot if the target is close enough
+        if (!follow) {shoot(); return;}
+        if(path == null) return;
         
-        // if the enemy is not moving and close enough to the player he will shoot
-        if (!follow && (rbPlayer.position - rb.position).sqrMagnitude <= 8 * 8) shoot();
+        // calculates the force to follow the path
+        Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector2 force = direction * speed * Time.deltaTime * 10;
 
-        // moves the enemy
-        if(follow) inputMovement = toPlayer;
+        rb.AddForce(force);
 
-        // manages the rotation of the enemy
-        if(toPlayer == Vector2.zero) return;
-        float angleToPlayer = Mathf.Atan2(toPlayer.y, toPlayer.x) * Mathf.Rad2Deg - 90;
+        // manages rotation while following target
+        float angleNextWaypoint = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
+        Quaternion rotation = Quaternion.Euler(Vector3.forward * angleNextWaypoint);
+        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 7);
+
+        // updates the current Waypoint        
+        float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+        if(distance < nextWaypointDistance)
+        {
+            currentWaypoint++;
+        }
+
+    }
+    
+    void shoot()
+    {
+        // manages rotation while shooting
+        Vector2 PlayerDirection = ((Vector2)target.position - rb.position).normalized;
+        float angleToPlayer = Mathf.Atan2(PlayerDirection.y, PlayerDirection.x) * Mathf.Rad2Deg - 90f;
         Quaternion rotation = Quaternion.Euler(Vector3.forward * angleToPlayer);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 7);
 
-    }
 
-    void shoot()
-    {
-        // if the enemy has no weapon you can't shoot
+        // if the enemy has no weapon he can't shoot
         if(!weapon) return;
 
         weapon.SendMessage("shoot");
     }
-
 }

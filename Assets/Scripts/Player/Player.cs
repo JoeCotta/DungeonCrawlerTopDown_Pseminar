@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
     public float dashDamage; // 10
     public float weaponPickUpRadius;
     public float weaponDropForce; // 500
+    public float health;
     public GameObject dashEffect;
     public Animator camShake;
     public GameObject weaponPrefab;
@@ -27,7 +28,6 @@ public class Player : MonoBehaviour
     private float dashCooldownLeft;
     private float dashTimeLeft;
     private Vector2 dashDirection;
-    private float health;
     private bool isDashing;
     private bool isDead;
 
@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
         dashCooldownLeft = 0;
         dashTimeLeft = dashTime;
         isDashing = false;
+        isDead = false;
     }
 
     void Update()
@@ -112,6 +113,7 @@ public class Player : MonoBehaviour
 
         // pickup / swap weapon
         if(Input.GetKeyDown("f")) swapWeapons();
+
     }
 
     void FixedUpdate()
@@ -136,7 +138,11 @@ public class Player : MonoBehaviour
         if (isDashing) return;
         
         health -= damage;
-        isDead = true;
+        
+        if(health <= 0)
+        {
+            isDead = true;
+        }
     }
 
     void OnCollisionEnter2D(Collision2D collision)
