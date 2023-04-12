@@ -35,6 +35,9 @@ public class RoomSpawner : MonoBehaviour
     {
         if (spawned == false)
         {
+            if(templates.rooms.Count >= templates.roomsNumber){
+                Destroy(gameObject);
+            }
             if (doorDir == 1)
             {
                 rand = Random.Range(0, templates.bottomRooms.Length);
@@ -66,7 +69,7 @@ public class RoomSpawner : MonoBehaviour
         {
             if(other.GetComponent<RoomSpawner>().spawned == false && spawned == false)
             {
-                Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
+                //Instantiate(templates.closedRoom, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }
             spawned = true;
