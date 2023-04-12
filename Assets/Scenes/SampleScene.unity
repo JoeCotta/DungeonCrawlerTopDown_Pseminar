@@ -212,7 +212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAIIezBVVVVZAIAABYFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMty2zAM/BUPz3VGfihxemsVx+nBiSduJxddKBGyOKZIDR9+JON/L0hJluqeTC8WwGIJ6otwaWrIrdIrzdlaMSDfR8SfybdRH3yBE90pueWf0HE+OLOlJ9HAeaeWK8QnPs2oCqzm+Q+5E54cIegkL5SulmwHiTLWIFxQYQBDWlmfLRH6GpET/owffcoZT9MHf/rE02M0uuAxB2lBD6hxy4xb3jgOPCdzQasamBfd0+OucNyUkzhOy4jufIlcCcFNq4bYcx2mTWhtHM6CBMYpThckTO5mCJTAd6X1Wofpb0VhwLbDa3p+4hptauqSn6rxrqJm32g7UOF8p0VQ1ZRc/xcdT0K40Kp66bpOIt/Bljzfv9NzTo0dWDuEnwbCg0FHKvY0E/BRgnxVK62cZBi02vlUZ2D61P+9DpaUkO97vJF6A7q6d7wzvLtHP8MlzH5KBK+y4Py8AbZCBb/D9YPGu/mFgsNymLYEol7FHwO/6W64RW3gmWtjMdROKb28TDntqWQZPPPTOJsoLSHAregaJBX2vMEy9vYCb2KDtjeRZ+rfS9u8jXXP4CYlwD0/im5CG3W8XpYp1XENpnxzVnAJvWgfeEWfEiVls19DT7q0rdMFzQdpO8fZv6tFFtEDm0XZdJ5ls2lW3I/vF7P7RRYX8YLNJ3ExJ2H3uMQ5qdg0Qlt78NZkX1zinnWfkdFK0zrsOtP0uOKflRpYzmWhtrkGkG9Nhatw0NgE3yVbMo4GbcFaLsN9k6+UCJXvgaXXQmmYdHmymqZ9lZTU/KCsR1KShO9GSjx83eWNhgOHo2/eFbuQy19QSwMEFAAACAgAAAgh7BcDaq9tAAAAeAAAAAkAJABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGrVipLLSrOzM9TslIw0TPSMzTXUVBKL0osyCgGihiCOKWZKSB2tJKFgXmKsUGSkUlSkrFRUpqZrpmFsZlFkmmaqUWKiaFpmolSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAAgh7MFVVVVkAgAAFgUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAAgh7BcDaq9tAAAAeAAAAAkAJAAAAAAAAAAAAAAAsQIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAABpAwAAAAA=
+    dataString: UEsDBBQAAAgIAAAIIex7a47+ZQIAABkFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFlVMty2zAM/BUPz3VGfihxemsVx+nBiSduJxddKBGyOKZIDR9+JON/L0hJluqeTC8WwGIJ6otwaWrIrdIrzdlaMSDfR8SfybdRH3yBE90pueWf0HE+OLOlJ9HAeaeWK8QnPs2oCqzm+Q+5E54cIegkL5SulmwHiTLWIFxQYQBDWlmfLRH6GpET/owffcoZT9MHf/rE02M0uuAxB2lBD6hxy4xb3jgOPCdzQasamBfd0+Ooq4ynQJQ4UMuJ7nyRXAnBTauH2HMd5k1obRxOgwTGKc4XREzuZgiUwHel9WqH6W9FYcC242t6fuIajWrqkp+qca+iZt+oO1DhfKdFUNWUXP8XHU9CuNCqeum6TsJMtuT5/p2ec2rswNwh/DQQHiw6UrGnmYCPEuSrWmnlJMOg1c6nOgPTp/7vdbCkhHzf443UG9DVveed491N+hkuYfZTIniVBefnDbAVKvgdFgA03s0vFBzWw7QlEPUq/hj4TXfDPWoDz1wbi6F2SunlZcppTyXL4JmfxtlEaQkBbkXXIKmw5w2WsbcXeBMbtL2JPFP/Ytrmbax7CDcpAe75UXQT2qjj9bJMqY5rMOWbs4JL6EX7wCv6lCgpm/0aetKlbZ0uaD5I2znO/l0tsoge2CzKpvMsm02z4n58v5jdL7K4iBdsPomLOQm7xyXOScWmEdrag7cm++IS96z7kIxWmtZh15mmxxX/rNRQIJeF2uYaQL41Ja7KQWMXfJhsyTg6tAVruQwXTr5SIlS+B5Zee6Zh1OXJapr2VVJS84OyHklJEj4dKfHwdZk3Gg4cjr55V+xCLn8BUEsDBBQAAAgIAAAIIewXA2qvbQAAAHgAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jM011FQSi9KLMgoBooYgjilmSkgdrSShYF5irFBkpFJUpKxUVKama6ZhbGZRZJpmqlFiomhaZqJUixQfUllQapfYm4qRE9AYklGWmZeSmZeup57UWaKO8hopdhaAFBLAQItABQAAAgIAAAIIex7a47+ZQIAABkFAAALACQAAAAAAAAAAAAAAAAAAABncmFwaDAuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLAQItABQAAAgIAAAIIewXA2qvbQAAAHgAAAAJACQAAAAAAAAAAAAAALICAABtZXRhLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwUGAAAAAAIAAgC4AAAAagMAAAAA
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -448,6 +448,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7416429123334906834, guid: b8a43336072618e41a9e55eb0345b5f4, type: 3}
+      propertyPath: size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416429123334906834, guid: b8a43336072618e41a9e55eb0345b5f4, type: 3}
+      propertyPath: waitTime
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7416429123334906834, guid: b8a43336072618e41a9e55eb0345b5f4, type: 3}
+      propertyPath: roomsNumber
+      value: 50
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8a43336072618e41a9e55eb0345b5f4, type: 3}
 --- !u!1 &519420028
@@ -462,6 +474,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -548,13 +561,28 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b3c37c2499f4770af81f525ada3a40c1, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 0
+  m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86e979b580e489245a4ac4fe198d5752, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1544928006}
+  smoothSpeed: 0.125
+  offset: {x: 0, y: 0, z: -15}
 --- !u!1 &843827299
 GameObject:
   m_ObjectHideFlags: 0
