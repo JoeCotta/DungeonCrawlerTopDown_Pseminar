@@ -9,6 +9,7 @@ TagManager:
   - Door
   - weapon
   - Doorvrt
+  - Enemy
   layers:
   - Default
   - TransparentFX
