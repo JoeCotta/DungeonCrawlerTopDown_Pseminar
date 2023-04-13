@@ -18,6 +18,9 @@ public class Player : MonoBehaviour
     public GameObject dashEffect;
     public Animator camShake;
     public GameObject weaponPrefab;
+    // level 0 is the worst armor and 10 is the best
+    public int armorLevel = 0; 
+
 
     private Transform weaponSlot; 
     private GameObject weapon;
@@ -136,7 +139,9 @@ public class Player : MonoBehaviour
     {
         // player can't be hit while dashing
         if (isDashing) return;
-        
+
+        // this function -0.08x + 1 reduces the damage depending on the armor level
+        damage *=  (float)-0.08 * armorLevel + 1;
         health -= damage;
         
         if(health <= 0)
