@@ -10,18 +10,24 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float nextWaypointDistance;
     public GameObject[] weaponPrefabs;
+    public float health;
+    // level 0 is the worst armor and 10 is the best
+    public int armorLevel = 0; 
+
 
     private Transform weaponSlot; 
     private GameObject weapon;
 
-    Path path;
-    int currentWaypoint = 0;
+    private Path path;
+    private int currentWaypoint = 0;
 
-    Seeker seeker;
-    Rigidbody2D rb;
+    private Seeker seeker;
+    private Rigidbody2D rb;
 
-    bool follow = true;
-    bool outOfRange = true;
+    private bool follow = true;
+    private bool outOfRange = true;
+    private bool isDead = false;
+
 
     void Start()
     {   
@@ -39,6 +45,8 @@ public class Enemy : MonoBehaviour
         GameObject weaponPrefab = weaponPrefabs[Random.Range(0, weaponPrefabs.Length)];
         weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);
         
+        armorLevel = Random.Range(0, 11);
+
     }
     void ScanMap(){
         AstarPath.active.Scan();
@@ -131,6 +139,16 @@ public class Enemy : MonoBehaviour
 
         weapon.SendMessage("shoot");
     }
-    void hit(float damage){}
+    void hit(float damage)
+    {
+        // this function -0.08x + 1 reduces the damage depending on the armor level
+        damage *=  (float)-0.08 * armorLevel + 1;
+        health -= damage;
+        
+        if(health <= 0)
+        {
+            isDead = true;
+        }
+    }
 
 }
