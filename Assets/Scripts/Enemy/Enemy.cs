@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     public Transform target;
     public float speed;
     public float nextWaypointDistance;
-    public GameObject weaponPrefab;
+    public GameObject[] weaponPrefabs;
 
     private Transform weaponSlot; 
     private GameObject weapon;
@@ -34,8 +34,9 @@ public class Enemy : MonoBehaviour
         // updates the Path every half seconds
         InvokeRepeating("UpdatePath", 0f, 0.5f);
 
-        // initialises the weaponSystem
+        // initialises the weaponSystem (random weapon)
         weaponSlot = transform.GetChild(0);
+        GameObject weaponPrefab = weaponPrefabs[Random.Range(0, weaponPrefabs.Length)];
         weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);
         
     }
@@ -75,8 +76,6 @@ public class Enemy : MonoBehaviour
         // if the player is too far away
         if (DistanceToTarget > 13) outOfRange = true;
         else outOfRange = false;
-
-        Debug.Log(DistanceToTarget);
 
         // if the Distance to the target is grater than 8 the enemy should follow the target
         // or the enemy's shot is blocked -> should rather follow the target
