@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     Rigidbody2D rb;
 
     bool follow = true;
+    bool outOfRange = true;
 
     void Start()
     {   
@@ -71,11 +72,18 @@ public class Enemy : MonoBehaviour
 
         float DistanceToTarget = path.GetTotalLength();
 
-        // if the Distance to the target is lower than 4 the enemy shouldn't follow the target, instead he should shoot at the target
-        if (DistanceToTarget < 6 ) follow = false;
+        // if the player is too far away
+        if (DistanceToTarget > 13) outOfRange = true;
+        else outOfRange = false;
+
+        Debug.Log(DistanceToTarget);
+
         // if the Distance to the target is grater than 8 the enemy should follow the target
         // or the enemy's shot is blocked -> should rather follow the target
         if (DistanceToTarget > 8 || hit.collider.gameObject.tag != "Player") follow = true;
+
+        // if the Distance to the target is lower than 4 or out of the player's range the enemy shouldn't follow the target, instead he should shoot at the target
+        if (DistanceToTarget < 6 || outOfRange) follow = false;
     }
 
     void FixedUpdate()
@@ -86,7 +94,7 @@ public class Enemy : MonoBehaviour
         
         // checks if the end of the path is reached
         if(currentWaypoint >= path.vectorPath.Count) return;
- 
+
         // calculates the force to follow the path
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
         Vector2 force = direction * speed * Time.deltaTime * 10;
@@ -110,15 +118,17 @@ public class Enemy : MonoBehaviour
     
     void shoot()
     {
+        // if the enemy has no weapon he can't shoot
+        if(!weapon) return;
+
+        // if the player is too far away
+        if(outOfRange) return;
+
         // manages rotation while shooting
         Vector2 PlayerDirection = ((Vector2)target.position - rb.position).normalized;
         float angleToPlayer = Mathf.Atan2(PlayerDirection.y, PlayerDirection.x) * Mathf.Rad2Deg - 90f;
         Quaternion rotation = Quaternion.Euler(Vector3.forward * angleToPlayer);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 7);
-
-
-        // if the enemy has no weapon he can't shoot
-        if(!weapon) return;
 
         weapon.SendMessage("shoot");
     }
