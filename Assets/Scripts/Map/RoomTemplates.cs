@@ -32,8 +32,10 @@ public class RoomTemplates : MonoBehaviour
             waitTime -= Time.deltaTime;
         }
         if(rooms.Count > roomsNumber){//i didnt find a better solutuion, because it will always betrue
-            for(int i = 0; rooms.Count-i > roomsNumber; i++){
-                Destroy(rooms[rooms.Count-i-1]);
+            for(int i = 0; rooms.Count > roomsNumber; i++){
+                Destroy(rooms[rooms.Count-1]);
+                rooms.RemoveAt(rooms.Count-1);
+                //Debug.Log(rooms.Count);
             }
         }
     }

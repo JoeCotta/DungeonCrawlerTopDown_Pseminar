@@ -5,10 +5,10 @@ using UnityEngine;
 public class RoomManagment : MonoBehaviour
 {
     //working variables and references
-    public GameObject door;
-    public GameObject doorvrt;
-    public RoomTemplates templates;
-    public GameObject thisRoom;
+    private GameObject door;
+    private GameObject doorvrt;
+    private RoomTemplates templates;
+    private GameObject thisRoom;
     public string[] doors;
     public bool oben;
     public bool rechts;
@@ -33,7 +33,7 @@ public class RoomManagment : MonoBehaviour
         for(int i = 0; i < doors.Length; i++){
             //one segment to check if both rooms have doors
             if(doors[i] == "U"){//erst obberer
-                for(int i2 = 0; i2 < templates.roomsNumber; i2++){//für jeden einzelnen Raum dden es gibt
+                for(int i2 = 0; i2 < templates.rooms.Count; i2++){//für jeden einzelnen Raum dden es gibt
                     //überprüfen ober er raum über diesen raum liegt
                     if(templates.rooms[i2].transform.position.y - thisRoom.transform.position.y == 10*templates.size && templates.rooms[i2].transform.position.x == thisRoom.transform.position.x){
                         for(int i3 = 0; i3 < templates.rooms[i2].GetComponent<RoomManagment>().doors.Length; i3++){//für jeder der türen dieses Raumes Checken ob es die passenende gegen tür ist
@@ -47,12 +47,12 @@ public class RoomManagment : MonoBehaviour
                 }
                 if(oben == false){
                     Instantiate(door, transform.position + new Vector3(0,4.5f*templates.size,0), Quaternion.identity);
-                    Debug.Log("bug fixed");
+                    //Debug.Log("bug fixed");
                 }
             }
 
             if(doors[i] == "R"){
-                for(int i2 = 0; i2 < templates.roomsNumber; i2++){
+                for(int i2 = 0; i2 < templates.rooms.Count; i2++){
                     if(templates.rooms[i2].transform.position.x - thisRoom.transform.position.x == 10*templates.size && templates.rooms[i2].transform.position.y == thisRoom.transform.position.y){
                         for(int i3 = 0; i3 < templates.rooms[i2].GetComponent<RoomManagment>().doors.Length; i3++){
                             if(templates.rooms[i2].GetComponent<RoomManagment>().doors[i3] == "L"){
@@ -65,12 +65,12 @@ public class RoomManagment : MonoBehaviour
                 }
                 if(rechts == false){
                     Instantiate(doorvrt, transform.position + new Vector3(4.5f*templates.size,0,0), Quaternion.identity);
-                    Debug.Log("bug fixed");
+                    //Debug.Log("bug fixed");
                 }
             }
 
             if(doors[i] == "D"){
-                for(int i2 = 0; i2 < templates.roomsNumber; i2++){
+                for(int i2 = 0; i2 < templates.rooms.Count; i2++){
                     if(templates.rooms[i2].transform.position.y - thisRoom.transform.position.y == -10*templates.size && templates.rooms[i2].transform.position.x == thisRoom.transform.position.x){
                         for(int i3 = 0; i3 < templates.rooms[i2].GetComponent<RoomManagment>().doors.Length; i3++){
                             if(templates.rooms[i2].GetComponent<RoomManagment>().doors[i3] == "U"){
@@ -83,12 +83,12 @@ public class RoomManagment : MonoBehaviour
                 }
                 if(unten == false){
                     Instantiate(door, transform.position + new Vector3(0,-4.5f*templates.size,0), Quaternion.identity);
-                    Debug.Log("bug fixed");
+                    //Debug.Log("bug fixed");
                 }
             }
 
             if(doors[i] == "L"){
-                for(int i2 = 0; i2 < templates.roomsNumber; i2++){
+                for(int i2 = 0; i2 < templates.rooms.Count; i2++){
                     if(templates.rooms[i2].transform.position.x - thisRoom.transform.position.x == -10*templates.size && templates.rooms[i2].transform.position.y == thisRoom.transform.position.y){
                         for(int i3 = 0; i3 < templates.rooms[i2].GetComponent<RoomManagment>().doors.Length; i3++){
                             if(templates.rooms[i2].GetComponent<RoomManagment>().doors[i3] == "R"){
@@ -101,7 +101,7 @@ public class RoomManagment : MonoBehaviour
                 }
                 if(links == false){
                     Instantiate(doorvrt, transform.position + new Vector3(-4.5f*templates.size,0,0), Quaternion.identity);
-                    Debug.Log("bug fixed");
+                    //Debug.Log("bug fixed");
                 }
             }
 
