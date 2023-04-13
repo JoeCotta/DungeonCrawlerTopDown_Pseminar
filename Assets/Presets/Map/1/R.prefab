@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4986681673480558990}
   - component: {fileID: -2165638447109489796}
+  - component: {fileID: 9036928371701492037}
   m_Layer: 3
   m_Name: R
   m_TagString: Untagged
@@ -50,16 +51,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725d7cf452b66aa469c1ecd28f880a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  door: {fileID: 0}
-  doorvrt: {fileID: 0}
-  templates: {fileID: 0}
-  thisRoom: {fileID: 0}
+  enemy: {fileID: 9160011324959439354, guid: 63bcad68ccb791b43a9a796af8074e23, type: 3}
   doors:
   - R
   oben: 0
   rechts: 0
   unten: 0
   links: 0
+  enemys: []
+  closedDoors: []
+  xCoord: 0
+  yCoord: 0
+  enemysCount: 0
+  spawned: 0
+  allEnemysDead: 0
+  enemysDead: 
+--- !u!61 &9036928371701492037
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1678665861287363220}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 3.5, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &3078525052733929295
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,6 +652,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 4986681673480558990}
     m_Modifications:
     - target: {fileID: 2389154214451337142, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
@@ -679,6 +712,7 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
 --- !u!4 &1822384347718521202 stripped
 Transform:

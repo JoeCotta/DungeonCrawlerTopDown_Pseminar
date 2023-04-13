@@ -6,6 +6,8 @@ using Pathfinding;
 
 public class Enemy : MonoBehaviour
 {
+    public bool isdead = false; //Cornell
+
     public Transform target;
     public float speed;
     public float nextWaypointDistance;
@@ -25,6 +27,9 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {   
+        //get player Transform by Cornell
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        
         // scans the Map to create Obstacles for the AI 1s after the program started
         InvokeRepeating("ScanMap", 1f, 0f);
 

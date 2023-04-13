@@ -69,7 +69,9 @@ public class RoomSpawner : MonoBehaviour
         {
             if(other.GetComponent<RoomSpawner>().spawned == false && spawned == false)
             {
-                Destroy(other.gameObject);
+                if(doorDir < other.gameObject.GetComponent<RoomSpawner>().doorDir){
+                    Destroy(other.gameObject);
+                }
             }
             spawned = true;
         }
