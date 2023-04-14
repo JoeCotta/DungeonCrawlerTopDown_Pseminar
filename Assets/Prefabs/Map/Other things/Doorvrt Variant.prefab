@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1049699922232974790}
   - component: {fileID: 6591911315325833793}
   - component: {fileID: -7222714339094641738}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Doorvrt Variant
   m_TagString: Doorvrt
   m_Icon: {fileID: 0}
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1049699922232974790
 SpriteRenderer:
