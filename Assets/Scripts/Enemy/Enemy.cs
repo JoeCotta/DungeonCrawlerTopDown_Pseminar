@@ -50,6 +50,7 @@ public class Enemy : MonoBehaviour
         weaponSlot = transform.GetChild(0);
         GameObject weaponPrefab = weaponPrefabs[Random.Range(0, weaponPrefabs.Length)];
         weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);
+        weapon.GetComponent<weaponsystem>().owner = gameObject;//by Cornell
         
         armorLevel = Random.Range(0, 11);
 

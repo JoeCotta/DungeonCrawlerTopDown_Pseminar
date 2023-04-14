@@ -39,7 +39,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         weaponSlot = transform.GetChild(0);
-        weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);        
+        weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);  
+        weapon.GetComponent<weaponsystem>().owner = gameObject; // by Cornell      
 
         cam.orthographic = true;
         dashCooldownLeft = 0;
@@ -198,6 +199,7 @@ public class Player : MonoBehaviour
         if(bestWeapon == null || lowestWeaponDistance > weaponPickUpRadius) weapon = null;
         // change the weapons
         else weapon = bestWeapon;
+        weapon.GetComponent<weaponsystem>().owner = gameObject;//by Cornell
 
     } 
 }
