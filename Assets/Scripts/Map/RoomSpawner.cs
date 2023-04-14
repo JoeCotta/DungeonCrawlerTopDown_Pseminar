@@ -24,13 +24,12 @@ public class RoomSpawner : MonoBehaviour
 
     private void Start()
     {
-        
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>(); // grab list of rooms avaiable
         Invoke("Spawn",0.2f); //little pause before spawn of room
         Destroy(gameObject, waitTime); // delete after a amout of time
     }
 
-    //Process of spawning rooms; reference ln 32 
+    //Process of spawning rooms; reference ln 28
     void Spawn()
     {
         if (spawned == false)
@@ -73,7 +72,9 @@ public class RoomSpawner : MonoBehaviour
                     Destroy(other.gameObject);
                 }
             }
-            spawned = true;
+            if(other.GetComponent<RoomSpawner>().spawned == true){
+                spawned = true;
+            }
         }
     }
 }
