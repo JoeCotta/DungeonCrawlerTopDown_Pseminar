@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 7809644589174704117}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4271188162053047423
 SpriteRenderer:
@@ -189,6 +189,7 @@ MonoBehaviour:
   - {fileID: 4382214503651565149, guid: 85ca61a2f59b7d9e0a436efd4cae65a1, type: 3}
   - {fileID: 4382214503651565149, guid: e8591142de91aceb7998439475a7f101, type: 3}
   - {fileID: 4382214503651565149, guid: f56bec6eedc9f3a33b08314a11b20244, type: 3}
+  bean: {fileID: 6964382192004399289, guid: ad9417dfbbd9ab33284e03adafddd61c, type: 3}
   price: 5
 --- !u!61 &7809644589174704116
 BoxCollider2D:

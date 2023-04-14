@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5995074586283413096}
-  m_RootOrder: -1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2252235800248729091
 SpriteRenderer:
@@ -89,7 +89,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5063331385556672302, guid: fb7653615bec29e4f9b60a0b8d4600d1, type: 3}
@@ -112,6 +111,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0.15686275
       objectReference: {fileID: 0}
+    - target: {fileID: 5771368120821569001, guid: fb7653615bec29e4f9b60a0b8d4600d1, type: 3}
+      propertyPath: bean
+      value: 
+      objectReference: {fileID: 6964382192004399289, guid: ad9417dfbbd9ab33284e03adafddd61c, type: 3}
     - target: {fileID: 5771368120821569001, guid: fb7653615bec29e4f9b60a0b8d4600d1, type: 3}
       propertyPath: price
       value: 25
@@ -136,6 +139,10 @@ PrefabInstance:
       propertyPath: lootTable.Array.data[4]
       value: 
       objectReference: {fileID: 4382214503651565149, guid: f56bec6eedc9f3a33b08314a11b20244, type: 3}
+    - target: {fileID: 5771368120821569002, guid: fb7653615bec29e4f9b60a0b8d4600d1, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5771368120821569003, guid: fb7653615bec29e4f9b60a0b8d4600d1, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -205,10 +212,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 5771368120821569003, guid: fb7653615bec29e4f9b60a0b8d4600d1, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5958079762495166991}
   m_SourcePrefab: {fileID: 100100000, guid: fb7653615bec29e4f9b60a0b8d4600d1, type: 3}
 --- !u!4 &5995074586283413096 stripped
 Transform:

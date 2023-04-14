@@ -199,7 +199,7 @@ public class Player : MonoBehaviour
         if(bestWeapon == null || lowestWeaponDistance > weaponPickUpRadius) weapon = null;
         // change the weapons
         else weapon = bestWeapon;
-        weapon.GetComponent<weaponsystem>().owner = gameObject;//by Cornell
+        if(weapon != null) weapon.GetComponent<weaponsystem>().owner = gameObject;//by Cornell
 
     } 
 }

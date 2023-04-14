@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5771368120821569003}
-  m_RootOrder: -1
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 180}
 --- !u!212 &8690764155921954174
 SpriteRenderer:
@@ -89,12 +89,15 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 7809644589174704112, guid: 6d8d7ff79a782d744bb7ee1e2fde9fb8, type: 3}
       propertyPath: m_Name
       value: Chest better
+      objectReference: {fileID: 0}
+    - target: {fileID: 7809644589174704116, guid: 6d8d7ff79a782d744bb7ee1e2fde9fb8, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7809644589174704117, guid: 6d8d7ff79a782d744bb7ee1e2fde9fb8, type: 3}
       propertyPath: m_RootOrder
@@ -153,6 +156,10 @@ PrefabInstance:
       value: 0.15686275
       objectReference: {fileID: 0}
     - target: {fileID: 7809644589174704119, guid: 6d8d7ff79a782d744bb7ee1e2fde9fb8, type: 3}
+      propertyPath: bean
+      value: 
+      objectReference: {fileID: 6964382192004399289, guid: ad9417dfbbd9ab33284e03adafddd61c, type: 3}
+    - target: {fileID: 7809644589174704119, guid: 6d8d7ff79a782d744bb7ee1e2fde9fb8, type: 3}
       propertyPath: price
       value: 15
       objectReference: {fileID: 0}
@@ -181,10 +188,6 @@ PrefabInstance:
       value: -0.125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 7809644589174704117, guid: 6d8d7ff79a782d744bb7ee1e2fde9fb8, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 8100741224250794263}
   m_SourcePrefab: {fileID: 100100000, guid: 6d8d7ff79a782d744bb7ee1e2fde9fb8, type: 3}
 --- !u!4 &5771368120821569003 stripped
 Transform:
