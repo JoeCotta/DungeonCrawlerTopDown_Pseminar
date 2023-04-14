@@ -122,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd2c9862691e945996ed205169dea50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxGold: 3
   target: {fileID: 0}
   speed: 500
   nextWaypointDistance: 1
@@ -129,6 +130,9 @@ MonoBehaviour:
   - {fileID: 4382214503651565149, guid: f56bec6eedc9f3a33b08314a11b20244, type: 3}
   - {fileID: 4382214503651565149, guid: e8591142de91aceb7998439475a7f101, type: 3}
   - {fileID: 4382214503651565149, guid: 85ca61a2f59b7d9e0a436efd4cae65a1, type: 3}
+  health: 0
+  armorLevel: 0
+  isDead: 0
 --- !u!61 &9160011324959439351
 BoxCollider2D:
   m_ObjectHideFlags: 0

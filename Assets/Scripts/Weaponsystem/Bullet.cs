@@ -20,6 +20,6 @@ public class Bullet : MonoBehaviour
         if(other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy") other.gameObject.SendMessage("hit", damage);
 
         // destroys itself
-        Destroy(gameObject);
+        if(other.gameObject.CompareTag("Map")||other.gameObject.CompareTag("Door")||other.gameObject.CompareTag("Doorvrt")) Destroy(gameObject);
     }
 }

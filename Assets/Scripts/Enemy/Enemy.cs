@@ -6,7 +6,8 @@ using Pathfinding;
 
 public class Enemy : MonoBehaviour
 {
-    public bool isdead = false; //Cornell
+    public int maxGold; //Cornell
+    public RoomManagment manager;//""
 
     public Transform target;
     public float speed;
@@ -28,7 +29,7 @@ public class Enemy : MonoBehaviour
 
     private bool follow = true;
     private bool outOfRange = true;
-    private bool isDead = false;
+    public bool isDead = false;
 
 
     void Start()
@@ -153,6 +154,8 @@ public class Enemy : MonoBehaviour
         if(health <= 0)
         {
             isDead = true;
+            target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,maxGold));//Cornell 
+            manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error
         }
     }
 
