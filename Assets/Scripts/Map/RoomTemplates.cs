@@ -12,8 +12,9 @@ public class RoomTemplates : MonoBehaviour
     public GameObject closedRoom;
 
     // preset Variables/References
-    public float waitTime;
     public GameObject boss;
+    public GameObject[] chests;
+    public float waitTime;
     public float size;
     public int roomsNumber;//how many rooms there will be
 
@@ -27,15 +28,14 @@ public class RoomTemplates : MonoBehaviour
         {
             Instantiate(boss, rooms[roomsNumber-1].transform.position, Quaternion.identity);
             spawnedBoss = true;
-
         }else if(waitTime > 0){
             waitTime -= Time.deltaTime;
         }
-        if(rooms.Count > roomsNumber){//i didnt find a better solutuion, because it will always betrue
+
+        if(rooms.Count > roomsNumber){
             for(int i = 0; rooms.Count > roomsNumber; i++){
                 Destroy(rooms[rooms.Count-1]);
                 rooms.RemoveAt(rooms.Count-1);
-                //Debug.Log(rooms.Count);
             }
         }
     }

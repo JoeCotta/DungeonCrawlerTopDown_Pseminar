@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public GameObject owner;
+    
     public float timeSelfDestroy;
     public float damage;
 
@@ -17,9 +19,15 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)    
     {  
         // if the collider is an enemy or the player it will apply damage to it
-        if(other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy") other.gameObject.SendMessage("hit", damage);
+        if(other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy"){
+            //only dmg if other gameobject isnt same type as object wielding the weapon (prevent friendly fire) by Cornell
+            if(other.gameObject.tag != owner.tag){
+                other.gameObject.SendMessage("hit", damage);
+            }
+        }
 
-        // destroys itself
-        Destroy(gameObject);
+        // destroys itself; by Conrell
+        if(other.gameObject.CompareTag("Map")||other.gameObject.CompareTag("Door")||other.gameObject.CompareTag("Doorvrt")) Destroy(gameObject);
+        if(other.gameObject.CompareTag("Bullet")&&owner.tag != other.gameObject.GetComponent<Bullet>().owner.tag) Destroy(gameObject); //other condition so that enemy bullets dont delete eachother
     }
 }

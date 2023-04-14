@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class weaponsystem : MonoBehaviour
 {
+    public GameObject owner;//by cornell
+
     public int weaponType;
     public GameObject bulletPrefab;
 
@@ -68,5 +70,8 @@ public class weaponsystem : MonoBehaviour
 
         // restarts the CoolDown
         fireCooldownLeft = fireCooldown;
+
+        //save owner of weapon to prevent friendly fire
+        bullet.GetComponent<Bullet>().owner = owner;
     }
 }
