@@ -12,8 +12,9 @@ public class RoomTemplates : MonoBehaviour
     public GameObject closedRoom;
 
     // preset Variables/References
-    public float waitTime;
     public GameObject boss;
+    public GameObject[] chests;
+    public float waitTime;
     public float size;
     public int roomsNumber;//how many rooms there will be
 

@@ -20,6 +20,7 @@ public class RoomManagment : MonoBehaviour
     //spawn enemys
     public GameObject[] enemys;
     public GameObject[] closedDoors;
+    public GameObject[] chests;
     public float xCoord;
     public float yCoord;
     public int enemysCount;
@@ -33,8 +34,9 @@ public class RoomManagment : MonoBehaviour
     {
         door = GameObject.FindGameObjectWithTag("Door"); 
         doorvrt = GameObject.FindGameObjectWithTag("Doorvrt");
-        //add room to list of rooms
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        chests = templates.chests;
+        //add room to list of rooms
         templates.rooms.Add(this.gameObject);
         thisRoom = gameObject;
         thisRoom.transform.localScale = thisRoom.transform.localScale * templates.size;
@@ -171,10 +173,11 @@ public class RoomManagment : MonoBehaviour
 
     void roomFinished(){
         Destroy(closedDoors[0]);Destroy(closedDoors[1]);Destroy(closedDoors[2]);Destroy(closedDoors[3]); //open room again
-
-        int randomChest = Random.Range(1,5);
-        if(randomChest == 1){
-            //spawn chest or smth
+        int randomChestGen = Random.Range(1,5);
+        if(randomChestGen == 1){
+            int randomChest = Random.Range(0,chests.Length);
+            Instantiate(chests[randomChest],transform.position,Quaternion.identity);
+            //Debug.Log("chest");
         }
     }
 }

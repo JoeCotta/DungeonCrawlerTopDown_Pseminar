@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     private Vector2 dashDirection;
     private bool isDashing;
     private bool isDead;
+    public float playerGold;//treat as int
+
 
     void Start()
     {

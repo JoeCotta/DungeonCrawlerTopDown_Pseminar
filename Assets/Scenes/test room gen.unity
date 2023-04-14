@@ -369,6 +369,10 @@ PrefabInstance:
       propertyPath: camShake
       value: 
       objectReference: {fileID: 549764645}
+    - target: {fileID: 4035725122823028270, guid: 5a5d8760d94248849815cb869a18256d, type: 3}
+      propertyPath: playerGold
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4035725122823028271, guid: 5a5d8760d94248849815cb869a18256d, type: 3}
       propertyPath: m_Name
       value: Player from sample scene
