@@ -15,14 +15,17 @@ public class Player : MonoBehaviour
     public float dashTime; // 0.15
     public float dashDamage; // 10
     public float weaponPickUpRadius;
-    public float weaponDropForce; // 500
+    public float ItemDropForce; // 500
     public float health;
     public GameObject dashEffect;
     public Animator camShake;
     public GameObject weaponPrefab;
     // level 0 is the worst armor and 10 is the best
-    public int armorLevel = 0; 
-
+    public int armourLevel = 0; 
+    // 1 is weapon; 2 is Armour
+    public int selectedItem = 1;
+    public float armourPickUpRadius;
+    public GameObject armourPrefab;
 
     private Transform weaponSlot; 
     private GameObject weapon;
@@ -120,7 +123,12 @@ public class Player : MonoBehaviour
         if(Input.GetMouseButton(0)) shoot();
 
         // pickup / swap weapon
-        if(Input.GetKeyDown("f")) swapWeapons();
+        if(Input.GetKeyDown("f")) pickupItem();
+
+        // updates the current selected Item
+        if(Input.GetKeyDown("1")) selectedItem = 1;
+        if(Input.GetKeyDown("2")) selectedItem = 2;
+
 
     }
 
@@ -146,7 +154,7 @@ public class Player : MonoBehaviour
         if (isDashing) return;
 
         // this function -0.08x + 1 reduces the damage depending on the armor level
-        damage *=  (float)-0.08 * armorLevel + 1;
+        damage *=  (float)-0.08 * armourLevel + 1;
         health -= damage;
         
         if(health <= 0)
@@ -172,7 +180,62 @@ public class Player : MonoBehaviour
         weapon.SendMessage("shoot");
     }
 
-    void swapWeapons()
+    void pickupItem()
+    {
+        switch (selectedItem)
+        {
+            case 1:
+                swapWeapon();
+                break;
+
+            case 2:
+                swapArmour();
+                break;
+        }
+    } 
+    void swapArmour()
+    {
+        GameObject bestArmour = null;
+
+        // as a start value the set radius is good that you can find a weapon which is in the radius 
+        float lowestArmourDistance = armourPickUpRadius ;
+
+        // finds every Armour Item in the game
+        GameObject[] ArmourItems = GameObject.FindGameObjectsWithTag("Armour");
+
+        // finds the weapon which is the nearest to the player
+        foreach(GameObject foundArmour in ArmourItems)
+        {
+            float armourDistance = (rb.position - new Vector2(foundArmour.transform.position.x, foundArmour.transform.position.y)).magnitude;
+            if (armourDistance < lowestArmourDistance)
+            {
+                bestArmour = foundArmour;
+                lowestArmourDistance = armourDistance;
+            }
+        }
+        if(armourLevel != 0)
+        {
+            // creates the "old" armour
+            GameObject oldArmour = Instantiate(armourPrefab, transform.position, Quaternion.identity);
+
+            // sets the level of the armour
+            oldArmour.SendMessage("setLevel", armourLevel);
+
+            // gives the "old" armour a force to kick the armour away - a drop animation
+            oldArmour.GetComponent<Rigidbody2D>().AddForce(-lookDir.normalized * ItemDropForce);
+        }
+
+        // sets the Players armourLevel to 0
+        armourLevel = 0;
+
+        // if there is armour to pickup
+        if(bestArmour)
+        {
+            armourLevel = bestArmour.GetComponent<Armour>().level;
+            Destroy(bestArmour);
+        }
+    }
+    void swapWeapon()
     {
         GameObject bestWeapon = null;
         // as a start value the set radius plus a little bit is good that you can find a weapon which is exactly on and not in the radius 
@@ -194,14 +257,13 @@ public class Player : MonoBehaviour
                 lowestWeaponDistance = weaponDistance;
             }
         }
-        // gives the "old" weapon a force to kick to weapon away - a drop animation
-        if (weapon) weapon.GetComponent<Rigidbody2D>().AddForce(-lookDir.normalized * weaponDropForce);
+        // gives the "old" weapon a force to kick the weapon away - a drop animation
+        if (weapon) weapon.GetComponent<Rigidbody2D>().AddForce(-lookDir.normalized * ItemDropForce);
 
         // if there is no weapon to pickup
         if(bestWeapon == null || lowestWeaponDistance > weaponPickUpRadius) weapon = null;
         // change the weapons
         else weapon = bestWeapon;
         if(weapon != null) weapon.GetComponent<weaponsystem>().owner = gameObject;//by Cornell
-
-    } 
+    }
 }
