@@ -9,6 +9,8 @@ public class RoomManagment : MonoBehaviour
     //working variables and references
     private GameObject door;
     private GameObject doorvrt;
+    public GameObject doorFix;
+    public GameObject doorvrtFix;
     private RoomTemplates templates;
     private GameObject thisRoom;
     public string[] doors;
@@ -32,6 +34,8 @@ public class RoomManagment : MonoBehaviour
     {
         door = GameObject.FindGameObjectWithTag("Door"); 
         doorvrt = GameObject.FindGameObjectWithTag("Doorvrt");
+        doorFix = GameObject.FindGameObjectWithTag("DoorFix");
+        doorvrtFix = GameObject.FindGameObjectWithTag("DoorvrtFix");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         chests = templates.chests;
         //add room to list of rooms
@@ -73,7 +77,8 @@ public class RoomManagment : MonoBehaviour
                     }
                 }
                 if(oben == false){
-                    Instantiate(door, transform.position + new Vector3(0,4.5f*templates.size,0), Quaternion.identity);
+                    Instantiate(doorFix, transform.position + new Vector3(0,4.5f*templates.size,0), Quaternion.identity);
+                    doors[i] = " "; // to prevent spawnign another door on closeRoom()
                 }
             }
 
@@ -89,7 +94,8 @@ public class RoomManagment : MonoBehaviour
                     }
                 }
                 if(rechts == false){
-                    Instantiate(doorvrt, transform.position + new Vector3(4.5f*templates.size,0,0), Quaternion.identity);
+                    Instantiate(doorvrtFix, transform.position + new Vector3(4.5f*templates.size,0,0), Quaternion.identity);
+                    doors[i] = " ";
                 }
             }
 
@@ -105,7 +111,8 @@ public class RoomManagment : MonoBehaviour
                     }
                 }
                 if(unten == false){
-                    Instantiate(door, transform.position + new Vector3(0,-4.5f*templates.size,0), Quaternion.identity);
+                    Instantiate(doorFix, transform.position + new Vector3(0,-4.5f*templates.size,0), Quaternion.identity);
+                    doors[i] = " ";
                 }
             }
 
@@ -121,7 +128,8 @@ public class RoomManagment : MonoBehaviour
                     }
                 }
                 if(links == false){
-                    Instantiate(doorvrt, transform.position + new Vector3(-4.5f*templates.size,0,0), Quaternion.identity);
+                    Instantiate(doorvrtFix, transform.position + new Vector3(-4.5f*templates.size,0,0), Quaternion.identity);
+                    doors[i] = " ";    
                 }
             }
 
@@ -131,10 +139,22 @@ public class RoomManagment : MonoBehaviour
 
     void closeEntrances(){
         closedDoors = new GameObject[4];
-        closedDoors[0] = Instantiate(door, transform.position + new Vector3(0,4.5f*templates.size,0), Quaternion.identity);
-        closedDoors[1] = Instantiate(doorvrt, transform.position + new Vector3(4.5f*templates.size,0,0), Quaternion.identity);
-        closedDoors[2] = Instantiate(door, transform.position + new Vector3(0,-4.5f*templates.size,0), Quaternion.identity);
-        closedDoors[3] = Instantiate(doorvrt, transform.position + new Vector3(-4.5f*templates.size,0,0), Quaternion.identity);
+        for(int i = 0; i < doors.Length; i++){
+            switch(doors[i]){
+                case "U":
+                    closedDoors[i] = Instantiate(door, transform.position + new Vector3(0,4.5f*templates.size,0), Quaternion.identity);
+                    break;
+                case "R":
+                    closedDoors[i] = Instantiate(doorvrt, transform.position + new Vector3(4.5f*templates.size,0,0), Quaternion.identity);
+                    break;
+                case "D":
+                    closedDoors[i] = Instantiate(door, transform.position + new Vector3(0,-4.5f*templates.size,0), Quaternion.identity);
+                    break;
+                case "L":
+                    closedDoors[i] = Instantiate(doorvrt, transform.position + new Vector3(-4.5f*templates.size,0,0), Quaternion.identity);
+                    break;
+            }
+        }
     }
 
     void spawnEnemys(){
@@ -160,7 +180,10 @@ public class RoomManagment : MonoBehaviour
     }
 
     void roomFinished(){
-        Destroy(closedDoors[0]);Destroy(closedDoors[1]);Destroy(closedDoors[2]);Destroy(closedDoors[3]); //open room again
+        //open room again
+        for(int i = 0; i < doors.Length; i++){
+            Destroy(closedDoors[i]);
+        }
         int randomChestGen = Random.Range(1,5);
         if(randomChestGen == 1){
             int randomChest = Random.Range(0,chests.Length);
