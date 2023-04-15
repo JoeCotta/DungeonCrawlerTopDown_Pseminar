@@ -123,6 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxGold: 3
+  manager: {fileID: 0}
   target: {fileID: 0}
   speed: 500
   nextWaypointDistance: 1

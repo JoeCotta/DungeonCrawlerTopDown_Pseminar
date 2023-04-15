@@ -11,9 +11,9 @@ public class DoorManager : MonoBehaviour
     {
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         if(isVrt){
-            gameObject.transform.localScale = new Vector3(1,3,0)* templates.size;//change if door size generall change
+            gameObject.transform.localScale = new Vector3(1,2,0)* templates.size;//change if door size generall change
         }else{
-            gameObject.transform.localScale = new Vector3(3,1,0)* templates.size;
+            gameObject.transform.localScale = new Vector3(2,1,0)* templates.size;
         }
     }
 }

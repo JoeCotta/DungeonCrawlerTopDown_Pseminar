@@ -3,11 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Coins : MonoBehaviour
+public class HealthCount : MonoBehaviour
 {
     public GameObject player;
     public Text text;
-
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -15,6 +14,6 @@ public class Coins : MonoBehaviour
 
     void Update()
     {
-        text.text = "Coins: " + player.GetComponent<Player>().playerGold.ToString();
+       text.text = player.GetComponent<Player>().health.ToString() + "/" +  player.GetComponent<Player>().maxHealth;
     }
 }

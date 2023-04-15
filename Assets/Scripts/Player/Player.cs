@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float maxHealth;// by Cornell
+    
     public Rigidbody2D rb;
     public Camera cam;
     public float maxMovementSpeed; // 7

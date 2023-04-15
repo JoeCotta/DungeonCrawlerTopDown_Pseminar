@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313682dc5dad5ac9aaa34ff590a6003f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 20
   rb: {fileID: 4035725122823028265}
   cam: {fileID: 0}
   maxMovementSpeed: 7
@@ -166,6 +167,8 @@ MonoBehaviour:
   dashEffect: {fileID: 5359497967520591300, guid: 79cf45eebe47f2a0e86fce313a1abfaa, type: 3}
   camShake: {fileID: 0}
   weaponPrefab: {fileID: 4382214503651565149, guid: 85ca61a2f59b7d9e0a436efd4cae65a1, type: 3}
+  armorLevel: 0
+  playerGold: 0
 --- !u!61 &4035725122823028266
 BoxCollider2D:
   m_ObjectHideFlags: 0
