@@ -37,9 +37,6 @@ public class Enemy : MonoBehaviour
         //get player Transform by Cornell
         target = GameObject.FindGameObjectWithTag("Player").transform;
         
-        // scans the Map to create Obstacles for the AI 1s after the program started
-        InvokeRepeating("ScanMap", 1f, 0f);
-
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
@@ -54,9 +51,6 @@ public class Enemy : MonoBehaviour
         
         armorLevel = Random.Range(0, 11);
 
-    }
-    void ScanMap(){
-        AstarPath.active.Scan();
     }
 
     void UpdatePath(){
