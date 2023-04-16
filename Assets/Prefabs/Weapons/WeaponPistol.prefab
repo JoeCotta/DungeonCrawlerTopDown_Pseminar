@@ -44,8 +44,8 @@ GameObject:
   - component: {fileID: 8626478018132572177}
   - component: {fileID: 7043996625841016062}
   m_Layer: 0
-  m_Name: Pistol
-  m_TagString: weapon
+  m_Name: WeaponPistol
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -130,6 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558fc7ab236b63aa287354a7b45094d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  owner: {fileID: 0}
   weaponType: 0
   bulletPrefab: {fileID: 9006799821689394367, guid: 2f7085c1d9902137ca5c39787eec93bc, type: 3}
 --- !u!50 &7043996625841016062
