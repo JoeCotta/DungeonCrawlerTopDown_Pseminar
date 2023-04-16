@@ -26,6 +26,10 @@ public class Player : MonoBehaviour
     public int selectedItem = 1;
     public GameObject armourPrefab;
     public float itemPickUpRadius;
+    public float FOV;
+    public float timeChangeFOV;
+    public float t;
+    public float FOVChangeWithoutWeapon = -1;
 
     private Transform weaponSlot; 
     private GameObject weapon;
@@ -40,6 +44,9 @@ public class Player : MonoBehaviour
     private bool isDead;
     public float playerGold;//treat as int
     private float speedBoostByWeapon;
+    private float FOVChangeByWeapon;
+    private bool isChangingFOV;
+    private float lastFOV;
 
 
     void Start()
@@ -133,7 +140,13 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown("1")) selectedItem = 1;
         if(Input.GetKeyDown("2")) selectedItem = 2;
 
-
+        // as long as the FOV has to change it will call changeFOV()
+        if(!isChangingFOV) {
+            // resets the last FOV and t
+            lastFOV = cam.orthographicSize;
+            t = 0;
+        }
+        else changeFOV();
     }
 
     void FixedUpdate()
@@ -221,16 +234,23 @@ public class Player : MonoBehaviour
                     swapArmour(null);
                     break;
             }
+
+            isChangingFOV = true;
+            changeSpeed();
+            changeFOV();
         }    
         // switch items
         else
         {
             if(nearestItem.gameObject.name.StartsWith("Weapon")) swapWeapon(nearestItem);
             else swapArmour(nearestItem);
+
+            isChangingFOV = true;
+            changeSpeed();
+            changeFOV();
         } 
 
-        changeSpeed();
-        changeFOV();
+
     } 
     void swapArmour(GameObject armour)
     {
@@ -272,5 +292,26 @@ public class Player : MonoBehaviour
         if(!weapon) speedBoostByWeapon = 0;
         else speedBoostByWeapon = weapon.GetComponent<weaponsystem>().speedWhileWearing;        
     }
-    void changeFOV() {}
+    void changeFOV() 
+    {
+        float checkFOVchange = FOVChangeByWeapon;
+
+        // changes the FOVChangeByWeapon to the current one
+        if(!weapon) FOVChangeByWeapon = FOVChangeWithoutWeapon;
+        else FOVChangeByWeapon = weapon.GetComponent<weaponsystem>().FOVWhileWearing;  
+                
+        // FOV has changed
+        if(checkFOVchange != FOVChangeByWeapon) lastFOV = cam.orthographicSize;
+
+        // FOV is changing
+        if(isChangingFOV)
+        { 
+            // as long as t is smaller than 1 it will raise (it has to be between 0 and 1 because of Mathf.Lerp)
+            if(t < 1) t += Time.deltaTime / timeChangeFOV;
+            else isChangingFOV = false;
+
+            // sets the FOV smoothly
+            cam.orthographicSize = Mathf.Lerp(lastFOV, FOV + FOVChangeByWeapon, t);
+        }
+    }
 }

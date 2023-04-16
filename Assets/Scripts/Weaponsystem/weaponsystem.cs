@@ -33,6 +33,7 @@ public class weaponsystem : MonoBehaviour
                 damage = 5;
                 shootForce = 10;
                 speedWhileWearing = -1f;
+                FOVWhileWearing = 0;
                 break;
             
             // rifle
@@ -41,6 +42,7 @@ public class weaponsystem : MonoBehaviour
                 damage = 2;
                 shootForce = 20;
                 speedWhileWearing = -2f;
+                FOVWhileWearing = 0;
                 break;
 
             // sniper
@@ -49,6 +51,7 @@ public class weaponsystem : MonoBehaviour
                 damage = 50;
                 shootForce = 50;
                 speedWhileWearing = -3f;
+                FOVWhileWearing = 3f;
                 break;
         }
     }
