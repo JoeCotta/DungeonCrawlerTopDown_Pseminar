@@ -9,6 +9,9 @@ public class weaponsystem : MonoBehaviour
     public int weaponType;
     public GameObject bulletPrefab;
 
+    public float speedWhileWearing;
+    public float FOVWhileWearing;
+
     private float fireCooldown;
     private float damage;
     private float shootForce;
@@ -29,6 +32,7 @@ public class weaponsystem : MonoBehaviour
                 fireCooldown = 0.25f;
                 damage = 5;
                 shootForce = 10;
+                speedWhileWearing = -1f;
                 break;
             
             // rifle
@@ -36,6 +40,7 @@ public class weaponsystem : MonoBehaviour
                 fireCooldown = 0.15f;
                 damage = 2;
                 shootForce = 20;
+                speedWhileWearing = -2f;
                 break;
 
             // sniper
@@ -43,6 +48,7 @@ public class weaponsystem : MonoBehaviour
                 fireCooldown = 2f;
                 damage = 50;
                 shootForce = 50;
+                speedWhileWearing = -3f;
                 break;
         }
     }

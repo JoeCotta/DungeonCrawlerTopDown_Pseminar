@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     private bool isDashing;
     private bool isDead;
     public float playerGold;//treat as int
+    private float speedBoostByWeapon;
 
 
     void Start()
@@ -52,6 +53,9 @@ public class Player : MonoBehaviour
         dashTimeLeft = dashTime;
         isDashing = false;
         isDead = false;
+
+        changeSpeed();
+        changeFOV();
     }
 
     void Update()
@@ -135,7 +139,7 @@ public class Player : MonoBehaviour
     void FixedUpdate()
     {
         // calculating the velocity the rb should have
-        Vector2 targetVelocity = inputMovement * maxMovementSpeed;
+        Vector2 targetVelocity = inputMovement * (maxMovementSpeed + speedBoostByWeapon);
         // difference between the velocity the rb should have and the actual one
         Vector2 velocityDifference = targetVelocity - rb.velocity;
         // F = m*a (m=1) and a = v/t (t=1) => F = v 
@@ -225,7 +229,8 @@ public class Player : MonoBehaviour
             else swapArmour(nearestItem);
         } 
 
-        
+        changeSpeed();
+        changeFOV();
     } 
     void swapArmour(GameObject armour)
     {
@@ -262,4 +267,10 @@ public class Player : MonoBehaviour
         else weapon = nearestWeapon;
         if(weapon != null) weapon.GetComponent<weaponsystem>().owner = gameObject;//by Cornell
     }
+    void changeSpeed()
+    {
+        if(!weapon) speedBoostByWeapon = 0;
+        else speedBoostByWeapon = weapon.GetComponent<weaponsystem>().speedWhileWearing;        
+    }
+    void changeFOV() {}
 }
