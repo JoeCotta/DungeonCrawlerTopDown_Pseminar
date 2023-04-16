@@ -35,6 +35,11 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame()
     {
         this.gameData = new GameData();
+        foreach(IDataPersistence dataPersistenceObj in dataPersistenceObjects)
+        {
+            dataPersistenceObj.LoadData(gameData);
+        }
+        SaveGame();
     }
 
     public void LoadGame()
@@ -52,7 +57,6 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.LoadData(gameData);
         }
 
-        Debug.Log("Loaded death count = " + gameData.deathCount);
     }
 
     public void SaveGame()
@@ -62,7 +66,6 @@ public class DataPersistenceManager : MonoBehaviour
             dataPersistenceObj.SaveData(ref gameData);
         }
 
-        Debug.Log("Saved death count = " + gameData.deathCount);
 
         dataHandler.Save(gameData);
     }
