@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float maxHealth;// by Cornell
+    public int dungeonFloor;
     
     public Rigidbody2D rb;
     public Camera cam;
@@ -32,7 +33,7 @@ public class Player : MonoBehaviour
     public float FOVChangeWithoutWeapon = -1;
 
     private Transform weaponSlot; 
-    private GameObject weapon;
+    public GameObject weapon;
     private Vector2 inputMovement;
     private Vector2 mousePosition;
     private Vector2 lookDir;
@@ -42,7 +43,7 @@ public class Player : MonoBehaviour
     private Vector2 dashDirection;
     private bool isDashing;
     private bool isDead;
-    public float playerGold;//treat as int
+    public float playerGold;//treat as int by cornell
     private float speedBoostByWeapon;
     private float FOVChangeByWeapon;
     private bool isChangingFOV;
