@@ -29,7 +29,6 @@ public class RoomManagment : MonoBehaviour
     public int enemysDead = 0;
     
 
-    // Start is called before the first frame update
     void Start()
     {
         door = GameObject.FindGameObjectWithTag("Door"); 
@@ -38,20 +37,23 @@ public class RoomManagment : MonoBehaviour
         doorvrtFix = GameObject.FindGameObjectWithTag("DoorvrtFix");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         chests = templates.chests;
+
         //add room to list of rooms
         templates.rooms.Add(this.gameObject);
         thisRoom = gameObject;
         thisRoom.transform.localScale = thisRoom.transform.localScale * templates.size;
-        Invoke("fixSpawns",4f);
+        
     }
 
     void Update(){
-        if(enemysDead == enemysCount && spawned == true && enemysCount > 0){//delete doors if all enemys dead
+        //delete doors if all enemys dead
+        if (enemysDead == enemysCount && spawned == true && enemysCount > 0){
             roomFinished();
         }
     }
 
     void OnTriggerEnter2D(Collider2D other){
+        //Test for player entering and call functions
         if(other.CompareTag("Player")&&spawned == false){
             spawned = true;
             closeEntrances();
@@ -61,12 +63,12 @@ public class RoomManagment : MonoBehaviour
 
 
     //--------------------------------------------------------------------------------------------------------------------------------------
-    void fixSpawns(){
-        for(int i = 0; i < doors.Length; i++){
-            //one segment to check if both rooms have doors
+    public void fixSpawns(){
+        //Check for every room if they have matching doors
+        for (int i = 0; i < doors.Length; i++){
             if(doors[i] == "U"){
-                for(int i2 = 0; i2 < templates.rooms.Count; i2++){//für jeden einzelnen Raum den es gibt
-                    //überprüfen ob räume übereinander liegen
+                for(int i2 = 0; i2 < templates.rooms.Count; i2++){
+                    //check for every existing room if next to each other
                     if(templates.rooms[i2].transform.position.y - thisRoom.transform.position.y == 10*templates.size && templates.rooms[i2].transform.position.x == thisRoom.transform.position.x){
                         for(int i3 = 0; i3 < templates.rooms[i2].GetComponent<RoomManagment>().doors.Length; i3++){//für jeder der türen dieses Raumes Checken ob es die passenende gegen tür ist
                             if(templates.rooms[i2].GetComponent<RoomManagment>().doors[i3] == "D"){
@@ -77,8 +79,9 @@ public class RoomManagment : MonoBehaviour
                     }
                 }
                 if(oben == false){
+                    //Fix door and delete, room "loses" this door => new Room as if there never was a door
                     Instantiate(doorFix, transform.position + new Vector3(0,4.5f*templates.size,0), Quaternion.identity);
-                    doors[i] = " "; // to prevent spawnign another door on closeRoom()
+                    doors[i] = " "; 
                 }
             }
 
@@ -138,7 +141,8 @@ public class RoomManagment : MonoBehaviour
     }
 
     void closeEntrances(){
-        closedDoors = new GameObject[4];
+        //close room off and save door Gameobjects in array
+        closedDoors = new GameObject[doors.Length];
         for(int i = 0; i < doors.Length; i++){
             switch(doors[i]){
                 case "U":
@@ -158,7 +162,7 @@ public class RoomManagment : MonoBehaviour
     }
 
     void spawnEnemys(){
-        //assing variables
+        //pick random amount of enemys and if spawnpoint positive or negativ coordinate
         enemysCount = Random.Range(1,4);
         int xrand = Random.Range(-1,1);if(xrand == 0){xrand = Random.Range(-1,1);}
         int yrand = Random.Range(-1,1);if(yrand == 0){yrand = Random.Range(-1,1);}
@@ -175,6 +179,7 @@ public class RoomManagment : MonoBehaviour
     }
 
     public void killEnemy(GameObject deadEnemy){
+        //called by enemy on death => increase int for "roomFinished"
         enemysDead ++;
         Destroy(deadEnemy);
     }
@@ -184,6 +189,8 @@ public class RoomManagment : MonoBehaviour
         for(int i = 0; i < doors.Length; i++){
             Destroy(closedDoors[i]);
         }
+
+        //decide if spawn chest and which one
         int randomChestGen = Random.Range(1,5);
         if(randomChestGen == 1){
             int randomChest = Random.Range(0,chests.Length);

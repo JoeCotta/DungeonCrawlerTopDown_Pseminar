@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomTemplates : MonoBehaviour
@@ -23,19 +24,27 @@ public class RoomTemplates : MonoBehaviour
 
     private void Update()
     {
+        //pick boss room
         if(waitTime <= 0 && spawnedBoss == false)
         {
             Instantiate(boss, rooms[roomsNumber-1].transform.position, Quaternion.identity);
             spawnedBoss = true;
-        }else if(waitTime > 0){
+        }else if(waitTime > 0 && spawnedBoss == false){
             waitTime -= Time.deltaTime;
         }
 
+        //destroy execess Rooms and fix spawns, when desired amount reached
         if(rooms.Count > roomsNumber){
             for(int i = 0; rooms.Count > roomsNumber; i++){
                 Destroy(rooms[rooms.Count-1]);
                 rooms.RemoveAt(rooms.Count-1);
             }
+        }else if(rooms.Count == roomsNumber)
+        {
+            foreach (var item in rooms)
+                {
+                    item.GetComponent<RoomManagment>().fixSpawns();
+                }
         }
     }
 }

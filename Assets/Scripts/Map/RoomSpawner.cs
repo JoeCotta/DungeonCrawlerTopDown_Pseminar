@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomSpawner : MonoBehaviour
 {
-    // Gameobjects
+    //References
     public RoomTemplates templates;
 
     //previously set variables
@@ -24,9 +24,31 @@ public class RoomSpawner : MonoBehaviour
 
     private void Start()
     {
-        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>(); // grab list of rooms avaiable
-        Invoke("Spawn",0.2f); //little pause before spawn of room
-        Destroy(gameObject, waitTime); // delete after a amout of time
+        //grab list of rooms avaiable
+        templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
+        //little pause before spawn of room
+        Invoke("Spawn",0.2f);
+        // delete after a amout of time
+        Destroy(gameObject, waitTime); 
+    }
+
+    //prevent spawning multiple rooms inside each other
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("SpawnPoint"))
+        {
+            if (other.GetComponent<RoomSpawner>().spawned == false && spawned == false)
+            {
+                if (doorDir < other.gameObject.GetComponent<RoomSpawner>().doorDir)
+                {
+                    Destroy(other.gameObject);
+                }
+            }
+            if (other.GetComponent<RoomSpawner>().spawned == true)
+            {
+                spawned = true;
+            }
+        }
     }
 
     //Process of spawning rooms; reference ln 28
@@ -34,7 +56,8 @@ public class RoomSpawner : MonoBehaviour
     {
         if (spawned == false)
         {
-            if(templates.rooms.Count >= templates.roomsNumber){
+            if (templates.rooms.Count >= templates.roomsNumber)
+            {
                 Destroy(gameObject);
             }
             if (doorDir == 1)
@@ -58,23 +81,6 @@ public class RoomSpawner : MonoBehaviour
                 Instantiate(templates.rightRooms[rand], transform.position, templates.rightRooms[rand].transform.rotation);
             }
             spawned = true;
-        }
-    }
-
-    //prevent spawning multiple rooms inside each other
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if(other.CompareTag("SpawnPoint"))
-        {
-            if(other.GetComponent<RoomSpawner>().spawned == false && spawned == false)
-            {
-                if(doorDir < other.gameObject.GetComponent<RoomSpawner>().doorDir){
-                    Destroy(other.gameObject);
-                }
-            }
-            if(other.GetComponent<RoomSpawner>().spawned == true){
-                spawned = true;
-            }
         }
     }
 }
