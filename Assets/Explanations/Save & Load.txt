@@ -1,0 +1,18 @@
+Save & Load
+
+Menu
+=> overwrite run specific data
+=> load GameData(general data)
+=> load scene 
+
+if hit trigger for next stage
+=> save run specific data in PlayerPrefs
+=> load scene again
+=> load run specific data + Gamedata
+
+if quit during run 
+=> save run specific data in PlayerPrefs
+=> on next application start directly load into Scene and load run
+
+if quit while dead
+=> on next Application start load Menu

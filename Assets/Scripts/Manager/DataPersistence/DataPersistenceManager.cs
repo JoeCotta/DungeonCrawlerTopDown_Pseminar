@@ -9,8 +9,8 @@ public class DataPersistenceManager : MonoBehaviour
     [SerializeField] private string fileName;
     [SerializeField] private bool useEncryption;
 
-
-    private GameData gameData;
+    private GameManager gameManager;
+    public GameData gameData;
 
     private List<IDataPersistence> dataPersistenceObjects;
     private FileDataHandler dataHandler;
@@ -30,6 +30,9 @@ public class DataPersistenceManager : MonoBehaviour
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
+
+        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        gameManager.references.Add(gameObject);
     }
 
     public void NewGame()
@@ -65,8 +68,6 @@ public class DataPersistenceManager : MonoBehaviour
         {
             dataPersistenceObj.SaveData(ref gameData);
         }
-
-
         dataHandler.Save(gameData);
     }
 

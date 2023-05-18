@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Player : MonoBehaviour, IDataPersistence
 {
+    //Player Stats; part of resort & cleaning up code
     public float maxHealth;// by Cornell
-    public int dungeonFloor;
-    
-    public Rigidbody2D rb;
-    public Camera cam;
+    public float health;
+    public int armourLevel = 0;// level 0 is the worst armor and 10 is the best
+    public float playerGold;//treat as int by cornell
+
     public float maxMovementSpeed; // 7
     public float acceleration; // 50
     public float dashForce; // 1000
@@ -17,44 +18,58 @@ public class Player : MonoBehaviour, IDataPersistence
     public float dashDamage; // 10
     public float weaponPickUpRadius;
     public float ItemDropForce; // 500
-    public float health;
-    public GameObject dashEffect;
-    public Animator camShake;
-    public GameObject weaponPrefab;
-    // level 0 is the worst armor and 10 is the best
-    public int armourLevel = 0; 
-    // 1 is weapon; 2 is Armour
-    public int selectedItem = 1;
-    public GameObject armourPrefab;
     public float itemPickUpRadius;
+
+    public int dungeonFloor;
+    public bool isDead;
+    
+
+
+    //temp variables for functions
+    public int selectedItem = 1;// 1 is weapon; 2 is Armour
+
     public float FOV;
     public float timeChangeFOV;
     public float t;
     public float FOVChangeWithoutWeapon = -1;
-
-    private Transform weaponSlot; 
-    public GameObject weapon;
-    private Vector2 inputMovement;
-    private Vector2 mousePosition;
-    private Vector2 lookDir;
-    private float angleToMouse;
-    private float dashCooldownLeft;
-    private float dashTimeLeft;
-    private Vector2 dashDirection;
-    private bool isDashing;
-    private bool isDead;
-    public float playerGold;//treat as int by cornell
     private float speedBoostByWeapon;
     private float FOVChangeByWeapon;
     private bool isChangingFOV;
     private float lastFOV;
+
+    private Vector2 inputMovement;
+    private Vector2 mousePosition;
+    private Vector2 lookDir;
+    private float angleToMouse;
+
+    private float dashCooldownLeft;
+    private float dashTimeLeft;
+    private Vector2 dashDirection;
+    private bool isDashing;
+
+
+
+    //References and Prefabs
+    public GameManager gameManager; //by Cornell
+    public GameObject weaponPrefab;
+    public GameObject weapon;
+    public GameObject armourPrefab;
+    public GameObject dashEffect;
+    public Camera cam;
+    public Animator camShake;
+    public Rigidbody2D rb;
+    private Transform weaponSlot;
+
 
 
     void Start()
     {
         weaponSlot = transform.GetChild(0);
         weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);  
-        weapon.GetComponent<weaponsystem>().owner = gameObject; // by Cornell      
+        weapon.GetComponent<weaponsystem>().owner = gameObject; // by Cornell
+
+        gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
+        gameManager.references.Add(this.gameObject);
 
         cam.orthographic = true;
         dashCooldownLeft = 0;
@@ -148,6 +163,13 @@ public class Player : MonoBehaviour, IDataPersistence
             t = 0;
         }
         else changeFOV();
+
+
+        //by cornell death
+        if(health <= 0)
+        {
+            onPlayerDead();
+        }
     }
 
     void FixedUpdate()
@@ -316,17 +338,33 @@ public class Player : MonoBehaviour, IDataPersistence
         }
     }
 
+    public void onPlayerDead()
+    {
+        //first check for Extra life(revive)
 
+        isDead = true;
+        //Endgame Menu
+    }
 
-
+    
 
     public void LoadData(GameData data)
     {
         this.playerGold = data.currentCoins;
+        this.isDead = data.isDead;
+
+        this.maxHealth = data.currentMaxHealth;
+        this.health = data.currentHealth;
+        this.armourLevel = data.currentArmor;
     }
 
     public void SaveData(ref GameData data)
     {
         data.currentCoins = this.playerGold;
+        data.isDead = this.isDead;
+
+        data.currentMaxHealth = this.maxHealth;
+        data.currentHealth = this.health;
+        data.currentArmor = this.armourLevel;
     }
 }

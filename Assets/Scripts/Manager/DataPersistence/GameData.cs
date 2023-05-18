@@ -5,15 +5,28 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public int deathCount;
+    public bool isDead;
 
+    
     //Player Data
     public float currentCoins;
+    public float maxHealth;
+    public int startArmor;
+
+
+    //run specific data
+    public float currentMaxHealth;
+    public float currentHealth;
+    public int currentArmor;
 
     public GameData()
     {
-        this.deathCount = 0;
+        isDead = false;
         currentCoins = 0;
-        Debug.Log("deleted");
+        maxHealth = 20;
+        startArmor = 0;
+        currentMaxHealth = 20;
+        currentHealth = currentMaxHealth;
+        currentArmor = 0;
     }
 }

@@ -69,8 +69,7 @@ MonoBehaviour:
   - {fileID: 7570222803161022609, guid: 7b0620e12490b49498f04f0606385dff, type: 3}
   - {fileID: 2085345411689200614, guid: e3427fb739c562f4aa464c16d1311783, type: 3}
   - {fileID: 7182568602532845642, guid: 6a54abf3c063ad34eadc05ba1a995432, type: 3}
-  closedRoom: {fileID: 5671171784681260837, guid: 5e460559eff164d4f878b93ceebf8b93, type: 3}
-  boss: {fileID: 5595307601685894801, guid: 0b5a3af5aa177be4383f9e541a396123, type: 3}
+  boss: {fileID: 8200861080526764935, guid: 8b08f98e6abb67740b498aa48952fcd4, type: 3}
   chests:
   - {fileID: 7809644589174704112, guid: 6d8d7ff79a782d744bb7ee1e2fde9fb8, type: 3}
   - {fileID: 7809644589174704112, guid: 6d8d7ff79a782d744bb7ee1e2fde9fb8, type: 3}

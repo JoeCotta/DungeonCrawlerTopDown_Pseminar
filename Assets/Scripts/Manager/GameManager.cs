@@ -5,83 +5,75 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public Player player; //script
+    public List<GameObject> references;
+    public DataPersistenceManager dataPersistenceManager;
+    public Player player;
 
-    void Start(){
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+    private void Start()
+    {
+        Invoke("assingReferences", 1f);
+    }
+
+    private void assingReferences()
+    {
+        dataPersistenceManager = returnDataPersistence();
+        player = returnPlayer();
+    }
+
+    private void Update()
+    {
+        if (player != null && player.isDead) resetRunData(); 
     }
 
 
 
 
+    public void resetRunData()
+    {
+        player.health = dataPersistenceManager.gameData.maxHealth;
+        player.maxHealth = dataPersistenceManager.gameData.maxHealth;
+        player.armourLevel = dataPersistenceManager.gameData.startArmor;
 
+        player.isDead = false;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    /*
-    public void Save(){
-        SaveSystem.SavePlayer(player);
+        Debug.Log("Hello world");
+        dataPersistenceManager.SaveGame();
+        SceneManager.LoadScene("Menu");
     }
+
     
-    public void Load(){
-        PlayerData data = SaveSystem.LoadPlayer();
-        player.health = data.currentHealth;
-        player.maxHealth = data.currentMaxHealth;
-        player.armourLevel = data.currentArmor ;
-        player.playerGold = data.currentCoins;
-        player.weapon = data.currentWeapon;
-        player.dungeonFloor = data.currentDungeonFloor;
+    
+    public void SaveGame()
+    {
+        dataPersistenceManager.SaveGame();
     }
 
-    public void NextStage(){
-        SceneManager.LoadScene("test room gen");
+
+
+    //functions for returning parts of the Reference List
+    public Player returnPlayer()
+    {
+        foreach (GameObject reference in references)
+        {
+            if (reference.GetComponent<Player>())
+            {
+                return reference.GetComponent<Player>();
+            }
+        }
+        Debug.Log("Gamemanager found no player");
+        return null;
     }
-    */
+
+    public DataPersistenceManager returnDataPersistence()
+    {
+        foreach (GameObject reference in references)
+        {
+            if (reference.GetComponent<DataPersistenceManager>())
+            {
+                return reference.GetComponent<DataPersistenceManager>();
+            }
+        }
+        Debug.LogError("GameManager found no datapersistencemanager");
+        return null;
+    }
 }
