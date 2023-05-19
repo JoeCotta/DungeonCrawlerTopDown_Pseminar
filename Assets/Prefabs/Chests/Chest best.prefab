@@ -92,6 +92,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 570164814790383491, guid: fb7653615bec29e4f9b60a0b8d4600d1, type: 3}
+      propertyPath: m_text
+      value: press 'E' to pay 25 coins to open chest
+      objectReference: {fileID: 0}
     - target: {fileID: 5063331385556672302, guid: fb7653615bec29e4f9b60a0b8d4600d1, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

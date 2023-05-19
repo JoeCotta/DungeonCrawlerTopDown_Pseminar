@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
 
         player.isDead = false;
 
-        Debug.Log("Hello world");
         dataPersistenceManager.SaveGame();
         SceneManager.LoadScene("Menu");
     }
