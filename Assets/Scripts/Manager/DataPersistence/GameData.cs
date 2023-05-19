@@ -11,6 +11,7 @@ public class GameData
     //Player Data
     public float currentCoins;
     public float maxHealth;
+    public int maxHealthlvl;
     public int startArmor;
 
 
@@ -24,6 +25,7 @@ public class GameData
         isDead = false;
         currentCoins = 0;
         maxHealth = 20;
+        maxHealthlvl = 0;
         startArmor = 0;
         currentMaxHealth = 20;
         currentHealth = currentMaxHealth;
