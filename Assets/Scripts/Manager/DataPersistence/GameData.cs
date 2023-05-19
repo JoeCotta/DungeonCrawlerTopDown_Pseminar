@@ -19,6 +19,8 @@ public class GameData
     public float currentMaxHealth;
     public float currentHealth;
     public int currentArmor;
+    public GameObject weaponSaved;
+    public GameObject weaponPrefabSaved;
 
     public GameData()
     {

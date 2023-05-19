@@ -356,6 +356,8 @@ public class Player : MonoBehaviour, IDataPersistence
         this.maxHealth = data.currentMaxHealth;
         this.health = data.currentHealth;
         this.armourLevel = data.currentArmor;
+        //if(data.weaponSaved != null)this.weapon = data.weaponSaved;
+        //if(data.weaponPrefabSaved != null)this.weaponPrefab = data.weaponPrefabSaved;
     }
 
     public void SaveData(ref GameData data)
@@ -366,5 +368,7 @@ public class Player : MonoBehaviour, IDataPersistence
         data.currentMaxHealth = this.maxHealth;
         data.currentHealth = this.health;
         data.currentArmor = this.armourLevel;
+        //data.weaponSaved = this.weapon;
+        //data.weaponPrefabSaved = this.weaponPrefab;
     }
 }

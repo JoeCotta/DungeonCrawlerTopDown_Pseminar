@@ -7,10 +7,13 @@ using UnityEngine.SceneManagement;
 public class ShopMenu : MonoBehaviour
 {
     public DataPersistenceManager dataPersistenceManager;
+    public float priceMaxHealth = 10;
+    public float priceArmor = 15;
 
     private void Start()
     {
         dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
+        //priceArmor = Mathf.Pow(1.5f, dataPersistenceManager.gameData.startArmor) * priceArmor;
     }
 
     public void openMenu()
@@ -20,15 +23,25 @@ public class ShopMenu : MonoBehaviour
 
     public void MaxHealthUp()
     {
-        if(dataPersistenceManager.gameData.currentCoins >= 10)
+        if(dataPersistenceManager.gameData.currentCoins >= priceMaxHealth)
         {
-            dataPersistenceManager.gameData.currentCoins -= 10;
+            dataPersistenceManager.gameData.currentCoins -= priceMaxHealth;
             dataPersistenceManager.gameData.maxHealth += 5;
             dataPersistenceManager.gameData.maxHealthlvl++;
             dataPersistenceManager.gameData.currentMaxHealth = dataPersistenceManager.gameData.maxHealth;
             dataPersistenceManager.gameData.currentHealth = dataPersistenceManager.gameData.maxHealth;
             dataPersistenceManager.SaveGame();
         }
-        Debug.Log(dataPersistenceManager.gameData.maxHealth + "  " + dataPersistenceManager.gameData.currentCoins);
+    }
+
+    public void startArmor()
+    {
+        if(dataPersistenceManager.gameData.currentCoins >= priceArmor && dataPersistenceManager.gameData.startArmor < 5)
+        {
+            dataPersistenceManager.gameData.currentCoins -= priceArmor;
+            dataPersistenceManager.gameData.startArmor++;
+            dataPersistenceManager.gameData.currentArmor = dataPersistenceManager.gameData.startArmor;
+            dataPersistenceManager.SaveGame();
+        }
     }
 }

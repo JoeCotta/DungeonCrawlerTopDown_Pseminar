@@ -207,7 +207,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 994494853}
         m_TargetAssemblyTypeName: DataPersistenceManager, Assembly-CSharp
         m_MethodName: NewGame
         m_Mode: 1
@@ -1890,6 +1890,17 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &994494853 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 953935516187979949, guid: 96fc5b1c3833ef848b35e6ad959e91a6, type: 3}
+  m_PrefabInstance: {fileID: 1518979068}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02c6a93d1ee47c247a7eb590ed38b35b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1079331230
 GameObject:
   m_ObjectHideFlags: 0

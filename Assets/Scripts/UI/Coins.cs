@@ -11,8 +11,8 @@ public class Coins : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
+        if(GameObject.FindGameObjectWithTag("Player") != null) player = GameObject.FindGameObjectWithTag("Player");
+        if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>() != null) dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
     }
 
     void Update()

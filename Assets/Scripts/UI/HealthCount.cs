@@ -14,6 +14,6 @@ public class HealthCount : MonoBehaviour
 
     void Update()
     {
-        text.text = player.GetComponent<Player>().health.ToString() + "/" +  player.GetComponent<Player>().maxHealth;
+        text.text = Mathf.Round(player.GetComponent<Player>().health).ToString() + "/" +  player.GetComponent<Player>().maxHealth;
     }
 }
