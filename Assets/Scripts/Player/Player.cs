@@ -9,6 +9,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public float health;
     public int armourLevel = 0;// level 0 is the worst armor and 10 is the best
     public float playerGold;//treat as int by cornell
+    public int revivesLeft;
 
     public float maxMovementSpeed; // 7
     public float acceleration; // 50
@@ -197,10 +198,10 @@ public class Player : MonoBehaviour, IDataPersistence
         damage *=  (float)-0.08 * armourLevel + 1;
         health -= damage;
         
-        if(health <= 0)
-        {
-            isDead = true;
-        }
+        //if(health <= 0) commented out for now, Cornell
+        //{
+            //isDead = true;
+        //}
     }
 
     void OnCollisionEnter2D(Collision2D collision)
@@ -341,9 +342,18 @@ public class Player : MonoBehaviour, IDataPersistence
     public void onPlayerDead()
     {
         //first check for Extra life(revive)
+        if(revivesLeft == 0)
+        {
+            isDead = true;
+            //Endgame Menu
+        }else
+        {
+            revivesLeft--;
+            health = maxHealth;
+            //maybe add invincablility and pause game and ask if wanna revive
+        }
 
-        isDead = true;
-        //Endgame Menu
+
     }
 
     
@@ -356,6 +366,7 @@ public class Player : MonoBehaviour, IDataPersistence
         this.maxHealth = data.currentMaxHealth;
         this.health = data.currentHealth;
         this.armourLevel = data.currentArmor;
+        this.revivesLeft = data.revivesLeft;
         //if(data.weaponSaved != null)this.weapon = data.weaponSaved;
         //if(data.weaponPrefabSaved != null)this.weaponPrefab = data.weaponPrefabSaved;
     }
@@ -368,6 +379,7 @@ public class Player : MonoBehaviour, IDataPersistence
         data.currentMaxHealth = this.maxHealth;
         data.currentHealth = this.health;
         data.currentArmor = this.armourLevel;
+        data.revivesLeft = this.revivesLeft;
         //data.weaponSaved = this.weapon;
         //data.weaponPrefabSaved = this.weaponPrefab;
     }

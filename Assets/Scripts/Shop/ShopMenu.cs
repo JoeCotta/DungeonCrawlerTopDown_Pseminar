@@ -9,6 +9,7 @@ public class ShopMenu : MonoBehaviour
     public DataPersistenceManager dataPersistenceManager;
     public float priceMaxHealth = 10;
     public float priceArmor = 15;
+    public float priceRevive = 50;
 
     private void Start()
     {
@@ -41,6 +42,16 @@ public class ShopMenu : MonoBehaviour
             dataPersistenceManager.gameData.currentCoins -= priceArmor;
             dataPersistenceManager.gameData.startArmor++;
             dataPersistenceManager.gameData.currentArmor = dataPersistenceManager.gameData.startArmor;
+            dataPersistenceManager.SaveGame();
+        }
+    }
+
+    public void buyRevives()
+    {
+        if (dataPersistenceManager.gameData.currentCoins >= priceRevive)
+        {
+            dataPersistenceManager.gameData.currentCoins -= priceRevive;
+            dataPersistenceManager.gameData.revivesLeft++;
             dataPersistenceManager.SaveGame();
         }
     }

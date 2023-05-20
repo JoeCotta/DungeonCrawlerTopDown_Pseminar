@@ -13,6 +13,7 @@ public class GameData
     public float maxHealth;
     public int maxHealthlvl;
     public int startArmor;
+    public int revivesLeft;
 
 
     //run specific data

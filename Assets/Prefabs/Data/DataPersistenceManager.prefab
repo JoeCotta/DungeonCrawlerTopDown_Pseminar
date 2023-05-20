@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 953935516187979949}
   m_Layer: 0
   m_Name: DataPersistenceManager
-  m_TagString: Untagged
+  m_TagString: DataManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,3 +46,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fileName: data.game
   useEncryption: 1
+  gameData:
+    isDead: 0
+    currentCoins: 0
+    maxHealth: 20
+    maxHealthlvl: 0
+    startArmor: 0
+    revivesLeft: 0
+    currentMaxHealth: 20
+    currentHealth: 20
+    currentArmor: 0
+    weaponSaved: {fileID: 0}
+    weaponPrefabSaved: {fileID: 0}

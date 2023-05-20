@@ -6,6 +6,7 @@ public class RoomManagment : MonoBehaviour
 {
     //preset References
     public GameObject enemy;
+    public GameObject mapHidder;
     //working variables and references
     private GameObject door;
     private GameObject doorvrt;
@@ -56,6 +57,7 @@ public class RoomManagment : MonoBehaviour
         //Test for player entering and call functions
         if(other.CompareTag("Player")&&spawned == false){
             spawned = true;
+            if(mapHidder != null)Destroy(mapHidder); mapHidder = null;
             closeEntrances();
             spawnEnemys();
         }
@@ -164,10 +166,10 @@ public class RoomManagment : MonoBehaviour
     void spawnEnemys(){
         //pick random amount of enemys and if spawnpoint positive or negativ coordinate
         enemysCount = Random.Range(1,4);
-        int xrand = Random.Range(-1,1);if(xrand == 0){xrand = Random.Range(-1,1);}
-        int yrand = Random.Range(-1,1);if(yrand == 0){yrand = Random.Range(-1,1);}
+        int xrand = Random.Range(-1,1);while(xrand == 0)xrand = Random.Range(-1, 1);
+        int yrand = Random.Range(-1,1);while(yrand == 0)yrand = Random.Range(-1, 1);
 
-        for(int i = 0; i < enemysCount; i++){
+        for (int i = 0; i < enemysCount; i++){
             //pick coordinate in the room/offset
             xCoord = xrand * Random.Range(1,3.5f);
             yCoord = yrand * Random.Range(1,3.5f);

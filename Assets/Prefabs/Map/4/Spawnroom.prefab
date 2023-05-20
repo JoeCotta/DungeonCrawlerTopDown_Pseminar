@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 540496055375053529, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 996122921277926888, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
       propertyPath: m_TagString
       value: Map
@@ -59,6 +63,10 @@ PrefabInstance:
     - target: {fileID: 3249056920257844346, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
       propertyPath: m_Color.r
       value: 0.13725491
+      objectReference: {fileID: 0}
+    - target: {fileID: 3383093357143106994, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3642185949394798180, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
       propertyPath: m_RootOrder
