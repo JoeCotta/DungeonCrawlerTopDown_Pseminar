@@ -365,8 +365,8 @@ public class Player : MonoBehaviour, IDataPersistence
 
         this.maxHealth = data.currentMaxHealth;
         this.health = data.currentHealth;
-        this.armourLevel = data.currentArmor;
-        this.revivesLeft = data.revivesLeft;
+        this.armourLevel = Mathf.RoundToInt(data.currentArmor);
+        this.revivesLeft = Mathf.RoundToInt(data.revivesLeft);
         //if(data.weaponSaved != null)this.weapon = data.weaponSaved;
         //if(data.weaponPrefabSaved != null)this.weaponPrefab = data.weaponPrefabSaved;
     }

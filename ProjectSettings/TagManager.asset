@@ -19,6 +19,7 @@ TagManager:
   - Item
   - Manager
   - DataManager
+  - ShopMenu
   layers:
   - Default
   - TransparentFX

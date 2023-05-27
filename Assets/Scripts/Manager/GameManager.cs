@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
     {
         player.health = dataPersistenceManager.gameData.maxHealth;
         player.maxHealth = dataPersistenceManager.gameData.maxHealth;
-        player.armourLevel = dataPersistenceManager.gameData.startArmor;
+        player.armourLevel = Mathf.RoundToInt(dataPersistenceManager.gameData.startArmor);
 
         player.isDead = false;
 

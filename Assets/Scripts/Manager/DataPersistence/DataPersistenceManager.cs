@@ -31,7 +31,7 @@ public class DataPersistenceManager : MonoBehaviour
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
 
-        if(GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>() != null)
+        if(GameObject.FindGameObjectWithTag("Manager") != null)
         {
             gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
             gameManager.references.Add(gameObject);

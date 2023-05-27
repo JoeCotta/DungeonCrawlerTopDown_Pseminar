@@ -12,14 +12,14 @@ public class GameData
     public float currentCoins;
     public float maxHealth;
     public int maxHealthlvl;
-    public int startArmor;
-    public int revivesLeft;
+    public float startArmor;
+    public float revivesLeft;
 
 
     //run specific data
     public float currentMaxHealth;
     public float currentHealth;
-    public int currentArmor;
+    public float currentArmor;
     public GameObject weaponSaved;
     public GameObject weaponPrefabSaved;
 
