@@ -16,7 +16,7 @@ public class EndLevel : MonoBehaviour
     public void loadNextLevel()
     {
         gameManager.SaveGame();
-        SceneManager.LoadScene("test room gen");
+        SceneManager.LoadScene(gameManager.buildIndexOfSceneToLoad);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

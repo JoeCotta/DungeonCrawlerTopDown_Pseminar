@@ -614,6 +614,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataPersistenceManager: {fileID: 0}
+  shopMenu: {fileID: 0}
   text: {fileID: 0}
 --- !u!114 &690518944
 MonoBehaviour:
@@ -726,7 +727,7 @@ GameObject:
   - component: {fileID: 841906088}
   m_Layer: 5
   m_Name: ShopMenu
-  m_TagString: Untagged
+  m_TagString: ShopMenu
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -770,8 +771,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataPersistenceManager: {fileID: 0}
+  basepriceMaxHealth: 0
   priceMaxHealth: 10
+  basepriceArmor: 0
   priceArmor: 15
+  basepriceRevive: 0
   priceRevive: 50
 --- !u!1 &849906136
 GameObject:
@@ -924,6 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataPersistenceManager: {fileID: 0}
+  shopMenu: {fileID: 0}
   text: {fileID: 0}
 --- !u!1 &1072111425
 GameObject:
@@ -1288,6 +1293,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dataPersistenceManager: {fileID: 0}
+  shopMenu: {fileID: 0}
   text: {fileID: 0}
 --- !u!1 &1248731225
 GameObject:

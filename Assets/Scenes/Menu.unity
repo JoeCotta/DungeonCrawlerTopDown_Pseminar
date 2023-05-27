@@ -456,6 +456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d4e2d39449186438850b7167e0dabb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildIndexOfSceneToLoad: 0
 --- !u!1 &185777886
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,6 +1856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45d4e2d39449186438850b7167e0dabb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buildIndexOfSceneToLoad: 2
 --- !u!1 &966215742
 GameObject:
   m_ObjectHideFlags: 0
@@ -2348,7 +2350,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 182134337}
+      - m_Target: {fileID: 907845701}
         m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
         m_MethodName: playGame
         m_Mode: 1

@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public DataPersistenceManager dataPersistenceManager;
     public Player player;
 
+    //remember to drag scene in files>build settings> here     and but the number next to it in here
+    public int buildIndexOfSceneToLoad;
+
     private void Start()
     {
         Invoke("assingReferences", 1f);
@@ -17,8 +20,8 @@ public class GameManager : MonoBehaviour
 
     private void assingReferences()
     {
-        dataPersistenceManager = returnDataPersistence();
-        player = returnPlayer();
+        if(returnDataPersistence() != null)dataPersistenceManager = returnDataPersistence();
+        if(returnPlayer() != null)player = returnPlayer();
     }
 
     private void Update()
@@ -33,7 +36,7 @@ public class GameManager : MonoBehaviour
     {
         player.health = dataPersistenceManager.gameData.maxHealth;
         player.maxHealth = dataPersistenceManager.gameData.maxHealth;
-        player.armourLevel = dataPersistenceManager.gameData.startArmor;
+        player.armourLevel = Mathf.RoundToInt(dataPersistenceManager.gameData.startArmor);
 
         player.isDead = false;
 

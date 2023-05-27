@@ -21,6 +21,7 @@ TagManager:
   - DataManager
   - chest
   - dataHandler
+  - ShopMenu
   layers:
   - Default
   - TransparentFX
