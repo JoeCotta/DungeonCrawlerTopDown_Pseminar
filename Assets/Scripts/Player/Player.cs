@@ -20,6 +20,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public float weaponPickUpRadius;
     public float ItemDropForce; // 500
     public float itemPickUpRadius;
+    public int weaponType;
 
     public int dungeonFloor;
     public bool isDead;
@@ -65,9 +66,13 @@ public class Player : MonoBehaviour, IDataPersistence
 
     void Start()
     {
+        // creates the weapon
         weaponSlot = transform.GetChild(0);
         weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);  
+        // sets the weaponType
+        weapon.GetComponent<weaponsystem>().weaponType = weaponType; // sets the weaponType
         weapon.GetComponent<weaponsystem>().owner = gameObject; // by Cornell
+    
 
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
         gameManager.references.Add(this.gameObject);

@@ -19,6 +19,8 @@ TagManager:
   - Item
   - Manager
   - DataManager
+  - chest
+  - dataHandler
   layers:
   - Default
   - TransparentFX

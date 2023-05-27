@@ -24,7 +24,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358165530467398036}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.5, y: -0.08, z: 0}
+  m_LocalPosition: {x: -0.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42,9 +42,9 @@ GameObject:
   - component: {fileID: 1833491886322884884}
   - component: {fileID: 4340008966013991749}
   - component: {fileID: 8626478018132572177}
-  - component: {fileID: -802766128526971589}
+  - component: {fileID: 7043996625841016062}
   m_Layer: 0
-  m_Name: WeaponRifle
+  m_Name: Weapon
   m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,9 +131,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
-  weaponType: 1
+  weaponType: 0
   bulletPrefab: {fileID: 9006799821689394367, guid: 2f7085c1d9902137ca5c39787eec93bc, type: 3}
---- !u!50 &-802766128526971589
+--- !u!50 &7043996625841016062
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0

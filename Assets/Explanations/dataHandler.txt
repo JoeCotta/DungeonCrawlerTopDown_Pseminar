@@ -1,0 +1,42 @@
+In the file data.json you can modify the weapon Stats or you can create new ones.
+More over you can create new Chests or modify the spawn chances of existing ones.
+
+Which data can be stored in the file can be seen in the dataHandler.cs file. 
+Only variables of these objects can be read from the file.
+If you want to have new stats for f.ex. the weapons you have to create a new variable in the object.
+
+The file is in the following format:
+
+{
+    // weapon section
+  "weapons": [
+    // weapon object
+    {
+        // these are the stats of a weapon wich are currently available
+      "id": 0,
+      "name": "Pistol",
+      "fireCooldown": 0.25,
+      "damage": 5,
+      "shootForce": 10,
+      "speedWhileWearing": -1,
+      "FOVWhileWearing": 0,
+      "chestSpawnWeaponChances": [ // in this list there are the chances for each chest to appear in them
+        {
+            // f.ex. the chance that a Pistol is in the level zero chest if 75%
+            // if you add the chances of all weapons of this chest level the result has to be 1
+          "level": 0,
+          "chance": 0.75
+        }
+      ]
+    }
+  ],
+  // chest section
+  "chests": [
+    // chest object with the chance to spawn after a room is cleared and a chest can spawn
+    {
+        // if you sum up all chest Spawn chances 1 has to be the result
+      "chestLevel": 0,
+      "chestSpawnChance": 0.5
+    }
+  ]
+}

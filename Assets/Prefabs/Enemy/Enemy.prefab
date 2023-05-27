@@ -35,7 +35,7 @@ Transform:
   m_Children:
   - {fileID: 9160011325521476971}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &9160011324959439349
 SpriteRenderer:
@@ -131,7 +131,8 @@ MonoBehaviour:
   - {fileID: 4382214503651565149, guid: f56bec6eedc9f3a33b08314a11b20244, type: 3}
   - {fileID: 4382214503651565149, guid: e8591142de91aceb7998439475a7f101, type: 3}
   - {fileID: 4382214503651565149, guid: 85ca61a2f59b7d9e0a436efd4cae65a1, type: 3}
-  health: 0
+  weaponPrefab: {fileID: 4382214503651565149, guid: 88611d061a3f47dff90eceee703b94db, type: 3}
+  health: 20
   armorLevel: 0
   isDead: 0
 --- !u!61 &9160011324959439351

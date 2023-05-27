@@ -19,6 +19,7 @@ public class RoomManagment : MonoBehaviour
     public bool rechts;
     public bool unten;
     public bool links;
+    public GameObject chestPrefab;
 
     //spawn enemys
     public GameObject[] closedDoors;
@@ -38,6 +39,7 @@ public class RoomManagment : MonoBehaviour
         doorvrtFix = GameObject.FindGameObjectWithTag("DoorvrtFix");
         templates = GameObject.FindGameObjectWithTag("Rooms").GetComponent<RoomTemplates>();
         chests = templates.chests;
+        chestPrefab = GameObject.FindGameObjectWithTag("chest");
 
         //add room to list of rooms
         templates.rooms.Add(this.gameObject);
@@ -195,8 +197,31 @@ public class RoomManagment : MonoBehaviour
         //decide if spawn chest and which one
         int randomChestGen = Random.Range(1,5);
         if(randomChestGen == 1){
-            int randomChest = Random.Range(0,chests.Length);
-            Instantiate(chests[randomChest],transform.position,Quaternion.identity);
+            // get the amount of available chests
+            int countChests = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().countChests;
+
+            chestStats[] chestsStatsList = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().chestsStatsList;
+            List<int> chestList = new List<int>();
+
+            // creates a list with 1000 elements to simulate the different Spawn chances of the chests
+            for(int i = 0; i < countChests; i++)
+            {
+                for(int j = 0; j < chestsStatsList[i].chestSpawnChance * 1000; j++)
+                {
+                    chestList.Add(chestsStatsList[i].chestLevel);
+                }
+            }
+
+            // checks if all the spawn chances are add together is 1 otherwise the chances are not correct
+            if(chestList.Count != 1000) Debug.Log("Chest Spawn Chances are not correct");
+
+            // select a random chest
+            int randomChest = Random.Range(0, chestList.Count);
+            int chestLevel = chestList[randomChest];
+
+            // creates a chest and sets the level
+            GameObject chest = Instantiate(chestPrefab,transform.position,Quaternion.identity);
+            chest.GetComponent<Chest>().chestLevel = chestLevel;
         }
         enemysCount = 0;
     }
