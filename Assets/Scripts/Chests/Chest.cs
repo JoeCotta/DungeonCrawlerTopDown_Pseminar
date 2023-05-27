@@ -14,6 +14,9 @@ public class Chest : MonoBehaviour
 
     void Start()
     {
+        // if this is an instance of the scene chest
+        if(chestLevel == -1) return;
+
         // calculates the price of the chest
         price = chestLevel * 10 + 5;
 
@@ -28,11 +31,10 @@ public class Chest : MonoBehaviour
         // creating a loot table with 1000 weapons -> if the chance is 0.256 then there will be 256 weapons of this type in the list to simulate the chance
         for (int i = 0; i < countWeapons; i++)
         {
-            float chance = weapons[i].chestSpawnWeaponChances[chestLevel].chance;
-            for (int j = 0; j < chance * 1000; j++) lootTable.Add(weapons[i].id);
+            float chance = weapons[i].chestSpawnWeaponChances[chestLevel].chance * 1000;
+            for (int j = 0; j < chance; j++) lootTable.Add(weapons[i].id);
         }
 
-        Debug.Log((lootTable.Count, chestLevel));
         if(lootTable.Count != 1000) Debug.Log("Weapon Chances of Chest Level " + chestLevel + " are wrong");
 
     }

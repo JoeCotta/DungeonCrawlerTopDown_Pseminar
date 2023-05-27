@@ -385,6 +385,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2053751707}
     m_Modifications:
+    - target: {fileID: 3445618037093695404, guid: 8947ff3633c0e97b5946887b7bae802a, type: 3}
+      propertyPath: chestLevel
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3888971501564159483, guid: 8947ff3633c0e97b5946887b7bae802a, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -854,6 +858,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1900831878}
     m_Modifications:
+    - target: {fileID: 2346639709360326421, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346639709360326421, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7121140703429472998, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
