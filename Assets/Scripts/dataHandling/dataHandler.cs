@@ -9,8 +9,10 @@ public class dataHandler : MonoBehaviour
     // in this List are all the weapons with the stats
     public weaponStats[] weaponStatsList;
     public chestStats[] chestsStatsList;
+    public ShopItems[] shopItemsList;
     public int countWeapons;
     public int countChests;
+    public int countShopItems;
 
     public void Start()
     {
@@ -22,31 +24,32 @@ public class dataHandler : MonoBehaviour
         string json = reader.ReadToEnd();
 
         // stores the data in the lists
-        Data<weaponStats, chestStats> dataObject = CreateFromJSON<weaponStats, chestStats>(json);
+        Data<weaponStats, chestStats, ShopItems> dataObject = CreateFromJSON<weaponStats, chestStats, ShopItems>(json);
         weaponStatsList = dataObject.weapons;
         chestsStatsList = dataObject.chests;
+        shopItemsList = dataObject.shop;
 
-        // sets the amount of weapons
+        // sets the amount of the items
         countWeapons = weaponStatsList.Length;
-
-        // sets the amount of chests
         countChests = chestsStatsList.Length;
+        countShopItems = shopItemsList.Length;
     }
 
     // converts the json into an c# object
-    public static Data<weaponList, chestStats> CreateFromJSON<weaponList, chestStats>(string jsonString)
+    public static Data<weaponList, chestStats, ShopItems> CreateFromJSON<weaponList, chestStats, ShopItems>(string jsonString)
     {
-        Data<weaponList, chestStats> weaponItems = JsonUtility.FromJson<Data<weaponList, chestStats>>(jsonString);
-        return weaponItems;
+        Data<weaponList, chestStats, ShopItems> items = JsonUtility.FromJson<Data<weaponList, chestStats, ShopItems>>(jsonString);
+        return items;
     }
 }
 
 // the json will be converted to a c# object like these
 [System.Serializable]
-public class Data<weaponList, chestStats>
+public class Data<weaponList, chestStats, ShopItems>
 {
     public weaponList[] weapons;
     public chestStats[] chests;
+    public ShopItems[] shop;
 }
 
 [System.Serializable]
@@ -74,4 +77,14 @@ public class chestStats
 {
     public int chestLevel;
     public float chestSpawnChance;    
+}
+
+[System.Serializable]
+public class ShopItems
+{
+    public string name;
+    public int startPrice;
+    public string priceFunction;
+    public int maxLevel;
+    public int incrementPerUpgrade;
 }

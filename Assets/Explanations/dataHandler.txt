@@ -39,4 +39,17 @@ The file is in the following format:
       "chestSpawnChance": 0.5
     }
   ]
+  // shop section
+  "shop": [
+    // shop Item
+    // to create a new Shop Item you have to create a new Stat in the GameData.cs and Player file first
+    {
+      "name": "MaxHealth",
+      "startPrice": 5,
+      // all x will be used as the current Level of the Stat
+      "priceFunction": "x",
+      "maxLevel": -1,
+      "incrementPerUpgrade": 5
+    }
+  ]
 }
