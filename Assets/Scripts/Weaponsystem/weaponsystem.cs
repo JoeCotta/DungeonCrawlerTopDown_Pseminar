@@ -24,36 +24,8 @@ public class weaponsystem : MonoBehaviour
         // getting the firePoint
         firePoint = transform.GetChild(0);
 
-        // set the variables for the different types of weapons
-        switch (weaponType)
-        {
-            // Pistol
-            case 0:
-                fireCooldown = 0.25f;
-                damage = 5;
-                shootForce = 10;
-                speedWhileWearing = -1f;
-                FOVWhileWearing = 0;
-                break;
-            
-            // rifle
-            case 1:
-                fireCooldown = 0.15f;
-                damage = 2;
-                shootForce = 20;
-                speedWhileWearing = -2f;
-                FOVWhileWearing = 0;
-                break;
-
-            // sniper
-            case 2:
-                fireCooldown = 2f;
-                damage = 50;
-                shootForce = 50;
-                speedWhileWearing = -3f;
-                FOVWhileWearing = 3f;
-                break;
-        }
+        // sets the weapons stats
+        getWeaponStats();
     }
 
     void Update()
@@ -82,5 +54,17 @@ public class weaponsystem : MonoBehaviour
 
         //save owner of weapon to prevent friendly fire
         bullet.GetComponent<Bullet>().owner = owner;
+    }
+    public void getWeaponStats()
+    {
+        weaponStats weaponStatsObject = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().weaponStatsList[weaponType];   
+
+        // write the Stats in the variables
+        fireCooldown = weaponStatsObject.fireCooldown;
+        damage = weaponStatsObject.damage;
+        shootForce = weaponStatsObject.shootForce;
+        speedWhileWearing = weaponStatsObject.speedWhileWearing;
+        FOVWhileWearing = weaponStatsObject.FOVWhileWearing;        
+
     }
 }

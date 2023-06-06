@@ -3,7 +3,12 @@ guid: 725d7cf452b66aa469c1ecd28f880a6e
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - enemy: {instanceID: 0}
+  - mapHidder: {instanceID: 0}
+  - doorFix: {instanceID: 0}
+  - doorvrtFix: {instanceID: 0}
+  - chestPrefab: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

@@ -36,6 +36,7 @@ public class Bullet : MonoBehaviour
             }
         }
 
+        if(!gameObject || !other.gameObject || owner == null) return;
         // destroys itself; by Cornell
         if(other.gameObject.CompareTag("Map")||other.gameObject.CompareTag("Door")||other.gameObject.CompareTag("Doorvrt")||other.gameObject.CompareTag("DoorFix")||other.gameObject.CompareTag("DoorvrtFix")) Destroy(gameObject);
         if(other.gameObject.CompareTag("Bullet")&&owner.tag != other.gameObject.GetComponent<Bullet>().owner.tag) Destroy(gameObject); //other condition so that enemy bullets dont delete eachother

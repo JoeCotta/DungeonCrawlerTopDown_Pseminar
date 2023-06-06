@@ -12,7 +12,7 @@ public class Enemy : MonoBehaviour
     public Transform target;
     public float speed;
     public float nextWaypointDistance;
-    public GameObject[] weaponPrefabs;
+    public GameObject weaponPrefab;
     public float health;
     // level 0 is the worst armor and 10 is the best
     public int armorLevel = 0; 
@@ -45,10 +45,19 @@ public class Enemy : MonoBehaviour
 
         // initialises the weaponSystem (random weapon)
         weaponSlot = transform.GetChild(0);
-        GameObject weaponPrefab = weaponPrefabs[Random.Range(0, weaponPrefabs.Length)];
+
+        // gets the amount of weapons which are available         
+        int countWeapons = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().countWeapons;
+
+        // selects a random weapon type
+        int weaponType = Random.Range(0, countWeapons);
+
+        // creates the weapon
         weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);
-        weapon.GetComponent<weaponsystem>().owner = gameObject;//by Cornell
-        
+        weapon.GetComponent<weaponsystem>().weaponType = weaponType; // sets the weaponType
+        weapon.GetComponent<weaponsystem>().owner = gameObject;
+
+
         armorLevel = Random.Range(0, 11);
 
     }
@@ -83,7 +92,7 @@ public class Enemy : MonoBehaviour
         float DistanceToTarget = path.GetTotalLength();
 
         // if the player is too far away
-        if (DistanceToTarget > 13) outOfRange = true;
+        if (DistanceToTarget > 30) outOfRange = true;
         else outOfRange = false;
 
         // if the Distance to the target is grater than 8 the enemy should follow the target

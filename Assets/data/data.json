@@ -1,0 +1,110 @@
+{
+  "weapons": [
+    {
+      "id": 0,
+      "name": "Pistol",
+      "fireCooldown": 0.25,
+      "damage": 5,
+      "shootForce": 10,
+      "speedWhileWearing": -1,
+      "FOVWhileWearing": 0,
+      "chestSpawnWeaponChances": [
+        {
+          "level": 0,
+          "chance": 0.75
+        },
+        {
+          "level": 1,
+          "chance": 0.45
+        },
+        {
+          "level": 2,
+          "chance": 0
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Rifle",
+      "fireCooldown": 0.15,
+      "damage": 2,
+      "shootForce": 20,
+      "speedWhileWearing": -2,
+      "FOVWhileWearing": 0,
+      "chestSpawnWeaponChances": [
+        {
+          "level": 0,
+          "chance": 0.25
+        },
+        {
+          "level": 1,
+          "chance": 0.35
+        },
+        {
+          "level": 2,
+          "chance": 0.6
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Sniper",
+      "fireCooldown": 2,
+      "damage": 50,
+      "shootForce": 50,
+      "speedWhileWearing": -3,
+      "FOVWhileWearing": 3,
+      "chestSpawnWeaponChances": [
+        {
+          "level": 0,
+          "chance": 0
+        },
+        {
+          "level": 1,
+          "chance": 0.2
+        },
+        {
+          "level": 2,
+          "chance": 0.4
+        }
+      ]
+    }
+  ],
+  "chests": [
+    {
+      "chestLevel": 0,
+      "chestSpawnChance": 0.5
+    },
+    {
+      "chestLevel": 1,
+      "chestSpawnChance": 0.334
+    },
+    {
+      "chestLevel": 2,
+      "chestSpawnChance": 0.166
+    }
+  ],
+  "shop": [
+    {
+      "name": "MaxHealth",
+      "startPrice": 5,
+      "priceFunction": "x",
+      "maxLevel": -1,
+      "incrementPerUpgrade": 5
+    },
+    {
+      "name": "BuyRevives",
+      "startPrice": 5,
+      "priceFunction": "x",
+      "maxLevel": -1,
+      "incrementPerUpgrade": 1
+    },
+    {
+      "name": "StartArmor",
+      "startPrice": 5,
+      "priceFunction": "x",
+      "maxLevel": 5,
+      "incrementPerUpgrade": 1
+    }
+  ]
+}

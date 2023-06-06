@@ -11,9 +11,13 @@ public class GameData
     //Player Data
     public float currentCoins;
     public float maxHealth;
-    public int maxHealthlvl;
     public float startArmor;
     public float revivesLeft;
+
+    // Levels
+    public int maxHealthlvl;
+    public int reviveLevel;
+    public int armorLevel;
 
 
     //run specific data
@@ -23,15 +27,85 @@ public class GameData
     public GameObject weaponSaved;
     public GameObject weaponPrefabSaved;
 
+    private int dumpVariableInt;
+    private float dumpVariableFloat;
+
     public GameData()
     {
         isDead = false;
         currentCoins = 0;
         maxHealth = 20;
-        maxHealthlvl = 0;
         startArmor = 0;
         currentMaxHealth = 20;
         currentHealth = currentMaxHealth;
         currentArmor = 0;
+        
+        maxHealthlvl = 0;
+        reviveLevel = 0;
+        armorLevel = 0;
+    }
+    public ref int getLevel(string itemName)
+    {
+        switch (itemName.ToLower())
+        {
+            case "maxhealth":
+                return ref maxHealthlvl;
+            case "startarmor":
+                return ref armorLevel;
+            case "buyrevives":
+                return ref reviveLevel;
+        }
+        return ref dumpVariableInt;
+    }
+    private ref float getMaxValue(string itemName)
+    {
+        switch (itemName.ToLower())
+        {
+            case "maxhealth":
+                return ref currentMaxHealth;
+            case "startarmor":
+                return ref startArmor;
+            case "buyrevives":
+                return ref revivesLeft;
+        }
+        return ref dumpVariableFloat;
+    }
+
+    private ref float getValue(string itemName)
+    {
+        switch (itemName.ToLower())
+        {
+            case "maxhealth":
+                return ref currentHealth;
+            case "startarmor":
+                return ref currentArmor;
+            case "buyrevives":
+                return ref revivesLeft;
+        }
+        return ref dumpVariableFloat;
+    }
+
+    public void updateValues()
+    {
+        ShopItems[] shopItemsList = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().shopItemsList;
+        int countShopItems = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().countShopItems;
+
+        for(int i = 0; i < countShopItems; i++)
+        {
+            string name = shopItemsList[i].name;
+            getMaxValue(name) = getLevel(name) * shopItemsList[i].incrementPerUpgrade;
+        }
+    }
+
+    public void setValuesToMax()
+    {
+        ShopItems[] shopItemsList = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().shopItemsList;
+        int countShopItems = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().countShopItems;
+
+        for(int i = 0; i < countShopItems; i++)
+        {
+            string name = shopItemsList[i].name;
+            getValue(name) = getMaxValue(name);
+        }
     }
 }
