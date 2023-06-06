@@ -92,7 +92,7 @@ public class Enemy : MonoBehaviour
         float DistanceToTarget = path.GetTotalLength();
 
         // if the player is too far away
-        if (DistanceToTarget > 13) outOfRange = true;
+        if (DistanceToTarget > 30) outOfRange = true;
         else outOfRange = false;
 
         // if the Distance to the target is grater than 8 the enemy should follow the target
