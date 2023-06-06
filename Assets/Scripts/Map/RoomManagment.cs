@@ -173,8 +173,8 @@ public class RoomManagment : MonoBehaviour
         
         for (int i = 0; i < enemysCount; i++){
 
-            int xrand = Random.Range(-1, 1); while (xrand == 0) xrand = Random.Range(-1, 1);
-            int yrand = Random.Range(-1, 1); while (yrand == 0) yrand = Random.Range(-1, 1);
+            int xrand = Random.Range(-1, 2); while (xrand == 0) xrand = Random.Range(-1, 2); Debug.Log(xrand);
+            int yrand = Random.Range(-1, 2); while (yrand == 0) yrand = Random.Range(-1, 2); Debug.Log(yrand);
             //pick coordinate in the room/offset
             xCoord = xrand * Random.Range(1,3.5f);
             yCoord = yrand * Random.Range(1,3.5f);
