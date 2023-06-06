@@ -8,6 +8,7 @@ public class Chest : MonoBehaviour
     public GameObject bean;
     public GameObject text;
     public float  price; //maybe there will be a curse like 1.25x prices => decimals => have to round
+
     
     void OnCollisionEnter2D(Collision2D other)
     {

@@ -5,8 +5,10 @@ using UnityEngine;
 public class RoomManagment : MonoBehaviour
 {
     //preset References
+    public GameObject enemySpawner;
     public GameObject enemy;
     public GameObject mapHidder;
+
     //working variables and references
     private GameObject door;
     private GameObject doorvrt;
@@ -23,12 +25,13 @@ public class RoomManagment : MonoBehaviour
     //spawn enemys
     public GameObject[] closedDoors;
     public GameObject[] chests;
-    public float xCoord;
-    public float yCoord;
+    private float xCoord;
+    private float yCoord;
     public int enemysCount;
     public bool spawned;
     public int enemysDead = 0;
-    
+    public int maxEnemys = 1;
+    public int minEnemys = 4;    
 
     void Start()
     {
@@ -43,7 +46,6 @@ public class RoomManagment : MonoBehaviour
         templates.rooms.Add(this.gameObject);
         thisRoom = gameObject;
         thisRoom.transform.localScale = thisRoom.transform.localScale * templates.size;
-        
     }
 
     void Update(){
@@ -165,18 +167,20 @@ public class RoomManagment : MonoBehaviour
 
     void spawnEnemys(){
         //pick random amount of enemys and if spawnpoint positive or negativ coordinate
-        enemysCount = Random.Range(1,4);
-        int xrand = Random.Range(-1,1);while(xrand == 0)xrand = Random.Range(-1, 1);
-        int yrand = Random.Range(-1,1);while(yrand == 0)yrand = Random.Range(-1, 1);
-
+        enemysCount = Random.Range(minEnemys,maxEnemys);
+        
         for (int i = 0; i < enemysCount; i++){
+
+            int xrand = Random.Range(-1, 1); while (xrand == 0) xrand = Random.Range(-1, 1);
+            int yrand = Random.Range(-1, 1); while (yrand == 0) yrand = Random.Range(-1, 1);
             //pick coordinate in the room/offset
             xCoord = xrand * Random.Range(1,3.5f);
             yCoord = yrand * Random.Range(1,3.5f);
 
             //spawn enemy and add to array
-            GameObject tempenemy = Instantiate(enemy,transform.position + new Vector3(xCoord*templates.size, yCoord*templates.size, 0),Quaternion.identity);
-            tempenemy.GetComponent<Enemy>().manager = this;
+            GameObject tempSpawner = Instantiate(enemySpawner,transform.position + new Vector3(xCoord*templates.size, yCoord*templates.size, 0),Quaternion.identity);
+            tempSpawner.GetComponent<EnemySpawner>().manager = this;
+            tempSpawner.GetComponent<EnemySpawner>().enemy = enemy;
         }
     }
 

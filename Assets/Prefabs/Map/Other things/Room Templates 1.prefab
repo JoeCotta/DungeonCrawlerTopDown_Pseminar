@@ -80,4 +80,5 @@ MonoBehaviour:
   waitTime: 4
   size: 1
   roomsNumber: 15
+  enemySpawner: {fileID: 7963018869456047023, guid: 41f0cab69989abf43b374026cb82db0b, type: 3}
   rooms: []

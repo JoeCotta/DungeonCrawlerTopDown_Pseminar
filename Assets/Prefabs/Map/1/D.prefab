@@ -273,21 +273,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 725d7cf452b66aa469c1ecd28f880a6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySpawner: {fileID: 7963018869456047023, guid: 41f0cab69989abf43b374026cb82db0b, type: 3}
   enemy: {fileID: 9160011324959439354, guid: 63bcad68ccb791b43a9a796af8074e23, type: 3}
+  mapHidder: {fileID: 0}
+  doorFix: {fileID: 0}
+  doorvrtFix: {fileID: 0}
   doors:
   - D
   oben: 0
   rechts: 0
   unten: 0
   links: 0
-  enemys: []
   closedDoors: []
-  xCoord: 0
-  yCoord: 0
+  chests: []
   enemysCount: 0
   spawned: 0
-  allEnemysDead: 0
-  enemysDead: 
+  enemysDead: 0
+  maxEnemys: 1
+  minEnemys: 4
 --- !u!61 &-5385201539721549180
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -652,7 +655,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 7207680263935208283}
     m_Modifications:
     - target: {fileID: 2389154214451337142, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
@@ -716,7 +718,6 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
 --- !u!4 &8255375996638881274 stripped
 Transform:
