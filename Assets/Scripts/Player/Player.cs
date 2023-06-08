@@ -258,16 +258,24 @@ public class Player : MonoBehaviour, IDataPersistence
         // drops selected Item
         if(nearestItem == null)
         {
-            switch (selectedItem)
+            // if you have a armour AND a weapon
+            if (weapon && armourLevel != 0)
             {
-                case 1:
-                    swapWeapon(null);
-                    break;
+                switch (selectedItem)
+                {
+                    case 1:
+                        swapWeapon(null);
+                        break;
 
-                case 2:
-                    swapArmour(null);
-                    break;
+                    case 2:
+                        swapArmour(null);
+                        break;
+                }
             }
+            // if you only have a weapon 
+            else if(weapon) swapWeapon(null);
+            // if you only have a amour
+            else if(armourLevel != 0) swapArmour(null);
 
             isChangingFOV = true;
             changeSpeed();
@@ -276,8 +284,9 @@ public class Player : MonoBehaviour, IDataPersistence
         // switch items
         else
         {
+            print(nearestItem.gameObject.name.StartsWith("Weapon"));
             if(nearestItem.gameObject.name.StartsWith("Weapon")) swapWeapon(nearestItem);
-            else swapArmour(nearestItem);
+            else if(nearestItem.gameObject.name.StartsWith("Armour")) swapArmour(nearestItem);
 
             isChangingFOV = true;
             changeSpeed();
