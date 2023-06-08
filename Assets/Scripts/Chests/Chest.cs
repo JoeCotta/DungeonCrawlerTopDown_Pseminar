@@ -21,7 +21,7 @@ public class Chest : MonoBehaviour
         price = chestLevel * 10 + 5;
 
         // set the info text when colliding with the chest
-        text.GetComponent<TextMeshPro>().text = "press 'E' to pay " + price.ToString() + " coins to open the Level " + chestLevel.ToString() + " chest";
+        text.GetComponent<TextMeshPro>().text = "press 'E' to pay " + price.ToString() + " coins to open the Level " + (chestLevel + 1).ToString() + " chest";
 
         // gets the weapon Stats
         weaponStats[] weapons = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().weaponStatsList;
