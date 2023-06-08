@@ -83,6 +83,9 @@ public class Player : MonoBehaviour, IDataPersistence
         isDashing = false;
         isDead = false;
 
+        // sets this to true that if the player spawns with a weapon with a FOV change that is not 0 the FOV is still changed
+        isChangingFOV = true;
+
         changeSpeed();
         changeFOV();
     }
