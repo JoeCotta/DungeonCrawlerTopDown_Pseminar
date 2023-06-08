@@ -38,6 +38,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private float FOVChangeByWeapon;
     private bool isChangingFOV;
     private float lastFOV;
+    private bool changeFOVGameStart;
 
     private Vector2 inputMovement;
     private Vector2 mousePosition;
@@ -84,10 +85,11 @@ public class Player : MonoBehaviour, IDataPersistence
         isDead = false;
 
         // sets this to true that if the player spawns with a weapon with a FOV change that is not 0 the FOV is still changed
-        isChangingFOV = true;
+        changeFOVGameStart = true;
 
-        changeSpeed();
-        changeFOV();
+        // delays this that when calling the functions the weapon is properly loaded
+        Invoke("changeSpeed", 0.5f);
+        Invoke("changeFOV", 0.5f);
     }
 
     void Update()
@@ -326,6 +328,12 @@ public class Player : MonoBehaviour, IDataPersistence
     }
     void changeFOV() 
     {
+        // if the game is loaded changeFOV is called with a little delay
+        if(changeFOVGameStart) 
+        {
+            isChangingFOV = true;
+            changeFOVGameStart = false;
+        }
         float checkFOVchange = FOVChangeByWeapon;
 
         // changes the FOVChangeByWeapon to the current one
