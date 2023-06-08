@@ -88,7 +88,7 @@ public class Enemy : MonoBehaviour
 
         // check if enemy can hit the target (maybe a wall blocks the shot)
         RaycastHit2D hit = Physics2D.Raycast(rb.position, ((Vector2)target.position - rb.position).normalized);
-        Debug.DrawRay(rb.position, ((Vector2)target.position - rb.position).normalized);
+
         float DistanceToTarget = path.GetTotalLength();
 
         // if the player is too far away
@@ -100,6 +100,7 @@ public class Enemy : MonoBehaviour
         if (DistanceToTarget > 8 || hit.collider.gameObject.tag != "Player") follow = true;
 
         // if the Distance to the target is lower than 4 or out of the player's range the enemy shouldn't follow the target, instead he should shoot at the target
+        // but only if the bullet will hit the Player
         if ((DistanceToTarget < 6 || outOfRange) && hit.collider.gameObject.tag == "Player") follow = false;
     }
 
