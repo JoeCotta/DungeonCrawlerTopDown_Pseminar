@@ -1,0 +1,15 @@
+maybe add which script accesses what (for bug fixing later)
+
+ENEMY
+-DataPersistenceManager (save/load)
+-RoomManagment (calls death function [for count how many enemys of the room left alive])
+-EnemySpawner (spawns enemys [partical effect)
+
+ROOMS
+-RoomTemplates (Deletes execess rooms) (saves Size multiplier) (spawns floor exit)
+
+
+FTB(Fade To Black)
+-EndLevel (Fades to black)
+-GameManager (Fades from black)
+<Extend later>
