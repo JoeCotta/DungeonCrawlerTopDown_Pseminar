@@ -97,7 +97,6 @@ public class RoomManagment : MonoBehaviour
                 {
                     Instantiate(doorFix, transform.position + new Vector3(0, 4.5f * templates.size, 0), Quaternion.identity);
                     doors[i] = " ";
-                    Debug.Log("Up fix");
                 }
             }
 
