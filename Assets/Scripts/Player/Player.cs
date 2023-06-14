@@ -48,7 +48,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private float dashCooldownLeft;
     private float dashTimeLeft;
     private Vector2 dashDirection;
-    private bool isDashing;
+    public bool isDashing;
 
 
 

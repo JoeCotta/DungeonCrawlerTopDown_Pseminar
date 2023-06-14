@@ -16,6 +16,16 @@ public class CameraFollow : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        /* needs more testing
+        if (player.gameObject.GetComponent<Player>().isDashing)
+        {
+            smoothSpeed = 0.8f;
+        }
+        else
+        {
+            smoothSpeed = 0.125f;
+        }
+        */
         Vector3 desiredPosition = player.position + offset;
         Vector3 smoothPosition = Vector3.Lerp(transform.position ,desiredPosition ,smoothSpeed);
         transform.position = smoothPosition;
