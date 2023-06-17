@@ -20,7 +20,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public float weaponPickUpRadius;
     public float ItemDropForce; // 500
     public float itemPickUpRadius;
-    public int weaponType;
+    public int weaponType; // WHY THIS? das wird doch nie nach start benutzt
 
     public int dungeonFloor;
     public bool isDead;
@@ -67,12 +67,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
     void Start()
     {
-        // creates the weapon
-        weaponSlot = transform.GetChild(0);
-        weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);  
-        // sets the weaponType
-        weapon.GetComponent<weaponsystem>().weaponType = weaponType; // sets the weaponType
-        weapon.GetComponent<weaponsystem>().owner = gameObject; // by Cornell
+        Invoke("assingWeapon", 0.1f);
     
 
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
@@ -90,6 +85,16 @@ public class Player : MonoBehaviour, IDataPersistence
         // delays this that when calling the functions the weapon is properly loaded
         Invoke("changeSpeed", 0.5f);
         Invoke("changeFOV", 0.5f);
+    }
+
+    void assingWeapon()
+    {
+        // creates the weapon
+        weaponSlot = transform.GetChild(0);
+        weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);
+        // sets the weaponType
+        weapon.GetComponent<weaponsystem>().weaponType = weaponType; // sets the weaponType
+        weapon.GetComponent<weaponsystem>().owner = gameObject; // by Cornell
     }
 
     void Update()
@@ -392,8 +397,8 @@ public class Player : MonoBehaviour, IDataPersistence
         this.health = data.currentHealth;
         this.armourLevel = Mathf.RoundToInt(data.currentArmor);
         this.revivesLeft = Mathf.RoundToInt(data.revivesLeft);
-        //if(data.weaponSaved != null)this.weapon = data.weaponSaved;
-        //if(data.weaponPrefabSaved != null)this.weaponPrefab = data.weaponPrefabSaved;
+        this.weaponType = data.currentWeaponType;
+        //this.weapon.GetComponent<weaponsystem>().getWeaponStats();
     }
 
     public void SaveData(ref GameData data)
@@ -405,7 +410,6 @@ public class Player : MonoBehaviour, IDataPersistence
         data.currentHealth = this.health;
         data.currentArmor = this.armourLevel;
         data.revivesLeft = this.revivesLeft;
-        //data.weaponSaved = this.weapon;
-        //data.weaponPrefabSaved = this.weaponPrefab;
+        data.currentWeaponType = this.weapon.GetComponent<weaponsystem>().weaponType;
     }
 }

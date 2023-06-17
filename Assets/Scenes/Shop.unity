@@ -308,6 +308,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3945176857175240593, guid: bbfa602605195e14b8d419b23a8bdfd5, type: 3}
@@ -354,11 +355,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3945176857175240598, guid: bbfa602605195e14b8d419b23a8bdfd5, type: 3}
+      propertyPath: isMenu
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3945176857175240599, guid: bbfa602605195e14b8d419b23a8bdfd5, type: 3}
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: bbfa602605195e14b8d419b23a8bdfd5, type: 3}
 --- !u!1 &570718723
 GameObject:
@@ -524,7 +530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -1622,6 +1627,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 953935516187979946, guid: 96fc5b1c3833ef848b35e6ad959e91a6, type: 3}
@@ -1677,6 +1683,7 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 96fc5b1c3833ef848b35e6ad959e91a6, type: 3}
 --- !u!1 &1383245955
 GameObject:
@@ -1755,6 +1762,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
