@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public int armourLevel = 0;// level 0 is the worst armor and 10 is the best
     public float playerGold;//treat as int by cornell
     public int revivesLeft;
+    public int killedEnemys;//could be saved in GameManager
 
     public float maxMovementSpeed; // 7
     public float acceleration; // 50
@@ -386,30 +387,38 @@ public class Player : MonoBehaviour, IDataPersistence
 
     }
 
+    public void enemyKilled()
+    {
+        killedEnemys++;
+    }
+
     
 
     public void LoadData(GameData data)
     {
-        this.playerGold = data.currentCoins;
         this.isDead = data.isDead;
+        this.playerGold = data.currentCoins;
+        this.revivesLeft = Mathf.RoundToInt(data.revivesLeft);
 
         this.maxHealth = data.currentMaxHealth;
         this.health = data.currentHealth;
         this.armourLevel = Mathf.RoundToInt(data.currentArmor);
-        this.revivesLeft = Mathf.RoundToInt(data.revivesLeft);
         this.weaponType = data.currentWeaponType;
-        //this.weapon.GetComponent<weaponsystem>().getWeaponStats();
+
+        this.killedEnemys = data.enemysKilled;
     }
 
     public void SaveData(ref GameData data)
     {
-        data.currentCoins = this.playerGold;
         data.isDead = this.isDead;
+        data.currentCoins = this.playerGold;
+        data.revivesLeft = this.revivesLeft;
 
         data.currentMaxHealth = this.maxHealth;
         data.currentHealth = this.health;
         data.currentArmor = this.armourLevel;
-        data.revivesLeft = this.revivesLeft;
         data.currentWeaponType = this.weapon.GetComponent<weaponsystem>().weaponType;
+
+        data.enemysKilled = this.killedEnemys;
     }
 }

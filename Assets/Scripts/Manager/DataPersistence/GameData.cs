@@ -30,6 +30,9 @@ public class GameData
     private int dumpVariableInt;
     private float dumpVariableFloat;
 
+    //statistics
+    public int enemysKilled;
+
     public GameData()
     {
         isDead = false;
@@ -39,15 +42,16 @@ public class GameData
         startArmor = 0;
         startWeaponType = 0;
 
+        maxHealthlvl = 0;
+        reviveLevel = 0;
+        armorLevel = 0;
 
         currentMaxHealth = 20;
         currentHealth = currentMaxHealth;
         currentArmor = 0;
         currentWeaponType = 0;
-        
-        maxHealthlvl = 0;
-        reviveLevel = 0;
-        armorLevel = 0;
+
+        enemysKilled = 0;
     }
     public ref int getLevel(string itemName)
     {
