@@ -81,7 +81,7 @@ public class Enemy : MonoBehaviour
         if(weapon)
         {
             weapon.transform.position = weaponSlot.position;
-            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, -90);;
+            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, 90); // cornell same as with player
         }
 
         if(path == null) return;

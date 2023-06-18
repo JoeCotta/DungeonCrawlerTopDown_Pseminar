@@ -6,6 +6,8 @@ public class weaponsystem : MonoBehaviour
 {
     public GameObject owner;//by cornell
 
+    public Sprite[] weaponTexture;//cornell
+
     public int weaponType;
     public GameObject bulletPrefab;
 
@@ -26,6 +28,9 @@ public class weaponsystem : MonoBehaviour
 
         // sets the weapons stats
         getWeaponStats();
+
+        //set texture [Cornell]
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = weaponTexture[weaponType];
     }
 
     void Update()

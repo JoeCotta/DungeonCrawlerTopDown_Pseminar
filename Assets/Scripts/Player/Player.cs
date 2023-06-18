@@ -160,7 +160,7 @@ public class Player : MonoBehaviour, IDataPersistence
         if(weapon)
         {
             weapon.transform.position = weaponSlot.position;
-            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, -90);;
+            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, 90); //cornell 90 statt -90
         }
 
         // shoot if clicked

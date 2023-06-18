@@ -23,14 +23,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1358165530467398036}
-  m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.5, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
+  m_LocalPosition: {x: 0.494, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1833491886322884884}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &4382214503651565149
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +59,7 @@ Transform:
   m_GameObject: {fileID: 4382214503651565149}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.36, y: 0.201, z: 0}
-  m_LocalScale: {x: 0.53787, y: 0.1685326, z: 0.71716}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5699764428156774201}
@@ -106,7 +106,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -131,8 +131,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   owner: {fileID: 0}
+  weaponTexture:
+  - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
+  - {fileID: -115298813, guid: d2d44dba6fe796e4f961b2ff3f202a78, type: 3}
+  - {fileID: -2091552570, guid: ffbf5b7b3d87337419d8fbe73c98cf42, type: 3}
   weaponType: 0
   bulletPrefab: {fileID: 9006799821689394367, guid: 2f7085c1d9902137ca5c39787eec93bc, type: 3}
+  speedWhileWearing: 0
+  FOVWhileWearing: 0
 --- !u!50 &7043996625841016062
 Rigidbody2D:
   serializedVersion: 4
