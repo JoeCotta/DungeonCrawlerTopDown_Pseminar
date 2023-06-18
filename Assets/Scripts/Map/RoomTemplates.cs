@@ -21,13 +21,14 @@ public class RoomTemplates : MonoBehaviour
     //variables for functions
     public List<GameObject> rooms;
     private bool spawnedBoss;
+    private bool onceFix = false;
 
     private void Update()
     {
         //pick boss room
         if(waitTime <= 0 && spawnedBoss == false)
         {
-            Instantiate(boss, rooms[roomsNumber-1].transform.position, Quaternion.identity);
+            rooms[roomsNumber - 1].GetComponent<RoomManagment>().isBossR = true;
             spawnedBoss = true;
         }else if(waitTime > 0 && spawnedBoss == false){
             waitTime -= Time.deltaTime;
@@ -39,12 +40,13 @@ public class RoomTemplates : MonoBehaviour
                 Destroy(rooms[rooms.Count-1]);
                 rooms.RemoveAt(rooms.Count-1);
             }
-        }else if(rooms.Count == roomsNumber)
+        }else if(rooms.Count == roomsNumber && onceFix == false)
         {
             foreach (var item in rooms)
-                {
-                    item.GetComponent<RoomManagment>().fixSpawns();
-                }
+            {
+                item.GetComponent<RoomManagment>().fixSpawns();
+            }
+            onceFix = true;
         }
     }
 }

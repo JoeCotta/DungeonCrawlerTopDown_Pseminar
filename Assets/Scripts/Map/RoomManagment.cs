@@ -34,6 +34,7 @@ public class RoomManagment : MonoBehaviour
     public int enemysDead = 0;
     public int maxEnemys = 1;
     public int minEnemys = 4;
+    public bool isBossR = false;
 
     void Start()
     {
@@ -175,8 +176,8 @@ public class RoomManagment : MonoBehaviour
 
         }
 
-        /*
-        GameObject tempRoom = null; Vector3 tempPosition;
+        
+        /*GameObject tempRoom = null; Vector3 tempPosition;
         for (int i = 0; i < doors.Length; i++)
         {
             switch (doors[i])
@@ -195,7 +196,7 @@ public class RoomManagment : MonoBehaviour
                     if (tempRoom == null) break; // failsave
                     foreach (string item in tempRoom.GetComponent<RoomManagment>().doors)
                     {
-                        if (item == "D") { oben = true; break; }
+                        if (item == "D") { oben = true; Debug.Log(tempRoom + " " + item); break; }
                     }
                     if (oben == false) { Instantiate(doorFix, transform.position + new Vector3(0, 4.5f * templates.size, 0), Quaternion.identity); doors[i] = " "; break; }
                     break;
@@ -251,6 +252,8 @@ public class RoomManagment : MonoBehaviour
     }
 
     void spawnEnemys() {
+        //spawn boss
+        if(isBossR) Instantiate(templates.boss, transform.position + new Vector3(0,2,0) * templates.size, Quaternion.identity);
         //pick random amount of enemys and if spawnpoint positive or negativ coordinate
         enemysCount = Random.Range(minEnemys, maxEnemys);
 
