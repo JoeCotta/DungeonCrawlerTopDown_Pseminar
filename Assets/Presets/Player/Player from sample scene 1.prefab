@@ -140,7 +140,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &644545702556066165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -158,6 +158,7 @@ MonoBehaviour:
   armourLevel: 5
   playerGold: 0
   revivesLeft: 0
+  killedEnemys: 0
   maxMovementSpeed: 7
   acceleration: 50
   dashForce: 1000
@@ -167,6 +168,7 @@ MonoBehaviour:
   weaponPickUpRadius: 0
   ItemDropForce: 500
   itemPickUpRadius: 1
+  weaponType: 0
   dungeonFloor: 0
   isDead: 0
   selectedItem: 1
@@ -174,6 +176,7 @@ MonoBehaviour:
   timeChangeFOV: 0.25
   t: 0
   FOVChangeWithoutWeapon: -1
+  isDashing: 0
   gameManager: {fileID: 0}
   weaponPrefab: {fileID: 4382214503651565149, guid: 85ca61a2f59b7d9e0a436efd4cae65a1, type: 3}
   weapon: {fileID: 0}

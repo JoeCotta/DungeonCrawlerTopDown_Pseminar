@@ -1095,6 +1095,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 644545702556066162, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 644545702556066164, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
       propertyPath: m_Name
       value: Player from sample scene
