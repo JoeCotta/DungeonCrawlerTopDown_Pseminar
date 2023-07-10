@@ -23,6 +23,8 @@ public class EndLevel : MonoBehaviour
 
     public void Update()
     {
+        if (GameManager.isPaused) return;
+
         if (loadScene)
         {
             gameManager.SaveGame();

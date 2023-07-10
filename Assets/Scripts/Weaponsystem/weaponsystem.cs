@@ -30,8 +30,9 @@ public class weaponsystem : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.isPaused) return;
         // reduces the fire CoolDown
-        if(fireCooldownLeft > 0) fireCooldownLeft -= Time.deltaTime;
+        if (fireCooldownLeft > 0) fireCooldownLeft -= Time.deltaTime;
     }
 
     void shoot()

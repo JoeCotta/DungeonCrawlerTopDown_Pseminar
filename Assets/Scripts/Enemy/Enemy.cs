@@ -77,6 +77,8 @@ public class Enemy : MonoBehaviour
     }
     void Update()
     {
+        if (GameManager.isPaused) return;
+
         // update the position and rotation of the weapon if the enemy has one
         if(weapon)
         {

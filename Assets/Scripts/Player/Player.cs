@@ -94,6 +94,8 @@ public class Player : MonoBehaviour, IDataPersistence
 
     void Update()
     {
+        if (GameManager.isPaused) return;
+
         // getting Keyboard Input
         inputMovement = Input.GetKey("w") ? Vector2.up : Vector2.zero;
         inputMovement += Input.GetKey("a") ? Vector2.left : Vector2.zero;

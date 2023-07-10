@@ -10,8 +10,12 @@ public class GameManager : MonoBehaviour
     public DataPersistenceManager dataPersistenceManager;
     public Player player;
     private Image ffb;
+    private GameObject hud;
+    private GameObject pause;
     private float t;
     public float timeToFadeFromBlack;
+
+    static public bool isPaused = false;
 
     //remember to drag scene in files>build settings> here     and but the number next to it in here
     public int buildIndexOfSceneToLoad;
@@ -20,15 +24,22 @@ public class GameManager : MonoBehaviour
     {
         Invoke("assingReferences", 1f);
         ffb = GameObject.FindGameObjectWithTag("FTB").GetComponent<Image>();
+        hud = GameObject.FindGameObjectWithTag("Hud");
+        pause = GameObject.FindGameObjectWithTag("Pause"); pause.SetActive(false);
     }
 
     private void Update()
     {
         if (player != null && player.isDead) resetRunData(); 
-        if(t < timeToFadeFromBlack)
+        if(t < timeToFadeFromBlack && ffb != null)
         {
             t += Time.deltaTime;
             ffb.color = new Color(0, 0, 0, 1-(t * 1 / timeToFadeFromBlack));
+        }
+        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PauseSwitch();
         }
     }
 
@@ -57,6 +68,24 @@ public class GameManager : MonoBehaviour
         dataPersistenceManager.SaveGame();
     }
 
+
+    public void PauseSwitch()
+    {
+            if (isPaused)
+            {
+                Time.timeScale = 1;
+                isPaused = false;
+                hud.SetActive(true);
+                pause.SetActive(false);
+            }
+            else
+            {
+                Time.timeScale = 0;
+                isPaused = true;
+                hud.SetActive(false);
+                pause.SetActive(true);
+            }
+    }
 
 
     //functions for returning parts of the Reference List
