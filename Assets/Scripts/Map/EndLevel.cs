@@ -30,7 +30,6 @@ public class EndLevel : MonoBehaviour
             gameManager.SaveGame();
             if (t < timeToFade)
             {
-                Debug.Log(t * 1 / timeToFade);
                 t += Time.deltaTime;
                 ftb.color = new Color(0, 0, 0, t * 1 / timeToFade);
             }

@@ -10,6 +10,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public int armourLevel = 0;// level 0 is the worst armor and 10 is the best
     public float playerGold;//treat as int by cornell
     public int revivesLeft;
+    public int killedEnemys;//could be saved in GameManager
 
     public float maxMovementSpeed; // 7
     public float acceleration; // 50
@@ -20,7 +21,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public float weaponPickUpRadius;
     public float ItemDropForce; // 500
     public float itemPickUpRadius;
-    public int weaponType;
+    public int weaponType; // WHY THIS? das wird doch nie nach start benutzt
 
     public int dungeonFloor;
     public bool isDead;
@@ -48,7 +49,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private float dashCooldownLeft;
     private float dashTimeLeft;
     private Vector2 dashDirection;
-    private bool isDashing;
+    public bool isDashing;
 
 
 
@@ -67,12 +68,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
     void Start()
     {
-        // creates the weapon
-        weaponSlot = transform.GetChild(0);
-        weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);  
-        // sets the weaponType
-        weapon.GetComponent<weaponsystem>().weaponType = weaponType; // sets the weaponType
-        weapon.GetComponent<weaponsystem>().owner = gameObject; // by Cornell
+        Invoke("assingWeapon", 0.1f);
     
 
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
@@ -90,6 +86,16 @@ public class Player : MonoBehaviour, IDataPersistence
         // delays this that when calling the functions the weapon is properly loaded
         Invoke("changeSpeed", 0.5f);
         Invoke("changeFOV", 0.5f);
+    }
+
+    void assingWeapon()
+    {
+        // creates the weapon
+        weaponSlot = transform.GetChild(0);
+        weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);
+        // sets the weaponType
+        weapon.GetComponent<weaponsystem>().weaponType = weaponType; // sets the weaponType
+        weapon.GetComponent<weaponsystem>().owner = gameObject; // by Cornell
     }
 
     void Update()
@@ -156,7 +162,7 @@ public class Player : MonoBehaviour, IDataPersistence
         if(weapon)
         {
             weapon.transform.position = weaponSlot.position;
-            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, -90);;
+            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, 90); //cornell 90 statt -90
         }
 
         // shoot if clicked
@@ -383,31 +389,38 @@ public class Player : MonoBehaviour, IDataPersistence
 
     }
 
+    public void enemyKilled()
+    {
+        killedEnemys++;
+    }
+
     
 
     public void LoadData(GameData data)
     {
-        this.playerGold = data.currentCoins;
         this.isDead = data.isDead;
+        this.playerGold = data.currentCoins;
+        this.revivesLeft = Mathf.RoundToInt(data.revivesLeft);
 
         this.maxHealth = data.currentMaxHealth;
         this.health = data.currentHealth;
         this.armourLevel = Mathf.RoundToInt(data.currentArmor);
-        this.revivesLeft = Mathf.RoundToInt(data.revivesLeft);
-        //if(data.weaponSaved != null)this.weapon = data.weaponSaved;
-        //if(data.weaponPrefabSaved != null)this.weaponPrefab = data.weaponPrefabSaved;
+        this.weaponType = data.currentWeaponType;
+
+        this.killedEnemys = data.enemysKilled;
     }
 
     public void SaveData(ref GameData data)
     {
-        data.currentCoins = this.playerGold;
         data.isDead = this.isDead;
+        data.currentCoins = this.playerGold;
+        data.revivesLeft = this.revivesLeft;
 
         data.currentMaxHealth = this.maxHealth;
         data.currentHealth = this.health;
         data.currentArmor = this.armourLevel;
-        data.revivesLeft = this.revivesLeft;
-        //data.weaponSaved = this.weapon;
-        //data.weaponPrefabSaved = this.weaponPrefab;
+        data.currentWeaponType = this.weapon.GetComponent<weaponsystem>().weaponType;
+
+        data.enemysKilled = this.killedEnemys;
     }
 }

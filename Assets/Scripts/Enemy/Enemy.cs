@@ -83,7 +83,7 @@ public class Enemy : MonoBehaviour
         if(weapon)
         {
             weapon.transform.position = weaponSlot.position;
-            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, -90);;
+            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, 90); // cornell same as with player
         }
 
         if(path == null) return;
@@ -162,6 +162,7 @@ public class Enemy : MonoBehaviour
         {
             isDead = true;
             target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,maxGold));//Cornell 
+            target.gameObject.GetComponent<Player>().enemyKilled();
             manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error
         }
     }

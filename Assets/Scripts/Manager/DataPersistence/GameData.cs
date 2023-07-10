@@ -11,8 +11,9 @@ public class GameData
     //Player Data
     public float currentCoins;
     public float maxHealth;
-    public float startArmor;
     public float revivesLeft;
+    public float startArmor;
+    public int startWeaponType;
 
     // Levels
     public int maxHealthlvl;
@@ -24,25 +25,33 @@ public class GameData
     public float currentMaxHealth;
     public float currentHealth;
     public float currentArmor;
-    public GameObject weaponSaved;
-    public GameObject weaponPrefabSaved;
+    public int currentWeaponType;
 
     private int dumpVariableInt;
     private float dumpVariableFloat;
+
+    //statistics
+    public int enemysKilled;
 
     public GameData()
     {
         isDead = false;
         currentCoins = 0;
         maxHealth = 20;
+        revivesLeft = 0;
         startArmor = 0;
-        currentMaxHealth = 20;
-        currentHealth = currentMaxHealth;
-        currentArmor = 0;
-        
+        startWeaponType = 0;
+
         maxHealthlvl = 0;
         reviveLevel = 0;
         armorLevel = 0;
+
+        currentMaxHealth = 20;
+        currentHealth = currentMaxHealth;
+        currentArmor = 0;
+        currentWeaponType = 0;
+
+        enemysKilled = 0;
     }
     public ref int getLevel(string itemName)
     {
