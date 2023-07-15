@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3945176857175240599
+--- !u!1 &7490071801596858470
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,41 +8,46 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3945176857175240593}
-  - component: {fileID: 3945176857175240598}
+  - component: {fileID: 4187628142659271434}
+  - component: {fileID: 2378977731582094594}
   m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Manager
+  m_Name: DataBaseManager
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3945176857175240593
+--- !u!4 &4187628142659271434
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3945176857175240599}
+  m_GameObject: {fileID: 7490071801596858470}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 266.8539, y: -21.010832, z: -19.505962}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3945176857175240598
+--- !u!114 &2378977731582094594
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3945176857175240599}
+  m_GameObject: {fileID: 7490071801596858470}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e220a55effded3b41b305c56facb058a, type: 3}
+  m_Script: {fileID: 11500000, guid: f2247b4a6d535b44db6bf02c46128b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AWeaponAssing: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}
-  timeToFadeFromBlack: 2
+  doors:
+  - {fileID: 3159706444157335561, guid: 80c6a0ae148af6e4cb233f4c0784d6f2, type: 3}
+  - {fileID: 8962255534860799806, guid: 4770a740a66cc684b96c40099ce7cbe6, type: 3}
+  - {fileID: 4288103373122083156, guid: 7ca01df501a30cd438eaeca0295f385d, type: 3}
+  - {fileID: 1501649136990674295, guid: caec4ac06e4b46441957d7fcbaee672a, type: 3}
+  boss: {fileID: 8200861080526764935, guid: 8b08f98e6abb67740b498aa48952fcd4, type: 3}
+  size: 3

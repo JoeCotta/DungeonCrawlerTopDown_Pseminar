@@ -124,16 +124,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxGold: 3
   manager: {fileID: 0}
+  useAlternate: 1
   target: {fileID: 0}
   speed: 500
   nextWaypointDistance: 1
-  weaponPrefabs:
-  - {fileID: 4382214503651565149, guid: f56bec6eedc9f3a33b08314a11b20244, type: 3}
-  - {fileID: 4382214503651565149, guid: e8591142de91aceb7998439475a7f101, type: 3}
-  - {fileID: 4382214503651565149, guid: 85ca61a2f59b7d9e0a436efd4cae65a1, type: 3}
   weaponPrefab: {fileID: 4382214503651565149, guid: 88611d061a3f47dff90eceee703b94db, type: 3}
   health: 20
   armorLevel: 0
+  AWeapon: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}
   isDead: 0
 --- !u!61 &9160011324959439351
 BoxCollider2D:

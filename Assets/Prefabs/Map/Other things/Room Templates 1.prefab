@@ -77,8 +77,7 @@ MonoBehaviour:
   - {fileID: 5771368120821569006, guid: fb7653615bec29e4f9b60a0b8d4600d1, type: 3}
   - {fileID: 5771368120821569006, guid: fb7653615bec29e4f9b60a0b8d4600d1, type: 3}
   - {fileID: 5995074586283413101, guid: 803801b70cb26304ca579ec180b697ea, type: 3}
-  waitTime: 4
-  size: 1
+  waitTime: 3
+  size: 3
   roomsNumber: 15
-  enemySpawner: {fileID: 7963018869456047023, guid: 41f0cab69989abf43b374026cb82db0b, type: 3}
   rooms: []
