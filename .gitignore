@@ -63,3 +63,11 @@ Thumbs.db
 # VS Code
 .vscode
 
+Packages/manifest.json
+Packages/packages-lock.json
+ProjectSettings/boot.config
+ProjectSettings/ProjectSettings.asset
+ProjectSettings/ProjectVersion.txt
+UserSettings/EditorUserSettings.asset
+UserSettings/Layouts/CurrentMaximizeLayout.dwlt
+UserSettings/Layouts/default-2022.dwlt
