@@ -554,4 +554,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   text: {fileID: 1341940057240587857}
   chestLevel: -1
-  weaponPrefab: {fileID: 4382214503651565149, guid: 88611d061a3f47dff90eceee703b94db, type: 3}
+  weaponPrefab: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}

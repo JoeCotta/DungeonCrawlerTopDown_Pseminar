@@ -61,7 +61,7 @@ public class Chest : MonoBehaviour
                 // creates the weapon
                 GameObject weapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
 
-                weapon.GetComponent<weaponsystem>().weaponType = weaponType; // sets the weaponType
+                weapon.GetComponent<AlternateWS>().weaponType = weaponType; // sets the weaponType
 
                 // Destroys the chest
                 Destroy(gameObject);
