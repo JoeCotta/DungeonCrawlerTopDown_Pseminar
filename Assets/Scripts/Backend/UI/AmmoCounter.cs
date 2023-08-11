@@ -12,7 +12,8 @@ public class AmmoCounter : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (player && player.weapon.GetComponent<AlternateWS>()) gameObject.GetComponent<TextMeshProUGUI>().text = player.weapon.GetComponent<AlternateWS>().GetAmmo().x.ToString() + "/" + player.weapon.GetComponent<AlternateWS>().GetAmmo().y.ToString();
+
+        if (player && player.weapon && player.weapon.GetComponent<AlternateWS>()) gameObject.GetComponent<TextMeshProUGUI>().text = player.weapon.GetComponent<AlternateWS>().GetAmmo().x.ToString() + "/" + player.weapon.GetComponent<AlternateWS>().GetAmmo().y.ToString();
         else gameObject.GetComponent<TextMeshProUGUI>().text = "";
     }
 

@@ -334,8 +334,15 @@ public class Player : MonoBehaviour, IDataPersistence
     }
     void swapWeapon(GameObject nearestWeapon)
     {
+
         // gives the "old" weapon a force to kick the weapon away - a drop animation
         if (weapon) weapon.GetComponent<Rigidbody2D>().AddForce(-lookDir.normalized * ItemDropForce);
+
+        // sets the owner of the dropped weapon to null
+        if (weapon) weapon.GetComponent<AlternateWS>().owner = null;
+
+        // you shouldn't be able to pick up a weapon another entity is holding
+        if(nearestWeapon && nearestWeapon.GetComponent<AlternateWS>().owner) return;
 
         // if there is no weapon to pickup
         if(nearestWeapon == null) weapon = null;
