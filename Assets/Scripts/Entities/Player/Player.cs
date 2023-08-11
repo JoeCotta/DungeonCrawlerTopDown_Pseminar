@@ -434,7 +434,7 @@ public class Player : MonoBehaviour, IDataPersistence
         data.currentMaxHealth = this.maxHealth;
         data.currentHealth = this.health;
         data.currentArmor = this.armourLevel;
-        if(weapon.GetComponent<weaponsystem>())data.currentWeaponType = this.weapon.GetComponent<weaponsystem>().weaponType;
+        if(weapon.GetComponent<AlternateWS>())data.currentWeaponType = this.weapon.GetComponent<AlternateWS>().weaponType;
         else data.currentWeaponType = this.weapon.GetComponent<AlternateWS>().weaponType;
 
         data.enemysKilled = this.killedEnemys;
