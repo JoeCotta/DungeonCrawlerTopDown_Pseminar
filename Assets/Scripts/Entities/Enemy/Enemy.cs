@@ -172,10 +172,16 @@ public class Enemy : MonoBehaviour
         if(health <= 0)
         {
             isDead = true;
-            target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,maxGold));//Cornell 
-            target.gameObject.GetComponent<Player>().enemyKilled();
-            manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error
+            onDeath();
         }
+    }
+
+    void onDeath()
+    {
+        Destroy(weapon);
+        target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,maxGold));//Cornell 
+        target.gameObject.GetComponent<Player>().enemyKilled();
+        manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error
     }
 
 }
