@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour
     private bool outOfRange = true;
     public bool isDead = false;
 
+    public GameObject boostPrefab;
+
 
     void Start()
     {   
@@ -177,7 +179,13 @@ public class Enemy : MonoBehaviour
 
     void onDeath()
     {
-        int dropWp = Random.Range(1, DataBase.weaponDropChance);  if (dropWp != 1)Destroy(weapon);
+        int dropWp = Random.Range(1, DataBase.weaponDropChance);  
+        if (dropWp != 1)
+        {
+            Destroy(weapon);
+            int dropBoost = Random.Range(1, DataBase.boostDropChance);
+            if (dropBoost == 1) Instantiate(boostPrefab, transform.position, Quaternion.identity);
+        }
         target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,DataBase.maxGold));//Cornell 
         target.gameObject.GetComponent<Player>().enemyKilled();
         manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error

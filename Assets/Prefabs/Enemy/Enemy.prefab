@@ -122,7 +122,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1dd2c9862691e945996ed205169dea50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxGold: 3
   manager: {fileID: 0}
   target: {fileID: 0}
   speed: 500
@@ -132,6 +131,7 @@ MonoBehaviour:
   armorLevel: 0
   AWeapon: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}
   isDead: 0
+  boostPrefab: {fileID: 6753663607918299696, guid: 6269ea7abee1a3d54a83a711c464bbec, type: 3}
 --- !u!61 &9160011324959439351
 BoxCollider2D:
   m_ObjectHideFlags: 0

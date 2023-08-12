@@ -11,6 +11,7 @@ public class DataBaseManager : MonoBehaviour
     //Enemy
     public int maxGold;
     public int WeaponDropChance; //as a 1 in x chance
+    public int boostDropChance; // as a 1 in x chance 
 
     void Start()
     {
@@ -20,5 +21,7 @@ public class DataBaseManager : MonoBehaviour
 
         DataBase.maxGold = maxGold;
         DataBase.weaponDropChance = WeaponDropChance + 1; //because its exclusive
+
+        DataBase.boostDropChance = boostDropChance + 1; //because in Random.Range the second param. is exclusive
     }
 }

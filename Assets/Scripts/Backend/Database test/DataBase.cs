@@ -13,6 +13,7 @@ public class DataBase : MonoBehaviour
 
     static public int maxGold;
     static public int weaponDropChance;
+    static public int boostDropChance;
 
 
     static public float[] weaponBase(int weaponType)
