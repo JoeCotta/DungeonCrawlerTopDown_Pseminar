@@ -161,7 +161,7 @@ MonoBehaviour:
   killedEnemys: 0
   maxMovementSpeed: 7
   acceleration: 50
-  dashForce: 1000
+  dashForce: 150000
   dashCooldown: 2
   dashTime: 0.15
   dashDamage: 10
@@ -176,8 +176,8 @@ MonoBehaviour:
   timeChangeFOV: 0.25
   t: 0
   FOVChangeWithoutWeapon: -1
+  dashCooldownLeft: 0
   isDashing: 0
-  gameManager: {fileID: 0}
   weaponPrefab: {fileID: 4382214503651565149, guid: 85ca61a2f59b7d9e0a436efd4cae65a1, type: 3}
   weapon: {fileID: 0}
   armourPrefab: {fileID: 7889819629484783230, guid: 418efccf953fcbec2a7fb3046e0e673a, type: 3}
@@ -242,7 +242,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 644545702556066160}
-  m_RootOrder: -1
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2534011111684383103
 SpriteRenderer:
@@ -308,4 +308,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c97cf935240864e8657538ba24fad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  roomTemplates: {fileID: 0}

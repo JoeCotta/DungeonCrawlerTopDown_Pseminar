@@ -1034,6 +1034,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 549764645}
     - target: {fileID: 644545702556066165, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
+      propertyPath: dashForce
+      value: 150000
+      objectReference: {fileID: 0}
+    - target: {fileID: 644545702556066165, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
       propertyPath: weaponPrefab
       value: 
       objectReference: {fileID: 4382214503651565149, guid: 88611d061a3f47dff90eceee703b94db, type: 3}
