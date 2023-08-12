@@ -1104,6 +1104,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3945176857175240598, guid: bbfa602605195e14b8d419b23a8bdfd5, type: 3}
+      propertyPath: timeToFadeFromBlack
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3945176857175240598, guid: bbfa602605195e14b8d419b23a8bdfd5, type: 3}
       propertyPath: buildIndexOfSceneToLoad
       value: 2
       objectReference: {fileID: 0}
