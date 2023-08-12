@@ -63,6 +63,10 @@ public class Player : MonoBehaviour, IDataPersistence
     public Rigidbody2D rb;
     private Transform weaponSlot;
 
+    // boosts
+    public float speedBuff;
+    public float healBuff;
+    public float tHealBoost;
 
 
     void Start()
@@ -82,6 +86,8 @@ public class Player : MonoBehaviour, IDataPersistence
         // delays this that when calling the functions the weapon is properly loaded
         Invoke("changeSpeed", 0.5f);
         Invoke("changeFOV", 0.5f);
+
+        tHealBoost = 0;
     }
 
     void assingWeapon()
@@ -194,12 +200,19 @@ public class Player : MonoBehaviour, IDataPersistence
         {
             onPlayerDead();
         }
+
+        
+        // heal Buff
+        if (healBuff != 0) {
+            health += healBuff * Time.deltaTime;
+            print(health);
+        }
     }
 
     void FixedUpdate()
     {
         // calculating the velocity the rb should have
-        Vector2 targetVelocity = inputMovement * (maxMovementSpeed + speedBoostByWeapon);
+        Vector2 targetVelocity = inputMovement * (maxMovementSpeed + speedBoostByWeapon + speedBuff);
         // difference between the velocity the rb should have and the actual one
         Vector2 velocityDifference = targetVelocity - rb.velocity;
         // F = m*a (m=1) and a = v/t (t=1) => F = v 
