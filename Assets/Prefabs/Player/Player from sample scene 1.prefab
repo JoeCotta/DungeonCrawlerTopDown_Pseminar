@@ -161,7 +161,7 @@ MonoBehaviour:
   killedEnemys: 0
   maxMovementSpeed: 7
   acceleration: 50
-  dashForce: 150000
+  dashForce: 100000
   dashCooldown: 2
   dashTime: 0.15
   dashDamage: 10
