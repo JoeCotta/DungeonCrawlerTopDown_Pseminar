@@ -14,7 +14,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
     public float maxMovementSpeed; // 7
     public float acceleration; // 50
-    public float dashForce; // 1000
+    public float dashForce; // 150000
     public float dashCooldown; // 2
     public float dashTime; // 0.15
     public float dashDamage; // 10
@@ -222,7 +222,8 @@ public class Player : MonoBehaviour, IDataPersistence
     }
 
     void dash(){
-        rb.AddForce(dashForce * dashDirection);
+        //added time.delta time to make movement always the same speed at any framerate
+        rb.AddForce(dashForce * dashDirection * Time.deltaTime);
     }
 
     void hit(float damage)

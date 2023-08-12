@@ -55,6 +55,8 @@ public class AlternateWS : MonoBehaviour
 
     private void RealReload()
     {
+        //i think this doesnt work but need something to stop reload when weapon dropped
+        if (GameManager.player.weapon != gameObject) { reloading = false;  return;}
         if (reserve >= mag - ammo)
         {
             reserve -= mag - ammo;

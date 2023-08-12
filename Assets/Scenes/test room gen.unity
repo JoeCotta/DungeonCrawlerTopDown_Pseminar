@@ -811,6 +811,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 549764645}
     - target: {fileID: 644545702556066165, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
+      propertyPath: dashForce
+      value: 100000
+      objectReference: {fileID: 0}
+    - target: {fileID: 644545702556066165, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
       propertyPath: weaponPrefab
       value: 
       objectReference: {fileID: 4382214503651565149, guid: 88611d061a3f47dff90eceee703b94db, type: 3}
@@ -909,11 +913,23 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.00024414062
       objectReference: {fileID: 0}
+    - target: {fileID: 3968982729727244229, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3968982729727244229, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4498739927291119933, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4498739927291119933, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5232145718538371774, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -1114,7 +1130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8786621690122551862, guid: 80d758bb7036546428fca977b4853d80, type: 3}
       propertyPath: m_BackGroundColor.b
-      value: 0
+      value: 0.6037736
       objectReference: {fileID: 0}
     - target: {fileID: 8786621690122551862, guid: 80d758bb7036546428fca977b4853d80, type: 3}
       propertyPath: m_BackGroundColor.g
@@ -1122,7 +1138,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8786621690122551862, guid: 80d758bb7036546428fca977b4853d80, type: 3}
       propertyPath: m_BackGroundColor.r
-      value: 0
+      value: 0.06962902
       objectReference: {fileID: 0}
     - target: {fileID: 8786621690122551863, guid: 80d758bb7036546428fca977b4853d80, type: 3}
       propertyPath: m_RootOrder

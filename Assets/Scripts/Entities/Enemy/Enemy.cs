@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Pathfinding;
-
+using JetBrains.Annotations;
 
 public class Enemy : MonoBehaviour
 {
-    public int maxGold; //Cornell
     public RoomManagment manager;//""
     //public bool useAlternate;
 
@@ -178,8 +177,8 @@ public class Enemy : MonoBehaviour
 
     void onDeath()
     {
-        Destroy(weapon);
-        target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,maxGold));//Cornell 
+        int dropWp = Random.Range(1, DataBase.weaponDropChance);  if (dropWp != 1)Destroy(weapon);
+        target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,DataBase.maxGold));//Cornell 
         target.gameObject.GetComponent<Player>().enemyKilled();
         manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error
     }

@@ -11,6 +11,9 @@ public class DataBase : MonoBehaviour
     static public GameObject boss;
     static public float size;
 
+    static public int maxGold;
+    static public int weaponDropChance;
+
 
     static public float[] weaponBase(int weaponType)
     {
