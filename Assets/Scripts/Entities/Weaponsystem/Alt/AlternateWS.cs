@@ -5,13 +5,14 @@ using UnityEngine;
 public class AlternateWS : MonoBehaviour
 {
     public int weaponType;
-    private float dmg;
-    private float mag;
-    private float reserve;
-    private float rate;
-    private float accuracy;
+    private float dmg, mag, reserve, rate, accuracy;
+    //private float mag;
+    //private float reserve;
+    //private float rate;
+    //private float accuracy;
     public float fov;
-    public Sprite[] texture;
+    public Sprite[] textureEditor;
+    static public Sprite[] texture;
 
     private float interval = 0;
     private bool reloading;
@@ -21,6 +22,7 @@ public class AlternateWS : MonoBehaviour
     public GameObject owner;
     void Start()
     {
+        texture = textureEditor;
         firepoint = transform.GetChild(0);
         float[] temp = DataBase.weaponBase(weaponType);
         dmg = temp[0];
