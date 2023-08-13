@@ -9,11 +9,8 @@ public class AltBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         // if the owner is dead the bullet will be deleted
-        if (!owner)
-        {
-            Destroy(gameObject);
-            return;
-        }
+        if (!owner) Destroy(gameObject);
+        if (other.gameObject.tag == owner.tag || (other.gameObject.CompareTag("Bullet") && other.gameObject.GetComponent<Bullet>().owner.tag == owner.tag)) return;
 
         // if the collider is an enemy or the player it will apply damage to it
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy")
@@ -30,8 +27,9 @@ public class AltBullet : MonoBehaviour
 
         if (!gameObject || !other.gameObject || owner == null) return;
         // destroys itself; by Cornell
-        if (other.gameObject.CompareTag("Map") || other.gameObject.CompareTag("Door") || other.gameObject.CompareTag("Doorvrt") || other.gameObject.CompareTag("DoorFix") || other.gameObject.CompareTag("DoorvrtFix")) Destroy(gameObject);
-        if (other.gameObject.CompareTag("Bullet") && owner.tag != other.gameObject.GetComponent<Bullet>().owner.tag && gameObject != null) Destroy(gameObject); //other condition so that enemy bullets dont delete eachother
+        if (other.gameObject.CompareTag("Map") || other.gameObject.CompareTag("Door") || other.gameObject.CompareTag("Doorvrt") || other.gameObject.CompareTag("DoorFix") || other.gameObject.CompareTag("DoorvrtFix") || other.gameObject.CompareTag("Bullet")) Destroy(gameObject);
+
+        //if (other.gameObject.CompareTag("Bullet") && owner.tag != other.gameObject.GetComponent<Bullet>().owner.tag) Destroy(gameObject); //other condition so that enemy bullets dont delete eachother
     }
 
 

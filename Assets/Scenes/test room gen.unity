@@ -502,6 +502,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1900831878}
     m_Modifications:
+    - target: {fileID: 2378977731582094594, guid: 66b418ae47377b8408c5c63d2dcf3ce0, type: 3}
+      propertyPath: weaponDropChance
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4187628142659271434, guid: 66b418ae47377b8408c5c63d2dcf3ce0, type: 3}
       propertyPath: m_RootOrder
       value: 1

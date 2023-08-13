@@ -5,12 +5,10 @@ using UnityEngine;
 public class Player : MonoBehaviour, IDataPersistence
 {
     //Player Stats; part of resort & cleaning up code
-    public float maxHealth;// by Cornell
-    public float health;
-    public int armourLevel = 0;// level 0 is the worst armor and 10 is the best
-    public float playerGold;//treat as int by cornell
-    public int revivesLeft;
-    public int killedEnemys;//could be saved in GameManager
+    public float maxHealth, health, playerGold;
+    public int armourLevel = 0, revivesLeft, killedEnemys;
+    // level 0 is the worst armor and 10 is the best
+    //playerGold treat as int by cornell
 
     public float maxMovementSpeed; // 7
     public float acceleration; // 50

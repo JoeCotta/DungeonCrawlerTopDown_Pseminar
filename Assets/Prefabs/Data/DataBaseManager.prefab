@@ -52,4 +52,4 @@ MonoBehaviour:
   boss: {fileID: 8200861080526764935, guid: 8b08f98e6abb67740b498aa48952fcd4, type: 3}
   size: 3
   maxGold: 3
-  WeaponDropChance: 4
+  weaponDropChance: 4

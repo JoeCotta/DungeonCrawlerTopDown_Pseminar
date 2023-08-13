@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class DataBase : MonoBehaviour
 {
-    static public GameObject door;
-    static public GameObject doorVrt;
-    static public GameObject doorFix;
-    static public GameObject doorFixVrt;
-    static public GameObject boss;
+    static public GameObject door, doorVrt, doorFix, doorFixVrt, boss;
     static public float size;
 
-    static public int maxGold;
-    static public int weaponDropChance;
+    static public int maxGold, weaponDropChance;
 
 
     static public float[] weaponBase(int weaponType)

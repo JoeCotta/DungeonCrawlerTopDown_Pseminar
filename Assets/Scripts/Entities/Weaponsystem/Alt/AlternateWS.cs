@@ -5,21 +5,16 @@ using UnityEngine;
 public class AlternateWS : MonoBehaviour
 {
     public int weaponType;
-    private float dmg, mag, reserve, rate, accuracy;
-    //private float mag;
-    //private float reserve;
-    //private float rate;
-    //private float accuracy;
+    private float dmg, mag, reserve, rate, accuracy, ammo;
     public float fov;
+
     public Sprite[] textureEditor;
     static public Sprite[] texture;
 
     private float interval = 0;
     private bool reloading;
-    private float ammo;
     private Transform firepoint;
-    public GameObject bullet;
-    public GameObject owner;
+    public GameObject bullet, owner;
     void Start()
     {
         texture = textureEditor;
