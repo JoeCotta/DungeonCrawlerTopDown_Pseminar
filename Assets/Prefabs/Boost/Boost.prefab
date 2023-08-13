@@ -102,6 +102,8 @@ MonoBehaviour:
   textures:
   - {fileID: 21300000, guid: 10da4ac418c1cebe3a1f188dd5dbda73, type: 3}
   - {fileID: 21300000, guid: 6718ac5d34f459d01b62d6a5af444edc, type: 3}
+  uiCoolDownPrefab: {fileID: 5425105064914207664, guid: 0ebed790cc2aae90da03e5751e158aee, type: 3}
+  GameManagerObject: {fileID: 0}
 --- !u!61 &-623965859369894410
 BoxCollider2D:
   m_ObjectHideFlags: 0

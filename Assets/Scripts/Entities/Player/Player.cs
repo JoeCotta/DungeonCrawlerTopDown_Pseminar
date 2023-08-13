@@ -205,7 +205,6 @@ public class Player : MonoBehaviour, IDataPersistence
         // heal Buff
         if (healBuff != 0) {
             health += healBuff * Time.deltaTime;
-            print(health);
         }
     }
 

@@ -25,6 +25,8 @@ public class GameManager : MonoBehaviour
     static public int buildIndexOfSceneToLoad = 2;
     static public GameObject AWeapon;
 
+    public int activeBoosts = 0;
+
     private void Start()
     {
         GameManager.references = new List<GameObject>(); //very important line
