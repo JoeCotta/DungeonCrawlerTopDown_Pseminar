@@ -131,6 +131,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponType: 0
+  rarity: 0
   fov: 0
   textureEditor:
   - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}

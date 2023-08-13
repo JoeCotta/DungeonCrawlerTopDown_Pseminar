@@ -4,30 +4,37 @@ using UnityEngine;
 
 public class AlternateWS : MonoBehaviour
 {
-    public int weaponType;
-    private float dmg, mag, reserve, rate, accuracy;
-    //private float mag;
-    //private float reserve;
-    //private float rate;
-    //private float accuracy;
+    //INFO
+    //TYPE
+    //0 Pistol
+    //1 AK
+    //2 Sniper
+    //
+    //RARITY
+    //0 common
+    //1 rare
+    //2 epic
+    //3 legendary
+
+    public int weaponType, rarity;
+    private float dmg, mag, reserve, rate, accuracy, ammo;
     public float fov;
+
     public Sprite[] textureEditor;
     static public Sprite[] texture;
 
     private float interval = 0;
     private bool reloading;
-    private float ammo;
     private Transform firepoint;
-    public GameObject bullet;
-    public GameObject owner;
+    public GameObject bullet, owner;
     void Start()
     {
         texture = textureEditor;
         firepoint = transform.GetChild(0);
-        float[] temp = DataBase.weaponBase(weaponType);
+        float[] temp = DataBase.weaponBase(weaponType,rarity);
         dmg = temp[0];
-        mag = temp[1];
-        reserve = temp[2];
+        mag = Mathf.RoundToInt(temp[1]);
+        reserve = Mathf.RoundToInt(temp[2]);
         rate = temp[3];
         accuracy = temp[4];
         fov = temp[5];
@@ -52,12 +59,12 @@ public class AlternateWS : MonoBehaviour
         if (ammo == mag || reloading) return; if (reserve == 0) return;
         reloading = true;
         //play animation
+        
         Invoke("RealReload", 2.5f);
     }
 
     private void RealReload()
     {
-        //i think this doesnt work but need something to stop reload when weapon dropped
         if (GameManager.player.weapon != gameObject) { reloading = false;  return;}
         if (reserve >= mag - ammo)
         {

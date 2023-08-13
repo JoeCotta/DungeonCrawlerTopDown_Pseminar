@@ -46,11 +46,13 @@ public class Chest : MonoBehaviour
         // selects a random weaponType
         int item = Random.Range(0, lootTable.Count);
         int weaponType = lootTable[item];
+        int rarity = DataBase.rarity(chestLevel);
 
         // creates the weapon
         GameObject weapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
 
         weapon.GetComponent<AlternateWS>().weaponType = weaponType; // sets the weaponType
+        weapon.GetComponent<AlternateWS>().rarity = rarity;
     }
 
     // spawn boost

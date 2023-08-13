@@ -8,8 +8,7 @@ public class GameManager : MonoBehaviour
 {
     //private references
     private Image ffb;
-    private GameObject hud;
-    private GameObject pause;
+    private GameObject hud, pause;
     public GameObject AWeaponAssing;
 
     //remember to drag scene in files>build settings> here     and but the number next to it in here
@@ -20,8 +19,7 @@ public class GameManager : MonoBehaviour
     static public Player player;
     static public DataPersistenceManager dataPersistenceManager;
     public bool useAltInterface;
-    static public bool useAlt;
-    static public bool isPaused = false;
+    static public bool useAlt, isPaused = false;
     static public int buildIndexOfSceneToLoad = 2;
     static public GameObject AWeapon;
 

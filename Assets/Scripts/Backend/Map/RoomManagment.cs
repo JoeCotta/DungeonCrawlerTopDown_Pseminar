@@ -6,35 +6,19 @@ using UnityEngine.UIElements;
 public class RoomManagment : MonoBehaviour
 {
     //preset References
-    public GameObject enemySpawner;
-    public GameObject enemy;
-    public GameObject mapHidder;
+    public GameObject enemySpawner, enemy, mapHidder;
 
     //working variables and references
-    private GameObject door;
-    private GameObject doorvrt;
-    public GameObject doorFix;
-    public GameObject doorvrtFix;
+    private GameObject door, doorvrt, doorFix, doorvrtFix, thisRoom, chestPrefab;
     private RoomTemplates templates;
-    private GameObject thisRoom;
     public string[] doors;
-    public bool oben = false;
-    public bool rechts = false;
-    public bool unten = false;
-    public bool links = false;
-    public GameObject chestPrefab;
+    public bool oben = false, rechts = false, unten = false, links = false;
 
     //spawn enemys
-    public GameObject[] closedDoors;
-    public GameObject[] chests;
-    private float xCoord;
-    private float yCoord;
-    public int enemysCount;
-    public bool spawned;
-    public int enemysDead = 0;
-    public int maxEnemys = 1;
-    public int minEnemys = 4;
-    public bool isBossR = false;
+    public GameObject[] closedDoors, chests;
+    private float xCoord, yCoord;
+    public int enemysCount, enemysDead, maxEnemys, minEnemys;
+    public bool spawned, isBossR = false;
 
     void Start()
     {
@@ -250,7 +234,7 @@ public class RoomManagment : MonoBehaviour
 
     void spawnEnemys() {
         //spawn boss
-        if(isBossR) Instantiate(DataBase.boss, transform.position + new Vector3(0,2,0) * templates.size, Quaternion.identity);
+        if (isBossR) { }
         //pick random amount of enemys and if spawnpoint positive or negativ coordinate
         enemysCount = Random.Range(minEnemys, maxEnemys);
 
@@ -280,6 +264,7 @@ public class RoomManagment : MonoBehaviour
         for (int i = 0; i < doors.Length; i++) {
             Destroy(closedDoors[i]);
         }
+        if(isBossR) Instantiate(DataBase.boss, transform.position + new Vector3(0, 2, 0) * templates.size, Quaternion.identity);
 
         //decide if spawn chest and which one
         int randomChestGen = Random.Range(1, 5);
