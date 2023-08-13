@@ -7,7 +7,7 @@ public class DataBase : MonoBehaviour
     static public GameObject door, doorVrt, doorFix, doorFixVrt, boss;
     static public float size;
 
-    static public int maxGold, weaponDropChance;
+    static public int maxGold, weaponDropChance, boostDropChance;
 
 
     static public float[] weaponBase(int weaponType)

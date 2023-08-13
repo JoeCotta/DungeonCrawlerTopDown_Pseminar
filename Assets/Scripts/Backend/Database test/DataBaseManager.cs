@@ -5,7 +5,7 @@ using UnityEngine;
 public class DataBaseManager : MonoBehaviour
 {
     //INFOS
-    //weaponDropChance as 1 in X chance
+    //weapon-/boostDropChance as 1 in X chance
 
 
     public GameObject[] doors;
@@ -13,7 +13,7 @@ public class DataBaseManager : MonoBehaviour
     public float size;
 
     //Enemy
-    public int maxGold, weaponDropChance;
+    public int maxGold, weaponDropChance, boostDropChance;
 
     void Start()
     {
@@ -22,6 +22,7 @@ public class DataBaseManager : MonoBehaviour
         DataBase.size = size;
 
         DataBase.maxGold = maxGold;
-        DataBase.weaponDropChance = weaponDropChance + 1; //because its exclusive
+        DataBase.weaponDropChance = weaponDropChance + 1; //because in Random.Range the second param. is exclusive
+        DataBase.boostDropChance = boostDropChance + 1;
     }
 }

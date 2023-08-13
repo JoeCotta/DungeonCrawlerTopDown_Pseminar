@@ -8,6 +8,7 @@ public class Chest : MonoBehaviour
     public GameObject text;
     public int chestLevel;
     public GameObject weaponPrefab; 
+    public GameObject boostPrefab;
 
     private float  price; //maybe there will be a curse like 1.25x prices => decimals => have to round
     private List<int> lootTable = new List<int>();
@@ -22,7 +23,7 @@ public class Chest : MonoBehaviour
 
         // set the info text when colliding with the chest
         text.GetComponent<TextMeshPro>().text = "press 'E' to pay " + price.ToString() + " coins to open the Level " + (chestLevel + 1).ToString() + " chest";
-
+    
         // gets the weapon Stats
         weaponStats[] weapons = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().weaponStatsList;
         int countWeapons = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().countWeapons;
@@ -37,6 +38,25 @@ public class Chest : MonoBehaviour
 
         if(lootTable.Count != 1000) Debug.Log("Weapon Chances of Chest Level " + chestLevel + " are wrong");
 
+    }
+
+    // spawns a weapon
+    void spawnWeapon()
+    {
+        // selects a random weaponType
+        int item = Random.Range(0, lootTable.Count);
+        int weaponType = lootTable[item];
+
+        // creates the weapon
+        GameObject weapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
+
+        weapon.GetComponent<AlternateWS>().weaponType = weaponType; // sets the weaponType
+    }
+
+    // spawn boost
+    void spawnBoost()
+    {
+        Instantiate(boostPrefab, transform.position, Quaternion.identity);
     }
     
     void OnCollisionEnter2D(Collision2D other)
@@ -54,14 +74,9 @@ public class Chest : MonoBehaviour
             {
                 other.gameObject.GetComponent<Player>().playerGold -= Mathf.Round(price);
 
-                // selects a random weaponType
-                int item = Random.Range(0, lootTable.Count);
-                int weaponType = lootTable[item];
-
-                // creates the weapon
-                GameObject weapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity);
-
-                weapon.GetComponent<AlternateWS>().weaponType = weaponType; // sets the weaponType
+                // spawns a weapon or a boost orb
+                if (Random.Range(0, 2) == 0) spawnWeapon();
+                else spawnBoost();
 
                 // Destroys the chest
                 Destroy(gameObject);

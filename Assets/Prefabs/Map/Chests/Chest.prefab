@@ -555,3 +555,4 @@ MonoBehaviour:
   text: {fileID: 1341940057240587857}
   chestLevel: -1
   weaponPrefab: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}
+  boostPrefab: {fileID: 6753663607918299696, guid: 6269ea7abee1a3d54a83a711c464bbec, type: 3}

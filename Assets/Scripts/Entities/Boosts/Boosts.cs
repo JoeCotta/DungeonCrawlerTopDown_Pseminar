@@ -24,12 +24,12 @@ public class Boosts : MonoBehaviour
         {
             // speedBoost
             case 0:
-                player.speedBuff = 5;
+                player.speedBuff += 5;
                 Invoke("resetBuff", 3);
                 break;
             // healBoost
             case 1:
-                player.healBuff = 3f;
+                player.healBuff += 3f;
                 Invoke("resetBuff", 3);
                 break;
         }
