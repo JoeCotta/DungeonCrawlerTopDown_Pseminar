@@ -5,13 +5,28 @@ using UnityEngine;
 public class AltBullet : MonoBehaviour
 {
     private float dmg;
+    public float speed;
     private GameObject owner;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // if the owner is dead the bullet will be deleted
         if (!owner) Destroy(gameObject);
-        if (other.gameObject.tag == owner.tag || (other.gameObject.CompareTag("Bullet") && other.gameObject.GetComponent<Bullet>().owner.tag == owner.tag)) return;
+        if (other.gameObject && other.gameObject.CompareTag(owner.tag) || (other.gameObject.CompareTag("Bullet") && other.GetComponent<Bullet>().owner && other.gameObject.GetComponent<Bullet>().owner.tag == owner.tag)) return;
 
+        HitSomething(other);
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (!owner) Destroy(gameObject);
+        if (owner && owner.CompareTag("Player")) speed = 2;
+        else speed = 1;
+        //cast ray to next position
+        gameObject.GetComponent<Rigidbody2D>().MovePosition(transform.position + transform.up * speed * 0.75f);
+    }
+
+    private void HitSomething(Collider2D other)
+    {
         // if the collider is an enemy or the player it will apply damage to it
         if (other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy")
         {
@@ -28,14 +43,6 @@ public class AltBullet : MonoBehaviour
         if (!gameObject || !other.gameObject || owner == null) return;
         // destroys itself; by Cornell
         if (other.gameObject.CompareTag("Map") || other.gameObject.CompareTag("Door") || other.gameObject.CompareTag("Doorvrt") || other.gameObject.CompareTag("DoorFix") || other.gameObject.CompareTag("DoorvrtFix") || other.gameObject.CompareTag("Bullet")) Destroy(gameObject);
-
-        //if (other.gameObject.CompareTag("Bullet") && owner.tag != other.gameObject.GetComponent<Bullet>().owner.tag) Destroy(gameObject); //other condition so that enemy bullets dont delete eachother
-    }
-
-
-    private void Update()
-    {
-        gameObject.GetComponent<Rigidbody2D>().MovePosition(transform.position + transform.up);
     }
 
     public void assingVar(float dmg,GameObject owner)
