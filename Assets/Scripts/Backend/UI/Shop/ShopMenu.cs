@@ -96,7 +96,7 @@ public class ShopMenu : MonoBehaviour
 
             // ---------------- modifies the ShopItem ----------------
             // positions the Item
-            item.GetComponent<RectTransform>().anchoredPosition = new Vector2((200 * (i%maxItemsInRow)) - 400, 95 - row*100);
+            item.GetComponent<RectTransform>().anchoredPosition = new Vector2((200 * (i%maxItemsInRow)) - 300, 95 - row*100);
 
             // add the eventListener to call a function when the button is clicked
             int ListElement = i;
