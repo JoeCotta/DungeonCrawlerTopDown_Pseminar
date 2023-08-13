@@ -1,0 +1,10 @@
+W: up
+S: down
+A: left
+D: right
+SHIFT: dash
+F: drop/pickup
+E: open chest
+R: reload weapon
+1: selects weapon slot
+2: selects armour slot
