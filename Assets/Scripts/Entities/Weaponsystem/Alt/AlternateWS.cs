@@ -17,8 +17,8 @@ public class AlternateWS : MonoBehaviour
     //3 legendary
 
     public int weaponType, rarity;
-    private float dmg, mag, reserve, rate, accuracy, ammo;
-    public float fov;
+    private float dmg, rate, accuracy, ammo;
+    public float mag, reserve, fov;
 
     public Sprite[] textureEditor;
     static public Sprite[] texture;
