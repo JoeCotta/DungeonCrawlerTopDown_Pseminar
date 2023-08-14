@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2946300138036478278}
   - component: {fileID: 2946300138036478280}
-  - component: {fileID: 2946300138036478279}
+  - component: {fileID: 6569966979283632881}
   m_Layer: 3
   m_Name: Square (4)
   m_TagString: Map
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2946300138036478277}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3, y: -4.5, z: 0}
-  m_LocalScale: {x: 4, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2946300139640894969}
@@ -74,8 +74,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.13725491, g: 0.13333334, b: 0.13333334, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ce121e0ffd547b422863ca895b2a62b0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2946300138036478279
+--- !u!61 &6569966979283632881
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -102,14 +102,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &2946300138244383192
 GameObject:
@@ -121,7 +121,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2946300138244383193}
   - component: {fileID: 2946300138244383195}
-  - component: {fileID: 2946300138244383194}
+  - component: {fileID: 9069956719479306807}
   m_Layer: 3
   m_Name: Square (3)
   m_TagString: Map
@@ -138,7 +138,7 @@ Transform:
   m_GameObject: {fileID: 2946300138244383192}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3, y: -4.5, z: 0}
-  m_LocalScale: {x: 4, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2946300139640894969}
@@ -185,8 +185,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.13725491, g: 0.13333334, b: 0.13333334, a: 1}
+  m_Sprite: {fileID: 21300000, guid: ce121e0ffd547b422863ca895b2a62b0, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -196,7 +196,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2946300138244383194
+--- !u!61 &9069956719479306807
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -213,14 +213,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 4, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &2946300138418974942
 GameObject:
@@ -232,7 +232,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2946300138418974943}
   - component: {fileID: 2946300138418974913}
-  - component: {fileID: 2946300138418974912}
+  - component: {fileID: 8863797693171986472}
   m_Layer: 3
   m_Name: Square (1)
   m_TagString: Map
@@ -249,7 +249,7 @@ Transform:
   m_GameObject: {fileID: 2946300138418974942}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.5, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2946300139640894969}
@@ -296,8 +296,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.13725491, g: 0.13333334, b: 0.13333334, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 38e75511be2e62f398d1bea302b16a44, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -307,7 +307,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2946300138418974912
+--- !u!61 &8863797693171986472
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -324,14 +324,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &2946300138601415964
 GameObject:
@@ -343,7 +343,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2946300138601415965}
   - component: {fileID: 2946300138601415967}
-  - component: {fileID: 2946300138601415966}
+  - component: {fileID: 1550597526203884568}
   m_Layer: 3
   m_Name: Square (2)
   m_TagString: Map
@@ -360,7 +360,7 @@ Transform:
   m_GameObject: {fileID: 2946300138601415964}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.5, y: -3, z: 0}
-  m_LocalScale: {x: 1, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2946300139640894969}
@@ -407,8 +407,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.13725491, g: 0.13333334, b: 0.13333334, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 38e75511be2e62f398d1bea302b16a44, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -418,7 +418,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2946300138601415966
+--- !u!61 &1550597526203884568
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -435,14 +435,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &2946300139060965614
 GameObject:
@@ -454,7 +454,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2946300139060965615}
   - component: {fileID: 2946300139060965585}
-  - component: {fileID: 2946300139060965584}
+  - component: {fileID: 1959756019612685034}
   m_Layer: 3
   m_Name: Square (6)
   m_TagString: Map
@@ -471,7 +471,7 @@ Transform:
   m_GameObject: {fileID: 2946300139060965614}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.5, y: 3, z: 0}
-  m_LocalScale: {x: 1, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2946300139640894969}
@@ -518,8 +518,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.13725491, g: 0.13333334, b: 0.13333334, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 38e75511be2e62f398d1bea302b16a44, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -529,7 +529,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2946300139060965584
+--- !u!61 &1959756019612685034
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -546,14 +546,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &2946300139329328811
 GameObject:
@@ -565,7 +565,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2946300139329328812}
   - component: {fileID: 2946300139329328814}
-  - component: {fileID: 2946300139329328813}
+  - component: {fileID: 4428939506333133518}
   m_Layer: 3
   m_Name: Square
   m_TagString: Map
@@ -582,7 +582,7 @@ Transform:
   m_GameObject: {fileID: 2946300139329328811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 4.5, z: 0}
-  m_LocalScale: {x: 10, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2946300139640894969}
@@ -629,8 +629,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.13725491, g: 0.13333334, b: 0.13333334, a: 1}
+  m_Sprite: {fileID: 21300000, guid: e779c50ce5972b59bbcaf8b51190cfb7, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -640,7 +640,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2946300139329328813
+--- !u!61 &4428939506333133518
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -657,14 +657,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 10, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 10, y: 1}
   m_EdgeRadius: 0
 --- !u!1 &2946300139492072196
 GameObject:
@@ -676,7 +676,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2946300139492072197}
   - component: {fileID: 2946300139492072199}
-  - component: {fileID: 2946300139492072198}
+  - component: {fileID: 1785527130958634202}
   m_Layer: 3
   m_Name: Square (5)
   m_TagString: Map
@@ -693,7 +693,7 @@ Transform:
   m_GameObject: {fileID: 2946300139492072196}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.5, y: -3, z: 0}
-  m_LocalScale: {x: 1, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2946300139640894969}
@@ -740,8 +740,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.13725491, g: 0.13333334, b: 0.13333334, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 38e75511be2e62f398d1bea302b16a44, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -751,7 +751,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &2946300139492072198
+--- !u!61 &1785527130958634202
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -768,14 +768,14 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 4}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &2946300139640894967
 GameObject:
@@ -838,8 +838,6 @@ MonoBehaviour:
   enemySpawner: {fileID: 7963018869456047023, guid: 41f0cab69989abf43b374026cb82db0b, type: 3}
   enemy: {fileID: 9160011324959439354, guid: 63bcad68ccb791b43a9a796af8074e23, type: 3}
   mapHidder: {fileID: 5599415716325908200}
-  doorFix: {fileID: 0}
-  doorvrtFix: {fileID: 0}
   doors:
   - R
   - D
@@ -851,10 +849,11 @@ MonoBehaviour:
   closedDoors: []
   chests: []
   enemysCount: 0
-  spawned: 0
   enemysDead: 0
   maxEnemys: 1
   minEnemys: 4
+  spawned: 0
+  isBossR: 0
 --- !u!61 &3674598123828950324
 BoxCollider2D:
   m_ObjectHideFlags: 0
