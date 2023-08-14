@@ -39,7 +39,8 @@ public class AlternateWS : MonoBehaviour
         accuracy = temp[4];
         fov = temp[5];
         ammo = mag;
-        gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType];
+        if (rarity != 3) gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType];
+        else gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType + 3];
     }
 
     public void shoot()
