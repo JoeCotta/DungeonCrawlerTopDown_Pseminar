@@ -9,9 +9,9 @@ public class DoorManager : MonoBehaviour
     void Start()
     {
         if(isVrt){
-            gameObject.transform.localScale = new Vector3(1,2,0)* DataBase.size;//change if door size generall change
+            gameObject.transform.localScale *= DataBase.size;//change if door size generall change
         }else{
-            gameObject.transform.localScale = new Vector3(2,1,0)* DataBase.size;
+            gameObject.transform.localScale *= DataBase.size;
         }
     }
 }

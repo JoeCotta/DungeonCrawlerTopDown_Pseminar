@@ -5,12 +5,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 2
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 949792219772885029, guid: 4770a740a66cc684b96c40099ce7cbe6, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 949792219772885029, guid: 4770a740a66cc684b96c40099ce7cbe6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -54,15 +53,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1049699922232974790, guid: 4770a740a66cc684b96c40099ce7cbe6, type: 3}
       propertyPath: m_Color.b
-      value: 0.13333334
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1049699922232974790, guid: 4770a740a66cc684b96c40099ce7cbe6, type: 3}
       propertyPath: m_Color.g
-      value: 0.13333334
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1049699922232974790, guid: 4770a740a66cc684b96c40099ce7cbe6, type: 3}
       propertyPath: m_Color.r
-      value: 0.13725491
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8962255534860799806, guid: 4770a740a66cc684b96c40099ce7cbe6, type: 3}
       propertyPath: m_Name
@@ -73,5 +72,4 @@ PrefabInstance:
       value: DoorvrtFix
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 4770a740a66cc684b96c40099ce7cbe6, type: 3}
