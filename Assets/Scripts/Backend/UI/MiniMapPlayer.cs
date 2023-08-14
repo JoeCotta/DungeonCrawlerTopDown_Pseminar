@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MiniMapPlayer : MonoBehaviour
 {
-    void Start()
-    {
-        transform.localScale = transform.localScale * DataBase.size;
-    }
+    //changes size and destorys script
+    private void Update() { if (DataBase.size > 0) { transform.localScale = transform.localScale * DataBase.size; Destroy(this); } }
 }
