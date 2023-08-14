@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour, IDataPersistence
 {
@@ -60,6 +61,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public Animator camShake;
     public Rigidbody2D rb;
     private Transform weaponSlot;
+    public GameObject minmapUI;
 
     // boosts
     public float speedBuff;
@@ -204,6 +206,10 @@ public class Player : MonoBehaviour, IDataPersistence
         if (healBuff != 0) {
             health += healBuff * Time.deltaTime;
         }
+
+        // to open the map
+        if(Input.GetKeyDown(KeyCode.CapsLock)) openMap();
+        else if(Input.GetKeyUp(KeyCode.CapsLock)) closeMap();
     }
 
     void FixedUpdate()
@@ -449,5 +455,25 @@ public class Player : MonoBehaviour, IDataPersistence
         else data.currentWeaponType = this.weapon.GetComponent<AlternateWS>().weaponType;
 
         data.enemysKilled = this.killedEnemys;
+    }
+
+    void openMap()
+    {
+        // sets the position and size
+        minmapUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-400, -200);
+        minmapUI.GetComponent<RectTransform>().sizeDelta = new Vector2(400, 400);
+
+        // makes it a little bit transparent
+        minmapUI.GetComponent<RawImage>().color = new Color(1, 1, 1, 0.7f);
+    }
+
+    void closeMap()
+    {
+        // sets the position and size
+        minmapUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(-50, -50);
+        minmapUI.GetComponent<RectTransform>().sizeDelta = new Vector2(100, 100);
+
+        // makes it a little bit transparent
+        minmapUI.GetComponent<RawImage>().color = new Color(1, 1, 1, 1);
     }
 }
