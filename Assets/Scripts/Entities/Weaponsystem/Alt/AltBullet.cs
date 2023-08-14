@@ -9,8 +9,7 @@ public class AltBullet : MonoBehaviour
     private GameObject owner;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!owner) Destroy(gameObject);
-        if (other.gameObject && other.gameObject.CompareTag(owner.tag) || (other.gameObject.CompareTag("Bullet") && other.GetComponent<Bullet>().owner && other.gameObject.GetComponent<Bullet>().owner.tag == owner.tag)) return;
+        if (!gameObject || !other.gameObject || !owner) return;
 
         HitSomething(other);
     }
@@ -19,30 +18,53 @@ public class AltBullet : MonoBehaviour
     private void FixedUpdate()
     {
         if (!owner) Destroy(gameObject);
-        if (owner && owner.CompareTag("Player")) speed = 2;
+        if (owner && owner.CompareTag("Player")) speed = 3;
         else speed = 1;
         //cast ray to next position
-        gameObject.GetComponent<Rigidbody2D>().MovePosition(transform.position + transform.up * speed * 0.75f);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, speed * 15f * Time.deltaTime);
+        if(hit.collider != null)
+        {
+            HitSomething(hit.collider);
+        }
+        gameObject.GetComponent<Rigidbody2D>().MovePosition(transform.position + transform.up * speed * 15f * Time.deltaTime);
     }
 
     private void HitSomething(Collider2D other)
     {
-        // if the collider is an enemy or the player it will apply damage to it
-        if (other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy")
-        {
+        if (!gameObject || !other.gameObject || !owner) return;
 
-            //only dmg if other gameobject isnt same type as object wielding the weapon (prevent friendly fire) by Cornell
-            if (other.gameObject.tag != owner.tag)
-            {
-                other.gameObject.SendMessage("hit", dmg);
-                // when hitting some1 it destroys itself
-                Destroy(gameObject);
-            }
+        //if character apply dmg
+        if ((owner.CompareTag("Player") && other.CompareTag("Enemy")) || (owner.CompareTag("Enemy") && other.CompareTag("Player")) )
+        {
+            other.gameObject.SendMessage("hit", dmg);
+            Destroy(gameObject);
         }
 
-        if (!gameObject || !other.gameObject || owner == null) return;
-        // destroys itself; by Cornell
-        if (other.gameObject.CompareTag("Map") || other.gameObject.CompareTag("Door") || other.gameObject.CompareTag("Doorvrt") || other.gameObject.CompareTag("DoorFix") || other.gameObject.CompareTag("DoorvrtFix") || other.gameObject.CompareTag("Bullet")) Destroy(gameObject);
+        //if bullet of enemy delete
+        if (other.CompareTag("Bullet") && other.GetComponent<Bullet>() && other.GetComponent<Bullet>().owner != null)
+        {
+            if (!other.GetComponent<Bullet>().owner.CompareTag(owner.tag)) Destroy(gameObject);
+        }
+
+        //if map object delete
+        switch (other.tag)
+        {
+            case "Map":
+                Destroy(gameObject);
+                break;
+            case "Door":
+                Destroy(gameObject);
+                break;
+            case "Doorvrt":
+                Destroy(gameObject);
+                break;
+            case "DoorFix":
+                Destroy(gameObject);
+                break;
+            case "DoorvrtFix":
+                Destroy(gameObject);
+                break;
+        }
     }
 
     public void assingVar(float dmg,GameObject owner)
@@ -50,5 +72,19 @@ public class AltBullet : MonoBehaviour
         this.dmg = dmg;
         this.owner = owner;
     }
-
 }
+
+
+
+/* if the collider is an enemy or the player it will apply damage to it
+if (other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy")
+{
+
+    //only dmg if other gameobject isnt same type as object wielding the weapon (prevent friendly fire) by Cornell
+    if (other.gameObject.tag != owner.tag)
+    {
+        other.gameObject.SendMessage("hit", dmg);
+        // when hitting some1 it destroys itself
+        Destroy(gameObject);
+    }
+}*/

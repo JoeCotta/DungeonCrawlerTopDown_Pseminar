@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9160011324959439355}
   - component: {fileID: 9160011324959439351}
   - component: {fileID: 9160011324959439344}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -195,7 +195,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9160011325521476971}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: weaponSlot
   m_TagString: Untagged
   m_Icon: {fileID: 0}

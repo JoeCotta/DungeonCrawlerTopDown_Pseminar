@@ -111,11 +111,11 @@ public class Enemy : MonoBehaviour
 
         // if the Distance to the target is grater than 8 the enemy should follow the target
         // or the enemy's shot is blocked -> should rather follow the target
-        if (DistanceToTarget > 8 || hit.collider.gameObject.tag != "Player") follow = true;
+        if (DistanceToTarget > 8 || (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy")) ) follow = true;
 
         // if the Distance to the target is lower than 4 or out of the player's range the enemy shouldn't follow the target, instead he should shoot at the target
         // but only if the bullet will hit the Player
-        if ((DistanceToTarget < 6 || outOfRange) && hit.collider.gameObject.tag == "Player") follow = false;
+        if ((DistanceToTarget < 6 || outOfRange) && (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy")) ) follow = false;
     }
 
     void FixedUpdate()
