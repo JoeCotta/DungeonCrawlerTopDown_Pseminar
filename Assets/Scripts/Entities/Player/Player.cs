@@ -209,7 +209,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
 
         // calculating the velocity the rb should have
-        Vector2 targetVelocity = inputMovement * (maxMovementSpeed + speedBoostByWeapon + speedBuff);
+        Vector2 targetVelocity = inputMovement.normalized * (maxMovementSpeed + speedBoostByWeapon + speedBuff);
         // difference between the velocity the rb should have and the actual one
         Vector2 velocityDifference = targetVelocity - rb.velocity;
         // F = m*a (m=1) and a = v/t (t=1) => F = v 
