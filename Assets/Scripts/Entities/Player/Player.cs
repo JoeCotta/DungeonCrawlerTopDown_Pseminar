@@ -53,15 +53,11 @@ public class Player : MonoBehaviour, IDataPersistence
 
 
     //References and Prefabs
-    public GameObject weaponPrefab;
-    public GameObject weapon;
-    public GameObject armourPrefab;
-    public GameObject dashEffect;
+    public GameObject weaponPrefab, weapon, armourPrefab, dashEffect, minmapUI;
     public Camera cam;
     public Animator camShake;
     public Rigidbody2D rb;
     private Transform weaponSlot;
-    public GameObject minmapUI;
 
     // boosts
     public float speedBuff;
@@ -210,10 +206,8 @@ public class Player : MonoBehaviour, IDataPersistence
         // to open the map
         if(Input.GetKeyDown(KeyCode.CapsLock)) openMap();
         else if(Input.GetKeyUp(KeyCode.CapsLock)) closeMap();
-    }
 
-    void FixedUpdate()
-    {
+
         // calculating the velocity the rb should have
         Vector2 targetVelocity = inputMovement * (maxMovementSpeed + speedBoostByWeapon + speedBuff);
         // difference between the velocity the rb should have and the actual one
@@ -221,7 +215,7 @@ public class Player : MonoBehaviour, IDataPersistence
         // F = m*a (m=1) and a = v/t (t=1) => F = v 
         // ==> force is the velocity difference multiplied by an optional factor to speed up and brake faster
         Vector2 force = velocityDifference * acceleration;
-        rb.AddForce(force);
+        rb.AddForce(force * Time.deltaTime * 60);
     }
 
     void dash(){
