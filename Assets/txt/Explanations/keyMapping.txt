@@ -3,6 +3,7 @@ S: down
 A: left
 D: right
 SHIFT: dash
+CapsLock: open minimap
 F: drop/pickup
 E: open chest
 R: reload weapon
