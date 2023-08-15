@@ -982,6 +982,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1900831878}
     m_Modifications:
+    - target: {fileID: 2245954932057081664, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2346639709360326421, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1113,6 +1117,14 @@ PrefabInstance:
     - target: {fileID: 7121140704689756911, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461493963271531989, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7461493963271531989, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7644300815257582434, guid: 4da23242df6a0334cb4b788f59ba651f, type: 3}
       propertyPath: m_AnchorMax.x

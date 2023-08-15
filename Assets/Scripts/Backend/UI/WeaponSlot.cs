@@ -15,16 +15,7 @@ public class WeaponSlot : MonoBehaviour
             return;
         }
         else weaponImage.SetActive(true);
-        weaponImage.GetComponent<Image>().sprite = AlternateWS.texture[GameManager.player.weapon.GetComponent<AlternateWS>().weaponType];
+        weaponImage.GetComponent<Image>().sprite = GameManager.player.GetComponent<Player>().weapon.GetComponent<SpriteRenderer>().sprite;
         weaponImage.GetComponent<Image>().SetNativeSize();
-
-        /*if (GameManager.player.weapon.GetComponent<AlternateWS>().weaponType == 0)weaponImage[0].SetActive(true);
-        else weaponImage[0].SetActive(false);
-        if (GameManager.player.weapon.GetComponent<AlternateWS>().weaponType == 1) weaponImage[1].SetActive(true);
-        else weaponImage[1].SetActive(false);
-        if (GameManager.player.weapon.GetComponent<AlternateWS>().weaponType == 2) weaponImage[2].SetActive(true);
-        else weaponImage[2].SetActive(false);
-        if (GameManager.player.weapon.GetComponent<AlternateWS>().weaponType == 3) weaponImage[3].SetActive(true);
-        else weaponImage[3].SetActive(false);*/
     }
 }
