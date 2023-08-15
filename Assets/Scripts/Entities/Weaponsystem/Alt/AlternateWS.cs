@@ -23,6 +23,7 @@ public class AlternateWS : MonoBehaviour
     public Sprite[] textureEditor;
     static public Sprite[] texture;
 
+    public float rTime, rTimer;
     private float interval = 0;
     private bool reloading;
     private Transform firepoint;
@@ -41,6 +42,8 @@ public class AlternateWS : MonoBehaviour
         ammo = mag;
         if (rarity != 3) gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType];
         else gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType + 3];
+        rTime = 2.5f;//reload time default 2.5 sec
+        rTimer = rTime;
     }
 
     public void shoot()
@@ -58,10 +61,7 @@ public class AlternateWS : MonoBehaviour
     public void Reload()
     {
         if (ammo == mag || reloading) return; if (reserve == 0) return;
-        reloading = true;
-        //play animation
-        
-        Invoke("RealReload", 2.5f);
+        reloading = true; rTimer = 0;
     }
 
     private void RealReload()
@@ -88,5 +88,8 @@ public class AlternateWS : MonoBehaviour
     private void Update()
     {
         if (interval < 1 / rate) interval += Time.deltaTime;
+        if (rTimer < rTime) rTimer += Time.deltaTime;
+        if (reloading && rTimer >= rTime) RealReload();
+        if (!owner) { reloading = false; rTimer = rTime; }
     }
 }
