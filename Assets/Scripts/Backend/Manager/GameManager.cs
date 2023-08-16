@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     public GameObject AWeaponAssing;
 
     //remember to drag scene in files>build settings> here     and but the number next to it in here
-    private bool isMenu;//set manually
+    public bool isMenu;//set manually
 
     //public vars
     static public List<GameObject> references;
@@ -108,7 +108,7 @@ public class GameManager : MonoBehaviour
     public Player returnPlayer()
     { 
         if (isMenu) { return null; }
-        foreach (GameObject reference in GameManager.references)
+        foreach (GameObject reference in references)
         {
             if (reference.GetComponent<Player>())
             {
@@ -122,9 +122,7 @@ public class GameManager : MonoBehaviour
 
     public DataPersistenceManager returnDataPersistence()
     {
-        //disable error msg in Menu
-        if (isMenu) { return null; }
-        foreach (GameObject reference in GameManager.references)
+        foreach (GameObject reference in references)
         {
             if (reference.GetComponent<DataPersistenceManager>())
             {
