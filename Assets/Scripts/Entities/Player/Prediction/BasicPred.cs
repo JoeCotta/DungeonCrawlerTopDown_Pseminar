@@ -54,7 +54,8 @@ public class BasicPred : MonoBehaviour
         pred1Frame /= movement.Length;
         estimatedSpeed /= movement.Length;
         
-        if(predictPosition(1) != null) indicator.transform.position = predictPosition(1);
+        //just for viusalisation and will throw like 44 errors every time but dont worry about those they are only on start up
+        //indicator.transform.position = predictPosition(1); 
     }
 
     //acces this function from other scripts to use position
