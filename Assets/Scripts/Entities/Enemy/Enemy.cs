@@ -157,7 +157,8 @@ public class Enemy : MonoBehaviour
         if(outOfRange) return;
 
         // manages rotation while shooting
-        Vector2 PlayerDirection = ((Vector2)target.position - rb.position).normalized;
+        Vector2 PlayerDirection = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(15f,target.gameObject) - rb.position).normalized;
+        //Debug.Log(gameObject.GetComponent<BulletCalc>().CalcPath(15f, target.gameObject));
         float angleToPlayer = Mathf.Atan2(PlayerDirection.y, PlayerDirection.x) * Mathf.Rad2Deg - 90f;
         Quaternion rotation = Quaternion.Euler(Vector3.forward * angleToPlayer);
         transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 7);

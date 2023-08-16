@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 644545702556066162}
   - component: {fileID: 644545702556066165}
   - component: {fileID: 644545702556066161}
+  - component: {fileID: 4296002465756198904}
   m_Layer: 0
   m_Name: Player from sample scene 1
   m_TagString: Player
@@ -139,7 +140,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &644545702556066165
 MonoBehaviour:
@@ -155,8 +156,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   health: 20
-  armourLevel: 5
   playerGold: 0
+  armourLevel: 5
   revivesLeft: 0
   killedEnemys: 0
   maxMovementSpeed: 7
@@ -182,9 +183,13 @@ MonoBehaviour:
   weapon: {fileID: 0}
   armourPrefab: {fileID: 7889819629484783230, guid: 418efccf953fcbec2a7fb3046e0e673a, type: 3}
   dashEffect: {fileID: 5359497967520591300, guid: 79cf45eebe47f2a0e86fce313a1abfaa, type: 3}
+  minmapUI: {fileID: 0}
   cam: {fileID: 0}
   camShake: {fileID: 0}
   rb: {fileID: 644545702556066162}
+  speedBuff: 0
+  healBuff: 0
+  tHealBoost: 0
 --- !u!61 &644545702556066161
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -211,6 +216,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &4296002465756198904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644545702556066164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a2e55b6ae333e4eb1a4cb0c2b891d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  trackedObj: {fileID: 644545702556066164}
+  indicator: {fileID: 0}
+  estimatedSpeed: 0
 --- !u!1 &2534011111684383097
 GameObject:
   m_ObjectHideFlags: 0
