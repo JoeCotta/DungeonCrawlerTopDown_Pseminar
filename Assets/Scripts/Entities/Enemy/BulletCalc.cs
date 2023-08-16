@@ -26,8 +26,9 @@ public class BulletCalc : MonoBehaviour
             tempDistance += Mathf.Abs(tempPos.y - transform.position.y);
             currentTravelTime = tempDistance / speed;
         }
-
+        if (currentTravelTime > 100) return target.transform.position;
+        else return tempPos;
         //Debug.DrawLine(transform.position, tempPos, Color.red, 10f);
-        return tempPos;
+
     }
 }
