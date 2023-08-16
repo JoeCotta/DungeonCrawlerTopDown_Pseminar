@@ -5,7 +5,7 @@ using UnityEngine;
 public class AltBullet : MonoBehaviour
 {
     private float dmg;
-    public float speed;
+    private float speed;
     private GameObject owner;
     private void OnTriggerEnter2D(Collider2D other)
     {
