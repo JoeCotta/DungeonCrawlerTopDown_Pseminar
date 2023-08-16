@@ -25,7 +25,8 @@ public class GameData
     public float currentMaxHealth;
     public float currentHealth;
     public float currentArmor;
-    public int currentWeaponType;
+    public int currentWeaponType, currentRarity;
+    public float currentReserve, currentAmmo;
 
     private int dumpVariableInt;
     private float dumpVariableFloat;
@@ -50,6 +51,9 @@ public class GameData
         currentHealth = currentMaxHealth;
         currentArmor = 0;
         currentWeaponType = 0;
+        currentRarity = 0;
+        currentReserve = -1;
+        currentAmmo = -1;
 
         enemysKilled = 0;
     }

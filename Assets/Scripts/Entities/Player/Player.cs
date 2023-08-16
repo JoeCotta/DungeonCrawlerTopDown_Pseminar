@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,7 +21,10 @@ public class Player : MonoBehaviour, IDataPersistence
     public float weaponPickUpRadius;
     public float ItemDropForce; // 500
     public float itemPickUpRadius;
-    public int weaponType; // WHY THIS? das wird doch nie nach start benutzt
+
+    private int weaponType, oldRarity;
+    public float oldReserve, oldAmmo;
+
 
     public int dungeonFloor;
     public bool isDead;
@@ -30,19 +34,14 @@ public class Player : MonoBehaviour, IDataPersistence
     //temp variables for functions
     public int selectedItem = 1;// 1 is weapon; 2 is Armour
 
-    public float FOV;
-    public float timeChangeFOV;
+    public float FOV, timeChangeFOV;
     public float t;
     public float FOVChangeWithoutWeapon = -1;
-    private float speedBoostByWeapon;
-    private float FOVChangeByWeapon;
-    private bool isChangingFOV;
+    private float speedBoostByWeapon, FOVChangeByWeapon;
     private float lastFOV;
-    private bool changeFOVGameStart;
+    private bool isChangingFOV, changeFOVGameStart;
 
-    private Vector2 inputMovement;
-    private Vector2 mousePosition;
-    private Vector2 lookDir;
+    private Vector2 inputMovement, mousePosition, lookDir;
     private float angleToMouse;
 
     public float dashCooldownLeft;
@@ -100,6 +99,8 @@ public class Player : MonoBehaviour, IDataPersistence
         {
             weapon = Instantiate(GameManager.AWeapon, weaponSlot.position, weaponSlot.rotation);
             weapon.GetComponent<AlternateWS>().weaponType = weaponType; // sets the weaponType
+            weapon.GetComponent<AlternateWS>().rarity = oldRarity;
+            if(oldReserve != -1) weapon.GetComponent<AlternateWS>().loadOldInfo(oldReserve, oldAmmo);
             weapon.GetComponent<AlternateWS>().owner = gameObject; // by Cornell
         }
     }
@@ -107,6 +108,7 @@ public class Player : MonoBehaviour, IDataPersistence
     void Update()
     {
         if (GameManager.isPaused) return;
+        //if (currentReserve != -1 && weapon.GetComponent<AlternateWS>().reserve > 0&& !stopCheck) { weapon.GetComponent<AlternateWS>().reserve = currentReserve; stopCheck = true; }
 
         // getting Keyboard Input
         inputMovement = Input.GetKey("w") ? Vector2.up : Vector2.zero;
@@ -432,6 +434,10 @@ public class Player : MonoBehaviour, IDataPersistence
         this.health = data.currentHealth;
         this.armourLevel = Mathf.RoundToInt(data.currentArmor);
         this.weaponType = data.currentWeaponType;
+        this.oldRarity = data.currentRarity;
+        this.oldReserve = data.currentReserve;
+        this.oldAmmo = data.currentAmmo;
+        
 
         this.killedEnemys = data.enemysKilled;
     }
@@ -445,8 +451,14 @@ public class Player : MonoBehaviour, IDataPersistence
         data.currentMaxHealth = this.maxHealth;
         data.currentHealth = this.health;
         data.currentArmor = this.armourLevel;
-        if(weapon.GetComponent<AlternateWS>())data.currentWeaponType = this.weapon.GetComponent<AlternateWS>().weaponType;
-        else data.currentWeaponType = this.weapon.GetComponent<AlternateWS>().weaponType;
+
+        if (weapon && weapon.GetComponent<AlternateWS>()) 
+        { 
+            data.currentWeaponType = this.weapon.GetComponent<AlternateWS>().weaponType; 
+            data.currentRarity = this.weapon.GetComponent<AlternateWS>().rarity;
+            data.currentReserve = this.weapon.GetComponent<AlternateWS>().reserve;
+            data.currentAmmo = this.weapon.GetComponent<AlternateWS>().ammo;
+        }else if (weapon) data.currentWeaponType = this.weapon.GetComponent<AlternateWS>().weaponType;
 
         data.enemysKilled = this.killedEnemys;
     }

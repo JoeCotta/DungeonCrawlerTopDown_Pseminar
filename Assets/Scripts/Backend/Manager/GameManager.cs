@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -65,8 +66,13 @@ public class GameManager : MonoBehaviour
         player.health = dataPersistenceManager.gameData.maxHealth;
         player.maxHealth = dataPersistenceManager.gameData.maxHealth;
         player.armourLevel = Mathf.RoundToInt(dataPersistenceManager.gameData.startArmor);
-        if(player.weapon.GetComponent<weaponsystem>())player.weapon.GetComponent<weaponsystem>().weaponType = dataPersistenceManager.gameData.startWeaponType;
-        else if(player.weapon.GetComponent<AlternateWS>()) player.weapon.GetComponent<AlternateWS>().weaponType = dataPersistenceManager.gameData.startWeaponType;
+        if (player.weapon.GetComponent<weaponsystem>()) player.weapon.GetComponent<weaponsystem>().weaponType = dataPersistenceManager.gameData.startWeaponType;
+        else if (player.weapon.GetComponent<AlternateWS>())
+        {
+            player.weapon.GetComponent<AlternateWS>().weaponType = dataPersistenceManager.gameData.startWeaponType;
+            player.weapon.GetComponent<AlternateWS>().reserve = -1; //to disable it loading old reserve
+            player.weapon.GetComponent<AlternateWS>().rarity = 0;
+        }
 
 
 
@@ -110,7 +116,7 @@ public class GameManager : MonoBehaviour
         if (isMenu) { return null; }
         foreach (GameObject reference in references)
         {
-            if (reference.GetComponent<Player>())
+            if (reference && reference.GetComponent<Player>())
             {
                 return reference.GetComponent<Player>();
             }
