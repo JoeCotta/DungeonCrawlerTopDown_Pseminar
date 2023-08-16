@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AlternateWS : MonoBehaviour
@@ -17,33 +18,37 @@ public class AlternateWS : MonoBehaviour
     //3 legendary
 
     public int weaponType, rarity;
-    private float dmg, rate, accuracy, ammo;
-    public float mag, reserve, fov;
+    private float dmg, rate, accuracy;
+    public float mag, reserve, fov, ammo;
+    private bool blockLoadingInfo = false;
 
-    public Sprite[] textureEditor;
+    public Sprite[] textureEditor, magSprites;
     static public Sprite[] texture;
 
     public float rTime, rTimer;
     private float interval = 0;
     private bool reloading;
     private Transform firepoint;
-    public GameObject bullet, owner;
+    public GameObject bullet, owner, magPref;
+
+    public float throwForceMag;
     void Start()
-    {
+    { 
         texture = textureEditor;
         firepoint = transform.GetChild(0);
         float[] temp = DataBase.weaponBase(weaponType,rarity);
         dmg = temp[0];
         mag = Mathf.RoundToInt(temp[1]);
-        reserve = Mathf.RoundToInt(temp[2]);
+        if(!blockLoadingInfo) reserve = Mathf.RoundToInt(temp[2]);
         rate = temp[3];
         accuracy = temp[4];
         fov = temp[5];
-        ammo = mag;
+        if (!blockLoadingInfo) ammo = mag;
         if (rarity != 3) gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType];
         else gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType + 3];
         rTime = 2.5f;//reload time default 2.5 sec
         rTimer = rTime;
+        throwForceMag = 350f;
     }
 
     public void shoot()
@@ -77,6 +82,10 @@ public class AlternateWS : MonoBehaviour
             ammo += reserve;
             reserve = 0;
         }
+        GameObject thrownMag = Instantiate(magPref, firepoint.position, Quaternion.identity);
+        if(rarity != 3) thrownMag.GetComponent<SpriteRenderer>().sprite = magSprites[weaponType];
+        else thrownMag.GetComponent<SpriteRenderer>().sprite = magSprites[weaponType+3];
+        thrownMag.GetComponent<Rigidbody2D>().AddForce(firepoint.transform.up * throwForceMag);
         reloading = false;
     }
 
@@ -91,5 +100,12 @@ public class AlternateWS : MonoBehaviour
         if (rTimer < rTime) rTimer += Time.deltaTime;
         if (reloading && rTimer >= rTime) RealReload();
         if (!owner) { reloading = false; rTimer = rTime; }
+    }
+
+    public void loadOldInfo(float oldReserve, float oldAmmo)
+    {
+        blockLoadingInfo = true;
+        reserve = oldReserve;
+        ammo = oldAmmo;
     }
 }

@@ -132,6 +132,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponType: 0
   rarity: 0
+  mag: 0
+  reserve: 0
   fov: 0
   textureEditor:
   - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
@@ -140,8 +142,19 @@ MonoBehaviour:
   - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
   - {fileID: -1539111945, guid: ffd9850265e38074590b9d7924b16bb7, type: 3}
   - {fileID: -2091552570, guid: ffbf5b7b3d87337419d8fbe73c98cf42, type: 3}
+  magSprites:
+  - {fileID: 666790031, guid: 82dfb839c1f594b4cac9075017ddebfa, type: 3}
+  - {fileID: -941118122, guid: fb954b0dc0ed3994584f84d8b8a49229, type: 3}
+  - {fileID: -1753060970, guid: 0335231ccbb5b9943b77fe9c5971c053, type: 3}
+  - {fileID: 666790031, guid: 82dfb839c1f594b4cac9075017ddebfa, type: 3}
+  - {fileID: -817444369, guid: b2a45f54c8e6ddf4cbf628b1d218c64f, type: 3}
+  - {fileID: -1753060970, guid: 0335231ccbb5b9943b77fe9c5971c053, type: 3}
+  rTime: 0
+  rTimer: 0
   bullet: {fileID: 9006799821689394367, guid: 52a340cfad5313649bda4dd785b9d666, type: 3}
   owner: {fileID: 0}
+  magPref: {fileID: 6381173264866670817, guid: 7f21ab7b03bc5404abdb50abcd756401, type: 3}
+  throwForceMag: 0
 --- !u!50 &7043996625841016062
 Rigidbody2D:
   serializedVersion: 4
