@@ -17,6 +17,8 @@ public class DataPersistenceManager : MonoBehaviour
     public static DataPersistenceManager instance { get; private set; }
 
 
+
+
     private void Awake() {
         if (instance != null)
         {
@@ -29,11 +31,12 @@ public class DataPersistenceManager : MonoBehaviour
         this.dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, useEncryption);
         this.dataPersistenceObjects = FindAllDataPersistenceObjects();
         LoadGame();
+    }
 
-        if(GameObject.FindGameObjectWithTag("Manager") != null)
-        {
-            GameManager.references.Add(this.gameObject);
-        }
+    private bool stop = false;
+    private void Update()
+    {
+        if (!stop && GameObject.FindGameObjectWithTag("Manager") && GameManager.references != null) { GameManager.references.Add(this.gameObject); stop = true;}
     }
 
     public void NewGame()
@@ -58,7 +61,7 @@ public class DataPersistenceManager : MonoBehaviour
 
         foreach(IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
-            dataPersistenceObj.LoadData(gameData);
+            if(dataPersistenceObj != null) dataPersistenceObj.LoadData(gameData);
         }
 
     }
@@ -67,7 +70,7 @@ public class DataPersistenceManager : MonoBehaviour
     {
         foreach(IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
-            dataPersistenceObj.SaveData(ref gameData);
+            if(dataPersistenceObj != null)dataPersistenceObj.SaveData(ref gameData);
         }
         dataHandler.Save(gameData);
     }
