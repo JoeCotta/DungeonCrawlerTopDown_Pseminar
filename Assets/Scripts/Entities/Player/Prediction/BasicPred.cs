@@ -49,7 +49,7 @@ public class BasicPred : MonoBehaviour
         {
             movement[i] = positions[i] - positions[i+1];
             pred1Frame += movement[i];
-            estimatedSpeed += (Mathf.Abs(movement[i].x) + Mathf.Abs(movement[i].y)) / times[i];
+            estimatedSpeed += movement[i].magnitude / times[i];
         }
         pred1Frame /= movement.Length;
         estimatedSpeed /= movement.Length;
