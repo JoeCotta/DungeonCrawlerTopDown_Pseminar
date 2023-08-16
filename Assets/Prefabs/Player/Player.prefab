@@ -105,7 +105,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!114 &6727620216274845252
 MonoBehaviour:
@@ -119,8 +119,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 313682dc5dad5ac9aaa34ff590a6003f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 6727620216274845251}
-  cam: {fileID: 0}
+  maxHealth: 0
+  health: 0
+  playerGold: 0
+  armourLevel: 0
+  revivesLeft: 0
+  killedEnemys: 0
   maxMovementSpeed: 15
   acceleration: 50
   dashForce: 0
@@ -128,8 +132,26 @@ MonoBehaviour:
   dashTime: 0
   dashDamage: 0
   weaponPickUpRadius: 0
-  weaponDropForce: 0
-  health: 0
-  dashEffect: {fileID: 0}
-  camShake: {fileID: 0}
+  ItemDropForce: 0
+  itemPickUpRadius: 0
+  weaponType: 0
+  dungeonFloor: 0
+  isDead: 0
+  selectedItem: 1
+  FOV: 0
+  timeChangeFOV: 0
+  t: 0
+  FOVChangeWithoutWeapon: -1
+  dashCooldownLeft: 0
+  isDashing: 0
   weaponPrefab: {fileID: 0}
+  weapon: {fileID: 0}
+  armourPrefab: {fileID: 0}
+  dashEffect: {fileID: 0}
+  minmapUI: {fileID: 0}
+  cam: {fileID: 0}
+  camShake: {fileID: 0}
+  rb: {fileID: 6727620216274845251}
+  speedBuff: 0
+  healBuff: 0
+  tHealBoost: 0
