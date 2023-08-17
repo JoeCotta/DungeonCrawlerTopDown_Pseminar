@@ -317,7 +317,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8104960819043862697, guid: aca49abf464efa7458ee9221d0147042, type: 3}
       propertyPath: weaponType
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8104960819043862697, guid: aca49abf464efa7458ee9221d0147042, type: 3}
       propertyPath: textureEditor.Array.size
@@ -326,7 +326,7 @@ PrefabInstance:
     - target: {fileID: 8104960819043862697, guid: aca49abf464efa7458ee9221d0147042, type: 3}
       propertyPath: textureEditor.Array.data[5]
       value: 
-      objectReference: {fileID: -2091552570, guid: ffbf5b7b3d87337419d8fbe73c98cf42, type: 3}
+      objectReference: {fileID: 2064855048, guid: 16b57a915d141a84d816327374288a2c, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aca49abf464efa7458ee9221d0147042, type: 3}
 --- !u!1001 &1010466595

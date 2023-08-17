@@ -135,13 +135,14 @@ MonoBehaviour:
   mag: 0
   reserve: 0
   fov: 0
+  ammo: 0
   textureEditor:
   - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
   - {fileID: -115298813, guid: d2d44dba6fe796e4f961b2ff3f202a78, type: 3}
   - {fileID: -2091552570, guid: ffbf5b7b3d87337419d8fbe73c98cf42, type: 3}
   - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
   - {fileID: -1539111945, guid: ffd9850265e38074590b9d7924b16bb7, type: 3}
-  - {fileID: -2091552570, guid: ffbf5b7b3d87337419d8fbe73c98cf42, type: 3}
+  - {fileID: 2064855048, guid: 16b57a915d141a84d816327374288a2c, type: 3}
   magSprites:
   - {fileID: 666790031, guid: 82dfb839c1f594b4cac9075017ddebfa, type: 3}
   - {fileID: -941118122, guid: fb954b0dc0ed3994584f84d8b8a49229, type: 3}
