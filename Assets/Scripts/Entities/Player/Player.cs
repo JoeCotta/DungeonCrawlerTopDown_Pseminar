@@ -447,6 +447,7 @@ public class Player : MonoBehaviour, IDataPersistence
         data.isDead = this.isDead;
         data.currentCoins = this.playerGold;
         data.revivesLeft = this.revivesLeft;
+        data.reviveLevel = this.revivesLeft;
 
         data.currentMaxHealth = this.maxHealth;
         data.currentHealth = this.health;

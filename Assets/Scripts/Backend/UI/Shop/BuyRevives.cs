@@ -13,7 +13,7 @@ public class BuyRevives : MonoBehaviour
     {
         dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
         shopMenu = GameObject.FindGameObjectWithTag("ShopMenu").GetComponent<ShopMenu>();
-        text = this.GetComponent<TextMeshProUGUI>();
+        text = GetComponent<TextMeshProUGUI>();
     }
 
     void Update()
