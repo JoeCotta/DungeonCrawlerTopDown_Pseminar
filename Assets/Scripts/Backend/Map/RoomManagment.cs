@@ -295,6 +295,13 @@ public class RoomManagment : MonoBehaviour
             GameObject chest = Instantiate(chestPrefab, transform.position, Quaternion.identity);
             chest.GetComponent<Chest>().chestLevel = chestLevel;
         }
+
+        int randomAltar; randomAltar = Random.Range(1, 11);
+        if(randomAltar == 1)
+        {
+            Instantiate(DataBase.altar, transform.position + new Vector3(0,-2,0) * DataBase.size, Quaternion.identity);
+        }
+
         enemysCount = 0;
     }
 }

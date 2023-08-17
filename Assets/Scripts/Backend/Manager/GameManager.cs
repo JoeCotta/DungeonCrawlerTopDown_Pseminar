@@ -60,7 +60,7 @@ public class GameManager : MonoBehaviour
         if(ffb != null)ffb = GameObject.FindGameObjectWithTag("FTB").GetComponent<Image>();
     }
 
-    public void resetRunData()
+    static public void resetRunData()
     {
         if(dataPersistenceManager == null) return;
         player.health = dataPersistenceManager.gameData.maxHealth;

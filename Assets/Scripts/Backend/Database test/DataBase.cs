@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DataBase : MonoBehaviour
 {
-    static public GameObject door, doorVrt, doorFix, doorFixVrt, boss;
+    static public GameObject door, doorVrt, doorFix, doorFixVrt, boss, altar;
     static public float size;
 
     static public int maxGold, weaponDropChance, boostDropChance;

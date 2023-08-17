@@ -9,7 +9,7 @@ public class DataBaseManager : MonoBehaviour
 
 
     public GameObject[] doors;
-    public GameObject boss;
+    public GameObject boss, altar;
     public float size;
 
     //Enemy
@@ -19,6 +19,7 @@ public class DataBaseManager : MonoBehaviour
     {
         DataBase.door = doors[0]; DataBase.doorVrt = doors[1]; DataBase.doorFix = doors[2]; DataBase.doorFixVrt = doors[3];
         DataBase.boss = boss;
+        DataBase.altar = altar;
         DataBase.size = size;
 
         DataBase.maxGold = maxGold;
