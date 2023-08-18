@@ -202,7 +202,7 @@ public class Player : MonoBehaviour, IDataPersistence
         
         // heal Buff
         if (healBuff != 0) {
-            health += healBuff * Time.deltaTime;
+            health += healBuff * Time.deltaTime * maxHealth/25;
         }
 
         // to open the map
