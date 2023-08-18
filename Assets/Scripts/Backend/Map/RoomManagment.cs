@@ -296,11 +296,11 @@ public class RoomManagment : MonoBehaviour
             chest.GetComponent<Chest>().chestLevel = chestLevel;
         }
 
-        int randomAltar; randomAltar = Random.Range(1, 11);
-        if(randomAltar == 1)
-        {
-            Instantiate(DataBase.altar, transform.position + new Vector3(0,-2,0) * DataBase.size, Quaternion.identity);
-        }
+        int randomAltar; randomAltar = Random.Range(1, 21);
+        if(randomAltar == 1) Instantiate(DataBase.altar, transform.position + new Vector3(0,-2,0) * DataBase.size, Quaternion.identity);
+
+        int randomAmmo; randomAmmo = Random.RandomRange(1, 11);
+        if (randomAmmo == 1) Instantiate(DataBase.ammoBox, transform.position + new Vector3(-2, 0, 0) * DataBase.size, Quaternion.identity);
 
         enemysCount = 0;
     }
