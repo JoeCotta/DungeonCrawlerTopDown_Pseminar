@@ -85,7 +85,8 @@ public class AlternateWS : MonoBehaviour
         GameObject thrownMag = Instantiate(magPref, firepoint.position, Quaternion.identity);
         if(rarity != 3) thrownMag.GetComponent<SpriteRenderer>().sprite = magSprites[weaponType];
         else thrownMag.GetComponent<SpriteRenderer>().sprite = magSprites[weaponType+3];
-        thrownMag.GetComponent<Rigidbody2D>().AddForce(firepoint.transform.up * throwForceMag);
+        if(rarity != 3 || weaponType != 2)thrownMag.GetComponent<Rigidbody2D>().AddForce(firepoint.transform.up * throwForceMag);
+        else thrownMag.GetComponent<Rigidbody2D>().AddForce(firepoint.transform.right * throwForceMag);
         reloading = false;
     }
 
