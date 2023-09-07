@@ -18,9 +18,9 @@ public class AlternateWS : MonoBehaviour
     //3 legendary
 
     public int weaponType, rarity;
-    private float dmg, rate, accuracy;
-    public float mag, reserve, fov, ammo;
-    private bool blockLoadingInfo = false;
+    private float dmg, rate, accuracy, chargedTime, maxChargeTime = 4, maxChargeDmgMultiplier = 4;
+    public float mag, reserve, fov, ammo, dmgtest;
+    private bool blockLoadingInfo = false, isCharging = false;
 
     public Sprite[] textureEditor, magSprites;
     static public Sprite[] texture;
@@ -55,12 +55,29 @@ public class AlternateWS : MonoBehaviour
     {
         if(interval > 1 / rate && ammo > 0 && !reloading)
         {
+            if (weaponType == 2 && rarity == 3 && owner.tag != "enemy")
+            {
+                isCharging = true;
+                return;
+            }
             Vector3 inAccuracy = new Vector3(0,0,Random.Range(-45+accuracy*45,45-accuracy*45+1));
             interval = 0;
             if(owner.tag != "Enemy")ammo--;
             GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized*Quaternion.Euler(0,0,inAccuracy.z));
             if(temp != null) temp.GetComponent<AltBullet>().assingVar(dmg,owner);
         }
+    }
+
+    public void chargedShot()
+    {
+        if (chargedTime == 0) return;
+        interval = 0;
+        --ammo;
+        GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized);
+        if (temp != null) temp.GetComponent<AltBullet>().assingVar(dmg * Mathf.Pow(maxChargeDmgMultiplier,  chargedTime / maxChargeTime), owner);
+        Debug.Log(dmg * Mathf.Pow(maxChargeDmgMultiplier, chargedTime / maxChargeTime));
+        isCharging = false;
+        chargedTime = 0;
     }
 
     public void Reload()
@@ -101,6 +118,8 @@ public class AlternateWS : MonoBehaviour
         if (rTimer < rTime) rTimer += Time.deltaTime;
         if (reloading && rTimer >= rTime) RealReload();
         if (!owner) { reloading = false; rTimer = rTime; }
+        if (isCharging && Input.GetMouseButton(0) && owner.tag == "Player" && chargedTime < maxChargeTime) { chargedTime += Time.deltaTime; interval = 0; }
+        else if (isCharging) chargedShot();
     }
 
     public void loadOldInfo(float oldReserve, float oldAmmo)

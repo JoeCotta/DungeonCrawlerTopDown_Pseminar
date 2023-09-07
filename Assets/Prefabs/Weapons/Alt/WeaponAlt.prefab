@@ -149,7 +149,7 @@ MonoBehaviour:
   - {fileID: -1753060970, guid: 0335231ccbb5b9943b77fe9c5971c053, type: 3}
   - {fileID: 666790031, guid: 82dfb839c1f594b4cac9075017ddebfa, type: 3}
   - {fileID: -817444369, guid: b2a45f54c8e6ddf4cbf628b1d218c64f, type: 3}
-  - {fileID: -1753060970, guid: 0335231ccbb5b9943b77fe9c5971c053, type: 3}
+  - {fileID: 21300000, guid: 5cb0f1e5248f14d49aad4db6005693ae, type: 3}
   rTime: 0
   rTimer: 0
   bullet: {fileID: 9006799821689394367, guid: 52a340cfad5313649bda4dd785b9d666, type: 3}
