@@ -37,6 +37,7 @@ public class AlternateWS : MonoBehaviour
     [SerializeField] private AudioSource[] shootSounds;
     [SerializeField] private AudioSource[] reloadSounds;
     [SerializeField] private AudioSource magDropSound;
+    [SerializeField] private AudioSource emptyWeaponShootSound;
 
     void Start()
     { 
@@ -75,6 +76,8 @@ public class AlternateWS : MonoBehaviour
             GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized*Quaternion.Euler(0,0,inAccuracy.z));
             if(temp != null) temp.GetComponent<AltBullet>().assingVar(dmg,owner);
         }
+        // no ammo
+        else if(interval > 1 / rate && ammo <= 0 && !reloading) emptyWeaponShootSound.Play();
     }
 
     public void chargedShot()
