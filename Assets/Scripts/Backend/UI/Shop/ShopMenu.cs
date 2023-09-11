@@ -74,8 +74,10 @@ public class ShopMenu : MonoBehaviour
         // updates the Players Stats
         dataPersistenceManager.gameData.updateValues();
         dataPersistenceManager.gameData.setValuesToMax();
+
         // saves the new Stats
         dataPersistenceManager.SaveGame();
+        
         // updates the displayed shop Item
         updateShopItem(ListElement);
         
@@ -126,7 +128,6 @@ public class ShopMenu : MonoBehaviour
 
         // sets the button Text -> name \n cost \n current level
         item.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = name + "\ncost: " + cost.ToString() + "\nlevel/left: " + level.ToString();
-
     }
 
     private int calculatePrice(int ListElement)

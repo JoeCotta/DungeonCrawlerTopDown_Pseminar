@@ -32,6 +32,7 @@ public class AlternateWS : MonoBehaviour
     public GameObject bullet, owner, magPref;
 
     public float throwForceMag;
+    private DataPersistenceManager dataPersistenceManager;
 
     // Sounds
     [SerializeField] private AudioSource[] shootSounds;
@@ -56,6 +57,7 @@ public class AlternateWS : MonoBehaviour
         rTime = 2.5f;//reload time default 2.5 sec
         rTimer = rTime;
         throwForceMag = 350f;
+        if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()) dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
     }
 
     public void shoot()
@@ -74,7 +76,7 @@ public class AlternateWS : MonoBehaviour
             interval = 0;
             if(owner.tag != "Enemy")ammo--;
             GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized*Quaternion.Euler(0,0,inAccuracy.z));
-            if(temp != null) temp.GetComponent<AltBullet>().assingVar(dmg,owner);
+            if(temp != null) temp.GetComponent<AltBullet>().assingVar(dmg * dataPersistenceManager.gameData.currentDamageMultiplier,owner);
         }
         // no ammo
         else if(interval > 1 / rate && ammo <= 0 && !reloading) emptyWeaponShootSound.Play();

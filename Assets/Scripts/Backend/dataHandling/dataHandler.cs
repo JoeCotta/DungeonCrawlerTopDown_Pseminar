@@ -86,5 +86,5 @@ public class ShopItems
     public int startPrice;
     public string priceFunction;
     public int maxLevel;
-    public int incrementPerUpgrade;
+    public float incrementPerUpgrade;
 }

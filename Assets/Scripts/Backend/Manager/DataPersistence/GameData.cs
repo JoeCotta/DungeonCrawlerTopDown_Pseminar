@@ -14,11 +14,14 @@ public class GameData
     public float revivesLeft;
     public float startArmor;
     public int startWeaponType;
+    public float currentDamageMultiplier;
+    public float permanentDamageMultiplier;
 
     // Levels
     public int maxHealthlvl;
     public int reviveLevel;
     public int armorLevel;
+    public int damageMultiplierLevel;
 
 
     //run specific data
@@ -46,6 +49,7 @@ public class GameData
         maxHealthlvl = 0;
         reviveLevel = 0;
         armorLevel = 0;
+        damageMultiplierLevel = 10;
 
         currentMaxHealth = 20;
         currentHealth = currentMaxHealth;
@@ -56,6 +60,9 @@ public class GameData
         currentAmmo = -1;
 
         enemysKilled = 0;
+
+        currentDamageMultiplier = damageMultiplierLevel / 10;
+        permanentDamageMultiplier = damageMultiplierLevel / 10;
     }
     public ref int getLevel(string itemName)
     {
@@ -67,10 +74,12 @@ public class GameData
                 return ref armorLevel;
             case "buyrevives":
                 return ref reviveLevel;
+            case "damagemultiplier":
+                return ref damageMultiplierLevel;
         }
         return ref dumpVariableInt;
     }
-    private ref float getMaxValue(string itemName)
+    ref float getMaxValue(string itemName)
     {
         switch (itemName.ToLower())
         {
@@ -80,11 +89,12 @@ public class GameData
                 return ref startArmor;
             case "buyrevives":
                 return ref revivesLeft;
+            case "damagemultiplier":
+                return ref permanentDamageMultiplier;
         }
         return ref dumpVariableFloat;
     }
-
-    private ref float getValue(string itemName)
+    public ref float getValue(string itemName)
     {
         switch (itemName.ToLower())
         {
@@ -94,6 +104,8 @@ public class GameData
                 return ref currentArmor;
             case "buyrevives":
                 return ref revivesLeft;
+            case "damagemultiplier":
+                return ref permanentDamageMultiplier;
         }
         return ref dumpVariableFloat;
     }
@@ -106,7 +118,7 @@ public class GameData
         for(int i = 0; i < countShopItems; i++)
         {
             string name = shopItemsList[i].name;
-            getMaxValue(name) = getLevel(name) * shopItemsList[i].incrementPerUpgrade;
+            getMaxValue(name) = (float)getLevel(name) * shopItemsList[i].incrementPerUpgrade;
         }
     }
 

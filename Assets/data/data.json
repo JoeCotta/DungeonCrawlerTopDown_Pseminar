@@ -105,6 +105,13 @@
       "priceFunction": "x",
       "maxLevel": 5,
       "incrementPerUpgrade": 1
+    },
+    {
+      "name": "DamageMultiplier",
+      "startPrice": 5,
+      "priceFunction": "x",
+      "maxLevel": 100,
+      "incrementPerUpgrade": 0.1
     }
   ]
 }
