@@ -1,37 +1,43 @@
 Weapons:
     Shoot:
         Sniper: https://bigsoundbank.com/sound-0437-shot-beretta-m12-9-mm.html
-        Rifle: https://www.storyblocks.com/audio/stock/machine-gun-fire-rgr--503iprk0wy4rj9.html
+        Rifle:  https://mixkit.co/free-sound-effects/gun/
         Pistol: https://bigsoundbank.com/sound-2854-rifle-shot-2.html | https://bigsoundbank.com/sound-0438-shot-in-357-magnum-9-mm.html
     Reload:
-        Sniper: 
-        Rifle:
+        Sniper: https://elements.envato.com/de/game-weapons-designed-sniper-bolt-rifle-reload-amm-832WDN2
+        Rifle:  https://elements.envato.com/game-weapons-designed-sniper-bolt-rifle-reload-amm-5KPK73H
         Pistol: https://bigsoundbank.com/sound-1985-pistol-cocking-2.html
+        other:  https://elements.envato.com/sniper-rifle-reload-F7ZHQR5
+    Mag kick out: https://pixabay.com/sound-effects/metal-object-dropping-01-38635/
 
 Enemy:
-    hit: https://www.storyblocks.com/audio/stock/video-game-hit-6-seff5y0nlvbk0wy4m7z.html
+    hit:    https://sfxr.me/
+    killed: https://pixabay.com/sound-effects/breeze-of-blood-122253/
 
 Player:
-    hit: 
-    walk:
+    hit:    https://pixabay.com/sound-effects/grunt1-84540/
+    walk:   https://pixabay.com/sound-effects/footsteps-hallway-6417/
+    dash:  https://pixabay.com/sound-effects/swoosh-transition-with-metal-overtones-142375/ double speed
+    pickUp Weapon: https://pixabay.com/sound-effects/coin-pickup-98269/
+    Drop Weapon: https://pixabay.com/sound-effects/weapon-axe-drop-01-153371/
+    
 
 Boosts:
-    heal:
-    speed: https://freesound.org/people/MATRIXXX_/sounds/523651/
+    heal:   https://pixabay.com/sound-effects/arcade-heal-48183/
+    speed:  https://sfxr.me/
+
 
 Map:
-    Enemy Spawning:
-    Door-close: https://www.storyblocks.com/audio/stock/huge-door-close-rx1ekion8vsk0wxom1g.html | https://www.storyblocks.com/audio/stock/mega-door-close-rxpsysin8dhk0wxom6l.html | https://www.storyblocks.com/audio/stock/bigger-wood-door-close-bl3xrqj3lvhk0wxol76.html
-    Door-open:
-    Level-completed: https://www.storyblocks.com/audio/stock/game-positive-alert-or-achievement-3-win-award-arcade-rypqs-fi0vlk8umgl8l.html
-    Background-Music: https://www.storyblocks.com/audio/stock/flip-of-the-coin-347562514.html | https://www.storyblocks.com/audio/stock/crypto-trading-346700002.html | https://www.storyblocks.com/audio/stock/insert-coin-hwy__joewkf16eprv.html | https://www.storyblocks.com/audio/stock/cash-cow-hopxpvpnwkf2w3ipp.html
-    pickUp - Coin: https://www.storyblocks.com/audio/stock/game-positive-alert-or-achievement-2-win-award-arcade-rfzxiwglrvik8umgl4u.html
-
+    Enemy Spawning: https://pixabay.com/sound-effects/a-sudden-appearance-143034/
+    Door-close:  https://pixabay.com/sound-effects/jaildoorclose-6173/ (end)
+    Door-open: https://pixabay.com/sound-effects/jaildoorclose-6173/ (start)
+    Level-completed: https://pixabay.com/sound-effects/winfantasia-6912/
+    Background-Music: https://pixabay.com/sound-effects/uplifting-pad-texture-113842/ | https://pixabay.com/sound-effects/horror-background-atmosphere-156462/ | https://pixabay.com/sound-effects/tensor02-109114/ | https://pixabay.com/sound-effects/mystery-and-thriller-music-7070/ | https://pixabay.com/sound-effects/mystic-forest-ambient-23812/ | https://pixabay.com/sound-effects/horror-ambient-14590/
 Menü:
-    click-sound: https://www.storyblocks.com/audio/stock/mouse-click-computer-hgu7a4t2ivrk0wxxi7h.html
-    Start-game:
-    Shop-buy: https://www.storyblocks.com/audio/stock/good-bright-idea-2-game-multimedia-notify-bfsbj-flavlk8umgkux.html
+    click-sound: https://pixabay.com/sound-effects/click-button-140881/
+    Start-game: https://pixabay.com/sound-effects/impact-6291/
+    Shop-buy: https://pixabay.com/sound-effects/decidemp3-14575/
+    Background-music: same as map music
 
 
 Other Sounds - maybe?
-https://www.storyblocks.com/audio/stock/shine-collect-grab-pick-up-item-sfiet1f8avik8umfxwd.html

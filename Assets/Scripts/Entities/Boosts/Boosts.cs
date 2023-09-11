@@ -23,6 +23,7 @@ public class Boosts : MonoBehaviour
     float healBuff = 0; 
 
     float timeResetBuff = 0;
+    [SerializeField] private AudioSource[] bootsEffects;
 
     void Start() {
         boostType = Random.Range(0, 2);
@@ -53,6 +54,9 @@ public class Boosts : MonoBehaviour
                 timeResetBuff = 3;
                 break;
         }
+
+        // playSound
+        bootsEffects[boostType].Play();
 
         // only sets the buff which is not zero
         player.speedBuff += speedBuff;

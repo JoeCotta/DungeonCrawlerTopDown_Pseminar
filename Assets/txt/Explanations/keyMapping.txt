@@ -7,5 +7,6 @@ CapsLock: open minimap
 F: drop/pickup
 E: open chest
 R: reload weapon
+N: new song (background Music)
 1: selects weapon slot
 2: selects armour slot

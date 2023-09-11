@@ -34,6 +34,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject boostPrefab;
 
+    [SerializeField] private AudioSource hitSound;
 
     void Start()
     {   
@@ -170,12 +171,14 @@ public class Enemy : MonoBehaviour
         // this function -0.08x + 1 reduces the damage depending on the armor level
         damage *=  (float)-0.08 * armorLevel + 1;
         health -= damage;
+
         
         if(health <= 0)
         {
             isDead = true;
             onDeath();
         }
+        else hitSound.Play();
     }
 
     void onDeath()

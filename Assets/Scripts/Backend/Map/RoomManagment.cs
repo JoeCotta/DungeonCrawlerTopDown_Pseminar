@@ -20,6 +20,12 @@ public class RoomManagment : MonoBehaviour
     public int enemysCount, enemysDead, maxEnemys, minEnemys;
     public bool spawned, isBossR = false;
 
+    // Sounds
+    [SerializeField] private AudioSource killSound;
+    [SerializeField] private AudioSource enemySpawnSound;
+    [SerializeField] private AudioSource closeDoorSound;
+    [SerializeField] private AudioSource openDoorSound;
+
     void Start()
     {
         door = DataBase.door; doorvrt = DataBase.doorVrt; doorFix = DataBase.doorFix; doorvrtFix = DataBase.doorFixVrt;
@@ -230,6 +236,8 @@ public class RoomManagment : MonoBehaviour
                     break;
             }
         }
+        // play door close sound
+        closeDoorSound.Play();
     }
 
     void spawnEnemys() {
@@ -253,7 +261,16 @@ public class RoomManagment : MonoBehaviour
         }
     }
 
+    public void playSoundEnemySpawn()
+    {
+        // SpawnSound
+        enemySpawnSound.Play();
+    }
+
     public void killEnemy(GameObject deadEnemy) {
+        // kill Sound
+        killSound.Play();
+
         //called by enemy on death => increase int for "roomFinished"
         enemysDead++;
         Destroy(deadEnemy);
@@ -264,6 +281,9 @@ public class RoomManagment : MonoBehaviour
         for (int i = 0; i < doors.Length; i++) {
             Destroy(closedDoors[i]);
         }
+        // play door open sound
+        openDoorSound.Play();
+
         if(isBossR) Instantiate(DataBase.boss, transform.position + new Vector3(0, 2, 0) * templates.size, Quaternion.identity);
 
         //decide if spawn chest and which one

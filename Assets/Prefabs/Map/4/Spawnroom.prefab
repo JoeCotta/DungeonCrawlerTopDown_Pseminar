@@ -219,6 +219,22 @@ PrefabInstance:
       propertyPath: spawned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6231815678765647629, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
+      propertyPath: killSound
+      value: 
+      objectReference: {fileID: 3525592864215543711}
+    - target: {fileID: 6231815678765647629, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
+      propertyPath: openDoorSound
+      value: 
+      objectReference: {fileID: 8901697903091553780}
+    - target: {fileID: 6231815678765647629, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
+      propertyPath: closeDoorSound
+      value: 
+      objectReference: {fileID: 7556312232272302110}
+    - target: {fileID: 6231815678765647629, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
+      propertyPath: enemySpawnSound
+      value: 
+      objectReference: {fileID: 7637949141747983144}
     - target: {fileID: 6999996866308474769, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
       propertyPath: m_LocalScale.y
       value: 1
@@ -400,6 +416,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
+--- !u!82 &3525592864215543711 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4778702611727360676, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
+  m_PrefabInstance: {fileID: 8267536562326441275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5232900757884558417 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4189138411150463338, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
@@ -431,6 +452,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 4}
   m_EdgeRadius: 0
+--- !u!82 &7556312232272302110 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -7322473372455920347, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
+  m_PrefabInstance: {fileID: 8267536562326441275}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7637949141747983144 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -7258884550541513197, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
+  m_PrefabInstance: {fileID: 8267536562326441275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8651914084546133176 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 769542373324075395, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
@@ -462,6 +493,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4, y: 1}
   m_EdgeRadius: 0
+--- !u!82 &8901697903091553780 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: -8559900713040668465, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}
+  m_PrefabInstance: {fileID: 8267536562326441275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &9182488036307411155 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 996122921277926888, guid: 8db5d9e9be758bc4e9aefa92e9ed7645, type: 3}

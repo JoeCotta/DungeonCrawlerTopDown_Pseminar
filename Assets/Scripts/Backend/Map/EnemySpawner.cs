@@ -7,10 +7,14 @@ public class EnemySpawner : MonoBehaviour
     public RoomManagment manager;
     public GameObject enemy;
 
+
     private void spawnEnemy()
     {
         GameObject enemyRef = Instantiate(enemy, transform.position, Quaternion.identity);
         enemyRef.GetComponent<Enemy>().manager = manager;
+
+        // plays spawn Sound
+        manager.playSoundEnemySpawn();
     }
 
     public void OnParticleSystemStopped()

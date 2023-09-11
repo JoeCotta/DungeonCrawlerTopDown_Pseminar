@@ -63,6 +63,18 @@ public class Player : MonoBehaviour, IDataPersistence
     public float healBuff;
     public float tHealBoost;
 
+    // Sounds
+    [SerializeField] private AudioSource hitSound;
+    [SerializeField] private AudioSource walkingSound;
+    [SerializeField] private AudioSource dashSound;
+    [SerializeField] private AudioSource weaponDropSound;
+    [SerializeField] private AudioSource weaponPickupSound;
+
+    // check walking
+    private bool isMoving;
+    private Vector2 lastPosition;
+    private float movingCounter = 0;
+
 
     void Start()
     {
@@ -77,6 +89,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
         // sets this to true that if the player spawns with a weapon with a FOV change that is not 0 the FOV is still changed
         changeFOVGameStart = true;
+
 
         // delays this that when calling the functions the weapon is properly loaded
         Invoke("changeSpeed", 0.5f);
@@ -115,6 +128,21 @@ public class Player : MonoBehaviour, IDataPersistence
         inputMovement += Input.GetKey("a") ? Vector2.left : Vector2.zero;
         inputMovement += Input.GetKey("s") ? Vector2.down : Vector2.zero;
         inputMovement += Input.GetKey("d") ? Vector2.right : Vector2.zero;
+
+        // check if moving
+        if(lastPosition != rb.position) isMoving = true;
+        else isMoving = false;
+
+        // walking sound if getting keyboard input and position is actually changing
+        if(isMoving && inputMovement != Vector2.zero) walkingSound.enabled = true;
+        else walkingSound.enabled = false;
+
+        // sets the postion of the last frame every second
+        if(movingCounter >= 1){
+            lastPosition = rb.position;
+            movingCounter = 0;
+        }
+        movingCounter += Time.deltaTime;
 
         // getting mouse Input
         // transform the screen mouse Position to a world point
@@ -223,6 +251,7 @@ public class Player : MonoBehaviour, IDataPersistence
     void dash(){
         //added time.delta time to make movement always the same speed at any framerate
         rb.AddForce(dashForce * dashDirection * Time.deltaTime);
+        dashSound.Play();
     }
 
     void hit(float damage)
@@ -234,6 +263,9 @@ public class Player : MonoBehaviour, IDataPersistence
         damage *=  (float)-0.08 * armourLevel + 1;
         health -= damage;
         
+        // play sound
+        hitSound.Play();
+
         //if(health <= 0) commented out for now, Cornell
         //{
             //isDead = true;
@@ -349,7 +381,11 @@ public class Player : MonoBehaviour, IDataPersistence
     {
 
         // gives the "old" weapon a force to kick the weapon away - a drop animation
-        if (weapon) weapon.GetComponent<Rigidbody2D>().AddForce(-lookDir.normalized * ItemDropForce);
+        if (weapon){
+            weapon.GetComponent<Rigidbody2D>().AddForce(-lookDir.normalized * ItemDropForce);
+            // play weapon drop Sound
+            weaponDropSound.Play();
+        }
 
         // sets the owner of the dropped weapon to null
         if (weapon) weapon.GetComponent<AlternateWS>().owner = null;
@@ -360,7 +396,11 @@ public class Player : MonoBehaviour, IDataPersistence
         // if there is no weapon to pickup
         if(nearestWeapon == null) weapon = null;
         // change the weapons
-        else weapon = nearestWeapon;
+        else {
+            weapon = nearestWeapon;
+            // play weapon pickup sound
+            weaponPickupSound.Play();
+        }
         //by Cornell + integration of alternate weaponsystem
         if (weapon != null && weapon.GetComponent<weaponsystem>() != null) weapon.GetComponent<weaponsystem>().owner = gameObject;
         else if (weapon != null) weapon.GetComponent<AlternateWS>().owner = gameObject;

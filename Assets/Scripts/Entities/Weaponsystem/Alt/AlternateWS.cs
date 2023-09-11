@@ -32,6 +32,12 @@ public class AlternateWS : MonoBehaviour
     public GameObject bullet, owner, magPref;
 
     public float throwForceMag;
+
+    // Sounds
+    [SerializeField] private AudioSource[] shootSounds;
+    [SerializeField] private AudioSource[] reloadSounds;
+    [SerializeField] private AudioSource magDropSound;
+
     void Start()
     { 
         texture = textureEditor;
@@ -55,6 +61,9 @@ public class AlternateWS : MonoBehaviour
     {
         if(interval > 1 / rate && ammo > 0 && !reloading)
         {
+            // shoot sound
+            shootSounds[weaponType].Play();
+
             Vector3 inAccuracy = new Vector3(0,0,Random.Range(-45+accuracy*45,45-accuracy*45+1));
             interval = 0;
             if(owner.tag != "Enemy")ammo--;
@@ -67,6 +76,10 @@ public class AlternateWS : MonoBehaviour
     {
         if (ammo == mag || reloading) return; if (reserve == 0) return;
         reloading = true; rTimer = 0;
+
+        // reload sound 
+        reloadSounds[weaponType].Play();
+
     }
 
     private void RealReload()
@@ -88,6 +101,9 @@ public class AlternateWS : MonoBehaviour
         if(rarity != 3 || weaponType != 2)thrownMag.GetComponent<Rigidbody2D>().AddForce(firepoint.transform.up * throwForceMag);
         else thrownMag.GetComponent<Rigidbody2D>().AddForce(firepoint.transform.right * throwForceMag);
         reloading = false;
+
+        // play throw sound
+        magDropSound.Play();
     }
 
     public Vector2 GetAmmo()

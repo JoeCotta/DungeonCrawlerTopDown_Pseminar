@@ -30,6 +30,7 @@ public class ShopMenu : MonoBehaviour
     private int countShopItems;
     private List<GameObject> shopItemsGameObjectsList = new List<GameObject>();
 
+    [SerializeField] private AudioSource buySound;
     private void Start()
     {
         dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
@@ -77,6 +78,9 @@ public class ShopMenu : MonoBehaviour
         dataPersistenceManager.SaveGame();
         // updates the displayed shop Item
         updateShopItem(ListElement);
+        
+        // play buy Sound
+        buySound.Play();
     }
 
     public void loadShop()

@@ -11,6 +11,10 @@ public class EndLevel : MonoBehaviour
     public float timeToFade;
     private float t = 0;
     public bool loadScene;
+    public bool playSound;
+    // Sound
+    [SerializeField] private AudioSource levelCompleteSound;
+    [SerializeField] private AudioSource startGameSound;
 
     private void Start()
     {
@@ -33,7 +37,14 @@ public class EndLevel : MonoBehaviour
                 t += Time.deltaTime;
                 ftb.color = new Color(0, 0, 0, t * 1 / timeToFade);
             }
-            else SceneManager.LoadScene(GameManager.buildIndexOfSceneToLoad);
+            else{
+                SceneManager.LoadScene(GameManager.buildIndexOfSceneToLoad);
+                startGameSound.Play();
+            }
+        }
+        if (playSound) {
+            playSound = false;
+            levelCompleteSound.Play();
         }
     }
 
@@ -42,6 +53,7 @@ public class EndLevel : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             loadScene = true;
+            playSound = true;
         }
     }
 }

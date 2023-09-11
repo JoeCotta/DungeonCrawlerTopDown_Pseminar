@@ -26,6 +26,8 @@ public class GameManager : MonoBehaviour
 
     public int activeBoosts = 0;
 
+
+    [SerializeField] private AudioSource startGameSound;
     private void Start()
     {
         GameManager.references = new List<GameObject>(); //very important line
@@ -43,6 +45,7 @@ public class GameManager : MonoBehaviour
         if (player != null && player.isDead) resetRunData(); 
         if(t < timeToFadeFromBlack && ffb != null)
         {
+            if(startGameSound && !startGameSound.isPlaying) startGameSound.Play();
             t += Time.deltaTime;
             ffb.color = new Color(0, 0, 0, 1-(t * 1 / timeToFadeFromBlack));
         }

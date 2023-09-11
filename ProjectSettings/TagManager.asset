@@ -25,6 +25,8 @@ TagManager:
   - FTB
   - Hud
   - Pause
+  - BackgroundMusicPlayer
+  - ClicksSoundHolder
   layers:
   - Default
   - TransparentFX
