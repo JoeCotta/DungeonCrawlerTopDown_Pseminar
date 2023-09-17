@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     static public GameObject AWeapon;
 
     public int activeBoosts = 0;
+    public List<GameObject> boostList = new List<GameObject>();
 
 
     [SerializeField] private AudioSource startGameSound;

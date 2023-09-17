@@ -18,6 +18,7 @@ public class Boosts : MonoBehaviour
     private DataPersistenceManager dataPersistenceManager;
 
     private bool obtained = false;
+    private GameObject boost;
 
     // buffs
     float speedBuff = 0;
@@ -42,7 +43,7 @@ public class Boosts : MonoBehaviour
         if (other.gameObject.tag != "Player" || obtained) return;
 
         // initializes ui animation
-        GameObject boost = Instantiate(uiCoolDownPrefab, Vector2.zero, Quaternion.identity, hud.transform);
+        boost = Instantiate(uiCoolDownPrefab, Vector2.zero, Quaternion.identity, hud.transform);
 
         switch (boostType)
         {
@@ -81,6 +82,7 @@ public class Boosts : MonoBehaviour
 
         // makes it known for other scripts that there is another boost
         manager.activeBoosts += 1;
+        manager.boostList.Add(boost);
 
         // makes the boost invisible and unobtainable until the buff can be destroyed after the reset
         gameObject.GetComponent<SpriteRenderer>().sprite = null;
@@ -96,6 +98,7 @@ public class Boosts : MonoBehaviour
         
         // deletes the buff
         manager.activeBoosts -= 1;
+        manager.boostList.Remove(boost);
         Destroy(gameObject);
     }
 }

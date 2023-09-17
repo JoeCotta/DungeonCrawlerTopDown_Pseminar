@@ -28,13 +28,12 @@ public class BoostTime : MonoBehaviour
 
         // updates the position if the UI image if necessary 
         int activeBoosts = GameObject.FindWithTag("Manager").GetComponent<GameManager>().activeBoosts;
-
-        // print((activeBoosts, activeBoostsLastRound, activeBoostsStart));
+        
         if (activeBoosts < activeBoostsLastRound)
         {
-            // calculates the new position of the image - f.ex. 3rd ui image
-            int shift = activeBoostsLastRound - activeBoosts;
-            int newBoostPosition = activeBoostsStart - shift;
+            // get the new position (the index of the list with all boostsUI gameObjects)
+            List<GameObject> boostList = GameObject.FindWithTag("Manager").GetComponent<GameManager>().boostList;
+            int newBoostPosition = boostList.IndexOf(gameObject);
 
             // updates the postion
             Vector2 imagePosition = new Vector2(370, 55 - 50 * newBoostPosition);
