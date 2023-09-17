@@ -45,7 +45,6 @@ public class AltBullet : MonoBehaviour
         {
             if (!other.GetComponent<Bullet>().owner.CompareTag(owner.tag)) Destroy(gameObject);
         }
-        print(dmg);
         //if map object delete
         switch (other.tag)
         {
