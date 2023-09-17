@@ -13,6 +13,7 @@ public class DamageMultiplierUIText : MonoBehaviour
     void Start()
     {
         if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()) dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
+        dataPersistenceManager.gameData.currentDamageMultiplier = dataPersistenceManager.gameData.permanentDamageMultiplier;
     }
 
     // Update is called once per frame

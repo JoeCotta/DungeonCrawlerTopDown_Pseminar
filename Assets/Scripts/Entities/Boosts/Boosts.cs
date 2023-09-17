@@ -15,22 +15,26 @@ public class Boosts : MonoBehaviour
     private float toReset;
     private Player player;
     private GameManager manager;
+    private DataPersistenceManager dataPersistenceManager;
 
     private bool obtained = false;
 
     // buffs
     float speedBuff = 0;
     float healBuff = 0; 
+    float damageMultiplier = 0;
 
     float timeResetBuff = 0;
     [SerializeField] private AudioSource[] bootsEffects;
 
     void Start() {
-        boostType = Random.Range(0, 2);
+        boostType = Random.Range(0, textures.Length);
         gameObject.GetComponent<SpriteRenderer>().sprite = textures[boostType];
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         manager = GameObject.FindWithTag("Manager").GetComponent<GameManager>();
         hud = GameObject.FindWithTag("Hud");
+        if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()) dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
+
     }
 
 
@@ -53,6 +57,12 @@ public class Boosts : MonoBehaviour
                 healBuff = 3;
                 timeResetBuff = 3;
                 break;
+
+            // tmp damageMultiplier
+            case 2:
+                damageMultiplier = 2;
+                timeResetBuff = 10;
+                break;
         }
 
         // playSound
@@ -61,6 +71,7 @@ public class Boosts : MonoBehaviour
         // only sets the buff which is not zero
         player.speedBuff += speedBuff;
         player.healBuff += healBuff;
+        if(damageMultiplier != 0) dataPersistenceManager.gameData.currentDamageMultiplier *= damageMultiplier;
 
         // initializes the reset
         Invoke("resetBuff", timeResetBuff);
@@ -81,7 +92,8 @@ public class Boosts : MonoBehaviour
         // only resets the buff which is not zero
         player.speedBuff -= speedBuff;
         player.healBuff -= healBuff;
-
+        if(damageMultiplier != 0) dataPersistenceManager.gameData.currentDamageMultiplier /= damageMultiplier;
+        
         // deletes the buff
         manager.activeBoosts -= 1;
         Destroy(gameObject);
