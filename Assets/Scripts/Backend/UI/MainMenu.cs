@@ -26,7 +26,7 @@ public class MainMenu : MonoBehaviour
         }   
     }*/
     public void playGame(){
-        //reme,ber that button might be pointing to wrong menu(e. mainmenu/savemenu) if you save buildindex in scene
+        //remember that button might be pointing to wrong menu(e. mainmenu/savemenu) if you save buildindex in scene
         //loadGame = true;
         SceneManager.LoadScene(buildIndexOfSceneToLoad);
     }
@@ -38,5 +38,9 @@ public class MainMenu : MonoBehaviour
     public void openShop()
     {
         SceneManager.LoadScene("Shop");
+    }
+    public void openTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
     }
 }
