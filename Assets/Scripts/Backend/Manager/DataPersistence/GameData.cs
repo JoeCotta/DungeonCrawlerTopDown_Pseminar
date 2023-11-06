@@ -37,6 +37,17 @@ public class GameData
     //statistics
     public int enemysKilled;
 
+
+    // options
+    public float MasterVol;
+    public float WeaponVol;
+    public float PlayerVol;
+    public float EnemyVol;
+    public float UIVol;
+    public float MapVol;
+    public float MusicVol;
+    public float BoostsVol;
+
     public GameData()
     {
         isDead = false;
@@ -63,6 +74,15 @@ public class GameData
 
         currentDamageMultiplier = damageMultiplierLevel / 10;
         permanentDamageMultiplier = damageMultiplierLevel / 10;
+
+        MasterVol = 0;
+        WeaponVol = 0;
+        PlayerVol = 3;
+        EnemyVol = -3;
+        UIVol = 0;
+        MapVol = 0;
+        MusicVol = -12;
+        BoostsVol = 0;
     }
     public ref int getLevel(string itemName)
     {

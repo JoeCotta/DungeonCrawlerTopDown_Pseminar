@@ -6,6 +6,9 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    void Start() {
+        Debug.Log("hi");
+    }
     //remember to drag scene in files>build settings> here     and but the number next to it in here
     public int buildIndexOfSceneToLoad;
     /*float t = 0; float timeToFade = 3; bool loadGame; Image ftb;

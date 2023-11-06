@@ -187,7 +187,23 @@ AudioMixerController:
   m_SuspendThreshold: -80
   m_EnableSuspend: 1
   m_UpdateMode: 0
-  m_ExposedParameters: []
+  m_ExposedParameters:
+  - guid: 90d66fa41f4e57e568aa2199a2ce8813
+    name: MusicVol
+  - guid: 4b95c3876a3136f21aa73b7ff606da12
+    name: BoostsVol
+  - guid: 36e0e1dfa6042801181b3b93b51df735
+    name: EnemyVol
+  - guid: f392651a564c74fa7807db5490f4cf2b
+    name: MapVol
+  - guid: 512b01c0cc199ed84970062ddb1ed007
+    name: MasterVol
+  - guid: 128503d408079a7c4b3bf06f6c45587d
+    name: PlayerVol
+  - guid: 8988a20a42b49dc6ea86a5d1d5e8dec9
+    name: UIVol
+  - guid: 7b0769707466053898f2744f0d2061d7
+    name: WeaponVol
   m_AudioMixerGroupViews:
   - guids:
     - e973d4b510258e3c4b1fd50b69383de3
