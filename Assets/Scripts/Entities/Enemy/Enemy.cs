@@ -36,6 +36,11 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private AudioSource hitSound;
 
+    // sprites
+    public Sprite sprite_front_left;
+    public Sprite sprite_back;
+    public Sprite sprite_front_right;
+
     void Start()
     {   
         //get player Transform by Cornell
@@ -92,12 +97,6 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.isPaused) return;
 
-        // update the position and rotation of the weapon if the enemy has one
-        if(weapon)
-        {
-            weapon.transform.position = weaponSlot.position;
-            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, 90); // cornell same as with player
-        }
 
         if(path == null) return;
 
@@ -117,6 +116,39 @@ public class Enemy : MonoBehaviour
         // if the Distance to the target is lower than 4 or out of the player's range the enemy shouldn't follow the target, instead he should shoot at the target
         // but only if the bullet will hit the Player
         if ((DistanceToTarget < 6 || outOfRange) && (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy")) ) follow = false;
+    
+
+
+        // manages rotation while following target
+        Vector2 direction = (rb.position - (Vector2)target.position).normalized;
+        float angleToPlayer = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+        // update the position and rotation of the weapon if the enemy has one
+        if(weapon)
+        {
+            weapon.transform.position = weaponSlot.position;
+            weapon.transform.rotation = Quaternion.Euler(0, 0, angleToPlayer + 180f); // cornell same as with player
+        }
+
+        // -30 - 90   front left
+        // -30 - -150 back
+        // 90 - -150 front-right
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        if (angleToPlayer > -30 && angleToPlayer < 90) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left;
+        else if ((angleToPlayer > 90 && angleToPlayer <= 180) || (angleToPlayer >= -180 && angleToPlayer < -150)) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_right;
+        else if (angleToPlayer < -30 && angleToPlayer > -150){
+            gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+        }
+
+        //flip weapon sprite
+        if (weapon){
+            // left side
+            if (angleToPlayer < 90 && angleToPlayer >= -90) weapon.GetComponent<SpriteRenderer>().flipY = true;
+            //right side
+            else if((angleToPlayer >= 90 && angleToPlayer <= 180) || (angleToPlayer >= -180 && angleToPlayer < -90)) weapon.GetComponent<SpriteRenderer>().flipY = false;
+        }
+
     }
 
     void FixedUpdate()
@@ -134,11 +166,7 @@ public class Enemy : MonoBehaviour
 
         rb.AddForce(force);
 
-        // manages rotation while following target
-        float angleNextWaypoint = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 90f;
-        Quaternion rotation = Quaternion.Euler(Vector3.forward * angleNextWaypoint);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 7);
-
+        
         // updates the current Waypoint        
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
@@ -162,7 +190,7 @@ public class Enemy : MonoBehaviour
         //Debug.Log(gameObject.GetComponent<BulletCalc>().CalcPath(15f, target.gameObject));
         float angleToPlayer = Mathf.Atan2(PlayerDirection.y, PlayerDirection.x) * Mathf.Rad2Deg - 90f;
         Quaternion rotation = Quaternion.Euler(Vector3.forward * angleToPlayer);
-        transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 7);
+        //transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 7);
 
         weapon.SendMessage("shoot");
     }
