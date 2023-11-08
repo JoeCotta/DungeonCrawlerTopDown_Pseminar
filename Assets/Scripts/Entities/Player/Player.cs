@@ -75,6 +75,10 @@ public class Player : MonoBehaviour, IDataPersistence
     private Vector2 lastPosition;
     private float movingCounter = 0;
 
+    // sprites
+    public Sprite sprite_front_left;
+    public Sprite sprite_back;
+    public Sprite sprite_front_right;
 
     void Start()
     {
@@ -152,8 +156,24 @@ public class Player : MonoBehaviour, IDataPersistence
         lookDir = rb.position - mousePosition;
         angleToMouse = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
 
-        // set the rotation of the player
-        rb.SetRotation(angleToMouse + 90f);
+        // -30 - 90   front left
+        // -30 - -150 back
+        // 90 - -150 front-right
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        if (angleToMouse > -30 && angleToMouse < 90) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left;
+        else if ((angleToMouse > 90 && angleToMouse <= 180) || (angleToMouse >= -180 && angleToMouse < -150)) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_right;
+        else if (angleToMouse < -30 && angleToMouse > -150){
+            gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+        }
+
+        //flip weapon sprite
+        if (weapon){
+            // left side
+            if (angleToMouse < 90 && angleToMouse >= -90) weapon.GetComponent<SpriteRenderer>().flipY = true;
+            //right side
+            else if((angleToMouse >= 90 && angleToMouse <= 180) || (angleToMouse >= -180 && angleToMouse < -90)) weapon.GetComponent<SpriteRenderer>().flipY = false;
+        }
 
         // dash
         // if dash cooldown is finished and dash-Key is pressed
@@ -198,8 +218,10 @@ public class Player : MonoBehaviour, IDataPersistence
         if(weapon)
         {
             weapon.transform.position = weaponSlot.position;
-            weapon.transform.rotation = weaponSlot.rotation * Quaternion.Euler(0, 0, 90); //cornell 90 statt -90
+            weapon.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + 180);
+
         }
+
 
         // shoot if clicked
         if(Input.GetMouseButton(0)) shoot();

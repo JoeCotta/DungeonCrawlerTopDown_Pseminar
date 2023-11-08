@@ -384,6 +384,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4340008966013991749, guid: aca49abf464efa7458ee9221d0147042, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}
       propertyPath: m_Name
       value: WeaponAlt
@@ -1098,6 +1102,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 644545702556066160, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
       propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 644545702556066160, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 644545702556066160, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 644545702556066160, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 644545702556066160, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
