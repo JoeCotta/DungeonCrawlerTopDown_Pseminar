@@ -82,9 +82,8 @@ public class Player : MonoBehaviour, IDataPersistence
 
     void Start()
     {
-        Invoke("assingWeapon", 0.1f);
-        GameManager.references.Add(this.gameObject);
-
+        //Initiating all the delayed stuff
+        StartCoroutine(DelayedAssing());
         cam.orthographic = true;
         dashCooldownLeft = 0;
         dashTimeLeft = dashTime;
@@ -96,10 +95,20 @@ public class Player : MonoBehaviour, IDataPersistence
 
 
         // delays this that when calling the functions the weapon is properly loaded
-        Invoke("changeSpeed", 0.5f);
-        Invoke("changeFOV", 0.5f);
+        //Invoke("changeSpeed", 0.5f);
+        //Invoke("changeFOV", 0.5f);
 
         tHealBoost = 0;
+    }
+
+    IEnumerator DelayedAssing()
+    {
+        yield return new WaitForSeconds(0.1f);
+        assingWeapon();
+        yield return new WaitForSeconds(0.4f);
+        GameManager.references.Add(gameObject);
+        changeSpeed();
+        changeFOV();
     }
 
     void assingWeapon()
@@ -364,7 +373,7 @@ public class Player : MonoBehaviour, IDataPersistence
         // switch items
         else
         {
-            print(nearestItem.gameObject.name.StartsWith("Weapon"));
+            //print(nearestItem.gameObject.name.StartsWith("Weapon"));
             if(nearestItem.gameObject.name.StartsWith("Weapon")) swapWeapon(nearestItem);
             else if(nearestItem.gameObject.name.StartsWith("Armour")) swapArmour(nearestItem);
 

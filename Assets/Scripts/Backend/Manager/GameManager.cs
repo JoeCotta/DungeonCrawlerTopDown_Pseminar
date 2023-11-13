@@ -116,7 +116,7 @@ public class GameManager : MonoBehaviour
     //functions for returning parts of the Reference List
     int playerTry; int dataTry;
     public Player returnPlayer()
-    { 
+    {
         if (isMenu) { return null; }
         foreach (GameObject reference in references)
         {
@@ -126,7 +126,7 @@ public class GameManager : MonoBehaviour
             }
         }
         Debug.Log("found no player; trying again");
-        if (playerTry < 3) { Invoke("returnPlayer", 0.5f); playerTry++; } else { Debug.LogError("several trys NO PLAYER"); }
+        if (playerTry < 3) { Invoke("returnPlayer", 1f); playerTry++; } else { Debug.LogError("several trys NO PLAYER"); }
         return null;
     }
 
