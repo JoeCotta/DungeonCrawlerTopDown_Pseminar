@@ -29,7 +29,11 @@ public class Boosts : MonoBehaviour
     [SerializeField] private AudioSource[] bootsEffects;
 
     void Start() {
-        boostType = Random.Range(0, textures.Length);
+        if(boostType == -1) boostType = 0;
+        else if(boostType == -2) boostType = 1;
+        else if(boostType == -3) boostType = 2;
+        else boostType = Random.Range(0, textures.Length);
+    
         gameObject.GetComponent<SpriteRenderer>().sprite = textures[boostType];
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         manager = GameObject.FindWithTag("Manager").GetComponent<GameManager>();
