@@ -19,6 +19,7 @@ public class AmmoCounter : MonoBehaviour
 
     void References()
     {
-        player = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().returnPlayer();
+        //player = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>().returnPlayer();
+        player = GameManager.player;
     }
 }

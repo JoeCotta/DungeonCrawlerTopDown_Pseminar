@@ -89,7 +89,7 @@ public class AlternateWS : MonoBehaviour
         --ammo;
         GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized);
         if (temp != null) temp.GetComponent<AltBullet>().assingVar(dmg * Mathf.Pow(maxChargeDmgMultiplier,  chargedTime / maxChargeTime), owner);
-        Debug.Log(dmg * Mathf.Pow(maxChargeDmgMultiplier, chargedTime / maxChargeTime));
+        //Debug.Log(dmg * Mathf.Pow(maxChargeDmgMultiplier, chargedTime / maxChargeTime));
         isCharging = false;
         chargedTime = 0;
     }
