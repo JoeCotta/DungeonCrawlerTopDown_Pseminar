@@ -120,8 +120,9 @@ public class Enemy : MonoBehaviour
 
 
         // manages rotation while following target
-        Vector2 direction = (rb.position - (Vector2)target.position).normalized;
-        float angleToPlayer = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        Vector2 direction = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(15f,target.gameObject) - rb.position).normalized;
+        float angleToPlayer = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg -180f;
+        
 
         // update the position and rotation of the weapon if the enemy has one
         if(weapon)
