@@ -25,6 +25,7 @@ public class RoomManagment : MonoBehaviour
     [SerializeField] private AudioSource enemySpawnSound;
     [SerializeField] private AudioSource closeDoorSound;
     [SerializeField] private AudioSource openDoorSound;
+    [SerializeField] private AudioSource bossDeathSound;
 
     void Start()
     {
@@ -41,7 +42,7 @@ public class RoomManagment : MonoBehaviour
 
     void Update() {
         //delete doors if all enemys dead
-        if (enemysDead == enemysCount && spawned == true && enemysCount > 0) {
+        if (enemysDead == enemysCount && spawned == true && enemysCount > 0 && isBossR == false) {
             roomFinished();
         }
     }
@@ -242,22 +243,29 @@ public class RoomManagment : MonoBehaviour
 
     void spawnEnemys() {
         //spawn boss
-        if (isBossR) { }
-        //pick random amount of enemys and if spawnpoint positive or negativ coordinate
-        enemysCount = Random.Range(minEnemys, maxEnemys);
+        if (isBossR) 
+        { 
+            GameObject boss = Instantiate(DataBase.boss, transform.position + new Vector3(0, 2, 0) * templates.size, Quaternion.identity);
+            boss.GetComponent<Boss>().manager = this;
+        }
+        else 
+        {
+            //pick random amount of enemys and if spawnpoint positive or negativ coordinate
+            enemysCount = Random.Range(minEnemys, maxEnemys);
 
-        for (int i = 0; i < enemysCount; i++) {
+            for (int i = 0; i < enemysCount; i++) {
 
-            int xrand = Random.Range(-1, 2); while (xrand == 0) xrand = Random.Range(-1, 2);
-            int yrand = Random.Range(-1, 2); while (yrand == 0) yrand = Random.Range(-1, 2);
-            //pick coordinate in the room/offset
-            xCoord = xrand * Random.Range(1, 3.5f);
-            yCoord = yrand * Random.Range(1, 3.5f);
+                int xrand = Random.Range(-1, 2); while (xrand == 0) xrand = Random.Range(-1, 2);
+                int yrand = Random.Range(-1, 2); while (yrand == 0) yrand = Random.Range(-1, 2);
+                //pick coordinate in the room/offset
+                xCoord = xrand * Random.Range(1, 3.5f);
+                yCoord = yrand * Random.Range(1, 3.5f);
 
-            //spawn enemy and add to array
-            GameObject tempSpawner = Instantiate(enemySpawner, transform.position + new Vector3(xCoord * templates.size, yCoord * templates.size, 0), Quaternion.identity);
-            tempSpawner.GetComponent<EnemySpawner>().manager = this;
-            tempSpawner.GetComponent<EnemySpawner>().enemy = enemy;
+                //spawn enemy and add to array
+                GameObject tempSpawner = Instantiate(enemySpawner, transform.position + new Vector3(xCoord * templates.size, yCoord * templates.size, 0), Quaternion.identity);
+                tempSpawner.GetComponent<EnemySpawner>().manager = this;
+                tempSpawner.GetComponent<EnemySpawner>().enemy = enemy;
+            }
         }
     }
 
@@ -276,7 +284,7 @@ public class RoomManagment : MonoBehaviour
         Destroy(deadEnemy);
     }
 
-    void roomFinished() {
+    public void roomFinished() {
         //open room again
         for (int i = 0; i < doors.Length; i++) {
             Destroy(closedDoors[i]);
@@ -284,7 +292,10 @@ public class RoomManagment : MonoBehaviour
         // play door open sound
         openDoorSound.Play();
 
-        if(isBossR) Instantiate(DataBase.boss, transform.position + new Vector3(0, 2, 0) * templates.size, Quaternion.identity);
+        if(isBossR) {
+            Instantiate(DataBase.portal, transform.position + new Vector3(0, 2, 0) * templates.size, Quaternion.identity);
+            bossDeathSound.Play();
+        }
 
         //decide if spawn chest and which one
         int randomChestGen = Random.Range(1, 5);

@@ -13,6 +13,10 @@ Weapons:
 Enemy:
     hit:    https://sfxr.me/
     killed: https://pixabay.com/sound-effects/breeze-of-blood-122253/
+    Boss:
+        shoot: https://pixabay.com/sound-effects/lightmachinegun2-7129/
+        spawn Enemies:https://pixabay.com/sound-effects/blaster-multiple-14893/
+        death: https://pixabay.com/sound-effects/dragon-death-102428/
 
 Player:
     hit:    https://pixabay.com/sound-effects/grunt1-84540/

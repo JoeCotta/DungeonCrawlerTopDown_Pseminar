@@ -7,6 +7,7 @@ using JetBrains.Annotations;
 public class Enemy : MonoBehaviour
 {
     public RoomManagment manager;//""
+    public Boss boss;
     //public bool useAlternate;
 
     public Transform target;
@@ -221,7 +222,9 @@ public class Enemy : MonoBehaviour
         }
         target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,DataBase.maxGold));//Cornell 
         target.gameObject.GetComponent<Player>().enemyKilled();
-        manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error
-    }
+        if (manager) manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error
+        else if(boss) boss.killEnemy(gameObject);
+        else Destroy(gameObject);
 
+    }
 }

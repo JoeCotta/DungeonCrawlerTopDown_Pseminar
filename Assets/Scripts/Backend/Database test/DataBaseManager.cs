@@ -9,7 +9,7 @@ public class DataBaseManager : MonoBehaviour
 
 
     public GameObject[] doors;
-    public GameObject boss, altar, ammoBox;
+    public GameObject boss, altar, ammoBox, portal;
     public float size;
 
     //Enemy
@@ -22,6 +22,7 @@ public class DataBaseManager : MonoBehaviour
         DataBase.altar = altar;
         DataBase.ammoBox = ammoBox;
         DataBase.size = size;
+        DataBase.portal = portal;
 
         DataBase.maxGold = maxGold;
         DataBase.weaponDropChance = weaponDropChance + 1; //because in Random.Range the second param. is exclusive

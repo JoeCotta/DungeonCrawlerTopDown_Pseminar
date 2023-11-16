@@ -27,7 +27,8 @@ public class RoomTemplates : MonoBehaviour
         //pick boss room
         if(waitTime <= 0 && spawnedBoss == false)
         {
-            rooms[rooms.Count - 1].GetComponent<RoomManagment>().isBossR = true;
+            // rooms[rooms.Count - 1].GetComponent<RoomManagment>().isBossR = true;
+            rooms[1].GetComponent<RoomManagment>().isBossR = true;
             spawnedBoss = true;
         }else if(waitTime > 0 && spawnedBoss == false){
             waitTime -= Time.deltaTime;

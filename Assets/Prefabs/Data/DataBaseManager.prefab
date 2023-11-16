@@ -49,9 +49,10 @@ MonoBehaviour:
   - {fileID: 8962255534860799806, guid: 4770a740a66cc684b96c40099ce7cbe6, type: 3}
   - {fileID: 4288103373122083156, guid: 7ca01df501a30cd438eaeca0295f385d, type: 3}
   - {fileID: 1501649136990674295, guid: caec4ac06e4b46441957d7fcbaee672a, type: 3}
-  boss: {fileID: 8200861080526764935, guid: 8b08f98e6abb67740b498aa48952fcd4, type: 3}
+  boss: {fileID: 9160011324959439354, guid: 9f57e6535a8704fcf8863ade811877b2, type: 3}
   altar: {fileID: 3806675101716986716, guid: 6e4d9387254efbc429a75908647bc941, type: 3}
   ammoBox: {fileID: 8934338524874200707, guid: 86383a6d98828644299a8ae966dc6d14, type: 3}
+  portal: {fileID: 8200861080526764935, guid: 8b08f98e6abb67740b498aa48952fcd4, type: 3}
   size: 3
   maxGold: 3
   weaponDropChance: 4

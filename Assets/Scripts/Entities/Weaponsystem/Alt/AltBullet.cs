@@ -7,6 +7,8 @@ public class AltBullet : MonoBehaviour
     private float dmg;
     private float speed;
     private GameObject owner;
+
+    private bool isBossBullet;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (!gameObject || !other.gameObject || !owner) return;
@@ -18,8 +20,11 @@ public class AltBullet : MonoBehaviour
     private void FixedUpdate()
     {
         if (!owner) Destroy(gameObject);
-        if (owner && owner.CompareTag("Player")) speed = 3;
-        else speed = 1;
+        if (!isBossBullet)
+        {
+            if (owner && owner.CompareTag("Player")) speed = 3;
+            else speed = 1;
+        }
         //cast ray to next position
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, speed * 15f * Time.deltaTime);
         if(hit.collider != null)
@@ -70,6 +75,13 @@ public class AltBullet : MonoBehaviour
     {
         this.dmg = dmg;
         this.owner = owner;
+        this.isBossBullet = false;
+    }
+    public void assignBossVar(float speed, Sprite sprite)
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+        this.isBossBullet = true;
+        this.speed = speed;
     }
 }
 
