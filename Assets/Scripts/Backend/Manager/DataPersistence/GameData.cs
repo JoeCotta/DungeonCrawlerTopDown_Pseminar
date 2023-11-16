@@ -57,9 +57,9 @@ public class GameData
         startArmor = 0;
         startWeaponType = 0;
 
-        maxHealthlvl = 0;
-        reviveLevel = 0;
-        armorLevel = 0;
+        maxHealthlvl = 4;
+        reviveLevel = 1;
+        armorLevel = 1;
         damageMultiplierLevel = 10;
 
         currentMaxHealth = 20;

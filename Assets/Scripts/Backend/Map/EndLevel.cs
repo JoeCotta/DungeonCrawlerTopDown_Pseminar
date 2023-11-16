@@ -44,10 +44,11 @@ public class EndLevel : MonoBehaviour
                 startGameSound.Play();
             }
         }
-        if(countEnterPortal == 1) playSound = true;
+    }
 
-        if (playSound) {
-            playSound = false;
+    void playLevelCompleteSound()
+    {
+        if(countEnterPortal == 1){
             levelCompleteSound.Play();
         }
     }
@@ -58,6 +59,7 @@ public class EndLevel : MonoBehaviour
         {
             loadScene = true;
             countEnterPortal += 1;
+            playLevelCompleteSound();
         }
     }
 }

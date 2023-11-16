@@ -67,8 +67,8 @@ public class GameManager : MonoBehaviour
     static public void resetRunData()
     {
         if(dataPersistenceManager == null) return;
-        player.health = dataPersistenceManager.gameData.maxHealth;
-        player.maxHealth = dataPersistenceManager.gameData.maxHealth;
+        player.health = dataPersistenceManager.gameData.currentMaxHealth;
+        player.maxHealth = dataPersistenceManager.gameData.currentMaxHealth;
         player.armourLevel = Mathf.RoundToInt(dataPersistenceManager.gameData.startArmor);
         if (player.weapon.GetComponent<weaponsystem>()) player.weapon.GetComponent<weaponsystem>().weaponType = dataPersistenceManager.gameData.startWeaponType;
         else if (player.weapon.GetComponent<AlternateWS>())
