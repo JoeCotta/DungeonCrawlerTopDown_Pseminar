@@ -12,6 +12,7 @@ public class EndLevel : MonoBehaviour
     private float t = 0;
     public bool loadScene;
     public bool playSound;
+    private int countEnterPortal;
     // Sound
     [SerializeField] private AudioSource levelCompleteSound;
     [SerializeField] private AudioSource startGameSound;
@@ -21,6 +22,7 @@ public class EndLevel : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
         GameManager.references.Add(gameObject);
         ftb = GameObject.FindGameObjectWithTag("FTB").GetComponent<Image>();
+        countEnterPortal = 0;
     }
 
     
@@ -42,6 +44,8 @@ public class EndLevel : MonoBehaviour
                 startGameSound.Play();
             }
         }
+        if(countEnterPortal == 1) playSound = true;
+
         if (playSound) {
             playSound = false;
             levelCompleteSound.Play();
@@ -53,7 +57,7 @@ public class EndLevel : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             loadScene = true;
-            playSound = true;
+            countEnterPortal += 1;
         }
     }
 }
