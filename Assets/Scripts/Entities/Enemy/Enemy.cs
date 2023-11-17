@@ -139,23 +139,23 @@ public class Enemy : MonoBehaviour
             weapon.transform.rotation = Quaternion.Euler(0, 0, angleToPlayer + 180f); // cornell same as with player
         }
 
-        // -30 - 90   front left
+        // -270 - -30   front left
         // -30 - -150 back
-        // 90 - -150 front-right
+        // -270 - -150 front-right
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
-        if (angleToPlayer > -30 && angleToPlayer < 90) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left;
-        else if ((angleToPlayer > 90 && angleToPlayer <= 180) || (angleToPlayer >= -180 && angleToPlayer < -150)) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_right;
+        if (angleToPlayer < -150 && angleToPlayer > -270) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_right;
+        else if ((angleToPlayer > -30 && angleToPlayer <= 0) || (angleToPlayer <= -270 && angleToPlayer > -360)) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left;
         else if (angleToPlayer < -30 && angleToPlayer > -150){
             gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
         }
-
+        
         //flip weapon sprite
         if (weapon){
             // left side
-            if (angleToPlayer < 90 && angleToPlayer >= -90) weapon.GetComponent<SpriteRenderer>().flipY = true;
+            if ((angleToPlayer > -90 && angleToPlayer <= 0) || (angleToPlayer < -270 && angleToPlayer >= -360)) weapon.GetComponent<SpriteRenderer>().flipY = true;
             //right side
-            else if((angleToPlayer >= 90 && angleToPlayer <= 180) || (angleToPlayer >= -180 && angleToPlayer < -90)) weapon.GetComponent<SpriteRenderer>().flipY = false;
+            else if(angleToPlayer <= -90 && angleToPlayer >= -270) weapon.GetComponent<SpriteRenderer>().flipY = false;
         }
 
     }
