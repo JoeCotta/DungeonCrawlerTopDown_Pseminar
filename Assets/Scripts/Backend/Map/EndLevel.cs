@@ -40,8 +40,7 @@ public class EndLevel : MonoBehaviour
                 ftb.color = new Color(0, 0, 0, t * 1 / timeToFade);
             }
             else{
-                SceneManager.LoadScene(GameManager.buildIndexOfSceneToLoad);
-                startGameSound.Play();
+                SceneManager.LoadScene("Menu");
             }
         }
     }
