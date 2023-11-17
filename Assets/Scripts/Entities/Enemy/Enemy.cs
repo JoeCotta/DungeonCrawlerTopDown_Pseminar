@@ -44,6 +44,13 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {   
+        if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()){
+            DataPersistenceManager dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
+
+            // difficulty
+            health *= dataPersistenceManager.gameData.difficulty;
+        }
+
         //get player Transform by Cornell
         //target = GameObject.FindGameObjectWithTag("Player").transform;
         target = GameManager.player.transform;
@@ -220,6 +227,9 @@ public class Enemy : MonoBehaviour
             int dropBoost = Random.Range(1, DataBase.boostDropChance);
             if (dropBoost == 1) Instantiate(boostPrefab, transform.position, Quaternion.identity);
         }
+        // sniper can't be dropped
+        if(weapon.GetComponent<AlternateWS>().weaponType == 2) Destroy(weapon);
+        
         target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,DataBase.maxGold));//Cornell 
         target.gameObject.GetComponent<Player>().enemyKilled();
         if (manager) manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error

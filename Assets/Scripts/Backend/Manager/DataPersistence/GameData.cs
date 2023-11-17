@@ -47,6 +47,7 @@ public class GameData
     public float MapVol;
     public float MusicVol;
     public float BoostsVol;
+    public float difficulty;
 
     public GameData()
     {
@@ -83,6 +84,8 @@ public class GameData
         MapVol = 0;
         MusicVol = -12;
         BoostsVol = 0;
+
+        difficulty = 1;
     }
     public ref int getLevel(string itemName)
     {

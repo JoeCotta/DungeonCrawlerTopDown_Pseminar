@@ -12,6 +12,7 @@ public class Boss : MonoBehaviour
     public float maxHealth;
     [HideInInspector] public float currentHealth;
     [SerializeField] private float bulletDamage;
+    private float damageReduceFactor;
 
 
     // references
@@ -108,6 +109,18 @@ public class Boss : MonoBehaviour
         UIBossBar.GetComponent<BossBar>().boss = this;
         UIBossBar.SetActive(true);
         UIBossBar.GetComponent<BossBar>().isBoss = true;
+
+        damageReduceFactor = 1;
+
+        // difficulty
+        if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()){
+            DataPersistenceManager dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
+
+            // difficulty
+            bulletDamage *= dataPersistenceManager.gameData.difficulty;
+            damageReduceFactor *= dataPersistenceManager.gameData.difficulty;
+            timeBetweenAttacks = Mathf.Clamp((float)(timeBetweenAttacks/(dataPersistenceManager.gameData.difficulty * 0.4)), 3, timeBetweenAttacks);
+        }
     }
     
     void UpdatePath()
@@ -149,6 +162,8 @@ public class Boss : MonoBehaviour
 
     void hit(float damage)
     {
+        damage = Mathf.Max(damage / damageReduceFactor, 1);
+
         currentHealth -= damage;
         if (currentHealth <= 0) onDeath();
         else hitSound.Play();
@@ -371,6 +386,7 @@ public class Boss : MonoBehaviour
         if (attackBurstShootCircleCount < attackBurstShootCircleCountWaves) Invoke("attackBurstShootCircle", attackBurstShootCircleTimeBetweenWaves);
         else attackBurstShootCircleCount = 0;
     }
+
     public void killEnemy(GameObject enemy)
     {
         killSound.Play();

@@ -58,6 +58,9 @@ public class AlternateWS : MonoBehaviour
         rTimer = rTime;
         throwForceMag = 350f;
         if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()) dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
+
+        // difficulty
+        if (owner.tag == "Enemy") dmg *= dataPersistenceManager.gameData.difficulty;
     }
 
     public void shoot()

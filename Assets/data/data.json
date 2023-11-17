@@ -94,22 +94,22 @@
     },
     {
       "name": "BuyRevives",
-      "startPrice": 5,
-      "priceFunction": "(x*x)",
+      "startPrice": 10,
+      "priceFunction": "((x+1)*(x+1))",
       "maxLevel": -1,
       "incrementPerUpgrade": 1
     },
     {
       "name": "StartArmor",
       "startPrice": 5,
-      "priceFunction": "(x*x)",
+      "priceFunction": "((x+4)*(x+4))",
       "maxLevel": 5,
       "incrementPerUpgrade": 1
     },
     {
       "name": "DamageMultiplier",
       "startPrice": 5,
-      "priceFunction": "(x*x)",
+      "priceFunction": "((1/4)*(x+1)*(x+1)-30)",
       "maxLevel": 100,
       "incrementPerUpgrade": 0.1
     }

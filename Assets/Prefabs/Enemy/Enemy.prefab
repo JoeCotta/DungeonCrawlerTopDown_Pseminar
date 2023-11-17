@@ -125,11 +125,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 0}
+  boss: {fileID: 0}
   target: {fileID: 0}
   speed: 500
   nextWaypointDistance: 1
   weaponPrefab: {fileID: 4382214503651565149, guid: 88611d061a3f47dff90eceee703b94db, type: 3}
-  health: 20
+  health: 17
   armorLevel: 0
   AWeapon: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}
   isDead: 0

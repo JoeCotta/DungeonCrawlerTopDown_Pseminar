@@ -16,28 +16,28 @@ public class DataBase : MonoBehaviour
         switch (weaponType)
         {
             case 0://pistol
-                temp[0] = 5; //dmg
-                temp[1] = 12; //mag
-                temp[2] = 36; //reserve
-                temp[3] = 2; //rate
+                temp[0] = 6;    //dmg
+                temp[1] = 12;   //mag
+                temp[2] = 45;   //reserve
+                temp[3] = 2.5f;    //rate
                 temp[4] = 0.90f;//accuracy
                 temp[5] = 1;
                 break;
             case 1://rifel
-                temp[0] = 4;
-                temp[1] = 30;
-                temp[2] = 90;
-                temp[3] = 5;
-                temp[4] = 0.80f;
-                temp[5] = 1;
+                temp[0] = 4;    //dmg
+                temp[1] = 30;   //mag
+                temp[2] = 90;   //reserve
+                temp[3] = 5;    //rate
+                temp[4] = 0.80f;//accuracy
+                temp[5] = 1;    
                 break;
             case 2://sniper
-                temp[0] = 40;
-                temp[1] = 5;
-                temp[2] = 15;
-                temp[3] = 0.5f;
-                temp[4] = 1.00f;
-                temp[5] = 3;
+                temp[0] = 35;   //dmg
+                temp[1] = 5;    //mag
+                temp[2] = 15;   //reserve
+                temp[3] = 0.3f; //rate
+                temp[4] = 1.00f;//accuracy
+                temp[5] = 3;    
                 break;
             default:
                 temp[0] = 5;
