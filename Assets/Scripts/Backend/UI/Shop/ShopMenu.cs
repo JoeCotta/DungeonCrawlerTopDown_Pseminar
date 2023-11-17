@@ -144,6 +144,7 @@ public class ShopMenu : MonoBehaviour
         // computes the function
         DataTable table = new DataTable();
         int cost = Convert.ToInt32(table.Compute(function, null));  
+        cost += shopItemsList[ListElement].startPrice;
         return cost;
     }
 
