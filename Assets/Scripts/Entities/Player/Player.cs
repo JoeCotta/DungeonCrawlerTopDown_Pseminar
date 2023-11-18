@@ -115,20 +115,11 @@ public class Player : MonoBehaviour, IDataPersistence
     {
         // creates the weapon
         weaponSlot = transform.GetChild(0);
-        if (!GameManager.useAlt)
-        {
-            weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);
-            // sets the weaponType
-            weapon.GetComponent<weaponsystem>().weaponType = weaponType; // sets the weaponType
-            weapon.GetComponent<weaponsystem>().owner = gameObject; // by Cornell
-        }else
-        {
-            weapon = Instantiate(GameManager.AWeapon, weaponSlot.position, weaponSlot.rotation);
-            weapon.GetComponent<AlternateWS>().weaponType = weaponType; // sets the weaponType
-            weapon.GetComponent<AlternateWS>().rarity = oldRarity;
-            if(oldReserve != -1) weapon.GetComponent<AlternateWS>().loadOldInfo(oldReserve, oldAmmo);
-            weapon.GetComponent<AlternateWS>().owner = gameObject; // by Cornell
-        }
+        weapon = Instantiate(GameManager.AWeapon, weaponSlot.position, weaponSlot.rotation);
+        weapon.GetComponent<AlternateWS>().weaponType = weaponType; // sets the weaponType
+        weapon.GetComponent<AlternateWS>().rarity = oldRarity;
+        if(oldReserve != -1) weapon.GetComponent<AlternateWS>().loadOldInfo(oldReserve, oldAmmo);
+        weapon.GetComponent<AlternateWS>().owner = gameObject; // by Cornell
     }
 
     void Update()
@@ -432,14 +423,12 @@ public class Player : MonoBehaviour, IDataPersistence
             // play weapon pickup sound
             weaponPickupSound.Play();
         }
-        //by Cornell + integration of alternate weaponsystem
-        if (weapon != null && weapon.GetComponent<weaponsystem>() != null) weapon.GetComponent<weaponsystem>().owner = gameObject;
-        else if (weapon != null) weapon.GetComponent<AlternateWS>().owner = gameObject;
+        if (weapon != null) weapon.GetComponent<AlternateWS>().owner = gameObject;
     }
     void changeSpeed()
     {
-        if(!weapon) speedBoostByWeapon = 0;
-        else if(weapon.GetComponent<weaponsystem>()) speedBoostByWeapon = weapon.GetComponent<weaponsystem>().speedWhileWearing;        
+        if(!weapon) speedBoostByWeapon = 0;      
+        else speedBoostByWeapon = weapon.GetComponent<AlternateWS>().speed;
     }
     void changeFOV() 
     {
@@ -453,7 +442,6 @@ public class Player : MonoBehaviour, IDataPersistence
 
         // changes the FOVChangeByWeapon to the current one
         if (!weapon) FOVChangeByWeapon = FOVChangeWithoutWeapon;
-        else if (weapon.GetComponent<weaponsystem>() != null) FOVChangeByWeapon = weapon.GetComponent<weaponsystem>().FOVWhileWearing;
         else FOVChangeByWeapon = weapon.GetComponent<AlternateWS>().fov;
                 
         // FOV has changed

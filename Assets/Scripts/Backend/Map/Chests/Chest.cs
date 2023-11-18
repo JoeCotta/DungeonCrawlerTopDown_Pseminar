@@ -23,29 +23,12 @@ public class Chest : MonoBehaviour
 
         // set the info text when colliding with the chest
         text.GetComponent<TextMeshPro>().text = "press 'E' to pay " + price.ToString() + " coins to open the Level " + (chestLevel + 1).ToString() + " chest";
-    
-        // gets the weapon Stats
-        weaponStats[] weapons = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().weaponStatsList;
-        int countWeapons = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().countWeapons;
-
-        // setting up loot table
-        // creating a loot table with 1000 weapons -> if the chance is 0.256 then there will be 256 weapons of this type in the list to simulate the chance
-        for (int i = 0; i < countWeapons; i++)
-        {
-            float chance = weapons[i].chestSpawnWeaponChances[chestLevel].chance * 1000;
-            for (int j = 0; j < chance; j++) lootTable.Add(weapons[i].id);
-        }
-
-        if(lootTable.Count != 1000) Debug.Log("Weapon Chances of Chest Level " + chestLevel + " are wrong");
-
     }
 
     // spawns a weapon
     void spawnWeapon()
     {
-        // selects a random weaponType
-        int item = Random.Range(0, lootTable.Count);
-        int weaponType = lootTable[item];
+        int weaponType = DataBase.weaponType(chestLevel);
         int rarity = DataBase.rarity(chestLevel);
 
         // creates the weapon

@@ -64,25 +64,14 @@ public class Enemy : MonoBehaviour
         // initialises the weaponSystem (random weapon)
         weaponSlot = transform.GetChild(0);
 
-        // gets the amount of weapons which are available         
-        int countWeapons = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().countWeapons;
-
         // selects a random weapon type
-        int weaponType = Random.Range(0, countWeapons);
+        int weaponType = Random.Range(0, 3);
 
         // creates the weapon
-        if (!GameManager.useAlt)
-        {
-            weapon = Instantiate(weaponPrefab, weaponSlot.position, weaponSlot.rotation);
-            weapon.GetComponent<weaponsystem>().weaponType = weaponType; // sets the weaponType
-            weapon.GetComponent<weaponsystem>().owner = gameObject;
-        }
-        else
-        {
-            weapon = Instantiate(AWeapon, weaponSlot.position, weaponSlot.rotation);
-            weapon.GetComponent<AlternateWS>().weaponType = weaponType;
-            weapon.GetComponent<AlternateWS>().owner = gameObject;
-        }
+        weapon = Instantiate(AWeapon, weaponSlot.position, weaponSlot.rotation);
+        weapon.GetComponent<AlternateWS>().weaponType = weaponType;
+        weapon.GetComponent<AlternateWS>().owner = gameObject;
+
 
         armorLevel = Random.Range(0, 11);
 

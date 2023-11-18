@@ -6,9 +6,11 @@ using UnityEngine;
 
 public class MaxHealthUp : MonoBehaviour
 {
-    public DataPersistenceManager dataPersistenceManager;
-    public ShopMenu shopMenu;
-    public TextMeshProUGUI text;
+    private DataPersistenceManager dataPersistenceManager;
+    private ShopMenu shopMenu;
+    private TextMeshProUGUI text;
+    private int level;
+    private float price;
 
     void Start()
     {
@@ -19,6 +21,12 @@ public class MaxHealthUp : MonoBehaviour
 
     void Update()
     {
-        text.text = "Max Health Up\r\n" + shopMenu.priceMaxHealth + " Coins"  +"\r\n lvl: " + dataPersistenceManager.gameData.maxHealthlvl.ToString() + " " + dataPersistenceManager.gameData.maxHealth.ToString();
+        level = dataPersistenceManager.gameData.maxHealthlvl;
+        price = shopMenu.maxHealthUpPrice;
+
+        text.text = "Max Health\r\n";
+        text.text += "Level " + level.ToString() + " -> " + (level + 1).ToString() + "\r\n";
+        text.text += price.ToString() + " Coins";
     }
+
 }

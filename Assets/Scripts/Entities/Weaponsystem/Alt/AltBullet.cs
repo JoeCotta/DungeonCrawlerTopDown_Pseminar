@@ -46,9 +46,9 @@ public class AltBullet : MonoBehaviour
         }
 
         //if bullet of enemy delete
-        if (other.CompareTag("Bullet") && other.GetComponent<Bullet>() && other.GetComponent<Bullet>().owner != null)
+        if (other.CompareTag("Bullet") && other.GetComponent<AltBullet>() && other.GetComponent<AltBullet>().owner != null)
         {
-            if (!other.GetComponent<Bullet>().owner.CompareTag(owner.tag)) Destroy(gameObject);
+            if (!other.GetComponent<AltBullet>().owner.CompareTag(owner.tag)) Destroy(gameObject);
         }
         //if map object delete
         switch (other.tag)

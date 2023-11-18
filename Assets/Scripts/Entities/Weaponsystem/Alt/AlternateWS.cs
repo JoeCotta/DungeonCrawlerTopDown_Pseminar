@@ -19,7 +19,7 @@ public class AlternateWS : MonoBehaviour
 
     public int weaponType, rarity;
     private float dmg, rate, accuracy, chargedTime, maxChargeTime = 4, maxChargeDmgMultiplier = 4;
-    public float mag, reserve, fov, ammo, dmgtest;
+    public float mag, reserve, fov, ammo, dmgtest, speed;
     private bool blockLoadingInfo = false, isCharging = false;
 
     public Sprite[] textureEditor, magSprites;
@@ -51,6 +51,7 @@ public class AlternateWS : MonoBehaviour
         rate = temp[3];
         accuracy = temp[4];
         fov = temp[5];
+        speed = temp[6];
         if (!blockLoadingInfo) ammo = mag;
         if (rarity != 3) gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType];
         else gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType + 3];
@@ -60,7 +61,7 @@ public class AlternateWS : MonoBehaviour
         if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()) dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
 
         // difficulty
-        if (owner.tag == "Enemy") dmg *= dataPersistenceManager.gameData.difficulty;
+        if (owner) if (owner.tag == "Enemy") dmg *= dataPersistenceManager.gameData.difficulty;
     }
 
     public void shoot()

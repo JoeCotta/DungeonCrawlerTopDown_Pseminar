@@ -12,7 +12,7 @@ public class DataBase : MonoBehaviour
 
     static public float[] weaponBase(int weaponType, int rarity)
     {
-        float[] temp = new float[6];
+        float[] temp = new float[7];
         switch (weaponType)
         {
             case 0://pistol
@@ -21,7 +21,8 @@ public class DataBase : MonoBehaviour
                 temp[2] = 45;   //reserve
                 temp[3] = 2.5f;    //rate
                 temp[4] = 0.90f;//accuracy
-                temp[5] = 1;
+                temp[5] = 1;    // fov
+                temp[6] = -1;   // speed
                 break;
             case 1://rifel
                 temp[0] = 4;    //dmg
@@ -29,7 +30,8 @@ public class DataBase : MonoBehaviour
                 temp[2] = 90;   //reserve
                 temp[3] = 5;    //rate
                 temp[4] = 0.80f;//accuracy
-                temp[5] = 1;    
+                temp[5] = 1;    // fov
+                temp[6] = -2;   // speed
                 break;
             case 2://sniper
                 temp[0] = 35;   //dmg
@@ -37,7 +39,8 @@ public class DataBase : MonoBehaviour
                 temp[2] = 15;   //reserve
                 temp[3] = 0.3f; //rate
                 temp[4] = 1.00f;//accuracy
-                temp[5] = 3;    
+                temp[5] = 3;    // fov
+                temp[6] = -3;   // speed
                 break;
             default:
                 temp[0] = 5;
@@ -46,6 +49,7 @@ public class DataBase : MonoBehaviour
                 temp[3] = 2;
                 temp[4] = 0.90f;
                 temp[5] = 1;
+                temp[6] = -1;   // speed
                 break;
         }
         switch (rarity)
@@ -100,6 +104,39 @@ public class DataBase : MonoBehaviour
                 value = 1;
                 break;
         }
+        return value;
+    }
+    static public int weaponType(int chestLvl)
+    {
+        float randomizer = Random.value; int value;
+        switch (chestLvl)
+        {
+            case 0:
+                if (randomizer < 0.8f) value = 0;
+                else value = 1;
+                break;
+            case 1:
+                if (randomizer < 0.9f) value = 0;
+                if (randomizer < 0.4f) value = 1;
+                else value = 2;
+                break;
+            case 2:
+                if (randomizer < 0.6f) value = 0;
+                if (randomizer < 0.3f) value = 1;
+                else value = 2;
+                break;
+            default:
+                value = 1;
+                break;
+        }
+        return value;
+    }
+    static public int chestLevel()
+    {
+        float randomizer = Random.value; 
+        int value = 0;
+        if (randomizer < 0.4f) value = 1;
+        if (randomizer < 0.2f) value = 2;
         return value;
     }
 }

@@ -300,37 +300,15 @@ public class RoomManagment : MonoBehaviour
         //decide if spawn chest and which one
         int randomChestGen = Random.Range(1, 5);
         if (randomChestGen == 1) {
-            // get the amount of available chests
-            int countChests = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().countChests;
-
-            chestStats[] chestsStatsList = GameObject.FindWithTag("dataHandler").GetComponent<dataHandler>().chestsStatsList;
-            List<int> chestList = new List<int>();
-
-            // creates a list with 1000 elements to simulate the different Spawn chances of the chests
-            for (int i = 0; i < countChests; i++)
-            {
-                for (int j = 0; j < chestsStatsList[i].chestSpawnChance * 1000; j++)
-                {
-                    chestList.Add(chestsStatsList[i].chestLevel);
-                }
-            }
-
-            // checks if all the spawn chances are add together is 1 otherwise the chances are not correct
-            if (chestList.Count != 1000) Debug.Log("Chest Spawn Chances are not correct");
-
-            // select a random chest
-            int randomChest = Random.Range(0, chestList.Count);
-            int chestLevel = chestList[randomChest];
-
             // creates a chest and sets the level
             GameObject chest = Instantiate(chestPrefab, transform.position, Quaternion.identity);
-            chest.GetComponent<Chest>().chestLevel = chestLevel;
+            chest.GetComponent<Chest>().chestLevel = DataBase.chestLevel();
         }
 
         int randomAltar; randomAltar = Random.Range(1, 21);
         if(randomAltar == 1) Instantiate(DataBase.altar, transform.position + new Vector3(0,-2,0) * DataBase.size, Quaternion.identity);
 
-        int randomAmmo; randomAmmo = Random.RandomRange(1, 11);
+        int randomAmmo; randomAmmo = Random.Range(1, 11);
         if (randomAmmo == 1) Instantiate(DataBase.ammoBox, transform.position + new Vector3(-2, 0, 0) * DataBase.size, Quaternion.identity);
 
         enemysCount = 0;

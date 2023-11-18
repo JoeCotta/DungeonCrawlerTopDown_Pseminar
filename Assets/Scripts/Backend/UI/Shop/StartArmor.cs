@@ -6,9 +6,11 @@ using UnityEngine.UI;
 
 public class StartArmor : MonoBehaviour
 {
-    public DataPersistenceManager dataPersistenceManager;
-    public ShopMenu shopMenu;
-    public TextMeshProUGUI text;
+    private DataPersistenceManager dataPersistenceManager;
+    private ShopMenu shopMenu;
+    private TextMeshProUGUI text;
+    private int level;
+    private float price;
 
     void Start()
     {
@@ -19,6 +21,12 @@ public class StartArmor : MonoBehaviour
 
     void Update()
     {
-        text.text = "Starting Armor\r\n"+ shopMenu.priceArmor + " Coins" + "\r\n lvl: " + dataPersistenceManager.gameData.startArmor.ToString();
+        level = dataPersistenceManager.gameData.armorLevel;
+        price = shopMenu.startArmourPrice;
+
+        text.text = "Start Armour\r\n";
+        text.text += "Level " + level.ToString() + " -> " + (level + 1).ToString() + "\r\n";
+        text.text += price.ToString() + " Coins\n";
+        if (level >= 5) text.text += "Max level reached";
     }
 }

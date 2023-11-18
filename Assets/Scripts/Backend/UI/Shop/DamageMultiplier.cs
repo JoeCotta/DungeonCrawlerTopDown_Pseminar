@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
-public class BuyRevives : MonoBehaviour
+public class DamageMultiplier : MonoBehaviour
 {
     private DataPersistenceManager dataPersistenceManager;
     private ShopMenu shopMenu;
@@ -20,10 +20,10 @@ public class BuyRevives : MonoBehaviour
 
     void Update()
     {
-        level = dataPersistenceManager.gameData.reviveLevel;
-        price = shopMenu.revivePrice;
+        level = dataPersistenceManager.gameData.damageMultiplierLevel;
+        price = shopMenu.damageMultiplierPrice;
 
-        text.text = "Revives\r\n";
+        text.text = "Damage Multiplier\r\n";
         text.text += "Level " + level.ToString() + " -> " + (level + 1).ToString() + "\r\n";
         text.text += price.ToString() + " Coins";
     }
