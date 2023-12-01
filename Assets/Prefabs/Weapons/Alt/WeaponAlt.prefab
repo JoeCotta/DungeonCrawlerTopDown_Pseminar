@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 8045670057354165126}
   - component: {fileID: 7958867293475310358}
   - component: {fileID: -2808571969892953247}
+  - component: {fileID: 3296771274801036705}
   m_Layer: 0
   m_Name: WeaponAlt
   m_TagString: Item
@@ -146,6 +147,7 @@ MonoBehaviour:
   fov: 0
   ammo: 0
   dmgtest: 0
+  speed: 0
   textureEditor:
   - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
   - {fileID: -115298813, guid: d2d44dba6fe796e4f961b2ff3f202a78, type: 3}
@@ -965,6 +967,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3296771274801036705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382214503651565149}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0700fe73f18059b4f872268d9e4f4d31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7501521925421664693
 GameObject:
   m_ObjectHideFlags: 0

@@ -28,6 +28,7 @@ public class MainMenu : MonoBehaviour
     public void playGame(){
         //remember that button might be pointing to wrong menu(e. mainmenu/savemenu) if you save buildindex in scene
         //loadGame = true;
+        GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>().SaveGame();
         SceneManager.LoadScene(buildIndexOfSceneToLoad);
     }
 

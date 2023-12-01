@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class GameManager : MonoBehaviour
+public class GameManager : MonoBehaviour, IDataPersistence
 {
     //private references
     private Image ffb;
@@ -23,6 +23,12 @@ public class GameManager : MonoBehaviour
     static public bool useAlt, isPaused = false;
     static public int buildIndexOfSceneToLoad = 2;
     static public GameObject AWeapon;
+    public Sprite susref_Right;
+    static public Sprite sus_Right;
+    public Sprite susref_Left;
+    static public Sprite sus_Left;
+    public bool susModeRef;
+    static public bool enableSusMode;
 
     public int activeBoosts = 0;
     public List<GameObject> boostList = new List<GameObject>();
@@ -34,6 +40,8 @@ public class GameManager : MonoBehaviour
         GameManager.references = new List<GameObject>(); //very important line
         useAlt = useAltInterface;
         AWeapon = AWeaponAssing;
+        sus_Right = susref_Right;
+        sus_Left = susref_Left; 
         Invoke("assingReferences", 1f);
         if(GameObject.FindGameObjectWithTag("FTB")) ffb = GameObject.FindGameObjectWithTag("FTB").GetComponent<Image>();
         if(GameObject.FindGameObjectWithTag("Hud")) hud = GameObject.FindGameObjectWithTag("Hud");
@@ -141,5 +149,16 @@ public class GameManager : MonoBehaviour
         Debug.Log("found no datapersistencemanager, trying again");
         if (dataTry < 3) { Invoke("returnDataPersistence", 0.5f); dataTry++; } else { Debug.LogError("several trys NO DATAManag"); }
         return null;
+    }
+
+    public void LoadData(GameData data)
+    {
+        this.susModeRef = data.susMode;
+        enableSusMode = susModeRef;
+    }
+
+    public void SaveData(ref GameData data)
+    {
+        ;
     }
 }

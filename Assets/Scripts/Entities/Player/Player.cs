@@ -156,6 +156,8 @@ public class Player : MonoBehaviour, IDataPersistence
         lookDir = rb.position - mousePosition;
         angleToMouse = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
 
+        updatePlayerSprite();
+        /*
         // -30 - 90   front left
         // -30 - -150 back
         // 90 - -150 front-right
@@ -165,7 +167,7 @@ public class Player : MonoBehaviour, IDataPersistence
         else if (angleToMouse < -30 && angleToMouse > -150){
             gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
-        }
+        }*/
 
         //flip weapon sprite
         if (weapon){
@@ -457,6 +459,34 @@ public class Player : MonoBehaviour, IDataPersistence
             // sets the FOV smoothly
             cam.orthographicSize = Mathf.Lerp(lastFOV, FOV + FOVChangeByWeapon, t);
         }
+    }
+
+    public void updatePlayerSprite()
+    {
+        //to enable easy setting of sprite by sus mode
+        if (GameManager.enableSusMode)
+        {
+            susSprite();
+            return;
+        }
+        // -30 - 90   front left
+        // -30 - -150 back
+        // 90 - -150 front-right
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        if (angleToMouse > -30 && angleToMouse < 90) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left;
+        else if ((angleToMouse > 90 && angleToMouse <= 180) || (angleToMouse >= -180 && angleToMouse < -150)) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_right;
+        else if (angleToMouse < -30 && angleToMouse > -150)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+        }
+    }
+
+    public void susSprite()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        if (angleToMouse > -90 && angleToMouse < 90) gameObject.GetComponent<SpriteRenderer>().sprite = GameManager.sus_Left;
+        else if ((angleToMouse > 90 && angleToMouse <= 180) || (angleToMouse >= -180 && angleToMouse < -90)) gameObject.GetComponent<SpriteRenderer>().sprite = GameManager.sus_Right;
     }
 
     public void onPlayerDead()

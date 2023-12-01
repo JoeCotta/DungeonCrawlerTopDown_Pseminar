@@ -48,6 +48,7 @@ public class GameData
     public float MusicVol;
     public float BoostsVol;
     public float difficulty;
+    public bool susMode;
 
     public GameData()
     {
@@ -84,6 +85,7 @@ public class GameData
         MapVol = 0;
         MusicVol = -12;
         BoostsVol = 0;
+        susMode = false;
 
         difficulty = 1;
     }

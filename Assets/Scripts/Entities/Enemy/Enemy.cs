@@ -25,6 +25,7 @@ public class Enemy : MonoBehaviour
 
     private Path path;
     private int currentWaypoint = 0;
+    private float angleToPlayer;
 
     private Seeker seeker;
     private Rigidbody2D rb;
@@ -118,7 +119,7 @@ public class Enemy : MonoBehaviour
 
         // manages rotation while following target
         Vector2 direction = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(15f,target.gameObject) - rb.position).normalized;
-        float angleToPlayer = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg -180f;
+        angleToPlayer = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg -180f;
         
 
         // update the position and rotation of the weapon if the enemy has one
@@ -128,6 +129,8 @@ public class Enemy : MonoBehaviour
             weapon.transform.rotation = Quaternion.Euler(0, 0, angleToPlayer + 180f); // cornell same as with player
         }
 
+        updateSprite();
+        /*
         // -270 - -30   front left
         // -30 - -150 back
         // -270 - -150 front-right
@@ -137,7 +140,7 @@ public class Enemy : MonoBehaviour
         else if (angleToPlayer < -30 && angleToPlayer > -150){
             gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
-        }
+        }*/
         
         //flip weapon sprite
         if (weapon){
@@ -205,6 +208,33 @@ public class Enemy : MonoBehaviour
             onDeath();
         }
         else hitSound.Play();
+    }
+
+    void updateSprite()
+    {
+        if(GameManager.enableSusMode)
+        {
+            updateSusSprite();
+            return;
+        }
+        // -270 - -30   front left
+        // -30 - -150 back
+        // -270 - -150 front-right
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        if (angleToPlayer < -150 && angleToPlayer > -270) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_right;
+        else if ((angleToPlayer > -30 && angleToPlayer <= 0) || (angleToPlayer <= -270 && angleToPlayer > -360)) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left;
+        else if (angleToPlayer < -30 && angleToPlayer > -150)
+        {
+            gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
+            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+        }
+    }
+
+    void updateSusSprite()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
+        if (angleToPlayer < -90 && angleToPlayer > -270) gameObject.GetComponent<SpriteRenderer>().sprite = GameManager.sus_Right;
+        else if ((angleToPlayer > -90 && angleToPlayer <= 0) || (angleToPlayer <= -270 && angleToPlayer > -360)) gameObject.GetComponent<SpriteRenderer>().sprite = GameManager.sus_Left;
     }
 
     void onDeath()
