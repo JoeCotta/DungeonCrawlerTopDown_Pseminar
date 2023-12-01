@@ -10,28 +10,32 @@ public class GameManager : MonoBehaviour, IDataPersistence
     //private references
     private Image ffb;
     private GameObject hud, pause;
-    public GameObject AWeaponAssing;
+    public  GameObject AWeaponAssing;
 
     //remember to drag scene in files>build settings> here     and but the number next to it in here
-    public bool isMenu;//set manually
+    public  bool isMenu;//set manually
 
     //public vars
-    static public List<GameObject> references;
-    static public Player player;
-    static public DataPersistenceManager dataPersistenceManager;
-    public bool useAltInterface;
-    static public bool useAlt, isPaused = false;
-    static public int buildIndexOfSceneToLoad = 2;
-    static public GameObject AWeapon;
-    public Sprite susref_Right;
-    static public Sprite sus_Right;
-    public Sprite susref_Left;
-    static public Sprite sus_Left;
-    public bool susModeRef;
-    static public bool enableSusMode;
+    //        public bool useAltInterface;
+    //static  public bool useAlt, isPaused = false;
+    static  public List<GameObject> references;
+    static  public Player player;
+    static  public DataPersistenceManager dataPersistenceManager;
+    static  public int buildIndexOfSceneToLoad = 2;
+    static  public GameObject AWeapon;
+            public Sprite susref_Right;
+    static  public Sprite sus_Right;
+            public Sprite susref_Left;
+    static  public Sprite sus_Left;
+            public bool useAltInterface;
+    static  public bool useAlt, isPaused = false;
+            public bool susModeRef;
+    static  public bool enableSusMode;
+            public bool hardcoreModeRef = false;
+    static  public bool hardcoreMode;
 
-    public int activeBoosts = 0;
-    public List<GameObject> boostList = new List<GameObject>();
+    public  int activeBoosts = 0;
+    public  List<GameObject> boostList = new List<GameObject>();
 
 
     [SerializeField] private AudioSource startGameSound;
@@ -155,6 +159,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     {
         this.susModeRef = data.susMode;
         enableSusMode = susModeRef;
+        this.hardcoreModeRef = data.hardcoreMode;
+        hardcoreMode = hardcoreModeRef;
     }
 
     public void SaveData(ref GameData data)
