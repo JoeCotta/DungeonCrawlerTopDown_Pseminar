@@ -29,7 +29,7 @@ public class KeySaver : MonoBehaviour, IDataPersistence
         string code = "";
         for(int i = 5; i >= 0; i--) code += pressedKeys[i];
 
-        if (code == "amogus") susMode = !susMode;
+        if (code == "sugoma") susMode = !susMode;
     }
 
     public void LoadData(GameData data)
@@ -40,6 +40,5 @@ public class KeySaver : MonoBehaviour, IDataPersistence
     public void SaveData(ref GameData data)
     {
         data.susMode = this.susMode;
-        Debug.Log(data.susMode);
     }
 }
