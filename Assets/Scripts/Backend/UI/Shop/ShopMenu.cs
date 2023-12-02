@@ -93,8 +93,8 @@ public class ShopMenu : MonoBehaviour
         {
             dataPersistenceManager.gameData.damageMultiplierLevel += 1;
             dataPersistenceManager.gameData.currentCoins -= damageMultiplierPrice;
-            dataPersistenceManager.gameData.currentDamageMultiplier = dataPersistenceManager.gameData.damageMultiplierLevel / 10;
-            dataPersistenceManager.gameData.permanentDamageMultiplier = dataPersistenceManager.gameData.damageMultiplierLevel / 10;
+            dataPersistenceManager.gameData.currentDamageMultiplier = (float)dataPersistenceManager.gameData.damageMultiplierLevel / 10;
+            dataPersistenceManager.gameData.permanentDamageMultiplier = (float)dataPersistenceManager.gameData.damageMultiplierLevel / 10;
 
             dataPersistenceManager.SaveGame();
 
