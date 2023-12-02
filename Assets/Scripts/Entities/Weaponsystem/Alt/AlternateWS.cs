@@ -66,7 +66,7 @@ public class AlternateWS : MonoBehaviour
 
     public void shoot()
     {
-        if(interval > 1 / rate && ammo > 0 && !reloading)
+        if (interval > 1 / rate && ammo > 0 && !reloading)
         {
             // shoot sound
             shootSounds[weaponType].Play();
@@ -76,14 +76,18 @@ public class AlternateWS : MonoBehaviour
                 isCharging = true;
                 return;
             }
-            Vector3 inAccuracy = new Vector3(0,0,Random.Range(-45+accuracy*45,45-accuracy*45+1));
+            Vector3 inAccuracy = new Vector3(0, 0, Random.Range(-45 + accuracy * 45, 45 - accuracy * 45 + 1));
             interval = 0;
-            if(owner.tag != "Enemy")ammo--;
-            GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized*Quaternion.Euler(0,0,inAccuracy.z));
-            if(temp != null) temp.GetComponent<AltBullet>().assingVar(dmg * dataPersistenceManager.gameData.currentDamageMultiplier,owner);
+            if (owner.tag != "Enemy") ammo--;
+            GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized * Quaternion.Euler(0, 0, inAccuracy.z));
+            if (temp != null) temp.GetComponent<AltBullet>().assingVar(dmg * dataPersistenceManager.gameData.currentDamageMultiplier, owner);
         }
         // no ammo
-        else if(interval > 1 / rate && ammo <= 0 && !reloading) emptyWeaponShootSound.Play();
+        else if (interval > 1 / rate && ammo <= 0 && !reloading)
+        {
+            Reload();
+            emptyWeaponShootSound.Play();
+        }
     }
 
     public void chargedShot()
