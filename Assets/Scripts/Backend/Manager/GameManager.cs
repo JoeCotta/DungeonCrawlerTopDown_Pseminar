@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class GameManager : MonoBehaviour, IDataPersistence
 {
@@ -39,6 +40,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     public  List<GameObject> boostList = new List<GameObject>();
 
 
+    [SerializeField] private AudioMixer masterMixer;
+
     [SerializeField] private AudioSource startGameSound;
     private void Start()
     {
@@ -51,6 +54,22 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if(GameObject.FindGameObjectWithTag("FTB"))         ffb = GameObject.FindGameObjectWithTag("FTB").GetComponent<Image>();
         if(GameObject.FindGameObjectWithTag("Hud"))         hud = GameObject.FindGameObjectWithTag("Hud");
         if (GameObject.FindGameObjectWithTag("Pause")) {    pause = GameObject.FindGameObjectWithTag("Pause"); pause.SetActive(false); isPaused = false;  Time.timeScale = 1; }
+    
+        Invoke("updateVolume", 1f);
+
+    }
+
+    // update Volume
+    void updateVolume()
+    {
+        masterMixer.SetFloat("MasterVol", dataPersistenceManager.gameData.MasterVol);
+        masterMixer.SetFloat("WeaponVol", dataPersistenceManager.gameData.WeaponVol);
+        masterMixer.SetFloat("PlayerVol", dataPersistenceManager.gameData.PlayerVol);
+        masterMixer.SetFloat("EnemyVol", dataPersistenceManager.gameData.EnemyVol);
+        masterMixer.SetFloat("UIVol", dataPersistenceManager.gameData.UIVol);
+        masterMixer.SetFloat("MapVol", dataPersistenceManager.gameData.MapVol);
+        masterMixer.SetFloat("MusicVol", dataPersistenceManager.gameData.MusicVol);
+        masterMixer.SetFloat("BoostsVol", dataPersistenceManager.gameData.BoostsVol);
     }
 
     float t; public float timeToFadeFromBlack;

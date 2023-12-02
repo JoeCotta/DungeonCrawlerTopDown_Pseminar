@@ -46,10 +46,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AWeaponAssing: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}
   isMenu: 0
-  useAltInterface: 0
   susref_Right: {fileID: 21300000, guid: 54250947b7e048f46b7124c6fa648b36, type: 3}
   susref_Left: {fileID: 21300000, guid: a194fae8051ca244ba69be9efe3dae7e, type: 3}
+  useAltInterface: 0
+  susModeRef: 0
+  hardcoreModeRef: 0
   activeBoosts: 0
   boostList: []
+  masterMixer: {fileID: 24100000, guid: ad231dd58fdd393858f042622484e2b5, type: 2}
   startGameSound: {fileID: 0}
   timeToFadeFromBlack: 2
