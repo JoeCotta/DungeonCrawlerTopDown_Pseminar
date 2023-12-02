@@ -42,14 +42,14 @@ public class GameManager : MonoBehaviour, IDataPersistence
     private void Start()
     {
         GameManager.references = new List<GameObject>(); //very important line
-        useAlt = useAltInterface;
-        AWeapon = AWeaponAssing;
-        sus_Right = susref_Right;
-        sus_Left = susref_Left; 
+        useAlt      = useAltInterface;
+        AWeapon     = AWeaponAssing;
+        sus_Right   = susref_Right;
+        sus_Left    = susref_Left; 
         Invoke("assingReferences", 1f);
-        if(GameObject.FindGameObjectWithTag("FTB")) ffb = GameObject.FindGameObjectWithTag("FTB").GetComponent<Image>();
-        if(GameObject.FindGameObjectWithTag("Hud")) hud = GameObject.FindGameObjectWithTag("Hud");
-        if (GameObject.FindGameObjectWithTag("Pause")) { pause = GameObject.FindGameObjectWithTag("Pause"); pause.SetActive(false); }
+        if(GameObject.FindGameObjectWithTag("FTB"))         ffb = GameObject.FindGameObjectWithTag("FTB").GetComponent<Image>();
+        if(GameObject.FindGameObjectWithTag("Hud"))         hud = GameObject.FindGameObjectWithTag("Hud");
+        if (GameObject.FindGameObjectWithTag("Pause")) {    pause = GameObject.FindGameObjectWithTag("Pause"); pause.SetActive(false); isPaused = false;  Time.timeScale = 1; }
     }
 
     float t; public float timeToFadeFromBlack;
