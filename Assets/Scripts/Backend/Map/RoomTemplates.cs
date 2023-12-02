@@ -10,6 +10,7 @@ public class RoomTemplates : MonoBehaviour
     public GameObject[] topRooms;
     public GameObject[] leftRooms;
     public GameObject[] rightRooms;
+    public GameObject BossIconMap;
 
     // preset Variables/References
     public GameObject[] chests;
@@ -28,6 +29,7 @@ public class RoomTemplates : MonoBehaviour
         if(waitTime <= 0 && spawnedBoss == false)
         {
             rooms[rooms.Count - 1].GetComponent<RoomManagment>().isBossR = true;
+            Instantiate(BossIconMap, rooms[rooms.Count - 1].transform);
             spawnedBoss = true;
         }else if(waitTime > 0 && spawnedBoss == false){
             waitTime -= Time.deltaTime;

@@ -18,21 +18,22 @@ public class GameManager : MonoBehaviour, IDataPersistence
     //public vars
     //        public bool useAltInterface;
     //static  public bool useAlt, isPaused = false;
-    static  public List<GameObject> references;
-    static  public Player player;
+
     static  public DataPersistenceManager dataPersistenceManager;
-    static  public int buildIndexOfSceneToLoad = 2;
+    static  public List<GameObject> references;
     static  public GameObject AWeapon;
             public Sprite susref_Right;
     static  public Sprite sus_Right;
             public Sprite susref_Left;
     static  public Sprite sus_Left;
+    static  public Player player;
             public bool useAltInterface;
     static  public bool useAlt, isPaused = false;
             public bool susModeRef;
     static  public bool enableSusMode;
             public bool hardcoreModeRef = false;
     static  public bool hardcoreMode;
+    static  public int buildIndexOfSceneToLoad = 2;
 
     public  int activeBoosts = 0;
     public  List<GameObject> boostList = new List<GameObject>();
