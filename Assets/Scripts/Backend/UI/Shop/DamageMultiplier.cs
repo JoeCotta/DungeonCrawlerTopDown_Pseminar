@@ -24,7 +24,7 @@ public class DamageMultiplier : MonoBehaviour
         price = shopMenu.damageMultiplierPrice;
 
         text.text = "Damage Multiplier\r\n";
-        text.text += "Level " + level.ToString() + " -> " + (level + 1).ToString() + "\r\n";
+        text.text += "Level " + (level - 10).ToString() + " -> " + (level - 10 + 1).ToString() + "\r\n";
         text.text += price.ToString() + " Coins";
     }
 }

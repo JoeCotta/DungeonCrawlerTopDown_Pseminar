@@ -25,7 +25,7 @@ public class MaxHealthUp : MonoBehaviour
         price = shopMenu.maxHealthUpPrice;
 
         text.text = "Max Health\r\n";
-        text.text += "Level " + level.ToString() + " -> " + (level + 1).ToString() + "\r\n";
+        text.text += "Level " + (level - 4).ToString() + " -> " + (level - 4 + 1).ToString() + "\r\n";
         text.text += price.ToString() + " Coins";
     }
 
