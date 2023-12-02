@@ -1,8 +1,8 @@
-Dieses Spiel, ein TopDownDungeon-Crawler Rouge-like, ist im Rahmen eines P-seminars an einem Deutschen Gymnasium mithilfe der [Spiele-Engine Unity](https://unity.com/) entstanden. 
+Dieses Spiel, ein TopDownDungeon-Crawler Rouge-like, ist im Rahmen eines P-seminars an einem deutschen Gymnasium mithilfe der [Spiele-Engine Unity](https://unity.com/) entstanden. 
 
 # Installation
 
-Lade dir [hier]() den richtigen Ordner, je nach deinem Betriebssystem, herunter. Das Spiel startest du, indem du einen Doppelklick auf die Datei xxx machst.
+Lade dir [hier](https://github.com/JoeCotta/DungeonCrawlerTopDown_Pseminar/releases/) den richtigen Ordner, je nach deinem Betriebssystem, herunter. Das Spiel startest du, indem du einen Doppelklick auf die Datei "TDDC" machst.
 
 # Mithelfen
 
