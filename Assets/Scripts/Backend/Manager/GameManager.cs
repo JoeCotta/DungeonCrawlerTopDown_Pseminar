@@ -156,6 +156,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
         return null;
     }
 
+    public void HardCoreModeSwitch()
+    {
+        hardcoreMode = !hardcoreMode;
+    }
+
     public void LoadData(GameData data)
     {
         this.susModeRef = data.susMode;
@@ -166,6 +171,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public void SaveData(ref GameData data)
     {
-        ;
+        hardcoreModeRef = hardcoreMode;
+        data.hardcoreMode = this.hardcoreModeRef;
     }
 }

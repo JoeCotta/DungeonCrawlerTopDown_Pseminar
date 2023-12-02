@@ -22,8 +22,9 @@ public class AltBullet : MonoBehaviour
         if (!owner) Destroy(gameObject);
         if (!isBossBullet)
         {
-            if (owner && owner.CompareTag("Player")) speed = 3;
-            else speed = 0.5f;
+            if (owner && owner.CompareTag("Player"))    speed = 3f;
+            else if (GameManager.hardcoreMode)          speed = 1f;
+            else                                        speed = 0.5f;
         }
         //cast ray to next position
         RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, speed * 15f * Time.deltaTime);
