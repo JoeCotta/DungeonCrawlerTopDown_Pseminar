@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         player.health = dataPersistenceManager.gameData.currentMaxHealth;
         player.maxHealth = dataPersistenceManager.gameData.currentMaxHealth;
         player.armourLevel = Mathf.RoundToInt(dataPersistenceManager.gameData.startArmor);
-        if (player.weapon.GetComponent<AlternateWS>())
+        if (player.weapon && player.weapon.GetComponent<AlternateWS>())
         {
             player.weapon.GetComponent<AlternateWS>().weaponType = dataPersistenceManager.gameData.startWeaponType;
             player.weapon.GetComponent<AlternateWS>().reserve = -1; //to disable it loading old reserve
