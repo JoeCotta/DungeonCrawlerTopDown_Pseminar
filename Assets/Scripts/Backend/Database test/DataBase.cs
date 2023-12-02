@@ -85,6 +85,8 @@ public class DataBase : MonoBehaviour
     }
     static public int rarity(int chestLvl)
     {
+        //-Switch is for Different level of chests for the different drop chances of raritys
+        //-in case: if hits chance in if -> rare, elsewise epic       <common dont drop from chests>
         float randomizer = Random.value; int value;
         switch (chestLvl)
         {

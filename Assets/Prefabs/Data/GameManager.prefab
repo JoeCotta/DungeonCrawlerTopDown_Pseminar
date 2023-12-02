@@ -48,6 +48,7 @@ MonoBehaviour:
   isMenu: 0
   susref_Right: {fileID: 21300000, guid: 54250947b7e048f46b7124c6fa648b36, type: 3}
   susref_Left: {fileID: 21300000, guid: a194fae8051ca244ba69be9efe3dae7e, type: 3}
+  susref_Small: {fileID: 21300000, guid: cf064444c47a9a34588a06f8c84c79cb, type: 3}
   useAltInterface: 0
   susModeRef: 0
   hardcoreModeRef: 0

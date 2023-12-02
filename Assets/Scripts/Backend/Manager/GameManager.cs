@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     static  public Sprite sus_Right;
             public Sprite susref_Left;
     static  public Sprite sus_Left;
+            public Sprite susref_Small;
+    static  public Sprite sus_Small;
     static  public Player player;
             public bool useAltInterface;
     static  public bool useAlt, isPaused = false;
@@ -49,7 +51,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         useAlt      = useAltInterface;
         AWeapon     = AWeaponAssing;
         sus_Right   = susref_Right;
-        sus_Left    = susref_Left; 
+        sus_Left    = susref_Left;
+        sus_Small   = susref_Small;
         Invoke("assingReferences", 1f);
         if(GameObject.FindGameObjectWithTag("FTB"))         ffb = GameObject.FindGameObjectWithTag("FTB").GetComponent<Image>();
         if(GameObject.FindGameObjectWithTag("Hud"))         hud = GameObject.FindGameObjectWithTag("Hud");

@@ -29,7 +29,7 @@ public class AlternateWS : MonoBehaviour
     private float interval = 0;
     private bool reloading;
     private Transform firepoint;
-    public GameObject bullet, owner, magPref;
+    public GameObject bullet, owner, magPref, effekt;
 
     public float throwForceMag;
     private DataPersistenceManager dataPersistenceManager;
@@ -149,6 +149,26 @@ public class AlternateWS : MonoBehaviour
         if (!owner) { reloading = false; rTimer = rTime; }
         if (isCharging && Input.GetMouseButton(0) && owner.tag == "Player" && chargedTime < maxChargeTime) { chargedTime += Time.deltaTime; interval = 0; }
         else if (isCharging) chargedShot();
+        if (!effekt.active && rarity != 0 && !owner)
+        {
+            effekt.SetActive(true);
+            switch (rarity)
+            {
+                case 1:
+                    effekt.GetComponent<ParticleSystem>().startColor = Color.cyan;
+                    break;
+                case 2:
+                    effekt.GetComponent<ParticleSystem>().startColor = Color.magenta;
+                    break;
+                case 3:
+                    effekt.GetComponent<ParticleSystem>().startColor = Color.red;
+                    break;
+                default:
+                    effekt.SetActive(false);
+                    break;
+            }
+        }
+        else if (effekt.active && owner) effekt.SetActive(false);
     }
 
     public void loadOldInfo(float oldReserve, float oldAmmo)

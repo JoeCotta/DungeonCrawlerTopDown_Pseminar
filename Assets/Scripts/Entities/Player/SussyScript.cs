@@ -14,12 +14,13 @@ public class SussyScript : MonoBehaviour
     private void SetSprite()
     {
         if (!GameManager.enableSusMode) return;
-        sussy_model = GameManager.sus_Right;
+        sussy_model = GameManager.sus_Small;
         gameObject.GetComponent<SpriteRenderer>().sprite = sussy_model;
     }
+
     IEnumerator SussyRoutine()
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForEndOfFrame();
         SetSprite();
     }
 }

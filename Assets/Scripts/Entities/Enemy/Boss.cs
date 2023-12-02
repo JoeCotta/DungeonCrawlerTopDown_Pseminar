@@ -226,7 +226,7 @@ public class Boss : MonoBehaviour
             if (randomNumber >= 90 && randomNumber < 100) weapon.weaponType = 2;
         }
         // 5/1000 legendary
-        if (randomNumber >= 100 && randomNumber < 105) 
+        if (randomNumber >= 100 && randomNumber < 200) 
         {
             int randomNumber2 = Random.Range(0, 100);
             AlternateWS weapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity).GetComponent<AlternateWS>();
@@ -240,13 +240,13 @@ public class Boss : MonoBehaviour
             if (randomNumber >= 90 && randomNumber < 100) weapon.weaponType = 2;
         }
         // 200/1000 50 coins
-        if (randomNumber >= 105 && randomNumber < 305) playerTransform.gameObject.GetComponent<Player>().playerGold += 50;
+        if (randomNumber >= 200 && randomNumber < 405) playerTransform.gameObject.GetComponent<Player>().playerGold += 50;
         // 100/1000 100 coins
-        if (randomNumber >= 305 && randomNumber < 405) playerTransform.gameObject.GetComponent<Player>().playerGold += 100;
+        if (randomNumber >= 405 && randomNumber < 505) playerTransform.gameObject.GetComponent<Player>().playerGold += 100;
         // 50/1000  200 coins
-        if (randomNumber >= 405 && randomNumber < 455) playerTransform.gameObject.GetComponent<Player>().playerGold += 200;
+        if (randomNumber >= 505 && randomNumber < 555) playerTransform.gameObject.GetComponent<Player>().playerGold += 200;
         // 5/1000 500 coins
-        if (randomNumber >= 455 && randomNumber < 460) playerTransform.gameObject.GetComponent<Player>().playerGold += 500;
+        if (randomNumber >= 555 && randomNumber < 560) playerTransform.gameObject.GetComponent<Player>().playerGold += 500;
 
 
 
