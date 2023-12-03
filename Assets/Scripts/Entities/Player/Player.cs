@@ -205,20 +205,32 @@ public class Player : MonoBehaviour, IDataPersistence
         if(isDashing && dashTimeLeft > 0)
         {
             dash();
-            dashTimeLeft -= Time.deltaTime;
+            //dashTimeLeft -= Time.deltaTime;
         }
+
         // if dash is over
         else if(dashTimeLeft <= 0)
         {
             // stops camera shake animation
             camShake.SetBool("isDashing", false);
 
+            //dashTimeLeft = dashTime;
+            //isDashing = false;
+        }
+
+        //short invincibility even after dash
+        if (isDashing && dashTimeLeft > -0.5f)
+        {
+            dashTimeLeft -= Time.deltaTime;
+        }
+        else if(isDashing && dashTimeLeft <= -0.5f)
+        {
             dashTimeLeft = dashTime;
             isDashing = false;
         }
 
         // update the position and rotation of the weapon if the player has one
-        if(weapon)
+        if (weapon)
         {
             weapon.transform.position = weaponSlot.position;
             weapon.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + 180);
