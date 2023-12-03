@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 16b57a915d141a84d816327374288a2c
+guid: 6969e6af250a75c4db80a21de8e18f34
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -67,9 +67,9 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 128
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -103,9 +103,9 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Windows Store Apps
-    maxTextureSize: 128
+    maxTextureSize: 2048
     resizeAlgorithm: 0
-    textureFormat: 4
+    textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
@@ -117,22 +117,43 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: LegendarySniper_1_0
+      name: Minigun_0
       rect:
         serializedVersion: 2
-        x: 6
-        y: 50
+        x: 5
+        y: 4
         width: 120
-        height: 24
+        height: 47
       alignment: 9
-      pivot: {x: 0.2972392, y: 0.40948167}
+      pivot: {x: 0.13837533, y: 0.76369673}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7f8b6e710c5e58458432856b0bc8b03
-      internalID: 2064855048
+      spriteID: a41ceb9fb8c0e6f479bf5733f38527a3
+      internalID: 1610058245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Minigun_1
+      rect:
+        serializedVersion: 2
+        x: 5
+        y: 4
+        width: 120
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7bdb2f1f0c85d0540ae7c79570d8b4ee
+      internalID: -653366428
       vertices: []
       indices: 
       edges: []
@@ -148,7 +169,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      LegendarySniper_1_0: 2064855048
+      Minigun_1: -653366428
+      Minigun_0: 1610058245
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
