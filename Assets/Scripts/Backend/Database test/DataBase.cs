@@ -18,8 +18,8 @@ public class DataBase : MonoBehaviour
             case 0://pistol
                 temp[0] = 6;    //dmg
                 temp[1] = 12;   //mag
-                temp[2] = 45;   //reserve
-                temp[3] = 2.5f;    //rate
+                temp[2] = 75;   //reserve
+                temp[3] = 2f;    //rate
                 temp[4] = 0.90f;//accuracy
                 temp[5] = 1.5f;    // fov
                 temp[6] = -1;   // speed
