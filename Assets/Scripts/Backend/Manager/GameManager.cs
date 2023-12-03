@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     static  public DataPersistenceManager dataPersistenceManager;
     static  public List<GameObject> references;
+    static  public GameManager PublicGameManager;
     static  public GameObject AWeapon;
             public Sprite susref_Right;
     static  public Sprite sus_Right;
@@ -48,6 +49,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     private void Start()
     {
         GameManager.references = new List<GameObject>(); //very important line
+        PublicGameManager = this;
         useAlt      = useAltInterface;
         AWeapon     = AWeaponAssing;
         sus_Right   = susref_Right;

@@ -6,6 +6,7 @@ public class KeySaver : MonoBehaviour, IDataPersistence
 {
     private bool susMode;
     private string[] pressedKeys;
+    public GameObject cheatWeapons;
 
     private void Start()
     {
@@ -20,16 +21,27 @@ public class KeySaver : MonoBehaviour, IDataPersistence
                 pressedKeys[i] = pressedKeys[i - 1];
             }
             pressedKeys[0] = Input.inputString;
-            CheckCode();
+            CheckCodeSus();
+            CheckCodeCheat();
         }
     }
     
-    void CheckCode()
+    void CheckCodeSus()
     {
+        if (!GameManager.PublicGameManager.isMenu) return;
         string code = "";
         for(int i = 7; i >= 0; i--) code += pressedKeys[i];
 
         if (code == "20.12.22") susMode = !susMode;
+    }
+
+    void CheckCodeCheat()
+    {
+        if (GameManager.PublicGameManager.isMenu) return;
+        string code = "";
+        for (int i = 5; i >= 0; i--) code += pressedKeys[i];
+
+        if (code == "amogus") Instantiate(cheatWeapons, transform);
     }
 
     public void LoadData(GameData data)

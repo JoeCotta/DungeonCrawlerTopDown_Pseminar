@@ -25,8 +25,12 @@ public class StartArmor : MonoBehaviour
         price = shopMenu.startArmourPrice;
 
         text.text = "Start Armour\r\n";
-        text.text += "Level " + level.ToString() + " -> " + (level + 1).ToString() + "\r\n";
-        text.text += price.ToString() + " Coins\n";
-        if (level >= 5) text.text += "Max level reached";
+        if (level < 5)
+        {
+            text.text += "Level " + level.ToString() + " -> " + (level + 1).ToString() + "\r\n";
+            text.text += price.ToString() + " Coins\n";
+        }
+        if (level >= 5) text.text +=    "Level 5\r\n " +
+                                        "Maxed";
     }
 }

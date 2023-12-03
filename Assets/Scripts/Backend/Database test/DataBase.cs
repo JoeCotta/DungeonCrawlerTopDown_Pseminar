@@ -21,16 +21,16 @@ public class DataBase : MonoBehaviour
                 temp[2] = 45;   //reserve
                 temp[3] = 2.5f;    //rate
                 temp[4] = 0.90f;//accuracy
-                temp[5] = 1;    // fov
+                temp[5] = 1.5f;    // fov
                 temp[6] = -1;   // speed
                 break;
             case 1://rifel
                 temp[0] = 4;    //dmg
                 temp[1] = 30;   //mag
                 temp[2] = 90;   //reserve
-                temp[3] = 5;    //rate
-                temp[4] = 0.80f;//accuracy
-                temp[5] = 1;    // fov
+                temp[3] = 4;    //rate
+                temp[4] = 0.75f;//accuracy
+                temp[5] = 1.5f;    // fov
                 temp[6] = -2;   // speed
                 break;
             case 2://sniper
@@ -48,7 +48,7 @@ public class DataBase : MonoBehaviour
                 temp[2] = 36;
                 temp[3] = 2;
                 temp[4] = 0.90f;
-                temp[5] = 1;
+                temp[5] = 2;
                 temp[6] = -1;   // speed
                 break;
         }

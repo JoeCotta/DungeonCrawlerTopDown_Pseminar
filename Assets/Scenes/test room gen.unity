@@ -1252,6 +1252,51 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 608036737060703377, guid: 70fe30987894f674d950bf22643e4d02, type: 3}
   m_PrefabInstance: {fileID: 608036736207208906}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1963677616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1963677618}
+  - component: {fileID: 1963677617}
+  m_Layer: 0
+  m_Name: InputLoger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1963677617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963677616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 604082f734e685845bfcbc4d356a9a81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cheatWeapons: {fileID: 4826413255639925904, guid: bbf18995f0ba19b46a8c22db3286a56b, type: 3}
+--- !u!4 &1963677618
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963677616}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2026004375
 GameObject:
   m_ObjectHideFlags: 0
@@ -1635,11 +1680,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 644545702556066160, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.69
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 644545702556066160, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 644545702556066160, guid: c5129f5fd14b3f1448f2c67d4b16fc33, type: 3}
       propertyPath: m_LocalPosition.z

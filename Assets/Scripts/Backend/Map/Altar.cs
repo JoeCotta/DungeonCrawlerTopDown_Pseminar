@@ -16,6 +16,7 @@ public class Altar : MonoBehaviour
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
+        //disable text
         if (!collision.gameObject.CompareTag("Player")) return;
         transform.GetChild(0).gameObject.SetActive(false);
     }

@@ -60,7 +60,10 @@ public class Chest : MonoBehaviour
                 other.gameObject.GetComponent<Player>().playerGold -= Mathf.Round(price);
 
                 // spawns a weapon or a boost orb
-                if (Random.Range(0, 2) == 0) spawnWeapon();
+                // level 0 -> 30% weapon
+                // level 1 -> 60% weapon
+                // level 2 -> 90% weapon
+                if (Random.value <= 0.3f * (chestLevel+1)) spawnWeapon();
                 else spawnBoost();
 
                 // Destroys the chest
