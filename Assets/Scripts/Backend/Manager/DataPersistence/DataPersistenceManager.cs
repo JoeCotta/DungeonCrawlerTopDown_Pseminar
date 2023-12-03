@@ -42,7 +42,15 @@ public class DataPersistenceManager : MonoBehaviour
     public void NewGame()
     {
         this.gameData = new GameData();
-        foreach(IDataPersistence dataPersistenceObj in dataPersistenceObjects)
+        PlayerPrefs.SetString("ReloadKey", "R");
+        PlayerPrefs.SetString("DropKey", "F");
+        PlayerPrefs.SetString("UpKey", "W");
+        PlayerPrefs.SetString("LeftKey", "A");
+        PlayerPrefs.SetString("DownKey", "S");
+        PlayerPrefs.SetString("RightKey", "D");
+        PlayerPrefs.SetString("DashKey", "LeftShift");
+        PlayerPrefs.SetString("ShootKey", "Mouse0");
+        foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.LoadData(gameData);
         }
