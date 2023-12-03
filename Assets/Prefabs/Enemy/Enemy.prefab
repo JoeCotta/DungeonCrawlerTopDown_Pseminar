@@ -133,6 +133,7 @@ MonoBehaviour:
   health: 17
   armorLevel: 0
   AWeapon: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}
+  EnemyUsePrediction: 0
   isDead: 0
   boostPrefab: {fileID: 6753663607918299696, guid: 6269ea7abee1a3d54a83a711c464bbec, type: 3}
   hitSound: {fileID: -7431044993690834499}

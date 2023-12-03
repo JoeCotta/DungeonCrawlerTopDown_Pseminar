@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     private Transform weaponSlot; 
     private GameObject weapon;
     public GameObject AWeapon; // alternate weapon
+    public bool EnemyUsePrediction;
 
     private Path path;
     private int currentWaypoint = 0;
@@ -73,6 +74,9 @@ public class Enemy : MonoBehaviour
         weapon.GetComponent<AlternateWS>().weaponType = weaponType;
         weapon.GetComponent<AlternateWS>().owner = gameObject;
 
+        if (Random.value <= 0.5f) EnemyUsePrediction = true;
+        else EnemyUsePrediction = false;
+
 
         armorLevel = Random.Range(0, 11);
 
@@ -114,11 +118,13 @@ public class Enemy : MonoBehaviour
         // if the Distance to the target is lower than 4 or out of the player's range the enemy shouldn't follow the target, instead he should shoot at the target
         // but only if the bullet will hit the Player
         if ((DistanceToTarget < 6 || outOfRange) && (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy")) ) follow = false;
-    
+
 
 
         // manages rotation while following target
-        Vector2 direction = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(15f,target.gameObject) - rb.position).normalized;
+        Vector2 direction;
+        if(EnemyUsePrediction) direction = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(15f,target.gameObject) - rb.position).normalized;
+        else direction = ((Vector2)target.gameObject.transform.position - rb.position).normalized;
         angleToPlayer = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg -180f;
         
 
@@ -186,8 +192,10 @@ public class Enemy : MonoBehaviour
         // if the player is too far away
         if(outOfRange) return;
 
-        // manages rotation while shooting
-        Vector2 PlayerDirection = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(15f,target.gameObject) - rb.position).normalized;
+        // manages rotation while shooting 50 % chance to use prediction
+        Vector2 PlayerDirection;
+        PlayerDirection = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(15f, target.gameObject) - rb.position).normalized;
+
         //Debug.Log(gameObject.GetComponent<BulletCalc>().CalcPath(15f, target.gameObject));
         float angleToPlayer = Mathf.Atan2(PlayerDirection.y, PlayerDirection.x) * Mathf.Rad2Deg - 90f;
         Quaternion rotation = Quaternion.Euler(Vector3.forward * angleToPlayer);

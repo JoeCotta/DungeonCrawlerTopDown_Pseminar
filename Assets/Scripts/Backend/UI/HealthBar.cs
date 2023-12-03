@@ -12,6 +12,7 @@ public class HealthBar : MonoBehaviour
     }
 
     void Update(){
-        slider.value = player.GetComponent<Player>().health / player.GetComponent<Player>().maxHealth;
+                                                                        slider.value = player.GetComponent<Player>().health / player.GetComponent<Player>().maxHealth;
+        if (Mathf.Round(player.GetComponent<Player>().health) == 0)     slider.value = 1f / player.GetComponent<Player>().maxHealth;
     }
 }
