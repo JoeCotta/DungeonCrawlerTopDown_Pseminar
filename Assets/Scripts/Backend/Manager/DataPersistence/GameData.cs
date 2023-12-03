@@ -50,6 +50,7 @@ public class GameData
     public float    difficulty;
     public bool     susMode;
     public bool     hardcoreMode;
+    public bool     movementKeysForDash;
 
     public GameData()
     {
@@ -88,6 +89,7 @@ public class GameData
         BoostsVol       = 0;
         susMode         = false;
         hardcoreMode    = false;
+        movementKeysForDash = false;
 
         difficulty = 1;
     }

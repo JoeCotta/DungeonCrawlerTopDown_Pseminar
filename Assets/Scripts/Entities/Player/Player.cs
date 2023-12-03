@@ -188,7 +188,8 @@ public class Player : MonoBehaviour, IDataPersistence
             Instantiate(dashEffect, rb.position, Quaternion.identity);
 
             // dashes in "Mouse direction"
-            dashDirection = -lookDir.normalized;
+            if (GameManager.movementKeysForDash) dashDirection = inputMovement;
+            else dashDirection = -lookDir.normalized;
 
             // dashes in "Keyboard direction"
             // dashDirection = inputMovement.normalized;        

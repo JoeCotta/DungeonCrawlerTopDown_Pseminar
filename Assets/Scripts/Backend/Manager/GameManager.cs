@@ -37,6 +37,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     static  public bool enableSusMode;
             public bool hardcoreModeRef = false;
     static  public bool hardcoreMode;
+            public bool movementKeysForDashRef;
+    static  public bool movementKeysForDash;
     static  public int buildIndexOfSceneToLoad = 2;
 
     public  int activeBoosts = 0;
@@ -185,17 +187,26 @@ public class GameManager : MonoBehaviour, IDataPersistence
         hardcoreMode = !hardcoreMode;
     }
 
+    public void movementKeyDashSwitch()
+    {
+        movementKeysForDash = !movementKeysForDash;
+    }
+
     public void LoadData(GameData data)
     {
         this.susModeRef = data.susMode;
         enableSusMode = susModeRef;
         this.hardcoreModeRef = data.hardcoreMode;
         hardcoreMode = hardcoreModeRef;
+        this.movementKeysForDashRef = data.movementKeysForDash;
+        movementKeysForDash = movementKeysForDashRef;
     }
 
     public void SaveData(ref GameData data)
     {
         hardcoreModeRef = hardcoreMode;
         data.hardcoreMode = this.hardcoreModeRef;
+        movementKeysForDashRef = movementKeysForDash;
+        data.movementKeysForDash = this.movementKeysForDashRef;
     }
 }
