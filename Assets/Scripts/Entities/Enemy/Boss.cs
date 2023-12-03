@@ -232,10 +232,14 @@ public class Boss : MonoBehaviour
             AlternateWS weapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity).GetComponent<AlternateWS>();
             weapon.rarity = 3;
 
-            // 60 / 100 pistol
-            if (randomNumber >= 0 && randomNumber < 60) weapon.weaponType = 0;
+            // 40 / 100 pistol
+            if (randomNumber >= 0 && randomNumber < 40) weapon.weaponType = 0;
             // 30 / 100 rifle
-            if (randomNumber >= 60 && randomNumber < 90) weapon.weaponType = 1;
+            if (randomNumber >= 40 && randomNumber < 60) weapon.weaponType = 1;
+            // 20 / 100 golden ak
+            if (randomNumber >= 60 && randomNumber < 80) weapon.weaponType = 3;
+            // 10 / 100 minigun
+            if (randomNumber >= 80 && randomNumber < 90) weapon.weaponType = 4;
             // 10/100 sniper
             if (randomNumber >= 90 && randomNumber < 100) weapon.weaponType = 2;
         }

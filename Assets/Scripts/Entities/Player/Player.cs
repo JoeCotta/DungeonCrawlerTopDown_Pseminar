@@ -128,10 +128,10 @@ public class Player : MonoBehaviour, IDataPersistence
         //if (currentReserve != -1 && weapon.GetComponent<AlternateWS>().reserve > 0&& !stopCheck) { weapon.GetComponent<AlternateWS>().reserve = currentReserve; stopCheck = true; }
 
         // getting Keyboard Input
-        inputMovement = Input.GetKey("w") ? Vector2.up : Vector2.zero;
-        inputMovement += Input.GetKey("a") ? Vector2.left : Vector2.zero;
-        inputMovement += Input.GetKey("s") ? Vector2.down : Vector2.zero;
-        inputMovement += Input.GetKey("d") ? Vector2.right : Vector2.zero;
+        inputMovement = Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("UpKey"))) ? Vector2.up : Vector2.zero;
+        inputMovement += Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("LeftKey"))) ? Vector2.left : Vector2.zero;
+        inputMovement += Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("DownKey"))) ? Vector2.down : Vector2.zero;
+        inputMovement += Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("RightKey"))) ? Vector2.right : Vector2.zero;
 
         // check if moving
         if(lastPosition != rb.position) isMoving = true;
@@ -179,7 +179,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
         // dash
         // if dash cooldown is finished and dash-Key is pressed
-        if (dashCooldownLeft <= 0 && Input.GetKey(KeyCode.LeftShift))
+        if (dashCooldownLeft <= 0 && Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("DashKey"))))
         {
             isDashing = true;
             dashCooldownLeft = dashCooldown;
@@ -227,11 +227,11 @@ public class Player : MonoBehaviour, IDataPersistence
 
 
         // shoot if clicked
-        if(Input.GetMouseButton(0)) shoot();
-        if (Input.GetKeyDown("r") && weapon.GetComponent<AlternateWS>()) weapon.GetComponent<AlternateWS>().Reload();
+        if(Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ShootKey")))) shoot();
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("ReloadKey"))) && weapon.GetComponent<AlternateWS>()) weapon.GetComponent<AlternateWS>().Reload();
 
         // pickup / swap weapon
-        if (Input.GetKeyDown("f")) pickupItem();
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("DropKey")))) pickupItem();
 
         // updates the current selected Item
         if(Input.GetKeyDown("1")) selectedItem = 1;

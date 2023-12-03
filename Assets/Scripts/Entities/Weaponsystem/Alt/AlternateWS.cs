@@ -68,14 +68,15 @@ public class AlternateWS : MonoBehaviour
     {
         if (interval > 1 / rate && ammo > 0 && !reloading)
         {
-            // shoot sound
-            shootSounds[weaponType].Play();
-
             if (weaponType == 2 && rarity == 3 && owner.tag != "enemy")
             {
                 isCharging = true;
                 return;
             }
+
+            // shoot sound
+            shootSounds[weaponType].Play();
+
             Vector3 inAccuracy = new Vector3(0, 0, Random.Range(-45 + accuracy * 45, 45 - accuracy * 45 + 1));
             interval = 0;
             if (owner.tag != "Enemy") ammo--;
@@ -97,6 +98,7 @@ public class AlternateWS : MonoBehaviour
         --ammo;
         GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized);
         if (temp != null) temp.GetComponent<AltBullet>().assingVar(dmg * Mathf.Pow(maxChargeDmgMultiplier,  chargedTime / maxChargeTime), owner);
+        shootSounds[weaponType].Play();
         //Debug.Log(dmg * Mathf.Pow(maxChargeDmgMultiplier, chargedTime / maxChargeTime));
         isCharging = false;
         chargedTime = 0;

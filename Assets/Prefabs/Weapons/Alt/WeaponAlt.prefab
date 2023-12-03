@@ -155,13 +155,17 @@ MonoBehaviour:
   - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
   - {fileID: -1539111945, guid: ffd9850265e38074590b9d7924b16bb7, type: 3}
   - {fileID: 2064855048, guid: 16b57a915d141a84d816327374288a2c, type: 3}
+  - {fileID: -115298813, guid: d2d44dba6fe796e4f961b2ff3f202a78, type: 3}
+  - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
   magSprites:
   - {fileID: 666790031, guid: 82dfb839c1f594b4cac9075017ddebfa, type: 3}
   - {fileID: -941118122, guid: fb954b0dc0ed3994584f84d8b8a49229, type: 3}
   - {fileID: -1753060970, guid: 0335231ccbb5b9943b77fe9c5971c053, type: 3}
   - {fileID: 666790031, guid: 82dfb839c1f594b4cac9075017ddebfa, type: 3}
   - {fileID: -817444369, guid: b2a45f54c8e6ddf4cbf628b1d218c64f, type: 3}
-  - {fileID: 21300000, guid: 5cb0f1e5248f14d49aad4db6005693ae, type: 3}
+  - {fileID: 1105211045, guid: 5cb0f1e5248f14d49aad4db6005693ae, type: 3}
+  - {fileID: -941118122, guid: fb954b0dc0ed3994584f84d8b8a49229, type: 3}
+  - {fileID: 666790031, guid: 82dfb839c1f594b4cac9075017ddebfa, type: 3}
   rTime: 0
   rTimer: 0
   bullet: {fileID: 9006799821689394367, guid: 52a340cfad5313649bda4dd785b9d666, type: 3}
@@ -173,9 +177,13 @@ MonoBehaviour:
   - {fileID: 6130401319694950933}
   - {fileID: -7939328867566552630}
   - {fileID: 2766896589907085029}
+  - {fileID: 2766896589907085029}
+  - {fileID: 2766896589907085029}
   reloadSounds:
   - {fileID: 3348998827980071719}
   - {fileID: 4099710159493521333}
+  - {fileID: 8045670057354165126}
+  - {fileID: 8045670057354165126}
   - {fileID: 8045670057354165126}
   magDropSound: {fileID: 7958867293475310358}
   emptyWeaponShootSound: {fileID: -2808571969892953247}
