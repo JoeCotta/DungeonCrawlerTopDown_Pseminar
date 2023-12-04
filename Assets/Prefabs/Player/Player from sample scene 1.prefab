@@ -71,6 +71,7 @@ Transform:
   m_Children:
   - {fileID: 644545701912875538}
   - {fileID: 2534011111684383096}
+  - {fileID: 5343410766683319183}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -187,6 +188,7 @@ MonoBehaviour:
   isDashing: 0
   weaponPrefab: {fileID: 4382214503651565149, guid: 85ca61a2f59b7d9e0a436efd4cae65a1, type: 3}
   weapon: {fileID: 0}
+  secondWeapon: {fileID: 0}
   armourPrefab: {fileID: 7889819629484783230, guid: 418efccf953fcbec2a7fb3046e0e673a, type: 3}
   dashEffect: {fileID: 5359497967520591300, guid: 79cf45eebe47f2a0e86fce313a1abfaa, type: 3}
   minmapUI: {fileID: 0}
@@ -822,3 +824,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46c97cf935240864e8657538ba24fad0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3049403997642969157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5343410766683319183}
+  m_Layer: 0
+  m_Name: Backslot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5343410766683319183
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3049403997642969157}
+  m_LocalRotation: {x: 0, y: 0, z: -0.8870109, w: 0.46174863}
+  m_LocalPosition: {x: 0.3, y: 0.45, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 644545702556066160}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -125}

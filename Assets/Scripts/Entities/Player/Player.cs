@@ -22,8 +22,9 @@ public class Player : MonoBehaviour, IDataPersistence
     public float ItemDropForce; // 500
     public float itemPickUpRadius;
 
-    private int weaponType, oldRarity;
-    public float oldReserve, oldAmmo;
+    private int weaponType, oldRarity, second_weaponType, second_oldRarity;
+    public float oldReserve, oldAmmo, second_oldReserve,second_oldAmmo;
+    private bool hadSecondWeapon = false;
 
 
     public int dungeonFloor;
@@ -52,11 +53,11 @@ public class Player : MonoBehaviour, IDataPersistence
 
 
     //References and Prefabs
-    public GameObject weaponPrefab, weapon, armourPrefab, dashEffect, minmapUI;
+    public GameObject weaponPrefab, weapon, secondWeapon, armourPrefab, dashEffect, minmapUI;
     public Camera cam;
     public Animator camShake;
     public Rigidbody2D rb;
-    private Transform weaponSlot;
+    private Transform weaponSlot, backSlot;
 
     // boosts
     public float speedBuff;
@@ -115,11 +116,20 @@ public class Player : MonoBehaviour, IDataPersistence
     {
         // creates the weapon
         weaponSlot = transform.GetChild(0);
+        backSlot = transform.GetChild(2);
         weapon = Instantiate(GameManager.AWeapon, weaponSlot.position, weaponSlot.rotation);
         weapon.GetComponent<AlternateWS>().weaponType = weaponType; // sets the weaponType
         weapon.GetComponent<AlternateWS>().rarity = oldRarity;
         if(oldReserve != -1) weapon.GetComponent<AlternateWS>().loadOldInfo(oldReserve, oldAmmo);
         weapon.GetComponent<AlternateWS>().owner = gameObject; // by Cornell
+        if (hadSecondWeapon)
+        {
+            secondWeapon = Instantiate(GameManager.AWeapon, backSlot.position, backSlot.rotation);
+            secondWeapon.GetComponent<AlternateWS>().weaponType = second_weaponType;
+            secondWeapon.GetComponent<AlternateWS>().rarity = second_oldRarity;
+            if (second_oldReserve != -1) secondWeapon.GetComponent<AlternateWS>().loadOldInfo(second_oldReserve, second_oldAmmo);
+            secondWeapon.GetComponent<AlternateWS>().owner = gameObject;
+        }
     }
 
     void Update()
@@ -230,12 +240,13 @@ public class Player : MonoBehaviour, IDataPersistence
         }
 
         // update the position and rotation of the weapon if the player has one
-        if (weapon)
+        /*if (weapon)
         {
             weapon.transform.position = weaponSlot.position;
             weapon.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + 180);
 
-        }
+        }*/
+        updateWeaponPosition();
 
 
         // shoot if clicked
@@ -248,6 +259,7 @@ public class Player : MonoBehaviour, IDataPersistence
         // updates the current selected Item
         if(Input.GetKeyDown("1")) selectedItem = 1;
         if(Input.GetKeyDown("2")) selectedItem = 2;
+        if (Input.GetKeyDown("3")) switchWeapon();
 
         // as long as the FOV has to change it will call changeFOV()
         if(!isChangingFOV) {
@@ -326,6 +338,35 @@ public class Player : MonoBehaviour, IDataPersistence
         weapon.SendMessage("shoot");
     }
 
+    void switchWeapon()
+    {
+        GameObject weaponStorage;
+        weaponStorage = weapon;
+        weapon = secondWeapon;
+        if(weapon) weapon.GetComponent<SpriteRenderer>().sortingOrder = 2;
+        secondWeapon = weaponStorage;
+        if(secondWeapon) secondWeapon.GetComponent<SpriteRenderer>().sortingOrder = 0;
+        if (secondWeapon) secondWeapon.GetComponent<SpriteRenderer>().flipY = false;
+        isChangingFOV = true;
+        changeFOV();
+        changeSpeed();
+    }
+
+    void updateWeaponPosition()
+    {
+        // update the position and rotation of the weapon if the player has one
+        if (weapon)
+        {
+            weapon.transform.position = weaponSlot.position;
+            weapon.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + 180);
+        }
+        if (secondWeapon)
+        {
+            secondWeapon.transform.position = backSlot.position;
+            secondWeapon.transform.rotation = backSlot.rotation;
+        }
+    }
+
     void pickupItem()
     {
         // find nearest Item
@@ -340,7 +381,7 @@ public class Player : MonoBehaviour, IDataPersistence
         foreach(GameObject item in items)
         {
             // if its not the players weapon
-            if(item == weapon) continue;
+            if(item == weapon || item == secondWeapon) continue;
 
             float itemDistance = (rb.position - new Vector2(item.transform.position.x, item.transform.position.y)).magnitude;
             if (itemDistance < lowestItemDistance)
@@ -482,16 +523,24 @@ public class Player : MonoBehaviour, IDataPersistence
             susSprite();
             return;
         }
+        int flipBackSlot = 0;
         // -30 - 90   front left
         // -30 - -150 back
         // 90 - -150 front-right
         gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
-        if (angleToMouse > -30 && angleToMouse < 90) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left;
+        if (secondWeapon) secondWeapon.GetComponent<SpriteRenderer>().sortingOrder = 0;
+        if (angleToMouse > -30 && angleToMouse < 90) { gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left; flipBackSlot = 1; }
         else if ((angleToMouse > 90 && angleToMouse <= 180) || (angleToMouse >= -180 && angleToMouse < -150)) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_right;
         else if (angleToMouse < -30 && angleToMouse > -150)
         {
             gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
             gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
+            if (secondWeapon) secondWeapon.GetComponent<SpriteRenderer>().sortingOrder = 4;
+        }
+        if (backSlot)
+        {
+            backSlot.position = new Vector3(0.15f - (0.3f * flipBackSlot), 0.1f, 0) + transform.position;
+            backSlot.rotation = Quaternion.Euler(0, (-180 * flipBackSlot), -135);
         }
     }
 
@@ -539,7 +588,15 @@ public class Player : MonoBehaviour, IDataPersistence
         this.oldRarity = data.currentRarity;
         this.oldReserve = data.currentReserve;
         this.oldAmmo = data.currentAmmo;
-        
+        if (data.hadSecondWeapon)
+        {
+            this.hadSecondWeapon = data.hadSecondWeapon;
+            this.second_weaponType = data.second_currentWeaponType;
+            this.second_oldRarity = data.second_currentRarity;
+            this.second_oldReserve = data.second_currentReserve;
+            this.second_oldAmmo = data.second_currentAmmo;
+        }
+
 
         this.killedEnemys = data.enemysKilled;
     }
@@ -555,12 +612,40 @@ public class Player : MonoBehaviour, IDataPersistence
         data.currentHealth = this.health;
         data.currentArmor = this.armourLevel;
 
+        if (!weapon && !secondWeapon)
+        {
+            data.currentWeaponType = 0;
+            data.currentRarity = 0;
+            data.currentReserve = -1;
+            data.currentAmmo = -1;
+        }else if (!weapon && secondWeapon)
+        {
+            weapon = secondWeapon;
+            secondWeapon = null;
+        }
+
         if (weapon && weapon.GetComponent<AlternateWS>()) 
         { 
             data.currentWeaponType = this.weapon.GetComponent<AlternateWS>().weaponType; 
             data.currentRarity = this.weapon.GetComponent<AlternateWS>().rarity;
             data.currentReserve = this.weapon.GetComponent<AlternateWS>().reserve;
             data.currentAmmo = this.weapon.GetComponent<AlternateWS>().ammo;
+            if (secondWeapon)
+            {
+                data.second_currentWeaponType = this.secondWeapon.GetComponent<AlternateWS>().weaponType;
+                data.second_currentRarity = this.secondWeapon.GetComponent<AlternateWS>().rarity;
+                data.second_currentReserve = this.secondWeapon.GetComponent<AlternateWS>().reserve;
+                data.second_currentAmmo = this.secondWeapon.GetComponent<AlternateWS>().ammo;
+                data.hadSecondWeapon = true;
+            }
+            else
+            {
+                data.second_currentWeaponType = 0;
+                data.second_currentRarity = 0;
+                data.second_currentReserve = -1;
+                data.second_currentAmmo = -1;
+                data.hadSecondWeapon = false;
+            }
         }else if (weapon) data.currentWeaponType = this.weapon.GetComponent<AlternateWS>().weaponType;
 
         data.enemysKilled = this.killedEnemys;

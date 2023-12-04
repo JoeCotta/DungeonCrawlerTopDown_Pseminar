@@ -30,6 +30,9 @@ public class GameData
     public float    currentArmor;
     public int      currentWeaponType, currentRarity;
     public float    currentReserve, currentAmmo;
+    public int      second_currentWeaponType, second_currentRarity;
+    public float    second_currentReserve, second_currentAmmo;
+    public bool     hadSecondWeapon;
 
     private int     dumpVariableInt;
     private float   dumpVariableFloat;
@@ -73,6 +76,11 @@ public class GameData
         currentRarity       = 0;
         currentReserve      = -1;
         currentAmmo         = -1;
+        second_currentWeaponType = 0;
+        second_currentRarity = 0;
+        second_currentReserve = -1;
+        second_currentAmmo = -1;
+        hadSecondWeapon = false;
 
         enemysKilled = 0;
 
