@@ -201,7 +201,7 @@ public class Boss : MonoBehaviour
         if (randomNumber >= 0 && randomNumber < 80) 
         {
             int randomNumber2 = Random.Range(0, 100);
-            AlternateWS weapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity).GetComponent<AlternateWS>();
+            AlternateWS weapon = Instantiate(weaponPrefab, manager.gameObject.transform.position, Quaternion.identity).GetComponent<AlternateWS>();
             weapon.rarity = 1;
 
             // 60 / 100 pistol
@@ -215,7 +215,7 @@ public class Boss : MonoBehaviour
         if (randomNumber >= 80 && randomNumber < 100) 
         {
             int randomNumber2 = Random.Range(0, 100);
-            AlternateWS weapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity).GetComponent<AlternateWS>();
+            AlternateWS weapon = Instantiate(weaponPrefab, manager.gameObject.transform.position, Quaternion.identity).GetComponent<AlternateWS>();
             weapon.rarity = 2;
 
             // 60 / 100 pistol
@@ -229,7 +229,7 @@ public class Boss : MonoBehaviour
         if (randomNumber >= 100 && randomNumber < 200) 
         {
             int randomNumber2 = Random.Range(0, 100);
-            AlternateWS weapon = Instantiate(weaponPrefab, transform.position, Quaternion.identity).GetComponent<AlternateWS>();
+            AlternateWS weapon = Instantiate(weaponPrefab, manager.gameObject.transform.position, Quaternion.identity).GetComponent<AlternateWS>();
             weapon.rarity = 3;
 
             // 40 / 100 pistol

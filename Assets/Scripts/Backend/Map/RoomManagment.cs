@@ -299,7 +299,7 @@ public class RoomManagment : MonoBehaviour
 
         //decide if spawn chest and which one
         int randomChestGen = Random.Range(1, 5);
-        if (randomChestGen == 1) {
+        if (randomChestGen == 1 && !isBossR) {
             // creates a chest and sets the level
             GameObject chest = Instantiate(chestPrefab, transform.position, Quaternion.identity);
             chest.GetComponent<Chest>().chestLevel = DataBase.chestLevel();
