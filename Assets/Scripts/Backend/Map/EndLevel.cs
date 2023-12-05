@@ -49,6 +49,8 @@ public class EndLevel : MonoBehaviour
     {
         if(countEnterPortal == 1){
             levelCompleteSound.Play();
+            // updates floor
+            GameManager.player.currentFloor += 1;
         }
     }
 
