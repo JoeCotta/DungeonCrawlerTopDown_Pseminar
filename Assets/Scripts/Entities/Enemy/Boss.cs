@@ -13,6 +13,7 @@ public class Boss : MonoBehaviour
     [HideInInspector] public float currentHealth;
     [SerializeField] private float bulletDamage;
     private float damageReduceFactor;
+    private float bulletSpeedMultiplier;
 
 
     // references
@@ -103,24 +104,23 @@ public class Boss : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
 
-        currentHealth = maxHealth;
-
         UIBossBar = GameObject.Find("Bossbar").transform.GetChild(0).gameObject;
         UIBossBar.GetComponent<BossBar>().boss = this;
         UIBossBar.SetActive(true);
         UIBossBar.GetComponent<BossBar>().isBoss = true;
-
-        damageReduceFactor = 1;
 
         // difficulty
         if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()){
             DataPersistenceManager dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
 
             // difficulty
-            bulletDamage *= dataPersistenceManager.gameData.difficulty;
-            damageReduceFactor *= dataPersistenceManager.gameData.difficulty;
-            timeBetweenAttacks = Mathf.Clamp((float)(timeBetweenAttacks/(dataPersistenceManager.gameData.difficulty * 0.4)), 3, timeBetweenAttacks);
+            bulletSpeedMultiplier = DifficultyTracker.bulletSpeedMultiplier;
+            bulletDamage = DifficultyTracker.dmgMultiplier;
+            damageReduceFactor = DifficultyTracker.damageReduceFactor;
+            timeBetweenAttacks =  Mathf.Clamp(timeBetweenAttacks - DifficultyTracker.bossTimeBetweenAttacksReduceTime, 1.5f, timeBetweenAttacks);
+            maxHealth *= DifficultyTracker.healthMultiplier;
         }
+        currentHealth = maxHealth;
     }
     
     void UpdatePath()
@@ -162,7 +162,7 @@ public class Boss : MonoBehaviour
 
     void hit(float damage)
     {
-        damage = Mathf.Max(damage / damageReduceFactor, 1);
+        damage = Mathf.Max(damage * damageReduceFactor, 1);
 
         currentHealth -= damage;
         if (currentHealth <= 0) onDeath();

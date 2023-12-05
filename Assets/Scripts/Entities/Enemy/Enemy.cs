@@ -208,6 +208,7 @@ public class Enemy : MonoBehaviour
     {
         // this function -0.08x + 1 reduces the damage depending on the armor level
         damage *=  (float)-0.08 * armorLevel + 1;
+        damage *= DifficultyTracker.damageReduceFactor;
         health -= damage;
 
         
