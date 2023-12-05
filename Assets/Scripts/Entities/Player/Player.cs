@@ -457,6 +457,15 @@ public class Player : MonoBehaviour, IDataPersistence
     }
     void swapWeapon(GameObject nearestWeapon)
     {
+        //check for same weapontype + rarity 
+        if(nearestWeapon && weapon && nearestWeapon.GetComponent<AlternateWS>().weaponType == weapon.GetComponent<AlternateWS>().weaponType && nearestWeapon.GetComponent<AlternateWS>().rarity == weapon.GetComponent<AlternateWS>().rarity)
+        {
+            AlternateWS weaponWS = weapon.GetComponent<AlternateWS>();
+            weaponWS.reserve += nearestWeapon.GetComponent<AlternateWS>().reserve + nearestWeapon.GetComponent<AlternateWS>().ammo;
+            nearestWeapon.GetComponent<AlternateWS>().reserve = 0;
+            nearestWeapon.GetComponent<AlternateWS>().ammo = 0;
+            return;
+        }
 
         // gives the "old" weapon a force to kick the weapon away - a drop animation
         if (weapon){
