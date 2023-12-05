@@ -148,6 +148,7 @@ MonoBehaviour:
   ammo: 0
   dmgtest: 0
   speed: 0
+  enemyDmgMultiplier: 0
   textureEditor:
   - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
   - {fileID: 617686397, guid: 773edd0e770bea24d9558f537acbcd1d, type: 3}
@@ -155,7 +156,7 @@ MonoBehaviour:
   - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
   - {fileID: -1539111945, guid: ffd9850265e38074590b9d7924b16bb7, type: 3}
   - {fileID: 2064855048, guid: 16b57a915d141a84d816327374288a2c, type: 3}
-  - {fileID: 617686397, guid: 773edd0e770bea24d9558f537acbcd1d, type: 3}
+  - {fileID: 586828461, guid: eb640fd7e0efcfa43837e501911b847d, type: 3}
   - {fileID: 1610058245, guid: 6969e6af250a75c4db80a21de8e18f34, type: 3}
   magSprites:
   - {fileID: 666790031, guid: 82dfb839c1f594b4cac9075017ddebfa, type: 3}
