@@ -186,7 +186,7 @@ public class Boss : MonoBehaviour
             // 60 / 100 pistol
             // 30 / 100 rifle
             // 10/100 sniper
-        // 5/1000 legendary
+        // 100/1000 legendary
             // 60 / 100 pistol
             // 30 / 100 rifle
             // 10/100 sniper
@@ -225,7 +225,7 @@ public class Boss : MonoBehaviour
             // 10/100 sniper
             if (randomNumber >= 90 && randomNumber < 100) weapon.weaponType = 2;
         }
-        // 5/1000 legendary
+        // 100/1000 legendary
         if (randomNumber >= 100 && randomNumber < 200) 
         {
             int randomNumber2 = Random.Range(0, 100);
