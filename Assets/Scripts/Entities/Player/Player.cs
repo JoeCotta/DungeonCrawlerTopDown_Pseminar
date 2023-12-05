@@ -81,6 +81,8 @@ public class Player : MonoBehaviour, IDataPersistence
     public Sprite sprite_back;
     public Sprite sprite_front_right;
 
+    public int currentFloor = 1;
+
     void Start()
     {
         //Initiating all the delayed stuff
@@ -591,6 +593,7 @@ public class Player : MonoBehaviour, IDataPersistence
 
 
         this.killedEnemys = data.enemysKilled;
+        this.currentFloor = data.currentFloor;
     }
 
     public void SaveData(ref GameData data)
@@ -641,6 +644,7 @@ public class Player : MonoBehaviour, IDataPersistence
         }else if (weapon) data.currentWeaponType = this.weapon.GetComponent<AlternateWS>().weaponType;
 
         data.enemysKilled = this.killedEnemys;
+        data.currentFloor = this.currentFloor;
     }
 
     void openMap()

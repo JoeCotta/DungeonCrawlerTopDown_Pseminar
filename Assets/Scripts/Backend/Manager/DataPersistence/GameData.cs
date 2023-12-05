@@ -16,6 +16,7 @@ public class GameData
     public int      startWeaponType;
     public float    currentDamageMultiplier;
     public float    permanentDamageMultiplier;
+    public int currentFloor;
 
     // Levels
     public int  maxHealthlvl;
@@ -100,5 +101,8 @@ public class GameData
         hardcoreMode    = false;
         movementKeysForDash = false;
         aimLine         = true;
+        
+        currentFloor = 1;
+
     }
 }
