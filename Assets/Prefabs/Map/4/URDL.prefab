@@ -463,7 +463,7 @@ GameObject:
   - component: {fileID: -7322473372455920347}
   - component: {fileID: -8559900713040668465}
   - component: {fileID: -7460142845644967734}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: URDL
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1577,7 +1577,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2389154214451337142, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
       propertyPath: m_Layer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3271307913830081117, guid: 3d237d98c3383eb4b99e2054854bb9c7, type: 3}
       propertyPath: m_RootOrder

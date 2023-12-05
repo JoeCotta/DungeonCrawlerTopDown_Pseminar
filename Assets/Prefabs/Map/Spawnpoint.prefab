@@ -46,8 +46,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22c8367300abbb44b92fb4c740dbe4c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doorDir: 0
   templates: {fileID: 7416429123334906834, guid: b8a43336072618e41a9e55eb0345b5f4, type: 3}
+  waitTime: 4
+  doorDir: 0
+  offset: {x: 0, y: 0, z: 0}
+  rotation: {x: 0, y: 0, z: 0}
+  spawned: 0
 --- !u!61 &6792046792111236557
 BoxCollider2D:
   m_ObjectHideFlags: 0
