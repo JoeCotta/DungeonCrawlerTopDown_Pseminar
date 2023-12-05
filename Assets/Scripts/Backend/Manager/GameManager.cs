@@ -39,6 +39,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
     static  public bool hardcoreMode;
             public bool movementKeysForDashRef;
     static  public bool movementKeysForDash;
+            public bool aimLineRef;
+    static  public bool aimLine;
     static  public int buildIndexOfSceneToLoad = 2;
 
     public  int activeBoosts = 0;
@@ -191,6 +193,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
         movementKeysForDash = !movementKeysForDash;
     }
 
+    public void aimLineSwitch()
+    {
+        aimLine = !aimLine;
+    }
+
     public void LoadData(GameData data)
     {
         this.susModeRef = data.susMode;
@@ -199,6 +206,8 @@ public class GameManager : MonoBehaviour, IDataPersistence
         hardcoreMode = hardcoreModeRef;
         this.movementKeysForDashRef = data.movementKeysForDash;
         movementKeysForDash = movementKeysForDashRef;
+        this.aimLineRef = data.aimLine;
+        aimLine = aimLineRef;
     }
 
     public void SaveData(ref GameData data)
@@ -207,5 +216,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         data.hardcoreMode = this.hardcoreModeRef;
         movementKeysForDashRef = movementKeysForDash;
         data.movementKeysForDash = this.movementKeysForDashRef;
+        aimLineRef = aimLine;
+        data.aimLine = this.aimLineRef;
     }
 }

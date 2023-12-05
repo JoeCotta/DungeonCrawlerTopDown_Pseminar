@@ -11,7 +11,7 @@ public class AimLine : MonoBehaviour
 
     private void Update()
     {
-        ShootLaser();
+        if(GameManager.aimLine)ShootLaser();
     }
 
     void ShootLaser()

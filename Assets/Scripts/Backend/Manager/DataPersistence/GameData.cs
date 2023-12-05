@@ -54,6 +54,7 @@ public class GameData
     public bool     susMode;
     public bool     hardcoreMode;
     public bool     movementKeysForDash;
+    public bool     aimLine;
 
     public GameData()
     {
@@ -98,6 +99,7 @@ public class GameData
         susMode         = false;
         hardcoreMode    = false;
         movementKeysForDash = false;
+        aimLine         = true;
 
         difficulty = 1;
     }
