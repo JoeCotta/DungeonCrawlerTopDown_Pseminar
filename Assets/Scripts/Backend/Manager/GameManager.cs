@@ -115,8 +115,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             player.weapon.GetComponent<AlternateWS>().reserve = -1; //to disable it loading old reserve
             player.weapon.GetComponent<AlternateWS>().rarity = 0;
         }
-
-
+        if (player.secondWeapon && player.secondWeapon.GetComponent<AlternateWS>()) player.secondWeapon = null;
 
         player.isDead = false;
 
