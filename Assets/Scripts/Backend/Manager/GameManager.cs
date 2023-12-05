@@ -116,7 +116,6 @@ public class GameManager : MonoBehaviour, IDataPersistence
             player.weapon.GetComponent<AlternateWS>().rarity = 0;
             player.secondWeapon = null;
         }
-        if (player.secondWeapon && player.secondWeapon.GetComponent<AlternateWS>()) player.secondWeapon = null;
 
         player.isDead = false;
 
