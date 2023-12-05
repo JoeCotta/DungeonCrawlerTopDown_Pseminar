@@ -22,7 +22,7 @@ public class DataBase : MonoBehaviour
                 temp[3] = 2f;   //rate
                 temp[4] = 0.90f;//accuracy
                 temp[5] = 1.5f; // fov
-                temp[6] = -1;   // speed
+                temp[6] = 0;   // speed
                 break;
             case 1://rifel
                 temp[0] = 4;    //dmg
@@ -31,7 +31,7 @@ public class DataBase : MonoBehaviour
                 temp[3] = 5;    //rate
                 temp[4] = 0.75f;//accuracy
                 temp[5] = 1.5f; // fov
-                temp[6] = -2;   // speed
+                temp[6] = -1;   // speed
                 break;
             case 2://sniper
                 temp[0] = 35;   //dmg
@@ -52,11 +52,11 @@ public class DataBase : MonoBehaviour
                 temp[6] = -2;   // speed
                 break;
             case 4://minigun only legy
-                temp[0] = 5;    //dmg
+                temp[0] = 4;    //dmg
                 temp[1] = 250;  //mag
-                temp[2] = 250;  //reserve
-                temp[3] = 40;   //rate
-                temp[4] = 0.1f; //accuracy
+                temp[2] = 125;  //reserve
+                temp[3] = 30;   //rate
+                temp[4] = 0.15f; //accuracy
                 temp[5] = 1.75f;// fov
                 temp[6] = -3;   // speed
                 break;

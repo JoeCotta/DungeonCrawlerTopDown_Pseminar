@@ -33,6 +33,7 @@ public class GameData
     public int      second_currentWeaponType, second_currentRarity;
     public float    second_currentReserve, second_currentAmmo;
     public bool     hadSecondWeapon;
+    public float    timeInRun;
 
     private int     dumpVariableInt;
     private float   dumpVariableFloat;

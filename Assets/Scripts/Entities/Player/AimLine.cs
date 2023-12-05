@@ -11,6 +11,7 @@ public class AimLine : MonoBehaviour
 
     private void Update()
     {
+        if (GameManager.isPaused) return;
         if(GameManager.aimLine)ShootLaser();
     }
 

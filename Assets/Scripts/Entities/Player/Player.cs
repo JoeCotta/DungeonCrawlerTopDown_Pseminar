@@ -259,10 +259,10 @@ public class Player : MonoBehaviour, IDataPersistence
         // updates the current selected Item
         if(Input.GetKeyDown("1")) selectedItem = 1;
         if(Input.GetKeyDown("2")) selectedItem = 2;
-        if (Input.GetKeyDown("3")) switchWeapon();
+        if (Input.GetKeyDown((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("SwitchWeaponKey")))) switchWeapon();
 
         // as long as the FOV has to change it will call changeFOV()
-        if(!isChangingFOV) {
+            if (!isChangingFOV) {
             // resets the last FOV and t
             lastFOV = cam.orthographicSize;
             t = 0;

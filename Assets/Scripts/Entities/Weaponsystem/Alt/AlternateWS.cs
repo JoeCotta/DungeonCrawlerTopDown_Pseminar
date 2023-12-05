@@ -19,7 +19,7 @@ public class AlternateWS : MonoBehaviour
 
     public int weaponType, rarity;
     private float dmg, rate, accuracy, chargedTime, maxChargeTime = 4, maxChargeDmgMultiplier = 4;
-    public float mag, reserve, fov, ammo, dmgtest, speed;
+    public float mag, reserve, fov, ammo, dmgtest, speed, enemyDmgMultiplier;
     private bool blockLoadingInfo = false, isCharging = false;
 
     public Sprite[] textureEditor, magSprites;
@@ -59,9 +59,6 @@ public class AlternateWS : MonoBehaviour
         rTimer = rTime;
         throwForceMag = 350f;
         if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()) dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
-
-        // difficulty
-        if (owner) if (owner.tag == "Enemy") dmg *= dataPersistenceManager.gameData.difficulty;
     }
 
     public void shoot()
@@ -81,7 +78,11 @@ public class AlternateWS : MonoBehaviour
             interval = 0;
             if (owner.tag != "Enemy") ammo--;
             GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized * Quaternion.Euler(0, 0, inAccuracy.z));
-            if (temp != null) temp.GetComponent<AltBullet>().assingVar(dmg * dataPersistenceManager.gameData.currentDamageMultiplier, owner);
+            if (temp != null)
+            {
+                if(owner.tag == "Player")temp.GetComponent<AltBullet>().assingVar(dmg * dataPersistenceManager.gameData.currentDamageMultiplier, owner);
+                if(owner.tag == "Enemy") temp.GetComponent<AltBullet>().assingVar(dmg * DifficultyTracker.dmgMultiplier, owner);
+            }
         }
         // no ammo
         else if (interval > 1 / rate && ammo <= 0 && !reloading)

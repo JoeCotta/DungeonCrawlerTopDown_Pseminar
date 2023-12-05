@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7954276883627966502}
   - component: {fileID: 7594831157034085440}
   - component: {fileID: -6304100530769498300}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ThrownMag
   m_TagString: Untagged
   m_Icon: {fileID: 0}

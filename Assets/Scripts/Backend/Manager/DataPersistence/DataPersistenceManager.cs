@@ -50,6 +50,7 @@ public class DataPersistenceManager : MonoBehaviour
         PlayerPrefs.SetString("RightKey", "D");
         PlayerPrefs.SetString("DashKey", "LeftShift");
         PlayerPrefs.SetString("ShootKey", "Mouse0");
+        PlayerPrefs.SetString("SwitchWeaponKey", "Alpha3");
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.LoadData(gameData);
@@ -72,9 +73,10 @@ public class DataPersistenceManager : MonoBehaviour
             if(dataPersistenceObj != null) dataPersistenceObj.LoadData(gameData);
         }
 
-        // set difficulty
+        /*// set difficulty
         int enemysKilled = gameData.enemysKilled;
         gameData.difficulty = (float)(0.03 * Mathf.Sqrt(enemysKilled)+1);
+        */
     }
 
     public void SaveGame()

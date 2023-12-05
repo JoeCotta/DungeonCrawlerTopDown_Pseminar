@@ -50,7 +50,8 @@ public class Enemy : MonoBehaviour
             DataPersistenceManager dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
 
             // difficulty
-            health *= dataPersistenceManager.gameData.difficulty;
+            health *=  DifficultyTracker.healthMultiplier;
+            speed *= DifficultyTracker.speedMultiplier;
         }
 
         //get player Transform by Cornell
@@ -74,7 +75,7 @@ public class Enemy : MonoBehaviour
         weapon.GetComponent<AlternateWS>().weaponType = weaponType;
         weapon.GetComponent<AlternateWS>().owner = gameObject;
 
-        if (Random.value <= 0.5f) EnemyUsePrediction = true;
+        if (Random.value <= 0.8f) EnemyUsePrediction = true;
         else EnemyUsePrediction = false;
 
 

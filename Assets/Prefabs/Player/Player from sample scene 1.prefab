@@ -52,6 +52,7 @@ GameObject:
   - component: {fileID: 8289806496299434975}
   - component: {fileID: -1693498620510741911}
   - component: {fileID: 5984510601904343663}
+  - component: {fileID: -1099226805754995871}
   m_Layer: 0
   m_Name: Player from sample scene 1
   m_TagString: Player
@@ -746,6 +747,22 @@ MonoBehaviour:
   lineRenderer: {fileID: 1438329775309454383}
   cam: {fileID: 0}
   range: 150
+--- !u!114 &-1099226805754995871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644545702556066164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae60a437e27105840b288334d25aaed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeInRun: 0
+  difficultyLevel: 
+  interval: 0
+  enemyPrefab: {fileID: 9160011324959439354, guid: 63bcad68ccb791b43a9a796af8074e23, type: 3}
 --- !u!1 &2534011111684383097
 GameObject:
   m_ObjectHideFlags: 0

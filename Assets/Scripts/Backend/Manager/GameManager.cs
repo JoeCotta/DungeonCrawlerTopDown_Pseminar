@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
             public Sprite susref_Small;
     static  public Sprite sus_Small;
     static  public Player player;
+    static public float difficulty;
             public bool useAltInterface;
     static  public bool useAlt, isPaused = false;
             public bool susModeRef;
@@ -111,6 +112,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         player.health = dataPersistenceManager.gameData.currentMaxHealth;
         player.maxHealth = dataPersistenceManager.gameData.currentMaxHealth;
         player.armourLevel = Mathf.RoundToInt(dataPersistenceManager.gameData.startArmor);
+        player.gameObject.GetComponent<DifficultyTracker>().timeInRun = 0;
         if (player.weapon && player.weapon.GetComponent<AlternateWS>())
         {
             player.weapon.GetComponent<AlternateWS>().weaponType = dataPersistenceManager.gameData.startWeaponType;
