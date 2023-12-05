@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5699764428156774201}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: firePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   - component: {fileID: 8045670057354165126}
   - component: {fileID: 7958867293475310358}
   - component: {fileID: -2808571969892953247}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WeaponAlt
   m_TagString: Item
   m_Icon: {fileID: 0}
@@ -173,6 +173,7 @@ MonoBehaviour:
   owner: {fileID: 0}
   magPref: {fileID: 6381173264866670817, guid: 7f21ab7b03bc5404abdb50abcd756401, type: 3}
   effekt: {fileID: 5612643859349273964}
+  collider: {fileID: 0}
   throwForceMag: 0
   shootSounds:
   - {fileID: 6130401319694950933}
@@ -201,8 +202,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 8
-  m_AngularDrag: 0.05
+  m_LinearDrag: 10
+  m_AngularDrag: 10
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -988,7 +989,7 @@ GameObject:
   - component: {fileID: 7473062493072166765}
   - component: {fileID: 4484250429036095927}
   - component: {fileID: 8708880918725289628}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Rarity
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5798,7 +5799,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5153996249448726487}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: WeaponAlt
   m_TagString: Untagged
   m_Icon: {fileID: 0}

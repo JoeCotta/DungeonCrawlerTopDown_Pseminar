@@ -195,7 +195,7 @@ public class Enemy : MonoBehaviour
 
         // manages rotation while shooting 50 % chance to use prediction
         Vector2 PlayerDirection;
-        PlayerDirection = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(15f, target.gameObject) - rb.position).normalized;
+        PlayerDirection = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(7.5f * DifficultyTracker.bulletSpeedMultiplier, target.gameObject) - rb.position).normalized;
 
         //Debug.Log(gameObject.GetComponent<BulletCalc>().CalcPath(15f, target.gameObject));
         float angleToPlayer = Mathf.Atan2(PlayerDirection.y, PlayerDirection.x) * Mathf.Rad2Deg - 90f;

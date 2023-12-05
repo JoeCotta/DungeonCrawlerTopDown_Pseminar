@@ -11,13 +11,15 @@ public class DifficultyTracker : MonoBehaviour, IDataPersistence
     static public float healthMultiplier;
     static public float dmgMultiplier;
     static public float speedMultiplier = 1;
+    static public float bulletSpeedMultiplier = 1;
 
     void Update()
     {
         if (GameManager.isPaused) return;
         timeInRun += Time.deltaTime;
         UpdateDifficultyLevel();
-        SetDifficultyVariables();
+        if (!GameManager.hardcoreMode) SetDifficultyVariables();
+        else HARDCORE_SetDifficultyVariables();
 
         //If Difficulty hard or higher chance to spawn enemy at random
         if (timeInRun > 1200) ChanceToSpawnEnemy();
@@ -64,44 +66,121 @@ public class DifficultyTracker : MonoBehaviour, IDataPersistence
             case "Very Easy":
                 healthMultiplier = 0.5f;
                 dmgMultiplier = 0.5f;
+                bulletSpeedMultiplier = 0.75f;
                 break;
             case "Easy":
                 healthMultiplier = 0.75f;
                 dmgMultiplier = 0.75f;
+                bulletSpeedMultiplier = 0.75f;
                 break;
             case "Normal":
                 healthMultiplier = 1;
                 dmgMultiplier = 1;
+                bulletSpeedMultiplier = 1f;
                 break;
             case "Harder than Normal":
                 healthMultiplier = 1.5f;
                 dmgMultiplier = 1;
+                bulletSpeedMultiplier = 1.25f;
                 break;
             case "Hard":
                 healthMultiplier = 2;
                 dmgMultiplier = 1.5f;
+                bulletSpeedMultiplier = 1.25f;
                 break;
             case "Harder":
                 healthMultiplier = 2;
                 dmgMultiplier = 2;
+                bulletSpeedMultiplier = 1.5f;
                 break;
             case "Very Hard":
                 healthMultiplier = 3f;
                 dmgMultiplier = 2;
+                bulletSpeedMultiplier = 1.75f;
                 break;
             case "Impossible":
                 healthMultiplier = 5;
                 dmgMultiplier = 3;
+                bulletSpeedMultiplier = 1.75f;
                 break;
             case "Unbelievable":
                 healthMultiplier = 5;
                 dmgMultiplier = 3;
+                bulletSpeedMultiplier = 2f;
                 speedMultiplier = 1.5f;
                 break;
             default:
                 healthMultiplier = 5;
                 dmgMultiplier = 3;
+                bulletSpeedMultiplier = 2f;
                 speedMultiplier = 1.5f;
+                break;
+        }
+    }
+
+    void HARDCORE_SetDifficultyVariables()
+    {
+        switch (difficultyLevel)
+        {
+            case "Very Easy":
+                healthMultiplier = 1f;
+                dmgMultiplier = 1f;
+                bulletSpeedMultiplier = 1.5f;
+                speedMultiplier = 1.1f;
+                break;
+            case "Easy":
+                healthMultiplier = 1.25f;
+                dmgMultiplier = 1.25f;
+                bulletSpeedMultiplier = 2f;
+                speedMultiplier = 1.1f;
+                break;
+            case "Normal":
+                healthMultiplier = 2f;
+                dmgMultiplier = 1.5f;
+                bulletSpeedMultiplier = 2f;
+                speedMultiplier = 1.25f;
+                break;
+            case "Harder than Normal":
+                healthMultiplier = 2f;
+                dmgMultiplier = 2f;
+                bulletSpeedMultiplier = 2.5f;
+                speedMultiplier = 1.25f;
+                break;
+            case "Hard":
+                healthMultiplier = 2.5f;
+                dmgMultiplier = 2.5f;
+                bulletSpeedMultiplier = 3f;
+                speedMultiplier = 1.4f;
+                break;
+            case "Harder":
+                healthMultiplier = 3.5f;
+                dmgMultiplier = 2.5f;
+                bulletSpeedMultiplier = 3f;
+                speedMultiplier = 1.4f;
+                break;
+            case "Very Hard":
+                healthMultiplier = 5f;
+                dmgMultiplier = 3.5f;
+                bulletSpeedMultiplier = 3f;
+                speedMultiplier = 1.5f;
+                break;
+            case "Impossible":
+                healthMultiplier = 8f;
+                dmgMultiplier = 4f;
+                bulletSpeedMultiplier = 3f;
+                speedMultiplier = 1.6f;
+                break;
+            case "Unbelievable":
+                healthMultiplier = 10;
+                dmgMultiplier = 6;
+                bulletSpeedMultiplier = 4f;
+                speedMultiplier = 1.75f;
+                break;
+            default:
+                healthMultiplier = 10;
+                dmgMultiplier = 6;
+                bulletSpeedMultiplier = 4f;
+                speedMultiplier = 1.75f;
                 break;
         }
     }

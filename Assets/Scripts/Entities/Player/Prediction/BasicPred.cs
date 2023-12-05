@@ -17,7 +17,7 @@ public class BasicPred : MonoBehaviour
 
     private void Start()
     {
-        positions = new Vector3[50];
+        positions = new Vector3[60];
         movement = new Vector3[positions.Length-1];
         times = new float[positions.Length];
     }

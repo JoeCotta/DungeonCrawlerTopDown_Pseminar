@@ -23,16 +23,15 @@ public class AltBullet : MonoBehaviour
         if (!isBossBullet)
         {
             if (owner && owner.CompareTag("Player"))    speed = 3f;
-            else if (GameManager.hardcoreMode)          speed = 1f;
-            else                                        speed = 0.5f;
+            else                                        speed = 1f * DifficultyTracker.bulletSpeedMultiplier;
         }
         //cast ray to next position
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, speed * 15f * Time.deltaTime);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, transform.up, speed * 7.5f * Time.deltaTime);
         if(hit.collider != null)
         {
             HitSomething(hit.collider);
         }
-        gameObject.GetComponent<Rigidbody2D>().MovePosition(transform.position + transform.up * speed * 15f * Time.deltaTime);
+        gameObject.GetComponent<Rigidbody2D>().MovePosition(transform.position + transform.up * speed * 7.5f * Time.deltaTime);
     }
 
     private void HitSomething(Collider2D other)
