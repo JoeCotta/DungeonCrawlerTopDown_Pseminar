@@ -8,7 +8,7 @@ public class AmmoBox : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            collision.GetComponent<Player>().weapon.GetComponent<AlternateWS>().reserve += collision.GetComponent<Player>().weapon.GetComponent<AlternateWS>().mag * 3;
+            collision.GetComponent<Player>().weapon.GetComponent<AlternateWS>().reserve += collision.GetComponent<Player>().weapon.GetComponent<AlternateWS>().ammo;
             Destroy(gameObject);
         }
     }
