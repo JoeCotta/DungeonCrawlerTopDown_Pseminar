@@ -167,17 +167,6 @@ public class Player : MonoBehaviour, IDataPersistence
         angleToMouse = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg;
 
         updatePlayerSprite();
-        /*
-        // -30 - 90   front left
-        // -30 - -150 back
-        // 90 - -150 front-right
-        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
-        if (angleToMouse > -30 && angleToMouse < 90) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left;
-        else if ((angleToMouse > 90 && angleToMouse <= 180) || (angleToMouse >= -180 && angleToMouse < -150)) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_right;
-        else if (angleToMouse < -30 && angleToMouse > -150){
-            gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
-        }*/
 
         //flip weapon sprite
         if (weapon){
@@ -240,12 +229,6 @@ public class Player : MonoBehaviour, IDataPersistence
         }
 
         // update the position and rotation of the weapon if the player has one
-        /*if (weapon)
-        {
-            weapon.transform.position = weaponSlot.position;
-            weapon.transform.rotation = Quaternion.Euler(0, 0, angleToMouse + 180);
-
-        }*/
         updateWeaponPosition();
 
 

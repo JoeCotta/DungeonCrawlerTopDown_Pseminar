@@ -137,18 +137,7 @@ public class Enemy : MonoBehaviour
         }
 
         updateSprite();
-        /*
-        // -270 - -30   front left
-        // -30 - -150 back
-        // -270 - -150 front-right
-        gameObject.GetComponent<SpriteRenderer>().sortingOrder = 1;
-        if (angleToPlayer < -150 && angleToPlayer > -270) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_right;
-        else if ((angleToPlayer > -30 && angleToPlayer <= 0) || (angleToPlayer <= -270 && angleToPlayer > -360)) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left;
-        else if (angleToPlayer < -30 && angleToPlayer > -150){
-            gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
-            gameObject.GetComponent<SpriteRenderer>().sortingOrder = 3;
-        }*/
-        
+                
         //flip weapon sprite
         if (weapon){
             // left side

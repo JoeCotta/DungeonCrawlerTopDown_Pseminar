@@ -267,14 +267,6 @@ public class Boss : MonoBehaviour
         }
 
         updateSprite();
-        /*
-        Vector2 vectorToPlayer = ((Vector2)playerTransform.position - rb.position).normalized;
-        float angleToPlayer = Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg;
-
-        if (angleToPlayer > -90 && angleToPlayer < 30) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_right;
-        else if ((angleToPlayer > 150 && angleToPlayer <= 180) || (angleToPlayer >= -180 && angleToPlayer <= -90)) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left;
-        else if (angleToPlayer > 30 && angleToPlayer < 150) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
-        */
     }
 
     void updateSprite()
