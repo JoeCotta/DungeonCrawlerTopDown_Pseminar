@@ -72,11 +72,6 @@ public class DataPersistenceManager : MonoBehaviour
         {
             if(dataPersistenceObj != null) dataPersistenceObj.LoadData(gameData);
         }
-
-        /*// set difficulty
-        int enemysKilled = gameData.enemysKilled;
-        gameData.difficulty = (float)(0.03 * Mathf.Sqrt(enemysKilled)+1);
-        */
     }
 
     public void SaveGame()

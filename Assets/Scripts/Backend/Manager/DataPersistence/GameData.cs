@@ -51,7 +51,6 @@ public class GameData
     public float    MapVol;
     public float    MusicVol;
     public float    BoostsVol;
-    public float    difficulty;
     public bool     susMode;
     public bool     hardcoreMode;
     public bool     movementKeysForDash;
@@ -101,7 +100,5 @@ public class GameData
         hardcoreMode    = false;
         movementKeysForDash = false;
         aimLine         = true;
-
-        difficulty = 1;
     }
 }
