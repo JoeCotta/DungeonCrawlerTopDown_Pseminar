@@ -12,6 +12,8 @@ public class DifficultyTracker : MonoBehaviour, IDataPersistence
     static public float dmgMultiplier;
     static public float speedMultiplier = 1;
     static public float bulletSpeedMultiplier = 1;
+    static public float damageReduceFactor = 1;
+    static public float bossTimeBetweenAttacksReduceTime = 0;
 
     void Update()
     {
@@ -67,53 +69,73 @@ public class DifficultyTracker : MonoBehaviour, IDataPersistence
                 healthMultiplier = 0.5f;
                 dmgMultiplier = 0.5f;
                 bulletSpeedMultiplier = 0.75f;
+                damageReduceFactor = 1;
+                bossTimeBetweenAttacksReduceTime = 0f;
                 break;
             case "Easy":
                 healthMultiplier = 0.75f;
                 dmgMultiplier = 0.75f;
                 bulletSpeedMultiplier = 0.75f;
+                damageReduceFactor = 0.9f;
+                bossTimeBetweenAttacksReduceTime = 0f;
                 break;
             case "Normal":
                 healthMultiplier = 1;
                 dmgMultiplier = 1;
                 bulletSpeedMultiplier = 1f;
+                damageReduceFactor = 0.9f;
+                bossTimeBetweenAttacksReduceTime = 0.25f;
                 break;
             case "Harder than Normal":
                 healthMultiplier = 1.5f;
                 dmgMultiplier = 1;
                 bulletSpeedMultiplier = 1.25f;
+                damageReduceFactor = 0.9f;
+                bossTimeBetweenAttacksReduceTime = 0.25f;
                 break;
             case "Hard":
                 healthMultiplier = 2;
                 dmgMultiplier = 1.5f;
                 bulletSpeedMultiplier = 1.25f;
+                damageReduceFactor = 0.8f;
+                bossTimeBetweenAttacksReduceTime = 0.5f;
                 break;
             case "Harder":
                 healthMultiplier = 2;
                 dmgMultiplier = 2;
                 bulletSpeedMultiplier = 1.5f;
+                damageReduceFactor = 0.8f;
+                bossTimeBetweenAttacksReduceTime = 0.75f;
                 break;
             case "Very Hard":
                 healthMultiplier = 3f;
                 dmgMultiplier = 2;
                 bulletSpeedMultiplier = 1.75f;
+                damageReduceFactor = 0.7f;
+                bossTimeBetweenAttacksReduceTime = 1f;
                 break;
             case "Impossible":
                 healthMultiplier = 5;
                 dmgMultiplier = 3;
                 bulletSpeedMultiplier = 1.75f;
+                damageReduceFactor = 0.7f;
+                bossTimeBetweenAttacksReduceTime = 1.25f;
                 break;
             case "Unbelievable":
                 healthMultiplier = 5;
                 dmgMultiplier = 3;
                 bulletSpeedMultiplier = 2f;
                 speedMultiplier = 1.5f;
+                damageReduceFactor = 0.6f;
+                bossTimeBetweenAttacksReduceTime = 1.5f;
                 break;
             default:
                 healthMultiplier = 5;
                 dmgMultiplier = 3;
                 bulletSpeedMultiplier = 2f;
                 speedMultiplier = 1.5f;
+                damageReduceFactor = 1f;
+                bossTimeBetweenAttacksReduceTime = 0f;
                 break;
         }
     }
@@ -127,60 +149,79 @@ public class DifficultyTracker : MonoBehaviour, IDataPersistence
                 dmgMultiplier = 1f;
                 bulletSpeedMultiplier = 1.5f;
                 speedMultiplier = 1.1f;
+                damageReduceFactor = 1f;
+                bossTimeBetweenAttacksReduceTime = 0f;
                 break;
             case "Easy":
                 healthMultiplier = 1.25f;
                 dmgMultiplier = 1.25f;
                 bulletSpeedMultiplier = 2f;
                 speedMultiplier = 1.1f;
+                damageReduceFactor = 0.9f;
+                bossTimeBetweenAttacksReduceTime = 0.25f;
                 break;
             case "Normal":
                 healthMultiplier = 2f;
                 dmgMultiplier = 1.5f;
                 bulletSpeedMultiplier = 2f;
                 speedMultiplier = 1.25f;
+                damageReduceFactor = 0.9f;
+                bossTimeBetweenAttacksReduceTime = 0.5f;
                 break;
             case "Harder than Normal":
                 healthMultiplier = 2f;
                 dmgMultiplier = 2f;
                 bulletSpeedMultiplier = 2.5f;
                 speedMultiplier = 1.25f;
+                damageReduceFactor = 0.8f;
+                bossTimeBetweenAttacksReduceTime = 1f;
                 break;
             case "Hard":
                 healthMultiplier = 2.5f;
                 dmgMultiplier = 2.5f;
                 bulletSpeedMultiplier = 3f;
                 speedMultiplier = 1.4f;
+                damageReduceFactor = 0.8f;
+                bossTimeBetweenAttacksReduceTime = 1.5f;
                 break;
             case "Harder":
                 healthMultiplier = 3.5f;
                 dmgMultiplier = 2.5f;
                 bulletSpeedMultiplier = 3f;
                 speedMultiplier = 1.4f;
+                damageReduceFactor = 0.7f;
+                bossTimeBetweenAttacksReduceTime = 2f;
                 break;
             case "Very Hard":
                 healthMultiplier = 5f;
                 dmgMultiplier = 3.5f;
                 bulletSpeedMultiplier = 3f;
                 speedMultiplier = 1.5f;
+                damageReduceFactor = 0.6f;
+                bossTimeBetweenAttacksReduceTime = 2.5f;
                 break;
             case "Impossible":
                 healthMultiplier = 8f;
                 dmgMultiplier = 4f;
                 bulletSpeedMultiplier = 3f;
                 speedMultiplier = 1.6f;
+                damageReduceFactor = 0.5f;
+                bossTimeBetweenAttacksReduceTime = 3f;
                 break;
             case "Unbelievable":
                 healthMultiplier = 10;
                 dmgMultiplier = 6;
                 bulletSpeedMultiplier = 4f;
                 speedMultiplier = 1.75f;
+                damageReduceFactor = 0.4f;
+                bossTimeBetweenAttacksReduceTime = 3.5f;
                 break;
             default:
                 healthMultiplier = 10;
                 dmgMultiplier = 6;
                 bulletSpeedMultiplier = 4f;
                 speedMultiplier = 1.75f;
+                damageReduceFactor = 1f;
                 break;
         }
     }

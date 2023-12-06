@@ -165,59 +165,6 @@ public class RoomManagment : MonoBehaviour
             }
 
         }
-
-        
-        /*GameObject tempRoom = null; Vector3 tempPosition;
-        for (int i = 0; i < doors.Length; i++)
-        {
-            switch (doors[i])
-            {
-                case "U":
-                    tempRoom = null;
-                    for (int i2 = 0; i2 < templates.rooms.Count; i2++)
-                    {
-                        tempPosition = templates.rooms[i2].transform.position;
-                        if (tempRoom == null && tempPosition.y - thisRoom.transform.position.y > 1 || tempPosition.x == thisRoom.transform.position.x && tempPosition.y - thisRoom.transform.position.y > 1 && tempPosition.y < tempRoom.transform.position.y)
-                        {
-                            tempRoom = templates.rooms[i2];
-                            //Debug.Log(tempPosition.x - thisRoom.transform.position.x);
-                        }
-                    }
-                    if (tempRoom == null) break; // failsave
-                    foreach (string item in tempRoom.GetComponent<RoomManagment>().doors)
-                    {
-                        if (item == "D") { oben = true; Debug.Log(tempRoom + " " + item); break; }
-                    }
-                    if (oben == false) { Instantiate(doorFix, transform.position + new Vector3(0, 4.5f * templates.size, 0), Quaternion.identity); doors[i] = " "; break; }
-                    break;
-
-                case "R":
-                    tempRoom = null;
-                    for (int i2 = 0; i2 < templates.rooms.Count; i2++)
-                    {
-                        tempPosition = templates.rooms[i2].transform.position;
-                        if ( tempRoom == null && tempPosition.x - thisRoom.transform.position.x > 1 || tempPosition.y == thisRoom.transform.position.y && tempPosition.x - thisRoom.transform.position.x > 1 && tempPosition.x < tempRoom.transform.position.x)
-                        {
-                            tempRoom = templates.rooms[i2];
-                            //Debug.Log(tempPosition.x - thisRoom.transform.position.x);
-                        }
-                    }
-                    if (tempRoom == null) break; // failsave
-                    foreach (string item in tempRoom.GetComponent<RoomManagment>().doors)
-                    {
-                        if (item == "L") { rechts = true; break; }
-                    }
-                    if (rechts == false) { Instantiate(doorFix, transform.position + new Vector3(0, 4.5f * templates.size, 0), Quaternion.identity); doors[i] = " "; break; }
-                    break;
-
-                case "D":
-
-                    break;
-                case "L":
-
-                    break;
-            }
-        }*/
     }
 
     void closeEntrances() {

@@ -122,6 +122,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
         if(player.secondWeapon) player.secondWeapon = null;
 
         player.isDead = false;
+        player.currentFloor = 1;
 
         dataPersistenceManager.SaveGame();
         SceneManager.LoadScene("Menu");

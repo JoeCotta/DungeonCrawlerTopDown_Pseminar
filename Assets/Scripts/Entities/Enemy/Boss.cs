@@ -13,6 +13,7 @@ public class Boss : MonoBehaviour
     [HideInInspector] public float currentHealth;
     [SerializeField] private float bulletDamage;
     private float damageReduceFactor;
+    private float bulletSpeedMultiplier;
 
 
     // references
@@ -103,24 +104,23 @@ public class Boss : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         seeker = GetComponent<Seeker>();
 
-        currentHealth = maxHealth;
-
         UIBossBar = GameObject.Find("Bossbar").transform.GetChild(0).gameObject;
         UIBossBar.GetComponent<BossBar>().boss = this;
         UIBossBar.SetActive(true);
         UIBossBar.GetComponent<BossBar>().isBoss = true;
-
-        damageReduceFactor = 1;
 
         // difficulty
         if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()){
             DataPersistenceManager dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
 
             // difficulty
-            bulletDamage *= dataPersistenceManager.gameData.difficulty;
-            damageReduceFactor *= dataPersistenceManager.gameData.difficulty;
-            timeBetweenAttacks = Mathf.Clamp((float)(timeBetweenAttacks/(dataPersistenceManager.gameData.difficulty * 0.4)), 3, timeBetweenAttacks);
+            bulletSpeedMultiplier = DifficultyTracker.bulletSpeedMultiplier;
+            bulletDamage = DifficultyTracker.dmgMultiplier;
+            damageReduceFactor = DifficultyTracker.damageReduceFactor;
+            timeBetweenAttacks =  Mathf.Clamp(timeBetweenAttacks - DifficultyTracker.bossTimeBetweenAttacksReduceTime, 1.5f, timeBetweenAttacks);
+            maxHealth *= DifficultyTracker.healthMultiplier;
         }
+        currentHealth = maxHealth;
     }
     
     void UpdatePath()
@@ -162,7 +162,7 @@ public class Boss : MonoBehaviour
 
     void hit(float damage)
     {
-        damage = Mathf.Max(damage / damageReduceFactor, 1);
+        damage = Mathf.Max(damage * damageReduceFactor, 1);
 
         currentHealth -= damage;
         if (currentHealth <= 0) onDeath();
@@ -186,7 +186,7 @@ public class Boss : MonoBehaviour
             // 60 / 100 pistol
             // 30 / 100 rifle
             // 10/100 sniper
-        // 5/1000 legendary
+        // 100/1000 legendary
             // 60 / 100 pistol
             // 30 / 100 rifle
             // 10/100 sniper
@@ -225,7 +225,7 @@ public class Boss : MonoBehaviour
             // 10/100 sniper
             if (randomNumber >= 90 && randomNumber < 100) weapon.weaponType = 2;
         }
-        // 5/1000 legendary
+        // 100/1000 legendary
         if (randomNumber >= 100 && randomNumber < 200) 
         {
             int randomNumber2 = Random.Range(0, 100);
@@ -267,14 +267,6 @@ public class Boss : MonoBehaviour
         }
 
         updateSprite();
-        /*
-        Vector2 vectorToPlayer = ((Vector2)playerTransform.position - rb.position).normalized;
-        float angleToPlayer = Mathf.Atan2(vectorToPlayer.y, vectorToPlayer.x) * Mathf.Rad2Deg;
-
-        if (angleToPlayer > -90 && angleToPlayer < 30) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_right;
-        else if ((angleToPlayer > 150 && angleToPlayer <= 180) || (angleToPlayer >= -180 && angleToPlayer <= -90)) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_front_left;
-        else if (angleToPlayer > 30 && angleToPlayer < 150) gameObject.GetComponent<SpriteRenderer>().sprite = sprite_back;
-        */
     }
 
     void updateSprite()

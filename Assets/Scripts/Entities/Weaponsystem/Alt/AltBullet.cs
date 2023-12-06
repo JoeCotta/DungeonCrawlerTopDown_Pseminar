@@ -84,18 +84,3 @@ public class AltBullet : MonoBehaviour
         this.speed = speed;
     }
 }
-
-
-
-/* if the collider is an enemy or the player it will apply damage to it
-if (other.gameObject.tag == "Player" || other.gameObject.tag == "Enemy")
-{
-
-    //only dmg if other gameobject isnt same type as object wielding the weapon (prevent friendly fire) by Cornell
-    if (other.gameObject.tag != owner.tag)
-    {
-        other.gameObject.SendMessage("hit", dmg);
-        // when hitting some1 it destroys itself
-        Destroy(gameObject);
-    }
-}*/

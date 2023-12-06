@@ -16,6 +16,7 @@ public class GameData
     public int      startWeaponType;
     public float    currentDamageMultiplier;
     public float    permanentDamageMultiplier;
+    public int currentFloor;
 
     // Levels
     public int  maxHealthlvl;
@@ -51,7 +52,6 @@ public class GameData
     public float    MapVol;
     public float    MusicVol;
     public float    BoostsVol;
-    public float    difficulty;
     public bool     susMode;
     public bool     hardcoreMode;
     public bool     movementKeysForDash;
@@ -101,7 +101,8 @@ public class GameData
         hardcoreMode    = false;
         movementKeysForDash = false;
         aimLine         = true;
+        
+        currentFloor = 1;
 
-        difficulty = 1;
     }
 }
