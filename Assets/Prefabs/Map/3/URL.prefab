@@ -748,6 +748,7 @@ MonoBehaviour:
   minEnemys: 4
   spawned: 0
   isBossR: 0
+  barrel: {fileID: 7707296819325776744, guid: 5de9a7ecbe1c0844c945cec51bfdd1bf, type: 3}
   killSound: {fileID: 5059549460709609260}
   enemySpawnSound: {fileID: -3623224281113348877}
   closeDoorSound: {fileID: 4604338774913721983}

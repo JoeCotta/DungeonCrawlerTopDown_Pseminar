@@ -53,6 +53,7 @@ GameObject:
   - component: {fileID: -1693498620510741911}
   - component: {fileID: 5984510601904343663}
   - component: {fileID: -1099226805754995871}
+  - component: {fileID: -423223789625978643}
   m_Layer: 0
   m_Name: Player from sample scene 1
   m_TagString: Player
@@ -189,6 +190,7 @@ MonoBehaviour:
   timeChangeFOV: 0.25
   t: 0
   FOVChangeWithoutWeapon: -1
+  angleToMouse: 0
   dashCooldownLeft: 0
   isDashing: 0
   weaponPrefab: {fileID: 4382214503651565149, guid: 85ca61a2f59b7d9e0a436efd4cae65a1, type: 3}
@@ -760,9 +762,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeInRun: 0
-  difficultyLevel: 
   interval: 0
   enemyPrefab: {fileID: 9160011324959439354, guid: 63bcad68ccb791b43a9a796af8074e23, type: 3}
+--- !u!114 &-423223789625978643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 644545702556066164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 831f768c33c751541aae2c23d2b7682f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Granades: {fileID: 1187026987735500558, guid: 288b2e068e81a4b4c8b1c5b62509842d, type: 3}
 --- !u!1 &2534011111684383097
 GameObject:
   m_ObjectHideFlags: 0

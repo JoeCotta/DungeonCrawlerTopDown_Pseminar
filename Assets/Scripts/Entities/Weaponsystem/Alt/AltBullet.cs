@@ -39,7 +39,7 @@ public class AltBullet : MonoBehaviour
         if (!gameObject || !other.gameObject || !owner) return;
 
         //if character apply dmg
-        if ((owner.CompareTag("Player") && other.CompareTag("Enemy")) || (owner.CompareTag("Enemy") && other.CompareTag("Player")) )
+        if ((owner.CompareTag("Player") && other.CompareTag("Enemy")) || (owner.CompareTag("Enemy") && other.CompareTag("Player")) || other.CompareTag("Obstacle") )
         {
             other.gameObject.SendMessage("hit", dmg);
             Destroy(gameObject);

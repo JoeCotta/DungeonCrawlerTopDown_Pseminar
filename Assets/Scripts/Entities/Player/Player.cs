@@ -43,7 +43,7 @@ public class Player : MonoBehaviour, IDataPersistence
     private bool isChangingFOV, changeFOVGameStart;
 
     private Vector2 inputMovement, mousePosition, lookDir;
-    private float angleToMouse;
+    public float angleToMouse;
 
     public float dashCooldownLeft;
     private float dashTimeLeft;
@@ -324,7 +324,7 @@ public class Player : MonoBehaviour, IDataPersistence
     void OnCollisionEnter2D(Collision2D collision)
     {
         // if player hits an enemy while dashing it deals damage
-        if (collision.gameObject.tag == "Enemy" && isDashing)
+        if (collision.gameObject.tag == "Enemy" && isDashing || collision.gameObject.tag == "Obstacle" && isDashing)
         {
             collision.gameObject.SendMessage("hit", dashDamage);
         }

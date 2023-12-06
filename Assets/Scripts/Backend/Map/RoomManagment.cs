@@ -20,6 +20,8 @@ public class RoomManagment : MonoBehaviour
     public int enemysCount, enemysDead, maxEnemys, minEnemys;
     public bool spawned, isBossR = false;
 
+    [SerializeField] GameObject barrel;
+
     // Sounds
     [SerializeField] private AudioSource killSound;
     [SerializeField] private AudioSource enemySpawnSound;
@@ -42,7 +44,7 @@ public class RoomManagment : MonoBehaviour
 
     void Update() {
         //delete doors if all enemys dead
-        if (enemysDead == enemysCount && spawned == true && enemysCount > 0 && isBossR == false) {
+        if (enemysDead >= enemysCount && spawned == true && enemysCount > 0 && isBossR == false) {
             roomFinished();
         }
     }
@@ -266,6 +268,21 @@ public class RoomManagment : MonoBehaviour
                 tempSpawner.GetComponent<EnemySpawner>().manager = this;
                 tempSpawner.GetComponent<EnemySpawner>().enemy = enemy;
             }
+        }
+
+        //Obstacel Spawner
+        int objectCount = Random.Range(0, 4);
+        for (int i = 0; i < objectCount; i++)
+        {
+
+            int xrand = Random.Range(-1, 2); while (xrand == 0) xrand = Random.Range(-1, 2);
+            int yrand = Random.Range(-1, 2); while (yrand == 0) yrand = Random.Range(-1, 2);
+            //pick coordinate in the room/offset
+            xCoord = xrand * Random.Range(0, 3.5f);
+            yCoord = yrand * Random.Range(0, 3.5f);
+
+            //spawn Barrel
+            Instantiate(barrel, transform.position + new Vector3(xCoord * templates.size, yCoord * templates.size, 0), Quaternion.identity);
         }
     }
 

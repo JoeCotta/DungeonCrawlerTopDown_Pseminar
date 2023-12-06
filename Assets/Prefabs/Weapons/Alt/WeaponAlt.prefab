@@ -149,21 +149,26 @@ MonoBehaviour:
   dmgtest: 0
   speed: 0
   enemyDmgMultiplier: 0
+  bulletcount: 0
   textureEditor:
   - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
   - {fileID: 617686397, guid: 773edd0e770bea24d9558f537acbcd1d, type: 3}
   - {fileID: -2091552570, guid: ffbf5b7b3d87337419d8fbe73c98cf42, type: 3}
+  - {fileID: 617686397, guid: 773edd0e770bea24d9558f537acbcd1d, type: 3}
   - {fileID: -499240374, guid: 483bed4814057534c8773a7d61f208c5, type: 3}
   - {fileID: -1539111945, guid: ffd9850265e38074590b9d7924b16bb7, type: 3}
   - {fileID: 2064855048, guid: 16b57a915d141a84d816327374288a2c, type: 3}
+  - {fileID: 586828461, guid: eb640fd7e0efcfa43837e501911b847d, type: 3}
   - {fileID: 586828461, guid: eb640fd7e0efcfa43837e501911b847d, type: 3}
   - {fileID: 1610058245, guid: 6969e6af250a75c4db80a21de8e18f34, type: 3}
   magSprites:
   - {fileID: 666790031, guid: 82dfb839c1f594b4cac9075017ddebfa, type: 3}
   - {fileID: -941118122, guid: fb954b0dc0ed3994584f84d8b8a49229, type: 3}
   - {fileID: -1753060970, guid: 0335231ccbb5b9943b77fe9c5971c053, type: 3}
+  - {fileID: 1105211045, guid: 5cb0f1e5248f14d49aad4db6005693ae, type: 3}
   - {fileID: 666790031, guid: 82dfb839c1f594b4cac9075017ddebfa, type: 3}
   - {fileID: -817444369, guid: b2a45f54c8e6ddf4cbf628b1d218c64f, type: 3}
+  - {fileID: 1105211045, guid: 5cb0f1e5248f14d49aad4db6005693ae, type: 3}
   - {fileID: 1105211045, guid: 5cb0f1e5248f14d49aad4db6005693ae, type: 3}
   - {fileID: -941118122, guid: fb954b0dc0ed3994584f84d8b8a49229, type: 3}
   - {fileID: 666790031, guid: 82dfb839c1f594b4cac9075017ddebfa, type: 3}
@@ -173,7 +178,6 @@ MonoBehaviour:
   owner: {fileID: 0}
   magPref: {fileID: 6381173264866670817, guid: 7f21ab7b03bc5404abdb50abcd756401, type: 3}
   effekt: {fileID: 5612643859349273964}
-  collider: {fileID: 0}
   throwForceMag: 0
   shootSounds:
   - {fileID: 6130401319694950933}
@@ -181,9 +185,11 @@ MonoBehaviour:
   - {fileID: 2766896589907085029}
   - {fileID: 2766896589907085029}
   - {fileID: 2766896589907085029}
+  - {fileID: 2766896589907085029}
   reloadSounds:
   - {fileID: 3348998827980071719}
   - {fileID: 4099710159493521333}
+  - {fileID: 8045670057354165126}
   - {fileID: 8045670057354165126}
   - {fileID: 8045670057354165126}
   - {fileID: 8045670057354165126}

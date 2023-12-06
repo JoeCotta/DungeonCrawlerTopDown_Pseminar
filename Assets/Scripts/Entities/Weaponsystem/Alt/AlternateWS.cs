@@ -19,7 +19,7 @@ public class AlternateWS : MonoBehaviour
 
     public int weaponType, rarity;
     private float dmg, rate, accuracy, chargedTime, maxChargeTime = 4, maxChargeDmgMultiplier = 4;
-    public float mag, reserve, fov, ammo, dmgtest, speed, enemyDmgMultiplier;
+    public float mag, reserve, fov, ammo, dmgtest, speed, enemyDmgMultiplier, bulletcount;
     private bool blockLoadingInfo = false, isCharging = false;
 
     public Sprite[] textureEditor, magSprites;
@@ -45,16 +45,17 @@ public class AlternateWS : MonoBehaviour
         texture = textureEditor;
         firepoint = transform.GetChild(0);
         float[] temp = DataBase.weaponBase(weaponType,rarity);
-        dmg = temp[0];
-        mag = Mathf.RoundToInt(temp[1]);
+        dmg         = temp[0];
+        mag         = Mathf.RoundToInt(temp[1]);
         if(!blockLoadingInfo) reserve = Mathf.RoundToInt(temp[2]);
-        rate = temp[3];
-        accuracy = temp[4];
-        fov = temp[5];
-        speed = temp[6];
+        rate        = temp[3];
+        accuracy    = temp[4];
+        fov         = temp[5];
+        speed       = temp[6];
+        bulletcount = temp[7];
         if (!blockLoadingInfo) ammo = mag;
         if (rarity != 3) gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType];
-        else gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType + 3];
+        else gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType + 4];
         rTime = 2.5f;//reload time default 2.5 sec
         rTimer = rTime;
         throwForceMag = 350f;
@@ -74,14 +75,24 @@ public class AlternateWS : MonoBehaviour
             // shoot sound
             shootSounds[weaponType].Play();
 
-            Vector3 inAccuracy = new Vector3(0, 0, Random.Range(-45 + accuracy * 45, 45 - accuracy * 45 + 1));
-            interval = 0;
-            if (owner.tag != "Enemy") ammo--;
-            GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized * Quaternion.Euler(0, 0, inAccuracy.z));
-            if (temp != null)
+            //make firerate more consistent and not framerate dependent
+            while (interval > 1 / rate)
             {
-                if(owner.tag == "Player")temp.GetComponent<AltBullet>().assingVar(dmg * dataPersistenceManager.gameData.currentDamageMultiplier, owner);
-                if(owner.tag == "Enemy") temp.GetComponent<AltBullet>().assingVar(dmg * DifficultyTracker.dmgMultiplier, owner);
+
+                //loop for weapon like shotgun with multishot
+                for (int i = 0; i < bulletcount; i++)
+                {
+                    Vector3 inAccuracy = new Vector3(0, 0, Random.Range(-45 + accuracy * 45, 45 - accuracy * 45 + 1));
+                    GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized * Quaternion.Euler(0, 0, inAccuracy.z));
+                    if (temp != null)
+                    {
+                        if (owner.tag == "Player") temp.GetComponent<AltBullet>().assingVar(dmg * dataPersistenceManager.gameData.currentDamageMultiplier, owner);
+                        if (owner.tag == "Enemy") temp.GetComponent<AltBullet>().assingVar(dmg * DifficultyTracker.dmgMultiplier, owner);
+                    }
+                }
+
+                if (owner.tag != "Enemy") ammo--;
+                interval -= 1 / rate;
             }
         }
         // no ammo
@@ -130,7 +141,7 @@ public class AlternateWS : MonoBehaviour
         }
         GameObject thrownMag = Instantiate(magPref, firepoint.position, Quaternion.identity);
         if(rarity != 3) thrownMag.GetComponent<SpriteRenderer>().sprite = magSprites[weaponType];
-        else thrownMag.GetComponent<SpriteRenderer>().sprite = magSprites[weaponType+3];
+        else thrownMag.GetComponent<SpriteRenderer>().sprite = magSprites[weaponType+4];
         if(rarity != 3 || weaponType != 2)thrownMag.GetComponent<Rigidbody2D>().AddForce(firepoint.transform.up * throwForceMag);
         else thrownMag.GetComponent<Rigidbody2D>().AddForce(firepoint.transform.right * throwForceMag);
         reloading = false;

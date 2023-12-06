@@ -4,11 +4,15 @@ MonoImporter:
   externalObjects: {}
   serializedVersion: 2
   defaultReferences:
+  - enemySpawner: {instanceID: 0}
   - enemy: {instanceID: 0}
   - mapHidder: {instanceID: 0}
-  - doorFix: {instanceID: 0}
-  - doorvrtFix: {instanceID: 0}
-  - chestPrefab: {instanceID: 0}
+  - barrel: {instanceID: 0}
+  - killSound: {instanceID: 0}
+  - enemySpawnSound: {instanceID: 0}
+  - closeDoorSound: {instanceID: 0}
+  - openDoorSound: {instanceID: 0}
+  - bossDeathSound: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
