@@ -51,6 +51,7 @@ GameObject:
   - component: {fileID: 8045670057354165126}
   - component: {fileID: 7958867293475310358}
   - component: {fileID: -2808571969892953247}
+  - component: {fileID: 3799221822332444296}
   m_Layer: 2
   m_Name: WeaponAlt
   m_TagString: Item
@@ -195,6 +196,7 @@ MonoBehaviour:
   - {fileID: 8045670057354165126}
   magDropSound: {fileID: 7958867293475310358}
   emptyWeaponShootSound: {fileID: -2808571969892953247}
+  legendary_Sniper: {fileID: 3799221822332444296}
 --- !u!50 &7043996625841016062
 Rigidbody2D:
   serializedVersion: 4
@@ -984,6 +986,26 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &3799221822332444296
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382214503651565149}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6e5bb3764195069469fe6501ba8d1494, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5612643859349273964
 GameObject:
   m_ObjectHideFlags: 0

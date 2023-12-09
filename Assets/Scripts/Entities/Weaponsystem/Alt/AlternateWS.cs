@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class AlternateWS : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class AlternateWS : MonoBehaviour
     [SerializeField] private AudioSource magDropSound;
     [SerializeField] private AudioSource emptyWeaponShootSound;
 
+    //Animator
+    [SerializeField] Animator legendary_Sniper;
+
     void Start()
     { 
         texture = textureEditor;
@@ -69,6 +73,7 @@ public class AlternateWS : MonoBehaviour
             if (weaponType == 2 && rarity == 3 && owner.tag != "enemy")
             {
                 isCharging = true;
+                legendary_Sniper.enabled = true;
                 return;
             }
 
@@ -114,6 +119,7 @@ public class AlternateWS : MonoBehaviour
         //Debug.Log(dmg * Mathf.Pow(maxChargeDmgMultiplier, chargedTime / maxChargeTime));
         isCharging = false;
         chargedTime = 0;
+        legendary_Sniper.enabled = false;
     }
 
     public void Reload()
@@ -161,7 +167,11 @@ public class AlternateWS : MonoBehaviour
         if (rTimer < rTime) rTimer += Time.deltaTime;
         if (reloading && rTimer >= rTime) RealReload();
         if (!owner) { reloading = false; rTimer = rTime; }
-        if (isCharging && Input.GetMouseButton(0) && owner.tag == "Player" && chargedTime < maxChargeTime) { chargedTime += Time.deltaTime; interval = 0; }
+        if (isCharging && Input.GetMouseButton(0) && owner.tag == "Player" && chargedTime < maxChargeTime) 
+        { 
+            chargedTime += Time.deltaTime; interval = 0; 
+            legendary_Sniper.speed = chargedTime / maxChargeTime * 2 + 0.5f;
+        }
         else if (isCharging) chargedShot();
         if (!effekt.active && rarity != 0 && !owner)
         {
