@@ -25,6 +25,8 @@ Player:
     pickUp Weapon: https://pixabay.com/sound-effects/coin-pickup-98269/
     Drop Weapon: https://pixabay.com/sound-effects/weapon-axe-drop-01-153371/
     
+Coin:
+    pickUp: https://pixabay.com/sound-effects/coin-c-02-102844/
 
 Boosts:
     heal:   https://pixabay.com/sound-effects/arcade-heal-48183/
@@ -37,6 +39,7 @@ Map:
     Door-open: https://pixabay.com/sound-effects/jaildoorclose-6173/ (start)
     Level-completed: https://pixabay.com/sound-effects/winfantasia-6912/
     Background-Music: https://pixabay.com/sound-effects/uplifting-pad-texture-113842/ | https://pixabay.com/sound-effects/horror-background-atmosphere-156462/ | https://pixabay.com/sound-effects/tensor02-109114/ | https://pixabay.com/sound-effects/mystery-and-thriller-music-7070/ | https://pixabay.com/sound-effects/mystic-forest-ambient-23812/ | https://pixabay.com/sound-effects/horror-ambient-14590/
+    Coin drop: https://pixabay.com/sound-effects/coin-drop-39914/
 Menü:
     click-sound: https://pixabay.com/sound-effects/click-button-140881/
     Start-game: https://pixabay.com/sound-effects/impact-6291/

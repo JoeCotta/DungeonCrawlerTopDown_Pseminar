@@ -26,6 +26,7 @@ public class Boss : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject UIBossBar;
     [SerializeField] private GameObject weaponPrefab;
+    [SerializeField] private GameObject coinSpawnerPrefab;
 
     // Sounds
     [Header("Sounds")]
@@ -174,7 +175,6 @@ public class Boss : MonoBehaviour
         UIBossBar.GetComponent<BossBar>().isBoss = true;
         UIBossBar.SetActive(false);
         Destroy(gameObject);
-
         // loottable
 
 
@@ -243,16 +243,31 @@ public class Boss : MonoBehaviour
             // 10/100 sniper
             if (randomNumber >= 90 && randomNumber < 100) weapon.weaponType = 2;
         }
+
         // 200/1000 50 coins
-        if (randomNumber >= 200 && randomNumber < 405) playerTransform.gameObject.GetComponent<Player>().playerGold += 50;
+        if (randomNumber >= 200 && randomNumber < 405) 
+        {
+            GameObject coinSpawner = Instantiate(coinSpawnerPrefab, manager.gameObject.transform.position, Quaternion.identity);
+            coinSpawner.GetComponent<CoinSpawner>().amountCoins = 50;
+        }
         // 100/1000 100 coins
-        if (randomNumber >= 405 && randomNumber < 505) playerTransform.gameObject.GetComponent<Player>().playerGold += 100;
+        if (randomNumber >= 405 && randomNumber < 505) 
+        {
+            GameObject coinSpawner = Instantiate(coinSpawnerPrefab, manager.gameObject.transform.position, Quaternion.identity);
+            coinSpawner.GetComponent<CoinSpawner>().amountCoins = 100;
+        }
         // 50/1000  200 coins
-        if (randomNumber >= 505 && randomNumber < 555) playerTransform.gameObject.GetComponent<Player>().playerGold += 200;
+        if (randomNumber >= 505 && randomNumber < 555) 
+        {
+            GameObject coinSpawner = Instantiate(coinSpawnerPrefab, manager.gameObject.transform.position, Quaternion.identity);
+            coinSpawner.GetComponent<CoinSpawner>().amountCoins = 200;
+        }
         // 5/1000 500 coins
-        if (randomNumber >= 555 && randomNumber < 560) playerTransform.gameObject.GetComponent<Player>().playerGold += 500;
-
-
+        if (randomNumber >= 555 && randomNumber < 560) 
+        {
+            GameObject coinSpawner = Instantiate(coinSpawnerPrefab, manager.gameObject.transform.position, Quaternion.identity);
+            coinSpawner.GetComponent<CoinSpawner>().amountCoins = 500;
+        }
 
         manager.roomFinished();
     }

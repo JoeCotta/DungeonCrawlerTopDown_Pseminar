@@ -44,6 +44,8 @@ public class Enemy : MonoBehaviour
     public Sprite sprite_back;
     public Sprite sprite_front_right;
 
+    [SerializeField] private GameObject coinSpawnerPrefab;
+
     void Start()
     {   
         if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()){
@@ -248,7 +250,10 @@ public class Enemy : MonoBehaviour
         // sniper can't be dropped
         if(weapon.GetComponent<AlternateWS>().weaponType == 2) Destroy(weapon);
         
-        target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,DataBase.maxGold));//Cornell 
+        // target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,DataBase.maxGold));//Cornell 
+        GameObject coinSpawner = Instantiate(coinSpawnerPrefab, transform.position, Quaternion.identity);
+        coinSpawner.GetComponent<CoinSpawner>().amountCoins = (int)Mathf.Round(Random.Range(0,DataBase.maxGold));
+
         target.gameObject.GetComponent<Player>().enemyKilled();
         if (manager) manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error
         else if(boss) boss.killEnemy(gameObject);
