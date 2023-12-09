@@ -19,11 +19,11 @@ public class Coins : MonoBehaviour
     {
         if (player != null)
         {
-            text.text = "Coins: " + player.GetComponent<Player>().playerGold.ToString();
+            text.text = player.GetComponent<Player>().playerGold.ToString();
         }
         else
         {
-            text.text = "Coins: " + dataPersistenceManager.gameData.currentCoins.ToString();
+            text.text = dataPersistenceManager.gameData.currentCoins.ToString();
         }
     }
 }
