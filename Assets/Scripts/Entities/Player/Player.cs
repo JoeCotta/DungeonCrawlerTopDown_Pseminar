@@ -578,6 +578,7 @@ public class Player : MonoBehaviour, IDataPersistence
         this.maxHealth = data.currentMaxHealth;
         this.health = data.currentHealth;
         this.armourLevel = Mathf.RoundToInt(data.currentArmor);
+        if (armourLevel < data.startArmor) this.armourLevel = data.startArmor;
         this.weaponType = data.currentWeaponType;
         this.oldRarity = data.currentRarity;
         this.oldReserve = data.currentReserve;

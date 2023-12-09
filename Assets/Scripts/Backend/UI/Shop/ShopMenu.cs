@@ -65,7 +65,6 @@ public class ShopMenu : MonoBehaviour
             dataPersistenceManager.gameData.armorLevel += 1;
             dataPersistenceManager.gameData.currentCoins -= startArmourPrice;
             dataPersistenceManager.gameData.startArmor = dataPersistenceManager.gameData.armorLevel;
-            dataPersistenceManager.gameData.currentArmor = dataPersistenceManager.gameData.startArmor;
 
             dataPersistenceManager.SaveGame();
 

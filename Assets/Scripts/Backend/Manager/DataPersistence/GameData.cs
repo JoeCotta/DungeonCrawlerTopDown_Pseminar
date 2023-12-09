@@ -12,7 +12,7 @@ public class GameData
     public float    currentCoins;
     public float    maxHealth;
     public float    revivesLeft;
-    public float    startArmor;
+    public int    startArmor;
     public int      startWeaponType;
     public float    currentDamageMultiplier;
     public float    permanentDamageMultiplier;
