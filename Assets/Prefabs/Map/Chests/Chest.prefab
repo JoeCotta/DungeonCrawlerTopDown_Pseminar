@@ -558,6 +558,7 @@ MonoBehaviour:
   weaponPrefab: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}
   boostPrefab: {fileID: 6753663607918299696, guid: 6269ea7abee1a3d54a83a711c464bbec, type: 3}
   spendMoney: {fileID: 5337343081250452995}
+  armorPrefab: {fileID: 7889819629484783230, guid: 418efccf953fcbec2a7fb3046e0e673a, type: 3}
 --- !u!82 &5337343081250452995
 AudioSource:
   m_ObjectHideFlags: 0

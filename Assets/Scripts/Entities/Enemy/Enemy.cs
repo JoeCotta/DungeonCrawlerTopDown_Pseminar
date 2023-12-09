@@ -285,7 +285,7 @@ public class Enemy : MonoBehaviour
         int random = Random.Range(0, 5);
         if(armorLevel != 0 && random == 0)
         {
-            // creates the "old" armour
+            // creates the armour
             GameObject oldArmour = Instantiate(armorPrefab, transform.position, Quaternion.identity);
 
             // sets the level of the armour

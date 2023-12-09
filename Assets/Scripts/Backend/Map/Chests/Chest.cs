@@ -13,6 +13,7 @@ public class Chest : MonoBehaviour
     private float  price; //maybe there will be a curse like 1.25x prices => decimals => have to round
     private List<int> lootTable = new List<int>();
     [SerializeField] private AudioSource spendMoney;
+    [SerializeField] private GameObject armorPrefab;
     
     void Start()
     {
@@ -45,6 +46,41 @@ public class Chest : MonoBehaviour
         Instantiate(boostPrefab, transform.position, Quaternion.identity);
     }
     
+    void spawnArmor()
+    {
+        float random = Random.Range(0, 100);
+        int armorLevel = 0;
+
+        // level 01  -> 25 %
+        // level 02  -> 20 %
+        // level 03  -> 15 %
+        // level 04  -> 10 %
+        // level 05  -> 08 %
+        // level 06  -> 07 %
+        // level 07  -> 06 %
+        // level 08  -> 04 %
+        // level 09  -> 03 %
+        // level 10  -> 02 %
+        
+        if (random < 25) armorLevel = 1; 
+        else if (random < 45) armorLevel = 2;
+        else if (random < 60) armorLevel = 3;
+        else if (random < 70) armorLevel = 4;
+        else if (random < 78) armorLevel = 5;
+        else if (random < 85) armorLevel = 6;
+        else if (random < 91) armorLevel = 7;
+        else if (random < 95) armorLevel = 8;
+        else if (random < 98) armorLevel = 9;
+        else if (random < 100) armorLevel = 10;
+
+
+        // creates the armour
+        GameObject oldArmour = Instantiate(armorPrefab, transform.position, Quaternion.identity);
+
+        // sets the level of the armour
+        oldArmour.SendMessage("setLevel", armorLevel);
+    }
+
     void OnCollisionEnter2D(Collision2D other)
     {
         if(other.gameObject.CompareTag("Player")){
@@ -84,11 +120,15 @@ public class Chest : MonoBehaviour
                 onAudioEnd();
 
                 // spawns a weapon or a boost orb
-                // level 0 -> 30% weapon
-                // level 1 -> 60% weapon
-                // level 2 -> 90% weapon
-                if (Random.value <= 0.3f * (chestLevel+1)) spawnWeapon();
-                else spawnBoost();
+                // weapon   -> 30%
+                // boost    -> 40%
+                // armor    -> 30%
+
+                float random = Random.value;
+                
+                if (random <= 0.3f * (chestLevel+1)) spawnWeapon();
+                else if (random <= 0.7f) spawnBoost();
+                else spawnArmor();
             }
         }
     }
