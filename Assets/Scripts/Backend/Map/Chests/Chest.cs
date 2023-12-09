@@ -12,7 +12,8 @@ public class Chest : MonoBehaviour
 
     private float  price; //maybe there will be a curse like 1.25x prices => decimals => have to round
     private List<int> lootTable = new List<int>();
-
+    [SerializeField] private AudioSource spendMoney;
+    
     void Start()
     {
         // if this is an instance of the scene chest
@@ -51,6 +52,12 @@ public class Chest : MonoBehaviour
         }
     }
 
+    void onAudioEnd()
+    {
+        if (!spendMoney.isPlaying) Destroy(gameObject);
+        else Invoke("onAudioEnd", 0.1f);
+    }
+
     private void OnCollisionStay2D(Collision2D other)
     {
         if (other.gameObject.CompareTag("Player"))
@@ -58,6 +65,23 @@ public class Chest : MonoBehaviour
             if (other.gameObject.GetComponent<Player>().playerGold >= Mathf.Round(price) && Input.GetKey("e"))
             {
                 other.gameObject.GetComponent<Player>().playerGold -= Mathf.Round(price);
+                
+                // play Buy Sound
+                spendMoney.Play();
+
+                // make the chest not noticeable until the sound is over
+                gameObject.layer = LayerMask.NameToLayer("Ignore Raycast");
+                gameObject.GetComponent<Renderer>().enabled = false;
+                GetComponent<Collider2D>().enabled = false;
+
+                // Destroys the visible children
+                foreach( Transform child in transform )
+                {
+                    child.gameObject.SetActive( false );
+                } 
+    
+                
+                onAudioEnd();
 
                 // spawns a weapon or a boost orb
                 // level 0 -> 30% weapon
@@ -65,9 +89,6 @@ public class Chest : MonoBehaviour
                 // level 2 -> 90% weapon
                 if (Random.value <= 0.3f * (chestLevel+1)) spawnWeapon();
                 else spawnBoost();
-
-                // Destroys the chest
-                Destroy(gameObject);
             }
         }
     }

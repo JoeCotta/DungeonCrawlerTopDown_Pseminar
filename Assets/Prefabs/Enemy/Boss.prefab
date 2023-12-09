@@ -572,6 +572,7 @@ MonoBehaviour:
   bulletSprite: {fileID: 21300000, guid: ca2471ccc7bc74923a806d1a4e7feb07, type: 3}
   manager: {fileID: 0}
   weaponPrefab: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}
+  coinSpawnerPrefab: {fileID: 2606244712193117023, guid: a616de9153b1666b283e0ccbbac4945c, type: 3}
   hitSound: {fileID: -7431044993690834499}
   enemySpawnSound: {fileID: 7562055865732204741}
   shootSound: {fileID: 4056448626929353181}

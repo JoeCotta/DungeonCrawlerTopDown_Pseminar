@@ -44,6 +44,12 @@ public class Enemy : MonoBehaviour
     public Sprite sprite_back;
     public Sprite sprite_front_right;
 
+    [SerializeField] private GameObject coinSpawnerPrefab;
+    int weaponType;
+
+    float shootRange;
+    float followRange;
+
     void Start()
     {   
         if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()){
@@ -68,7 +74,7 @@ public class Enemy : MonoBehaviour
         weaponSlot = transform.GetChild(0);
 
         // selects a random weapon type
-        int weaponType = Random.Range(0, 3);
+        weaponType = Random.Range(0, 3);
 
         // creates the weapon
         weapon = Instantiate(AWeapon, weaponSlot.position, weaponSlot.rotation);
@@ -80,6 +86,23 @@ public class Enemy : MonoBehaviour
 
 
         armorLevel = Random.Range(0, 11);
+
+        // sets the shoot / follow range depending on the weapon
+        switch(weaponType)
+        {
+            case 0:
+                shootRange = 6;
+                followRange = 8;
+                break;
+            case 1:
+                shootRange = 9;
+                followRange = 11;
+                break;
+            case 2:
+                shootRange = 11;
+                followRange = 13;
+                break;
+        }
 
     }
 
@@ -114,12 +137,11 @@ public class Enemy : MonoBehaviour
 
         // if the Distance to the target is grater than 8 the enemy should follow the target
         // or the enemy's shot is blocked -> should rather follow the target
-        if (DistanceToTarget > 8 || (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy")) ) follow = true;
+        if (DistanceToTarget > followRange || (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy")) ) follow = true;
 
-        // if the Distance to the target is lower than 4 or out of the player's range the enemy shouldn't follow the target, instead he should shoot at the target
+        // if the Distance to the target is lower than 6 or out of the player's range the enemy shouldn't follow the target, instead he should shoot at the target
         // but only if the bullet will hit the Player
-        if ((DistanceToTarget < 6 || outOfRange) && (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy")) ) follow = false;
-
+        if ((DistanceToTarget < shootRange || outOfRange) && (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy")) ) follow = false;
 
 
         // manages rotation while following target
@@ -186,10 +208,8 @@ public class Enemy : MonoBehaviour
         Vector2 PlayerDirection;
         PlayerDirection = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(7.5f * DifficultyTracker.bulletSpeedMultiplier, target.gameObject) - rb.position).normalized;
 
-        //Debug.Log(gameObject.GetComponent<BulletCalc>().CalcPath(15f, target.gameObject));
         float angleToPlayer = Mathf.Atan2(PlayerDirection.y, PlayerDirection.x) * Mathf.Rad2Deg - 90f;
         Quaternion rotation = Quaternion.Euler(Vector3.forward * angleToPlayer);
-        //transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 7);
 
         weapon.SendMessage("shoot");
     }
@@ -248,7 +268,10 @@ public class Enemy : MonoBehaviour
         // sniper can't be dropped
         if(weapon.GetComponent<AlternateWS>().weaponType == 2) Destroy(weapon);
         
-        target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,DataBase.maxGold));//Cornell 
+        // target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,DataBase.maxGold));//Cornell 
+        GameObject coinSpawner = Instantiate(coinSpawnerPrefab, transform.position, Quaternion.identity);
+        coinSpawner.GetComponent<CoinSpawner>().amountCoins = (int)Mathf.Round(Random.Range(0,DataBase.maxGold));
+
         target.gameObject.GetComponent<Player>().enemyKilled();
         if (manager) manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error
         else if(boss) boss.killEnemy(gameObject);
