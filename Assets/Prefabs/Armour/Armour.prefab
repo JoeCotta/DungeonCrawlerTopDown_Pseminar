@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 876cc2c44d4746c7ebd51b7b28429058, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,6 +99,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   level: 0
+  textures:
+  - {fileID: 21300000, guid: 876cc2c44d4746c7ebd51b7b28429058, type: 3}
+  - {fileID: 21300000, guid: 3c0d586e8e0d686ea85fab796f10d273, type: 3}
+  - {fileID: 21300000, guid: 9e6e359fdf875ec68aae64c048a3edfd, type: 3}
+  - {fileID: 21300000, guid: 2355865bfc7b69180b5780bf8d5bdff8, type: 3}
+  - {fileID: 21300000, guid: d06d313b6a154754fbab291e69d2f6ea, type: 3}
+  - {fileID: 21300000, guid: d4b8c5d40822054d799f8c1ad241717a, type: 3}
+  - {fileID: 21300000, guid: f1f7cbb6e59e21c7b989fdfb2caa50d2, type: 3}
+  - {fileID: 21300000, guid: 4209133ef572c1c77a9b87267493693e, type: 3}
+  - {fileID: 21300000, guid: bb1eb4127b7f356a2b18fd7378c21268, type: 3}
+  - {fileID: 21300000, guid: 13e592f6dadf81aa7a20c4aa4855999a, type: 3}
 --- !u!50 &-2962222358965737286
 Rigidbody2D:
   serializedVersion: 4

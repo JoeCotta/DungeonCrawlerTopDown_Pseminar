@@ -5,8 +5,8 @@ using UnityEngine;
 public class Armour : MonoBehaviour
 {
     public int level;
-
-    // Start is called before the first frame update
+    [SerializeField] private Sprite[] textures;
+    
     void Start()
     {
         Mathf.Clamp(level, 0, 10);
@@ -15,5 +15,11 @@ public class Armour : MonoBehaviour
     void setLevel(int level)
     {
         this.level = Mathf.Clamp(level, 0, 10);
+        setSprite();
+    }
+
+    void setSprite()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = textures[level - 1];
     }
 }
