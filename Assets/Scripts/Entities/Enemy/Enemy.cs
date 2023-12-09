@@ -49,6 +49,8 @@ public class Enemy : MonoBehaviour
 
     float shootRange;
     float followRange;
+    [SerializeField] private GameObject armorPrefab;
+    [SerializeField] private float armorDropForce;
 
     void Start()
     {   
@@ -276,6 +278,23 @@ public class Enemy : MonoBehaviour
         if (manager) manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error
         else if(boss) boss.killEnemy(gameObject);
         else Destroy(gameObject);
+
+
+        // drops the armor if its level is not 0
+        // chance to drop: 1/7
+        int random = Random.Range(0, 5);
+        if(armorLevel != 0 && random == 0)
+        {
+            // creates the "old" armour
+            GameObject oldArmour = Instantiate(armorPrefab, transform.position, Quaternion.identity);
+
+            // sets the level of the armour
+            oldArmour.SendMessage("setLevel", armorLevel);
+
+            // gives the "old" armour a force to kick the armour away - a drop animation
+            oldArmour.GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle.normalized * armorDropForce);
+        }
+
 
     }
 }
