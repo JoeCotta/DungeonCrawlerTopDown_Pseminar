@@ -15,6 +15,6 @@ public class CurrentFloorNumber : MonoBehaviour
     }
     void Update()
     {
-        text.text = GameManager.player.currentFloor.ToString();
+        if(GameManager.player) text.text = GameManager.player.currentFloor.ToString();
     }
 }
