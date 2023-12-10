@@ -143,7 +143,7 @@ public class Enemy : MonoBehaviour
 
         // if the Distance to the target is lower than 6 or out of the player's range the enemy shouldn't follow the target, instead he should shoot at the target
         // but only if the bullet will hit the Player
-        if ((DistanceToTarget < shootRange || outOfRange) && (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy")) ) follow = false;
+        else if ((DistanceToTarget < shootRange || outOfRange) && (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy")) ) follow = false;
 
 
         // manages rotation while following target

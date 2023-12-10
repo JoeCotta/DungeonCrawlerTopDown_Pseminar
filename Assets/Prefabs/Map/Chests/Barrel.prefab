@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7707296819325776745}
   - component: {fileID: 7707296819325776748}
   - component: {fileID: 7707296819325776749}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Barrel
   m_TagString: Obstacle
   m_Icon: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 20
   weapon: {fileID: 4382214503651565149, guid: aca49abf464efa7458ee9221d0147042, type: 3}
+  colliderForAI: {fileID: 0}
 --- !u!61 &7707296819325776748
 BoxCollider2D:
   m_ObjectHideFlags: 0
