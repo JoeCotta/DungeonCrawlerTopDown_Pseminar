@@ -27,6 +27,7 @@ public class Boss : MonoBehaviour
     private GameObject UIBossBar;
     [SerializeField] private GameObject weaponPrefab;
     [SerializeField] private GameObject coinSpawnerPrefab;
+    List<GameObject> spawnedEnemies = new List<GameObject>();
 
     // Sounds
     [Header("Sounds")]
@@ -175,6 +176,14 @@ public class Boss : MonoBehaviour
         UIBossBar.GetComponent<BossBar>().isBoss = true;
         UIBossBar.SetActive(false);
         Destroy(gameObject);
+
+        // kill all spawned enemies
+        for (int i = 0; i < spawnedEnemies.Count; i++)
+        {
+            Destroy(spawnedEnemies[i]);
+        }
+
+
         // loottable
 
 
@@ -345,6 +354,9 @@ public class Boss : MonoBehaviour
             enemy.GetComponent<Enemy>().boss = this;
             Vector2 force =  randomDirection * 2000;
             enemy.GetComponent<Rigidbody2D>().AddForce(force);
+
+            // add enemy to the array
+            spawnedEnemies.Add(enemy);
         }
 
     }
@@ -428,5 +440,6 @@ public class Boss : MonoBehaviour
     {
         killSound.Play();
         Destroy(enemy);
+        spawnedEnemies.Remove(enemy);
     }
 }
