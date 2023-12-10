@@ -147,7 +147,7 @@ public class Boss : MonoBehaviour
 
         // calculates the force to follow the path
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
-        Vector2 force = direction * speed * Time.deltaTime * 10;
+        Vector2 force = direction * speed * Time.deltaTime * 10000;
 
         rb.AddForce(force);
 
