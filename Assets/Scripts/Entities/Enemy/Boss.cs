@@ -180,6 +180,7 @@ public class Boss : MonoBehaviour
         // kill all spawned enemies
         for (int i = 0; i < spawnedEnemies.Count; i++)
         {
+            Destroy(spawnedEnemies[i].GetComponent<Enemy>().weapon);
             Destroy(spawnedEnemies[i]);
         }
 

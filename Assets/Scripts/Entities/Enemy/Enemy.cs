@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
 
 
     private Transform weaponSlot; 
-    private GameObject weapon;
+    public GameObject weapon;
     public GameObject AWeapon; // alternate weapon
     public bool EnemyUsePrediction;
 
