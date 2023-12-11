@@ -196,6 +196,7 @@ public class RoomManagment : MonoBehaviour
         { 
             GameObject boss = Instantiate(DataBase.boss, transform.position + new Vector3(0, 2, 0) * templates.size, Quaternion.identity);
             boss.GetComponent<Boss>().manager = this;
+            GameManager.isBossSpawned = true;
         }
         else 
         {

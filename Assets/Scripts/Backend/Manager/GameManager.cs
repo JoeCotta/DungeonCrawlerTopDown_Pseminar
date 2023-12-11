@@ -46,6 +46,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
 
     public  int activeBoosts = 0;
     public  List<GameObject> boostList = new List<GameObject>();
+    static public bool isBossSpawned = false;
 
 
     [SerializeField] private AudioMixer masterMixer;

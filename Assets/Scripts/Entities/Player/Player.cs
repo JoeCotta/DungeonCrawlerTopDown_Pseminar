@@ -551,7 +551,7 @@ public class Player : MonoBehaviour, IDataPersistence
         if(revivesLeft == 0)
         {
             isDead = true;
-            //Endgame Menu
+            GameManager.isBossSpawned = false;
         }else
         {
             revivesLeft--;

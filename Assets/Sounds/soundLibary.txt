@@ -40,6 +40,8 @@ Map:
     Level-completed: https://pixabay.com/sound-effects/winfantasia-6912/
     Background-Music: https://pixabay.com/sound-effects/uplifting-pad-texture-113842/ | https://pixabay.com/sound-effects/horror-background-atmosphere-156462/ | https://pixabay.com/sound-effects/tensor02-109114/ | https://pixabay.com/sound-effects/mystery-and-thriller-music-7070/ | https://pixabay.com/sound-effects/mystic-forest-ambient-23812/ | https://pixabay.com/sound-effects/horror-ambient-14590/
     Coin drop: https://pixabay.com/sound-effects/coin-drop-39914/
+    Background-music-boss: https://pixabay.com/music/action-evil-boss-appears-short-instrumental-178343/ | https://pixabay.com/music/video-games-to-the-death-159171/
+
 Menü:
     click-sound: https://pixabay.com/sound-effects/click-button-140881/
     Start-game: https://pixabay.com/sound-effects/impact-6291/
