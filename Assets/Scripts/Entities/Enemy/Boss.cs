@@ -28,6 +28,8 @@ public class Boss : MonoBehaviour
     [SerializeField] private GameObject weaponPrefab;
     [SerializeField] private GameObject coinSpawnerPrefab;
     List<GameObject> spawnedEnemies = new List<GameObject>();
+    [SerializeField] private GameObject armorPrefab;
+    [SerializeField] private float armorDropForce;
 
     // Sounds
     [Header("Sounds")]
@@ -206,6 +208,10 @@ public class Boss : MonoBehaviour
         // 50/1000  200 coins
         // 5/1000 500 coins
 
+        // 200 / 1000 armor lvl 8
+        // 100 / 1000 armor lvl 9
+        // 50 / 1000 armor lvl 10
+
         int randomNumber = Random.Range(0, 1000);
         // 80/1000 rare
         if (randomNumber >= 0 && randomNumber < 80) 
@@ -279,7 +285,28 @@ public class Boss : MonoBehaviour
             coinSpawner.GetComponent<CoinSpawner>().amountCoins = 500;
         }
 
+        // 200 / 1000 armor lvl 8
+        if (randomNumber >= 560 && randomNumber < 760) spawnArmor(8);
+
+        // 100 / 1000 armor lvl 9
+        if (randomNumber >= 760 && randomNumber < 860) spawnArmor(9);
+
+        // 50 / 1000 armor lvl 10
+        if (randomNumber >= 860 && randomNumber < 910) spawnArmor(10);
+
         manager.roomFinished();
+    }
+
+    void spawnArmor(int lvl)
+    {
+        // creates the armour
+        GameObject oldArmour = Instantiate(armorPrefab, manager.gameObject.transform.position, Quaternion.identity);
+
+        // sets the level of the armour
+        oldArmour.SendMessage("setLevel", lvl);
+
+        // gives the "old" armour a force to kick the armour away - a drop animation
+        oldArmour.GetComponent<Rigidbody2D>().AddForce(Random.insideUnitCircle.normalized * armorDropForce);
     }
 
     void Update()

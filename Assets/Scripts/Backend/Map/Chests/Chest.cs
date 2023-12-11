@@ -49,30 +49,7 @@ public class Chest : MonoBehaviour
     void spawnArmor()
     {
         float random = Random.Range(0, 100);
-        int armorLevel = 0;
-
-        // level 01  -> 25 %
-        // level 02  -> 20 %
-        // level 03  -> 15 %
-        // level 04  -> 10 %
-        // level 05  -> 08 %
-        // level 06  -> 07 %
-        // level 07  -> 06 %
-        // level 08  -> 04 %
-        // level 09  -> 03 %
-        // level 10  -> 02 %
-        
-        if (random < 25) armorLevel = 1; 
-        else if (random < 45) armorLevel = 2;
-        else if (random < 60) armorLevel = 3;
-        else if (random < 70) armorLevel = 4;
-        else if (random < 78) armorLevel = 5;
-        else if (random < 85) armorLevel = 6;
-        else if (random < 91) armorLevel = 7;
-        else if (random < 95) armorLevel = 8;
-        else if (random < 98) armorLevel = 9;
-        else if (random < 100) armorLevel = 10;
-
+        int armorLevel = DataBase.armorLevel(chestLevel);
 
         // creates the armour
         GameObject oldArmour = Instantiate(armorPrefab, transform.position, Quaternion.identity);

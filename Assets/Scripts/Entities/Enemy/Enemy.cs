@@ -280,10 +280,10 @@ public class Enemy : MonoBehaviour
         else Destroy(gameObject);
 
 
-        // drops the armor if its level is not 0
+        // drops the armor if its level is not 0 and lower than 5
         // chance to drop: 1/7
-        int random = Random.Range(0, 5);
-        if(armorLevel != 0 && random == 0)
+        int random = Random.Range(0, 7);
+        if(armorLevel != 0 && armorLevel < 5 && random == 0)
         {
             // creates the armour
             GameObject oldArmour = Instantiate(armorPrefab, transform.position, Quaternion.identity);

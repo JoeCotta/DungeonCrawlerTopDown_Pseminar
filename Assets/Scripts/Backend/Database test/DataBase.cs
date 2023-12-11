@@ -190,4 +190,43 @@ public class DataBase : MonoBehaviour
         if (randomizer < 0.2f) value = 2;
         return value;
     }
+
+    static public int armorLevel(int chestLevel)
+    {
+        int value = 0;
+        int random = Random.Range(0, 100);
+        switch (chestLevel)
+        {
+
+            // 50 % level 5
+            // 30 % level 6
+            // 20 % level 7
+            case 0:
+                if (random < 50) value = 5;
+                else if (random < 80) value = 6;
+                else if (random < 100) value = 7;
+                break;
+            
+            // 30 % level 5
+            // 50 % level 6
+            // 20 % level 7
+            case 1:
+                if (random < 30) value = 5;
+                else if (random < 80) value = 6;
+                else if (random < 100) value = 7;
+                break;
+            
+            // 20 % level 5
+            // 30 % level 6
+            // 50 % level 7
+            case 2:
+                if (random < 20) value = 5;
+                else if (random < 50) value = 6;
+                else if (random < 100) value = 7;
+                break;
+            default:
+                break;
+        }
+        return value;
+    }
 }
