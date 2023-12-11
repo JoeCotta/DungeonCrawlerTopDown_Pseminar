@@ -21,22 +21,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuickRestart()
     {
-        if (dataPersistenceManager == null) return;
-        player.health = dataPersistenceManager.gameData.currentMaxHealth;
-        player.maxHealth = dataPersistenceManager.gameData.currentMaxHealth;
-        player.armourLevel = Mathf.RoundToInt(dataPersistenceManager.gameData.startArmor);
-        if (player.weapon && player.weapon.GetComponent<AlternateWS>())
-        {
-            player.weapon.GetComponent<AlternateWS>().weaponType = dataPersistenceManager.gameData.startWeaponType;
-            player.weapon.GetComponent<AlternateWS>().reserve = -1; //to disable it loading old reserve
-            player.weapon.GetComponent<AlternateWS>().rarity = 0;
-        }
-
-
-
-        player.isDead = false;
-
-        dataPersistenceManager.SaveGame();
+        GameManager.resetRunData();
         SceneManager.LoadScene(2);
     }
 }

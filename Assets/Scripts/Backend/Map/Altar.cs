@@ -11,7 +11,7 @@ public class Altar : MonoBehaviour
         if (Input.GetKey("e"))
         {
             GameManager.player.playerGold += 100;
-            GameManager.resetRunData();
+            GameManager.resetRun();
         }
     }
     private void OnCollisionExit2D(Collision2D collision)

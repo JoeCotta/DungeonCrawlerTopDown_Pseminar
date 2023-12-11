@@ -86,7 +86,7 @@ public class GameManager : MonoBehaviour, IDataPersistence
     float t; public float timeToFadeFromBlack;
     private void Update()
     {
-        if (player != null && player.isDead) resetRunData(); 
+        if (player != null && player.isDead) resetRun(); 
         if(t < timeToFadeFromBlack && ffb != null)
         {
             if(startGameSound && !startGameSound.isPlaying) startGameSound.Play();
@@ -126,6 +126,11 @@ public class GameManager : MonoBehaviour, IDataPersistence
         player.currentFloor = 1;
 
         dataPersistenceManager.SaveGame();
+    }
+
+    static public void resetRun()
+    {
+        resetRunData();
         SceneManager.LoadScene("Menu");
     }
 
