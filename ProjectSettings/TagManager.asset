@@ -28,6 +28,7 @@ TagManager:
   - BackgroundMusicPlayer
   - ClicksSoundHolder
   - Obstacle
+  - BoostsUI
   layers:
   - Default
   - TransparentFX
