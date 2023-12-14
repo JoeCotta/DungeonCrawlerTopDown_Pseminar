@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5425105064914207671}
   - component: {fileID: 5425105064914207670}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: BoostCooldown
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,7 +63,7 @@ GameObject:
   - component: {fileID: 5425105065857843897}
   - component: {fileID: 5425105065857843903}
   - component: {fileID: 5425105065857843896}
-  m_Layer: 5
+  m_Layer: 4
   m_Name: BoostImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
