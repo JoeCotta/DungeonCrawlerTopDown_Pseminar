@@ -27,6 +27,7 @@ TagManager:
   - Pause
   - BackgroundMusicPlayer
   - ClicksSoundHolder
+  - Obstacle
   layers:
   - Default
   - TransparentFX
