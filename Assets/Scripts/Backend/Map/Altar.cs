@@ -10,6 +10,11 @@ public class Altar : MonoBehaviour
         transform.GetChild(0).gameObject.SetActive(true);
         if (Input.GetKey("e"))
         {
+            if (GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>().gameData.isInTutorial) 
+            {
+                GameObject.Find("Explanation").GetComponent<Explanations>().returnToMenu();
+                return;
+            }
             GameManager.player.playerGold += 100;
             GameManager.resetRun();
         }

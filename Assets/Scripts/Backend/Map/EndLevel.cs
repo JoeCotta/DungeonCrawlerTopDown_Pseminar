@@ -16,9 +16,11 @@ public class EndLevel : MonoBehaviour
     // Sound
     [SerializeField] private AudioSource levelCompleteSound;
     [SerializeField] private AudioSource startGameSound;
+    private DataPersistenceManager dataPersistenceManager;
 
     private void Start()
     {
+        dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
         gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<GameManager>();
         GameManager.references.Add(gameObject);
         ftb = GameObject.FindGameObjectWithTag("FTB").GetComponent<Image>();
@@ -33,13 +35,20 @@ public class EndLevel : MonoBehaviour
 
         if (loadScene)
         {
-            gameManager.SaveGame();
             if (t < timeToFade)
             {
                 t += Time.deltaTime;
                 ftb.color = new Color(0, 0, 0, t * 1 / timeToFade);
             }
-            else SceneManager.LoadScene(2);
+            else 
+            {
+                if (dataPersistenceManager.gameData.isInTutorial) SceneManager.LoadScene("Tutorial");
+                else
+                {
+                    SceneManager.LoadScene(2);
+                    gameManager.SaveGame();
+                }
+            }
         }
     }
 

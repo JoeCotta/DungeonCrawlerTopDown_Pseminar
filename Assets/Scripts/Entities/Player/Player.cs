@@ -22,7 +22,7 @@ public class Player : MonoBehaviour, IDataPersistence
     public float ItemDropForce; // 500
     public float itemPickUpRadius;
 
-    private int weaponType, oldRarity, second_weaponType, second_oldRarity;
+    public int weaponType, oldRarity, second_weaponType, second_oldRarity;
     public float oldReserve, oldAmmo, second_oldReserve,second_oldAmmo;
     private bool hadSecondWeapon = false;
 
@@ -405,7 +405,6 @@ public class Player : MonoBehaviour, IDataPersistence
         // switch items
         else
         {
-            //print(nearestItem.gameObject.name.StartsWith("Weapon"));
             if(nearestItem.gameObject.name.StartsWith("Weapon")) swapWeapon(nearestItem);
             else if(nearestItem.gameObject.name.StartsWith("Armour")) swapArmour(nearestItem);
 
@@ -546,7 +545,12 @@ public class Player : MonoBehaviour, IDataPersistence
     }
 
     public void onPlayerDead()
-    {
+    {        
+        if (GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>().gameData.isInTutorial) 
+        {
+            GameObject.Find("Explanation").GetComponent<Explanations>().returnToMenu();
+            return;
+        }
         //first check for Extra life(revive)
         if(revivesLeft == 0)
         {

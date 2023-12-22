@@ -44,7 +44,7 @@ public class AlternateWS : MonoBehaviour
     //Animator
     [SerializeField] Animator legendary_Sniper;
 
-    void Start()
+    public void Start()
     { 
         texture = textureEditor;
         firepoint = transform.GetChild(0);
