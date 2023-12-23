@@ -9,6 +9,7 @@ Weapons:
         Pistol: https://bigsoundbank.com/sound-1985-pistol-cocking-2.html
         other:  https://elements.envato.com/sniper-rifle-reload-F7ZHQR5
     Mag kick out: https://pixabay.com/sound-effects/metal-object-dropping-01-38635/
+    grenade: zusammen gemischt: https://pixabay.com/de/sound-effects/explosion-6055/ + https://pixabay.com/de/sound-effects/medium-explosion-40472/ + https://pixabay.com/de/sound-effects/punch-a-rock-161647/
 
 Enemy:
     hit:    https://sfxr.me/
