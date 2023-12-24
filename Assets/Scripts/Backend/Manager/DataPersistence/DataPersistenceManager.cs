@@ -51,6 +51,7 @@ public class DataPersistenceManager : MonoBehaviour
         PlayerPrefs.SetString("DashKey", "LeftShift");
         PlayerPrefs.SetString("ShootKey", "Mouse0");
         PlayerPrefs.SetString("SwitchWeaponKey", "Alpha3");
+        PlayerPrefs.SetString("GrenadeThrow", "G");
         foreach (IDataPersistence dataPersistenceObj in dataPersistenceObjects)
         {
             dataPersistenceObj.LoadData(gameData);

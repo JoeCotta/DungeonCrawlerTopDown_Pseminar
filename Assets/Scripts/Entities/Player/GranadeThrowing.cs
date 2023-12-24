@@ -9,7 +9,7 @@ public class GranadeThrowing : MonoBehaviour, IDataPersistence
 
     void Update()
     {
-        if (Input.GetKeyDown("g") && grenades > 0)
+        if (Input.GetKey((KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("GrenadeThrow"))) && grenades > 0)
         {
             GameObject temp = Instantiate(Granades, transform.position, Quaternion.identity);
             if (temp.GetComponent<Rigidbody2D>()) temp.GetComponent<Rigidbody2D>().AddForce( (transform.up * Mathf.Sin( Mathf.Deg2Rad * (gameObject.GetComponent<Player>().angleToMouse - 180) ) + transform.right * Mathf.Cos( Mathf.Deg2Rad * (gameObject.GetComponent<Player>().angleToMouse -180) )) * 1000);
