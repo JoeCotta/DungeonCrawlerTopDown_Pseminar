@@ -20,13 +20,16 @@ public class Granade : MonoBehaviour
     [SerializeField] private AudioSource grenadeThrow;
     [SerializeField] private AudioSource grenadeExplosion;
     bool isExploded;
+    private float rotationSpeed;
 
     private void Start()
     {
         dataManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
         dmg *= dataManager.gameData.currentDamageMultiplier;
         grenadeThrow.Play();
+        rotationSpeed = Random.Range(200, 300);
     }
+
 
     private void Update()
     {
@@ -36,6 +39,9 @@ public class Granade : MonoBehaviour
             destroyObjectAfterSound();
         }
         time += Time.deltaTime;
+
+        if (GetComponent<Rigidbody2D>()) GetComponent<Rigidbody2D>().SetRotation(GetComponent<Rigidbody2D>().rotation + rotationSpeed * Time.deltaTime);
+        if (rotationSpeed > 0) rotationSpeed -= 200 * Time.deltaTime;
     }
 
     void destroyObjectAfterSound()
