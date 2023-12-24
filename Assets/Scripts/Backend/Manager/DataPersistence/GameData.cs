@@ -58,6 +58,7 @@ public class GameData
     public bool     hardcoreMode;
     public bool     movementKeysForDash;
     public bool     aimLine;
+    public int grenades;
 
     public GameData()
     {
@@ -106,6 +107,6 @@ public class GameData
         
         currentFloor = 1;
         isInTutorial = false;
-
+        grenades = 0;
     }
 }
