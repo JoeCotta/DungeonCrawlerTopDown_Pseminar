@@ -175,6 +175,7 @@ public class Boss : MonoBehaviour
 
     void onDeath()
     {
+        GameManager.isBossSpawned = false;
         UIBossBar.GetComponent<BossBar>().isBoss = true;
         UIBossBar.SetActive(false);
         Destroy(gameObject);

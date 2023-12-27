@@ -14,6 +14,7 @@ public class ShopMenu : MonoBehaviour
     [HideInInspector] public float startArmourPrice;
     [HideInInspector] public float revivePrice;
     [HideInInspector] public float damageMultiplierPrice;
+    [HideInInspector] public float grenadesPrice;
 
 
     void Start()
@@ -34,6 +35,9 @@ public class ShopMenu : MonoBehaviour
 
         // damage Multiplier
         damageMultiplierPrice = Mathf.RoundToInt(0.25f * Mathf.Pow(dataPersistenceManager.gameData.damageMultiplierLevel + 1, 2)-15);
+    
+        // Grenades Price
+        grenadesPrice = Mathf.Pow(dataPersistenceManager.gameData.grenades + 1, 2) + 5;
     }
 
     public void exit()
@@ -94,6 +98,19 @@ public class ShopMenu : MonoBehaviour
             dataPersistenceManager.gameData.currentCoins -= damageMultiplierPrice;
             dataPersistenceManager.gameData.currentDamageMultiplier = (float)dataPersistenceManager.gameData.damageMultiplierLevel / 10;
             dataPersistenceManager.gameData.permanentDamageMultiplier = (float)dataPersistenceManager.gameData.damageMultiplierLevel / 10;
+
+            dataPersistenceManager.SaveGame();
+
+            buySound.Play();
+        }
+    }
+
+    public void buyGrenades()
+    {
+        if (dataPersistenceManager.gameData.currentCoins >= grenadesPrice) 
+        {
+            dataPersistenceManager.gameData.grenades += 1;
+            dataPersistenceManager.gameData.currentCoins -= grenadesPrice;
 
             dataPersistenceManager.SaveGame();
 

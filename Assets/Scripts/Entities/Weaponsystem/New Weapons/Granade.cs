@@ -17,21 +17,38 @@ public class Granade : MonoBehaviour
 
     [SerializeField] bool triggerExtraScript;
     [SerializeField] string functionName;
+    [SerializeField] private AudioSource grenadeThrow;
+    [SerializeField] private AudioSource grenadeExplosion;
+    bool isExploded;
+    private float rotationSpeed;
 
     private void Start()
     {
         dataManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
         dmg *= dataManager.gameData.currentDamageMultiplier;
+        grenadeThrow.Play();
+        rotationSpeed = Random.Range(200, 300);
     }
+
 
     private void Update()
     {
         if(time >= fuse)
         {
-            Explode();
-            Destroy(gameObject);
+            if (!isExploded) Explode();
+            destroyObjectAfterSound();
         }
         time += Time.deltaTime;
+
+        if (GetComponent<Rigidbody2D>()) GetComponent<Rigidbody2D>().SetRotation(GetComponent<Rigidbody2D>().rotation + rotationSpeed * Time.deltaTime);
+        if (rotationSpeed > 0) rotationSpeed -= 200 * Time.deltaTime;
+    }
+
+    void destroyObjectAfterSound()
+    {
+        if(grenadeExplosion.isPlaying) return;
+        Destroy(gameObject);
+        Invoke("destroyObjectAfterSound", 0.5f);
     }
 
     void Explode()
@@ -39,6 +56,14 @@ public class Granade : MonoBehaviour
         DmgTrigger ExplosionRadius = Instantiate(dmgTrigger,transform.position,Quaternion.identity).GetComponent<DmgTrigger>();
         ExplosionRadius.assingVar(dmg,radius,duration,dmgOverTime,triggerExtraScript,functionName);
         Instantiate(ExplosionEffekt, transform.position, Quaternion.identity);
+        isExploded = true;
+
+        grenadeExplosion.Play();
+
+        // make grenade vanish
+        GetComponent<Collider2D>().enabled = false;
+        Destroy(GetComponent<Rigidbody2D>());
+        Destroy(GetComponent<SpriteRenderer>());
     }
 
     IEnumerator EnableCollider()

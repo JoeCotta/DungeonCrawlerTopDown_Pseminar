@@ -37,7 +37,7 @@ public class Boosts : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = textures[boostType];
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         manager = GameObject.FindWithTag("Manager").GetComponent<GameManager>();
-        hud = GameObject.FindWithTag("Hud");
+        hud = GameObject.FindWithTag("BoostsUI");
         if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()) dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
 
     }

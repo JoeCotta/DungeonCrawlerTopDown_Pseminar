@@ -15,11 +15,20 @@ public class Explanations : MonoBehaviour
     private TMP_Text text;
     int stage = 0;
     float currentCoins;
-    int startWeaponType;
     float currentMaxHealth;
     int currentWeaponType;
     int currentRarity;
     int enemysKilled;
+    float currentReserve;
+    float currentAmmo;
+    int second_currentWeaponType;
+    int second_currentRarity;
+    float second_currentReserve;
+    float second_currentAmmo;
+    float currentArmor;
+    float timeInRun;
+    int currentFloor;
+    float currentHealth;
     DataPersistenceManager dataPersistenceManager;
 
     void Start()
@@ -32,18 +41,32 @@ public class Explanations : MonoBehaviour
 
         // Information
         this.text.text = "0/7 \nYou can get to the next step by pressing enter.";
-        Invoke("getCurrentStats", 0.5f);
+        Invoke("getCurrentStats", 0.2f);
     }
 
 
     void getCurrentStats()
     {
         currentCoins = dataPersistenceManager.gameData.currentCoins;
-        startWeaponType = dataPersistenceManager.gameData.startWeaponType;
         currentMaxHealth = dataPersistenceManager.gameData.currentMaxHealth;
+        currentHealth = dataPersistenceManager.gameData.currentHealth;
+
         currentWeaponType = dataPersistenceManager.gameData.currentWeaponType;
         currentRarity = dataPersistenceManager.gameData.currentRarity;
+        currentReserve = dataPersistenceManager.gameData.currentReserve;
+        currentAmmo = dataPersistenceManager.gameData.currentAmmo;
+
+        second_currentWeaponType = dataPersistenceManager.gameData.second_currentWeaponType;
+        second_currentRarity = dataPersistenceManager.gameData.second_currentRarity;
+        second_currentReserve = dataPersistenceManager.gameData.second_currentReserve;
+        second_currentAmmo = dataPersistenceManager.gameData.second_currentAmmo;
+
+        currentArmor = dataPersistenceManager.gameData.currentArmor;
+
         enemysKilled = dataPersistenceManager.gameData.enemysKilled;
+        timeInRun = dataPersistenceManager.gameData.timeInRun;
+        currentFloor = dataPersistenceManager.gameData.currentFloor;
+        dataPersistenceManager.gameData.isInTutorial = true;   
     }
 
     void Update()
@@ -191,14 +214,52 @@ public class Explanations : MonoBehaviour
         }
     }
 
-    void returnToMenu()
+    public void returnToMenu()
     {
-        dataPersistenceManager.gameData.currentCoins = currentCoins;
-        dataPersistenceManager.gameData.startWeaponType = startWeaponType;
-        dataPersistenceManager.gameData.currentMaxHealth = currentMaxHealth;
-        dataPersistenceManager.gameData.currentWeaponType = currentWeaponType;
-        dataPersistenceManager.gameData.currentRarity = currentRarity;
-        dataPersistenceManager.gameData.enemysKilled = enemysKilled;
+        Player player = GameObject.FindWithTag("Player").GetComponent<Player>();
+        DifficultyTracker difficulty = GameObject.FindWithTag("Player").GetComponent<DifficultyTracker>();
+        
+        player.playerGold = currentCoins;
+        player.maxHealth = currentMaxHealth;
+        player.health = currentHealth;
+
+
+        // creates old weapon
+        GameObject weapon = Instantiate(GameManager.AWeapon, player.transform.position, Quaternion.identity);
+        weapon.GetComponent<AlternateWS>().weaponType = currentWeaponType; // sets the weaponType
+        weapon.GetComponent<AlternateWS>().rarity = currentRarity;
+        if(currentReserve != -1) weapon.GetComponent<AlternateWS>().loadOldInfo(currentReserve, currentAmmo);
+        
+        weapon.GetComponent<AlternateWS>().Start();
+        player.weapon = weapon;
+
+        // creates old second weapon
+        if (dataPersistenceManager.gameData.hadSecondWeapon)
+        {
+            GameObject secondWeapon = Instantiate(GameManager.AWeapon, player.transform.position, Quaternion.identity);
+            secondWeapon.GetComponent<AlternateWS>().weaponType = second_currentWeaponType; // sets the weaponType
+            secondWeapon.GetComponent<AlternateWS>().rarity = second_currentRarity;
+            if(second_currentReserve != -1) weapon.GetComponent<AlternateWS>().loadOldInfo(second_currentReserve, second_currentAmmo);
+            
+            secondWeapon.GetComponent<AlternateWS>().Start();
+            player.secondWeapon = secondWeapon;
+        }
+        else
+        {
+            player.secondWeapon = null;
+        }
+
+        player.armourLevel = (int)currentArmor;
+        player.killedEnemys = enemysKilled;
+        player.currentFloor = currentFloor;
+
+        dataPersistenceManager.gameData.isInTutorial = false;
+        dataPersistenceManager.gameData.currentDamageMultiplier = dataPersistenceManager.gameData.permanentDamageMultiplier;
+
+        difficulty.timeInRun = timeInRun;
+
+
+        dataPersistenceManager.SaveGame();
         SceneManager.LoadScene("Menu");
     }
 }
