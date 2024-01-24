@@ -12,7 +12,7 @@ public class DataBase : MonoBehaviour
 
     static public float[] weaponBase(int weaponType, int rarity)
     {
-        float[] temp = new float[8];
+        float[] temp = new float[9];
         switch (weaponType)
         {
             case 0://pistol
@@ -23,7 +23,8 @@ public class DataBase : MonoBehaviour
                 temp[4] = 0.90f;//accuracy
                 temp[5] = 1.5f; // fov
                 temp[6] = 0;   // speed
-                temp[7] = 1;
+                temp[7] = 1;    //bullets per shot
+                temp[8] = 1f; //reload time
                 break;
             case 1://rifel
                 temp[0] = 4;    //dmg
@@ -34,6 +35,7 @@ public class DataBase : MonoBehaviour
                 temp[5] = 1.5f; // fov
                 temp[6] = -1;   // speed
                 temp[7] = 1;
+                temp[8] = 2f;
                 break;
             case 2://sniper
                 temp[0] = 35;   //dmg
@@ -44,6 +46,7 @@ public class DataBase : MonoBehaviour
                 temp[5] = 3;    // fov
                 temp[6] = -2;   // speed
                 temp[7] = 1;
+                temp[8] = 1.5f;
                 break;
             case 3://shotgun
                 temp[0] = 4;   //dmg
@@ -54,6 +57,7 @@ public class DataBase : MonoBehaviour
                 temp[5] = 1.5f;// fov
                 temp[6] = -3;  // speed
                 temp[7] = 5;   //bulletcount
+                temp[8] = 2.5f;
                 break;
             case 4://golden ak only legy
                 temp[0] = 5;    //dmg
@@ -64,6 +68,7 @@ public class DataBase : MonoBehaviour
                 temp[5] = 1.5f; // fov
                 temp[6] = -2;   // speed
                 temp[7] = 2;
+                temp[8] = 4f;
                 break;
             case 5://minigun only legy
                 temp[0] = 4;    //dmg
@@ -74,6 +79,7 @@ public class DataBase : MonoBehaviour
                 temp[5] = 1.75f;// fov
                 temp[6] = -3;   // speed
                 temp[7] = 1;
+                temp[8] = 6f;
                 break;
             default:
                 temp[0] = 5;
@@ -84,6 +90,7 @@ public class DataBase : MonoBehaviour
                 temp[5] = 2;
                 temp[6] = -1;   // speed
                 temp[7] = 1;
+                temp[8] = 1f;
                 break;
         }
         switch (rarity)
@@ -104,6 +111,7 @@ public class DataBase : MonoBehaviour
                 temp[3] *= 1.25f;
                 temp[4] *= 1.25f; if (temp[4] > 1.0f) temp[4] = 1.0f;
                 if (weaponType == 3) temp[7] *= 1.5f;
+                temp[8] /= 1.25f;
                 break;
             case 3:
                 temp[0] *= 2f;
@@ -113,6 +121,7 @@ public class DataBase : MonoBehaviour
                 temp[4] *= 1.25f; if (temp[4] > 1.0f) temp[4] = 1.0f;
                 temp[5] *= 1.5f;
                 if (weaponType == 3) temp[7] *= 2f;
+                temp[8] /= 1.5f;
                 break;
             default:
                 //same as 0
@@ -228,5 +237,69 @@ public class DataBase : MonoBehaviour
                 break;
         }
         return value;
+    }
+
+    static public float[] enemyBase(int tier, int weaponType)
+    {
+        float[] returnValue = new float[6];
+        //0: shootrange
+        //1: followrange
+        //2: health
+        //3: speed
+        //---Tier 1 Exculsive---
+        //4: dmg
+        //5: attackspeed
+
+        switch (tier)
+        {
+            case 1:
+                returnValue[0] = 1;
+                returnValue[1] = 2;
+                returnValue[2] = 10;
+                returnValue[3] = 700;
+                returnValue[4] = 3;
+                returnValue[5] = 0.5f;
+                break;
+            case 2:
+                switch (weaponType)
+                {
+                    case 0:
+                        returnValue[0] = 6;
+                        returnValue[1] = 8;
+                        break;
+                    case 1:
+                        returnValue[0] = 9;
+                        returnValue[1] = 11;
+                        break;
+                    case 2:
+                        returnValue[0] = 11;
+                        returnValue[1] = 13;
+                        break;
+                }
+                returnValue[2] = 20;
+                returnValue[3] = 400;
+                break;
+            default:
+                switch (weaponType)
+                {
+                    case 0:
+                        returnValue[0] = 8;
+                        returnValue[1] = 10;
+                        break;
+                    case 1:
+                        returnValue[0] = 10;
+                        returnValue[1] = 12;
+                        break;
+                    case 2:
+                        returnValue[0] = 12;
+                        returnValue[1] = 14;
+                        break;
+                }
+                returnValue[2] = 30;
+                returnValue[3] = 500;
+                break;
+        }
+
+        return returnValue;
     }
 }

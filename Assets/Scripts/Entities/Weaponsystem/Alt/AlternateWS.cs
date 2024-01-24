@@ -45,34 +45,35 @@ public class AlternateWS : MonoBehaviour
     [SerializeField] Animator legendary_Sniper;
 
     public void Start()
-    { 
+    {
         texture = textureEditor;
         firepoint = transform.GetChild(0);
-        float[] temp = DataBase.weaponBase(weaponType,rarity);
+        float[] temp = DataBase.weaponBase(weaponType, rarity);
         dmg         = temp[0];
         mag         = Mathf.RoundToInt(temp[1]);
-        if(!blockLoadingInfo) reserve = Mathf.RoundToInt(temp[2]);
+        if (!blockLoadingInfo) reserve = Mathf.RoundToInt(temp[2]);
         rate        = temp[3];
         accuracy    = temp[4];
         fov         = temp[5];
         speed       = temp[6];
         bulletcount = temp[7];
+        rTime       = temp[8];
         if (!blockLoadingInfo) ammo = mag;
         if (rarity != 3) gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType];
         else gameObject.GetComponent<SpriteRenderer>().sprite = texture[weaponType + 4];
-        rTime = 2.5f;//reload time default 2.5 sec
         rTimer = rTime;
         throwForceMag = 350f;
-        if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()) dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
+        if (GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()) dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
     }
 
     public void shoot()
     {
         if (interval > 1 / rate && ammo > 0 && !reloading)
         {
-            if (weaponType == 2 && rarity == 3 && owner.tag != "enemy")
+            if (weaponType == 2 && rarity == 3 && owner.tag != "enemy" && !isCharging)
             {
                 isCharging = true;
+                chargedTime = 0;
                 legendary_Sniper.enabled = true;
                 return;
             }
@@ -114,7 +115,7 @@ public class AlternateWS : MonoBehaviour
         interval = 0;
         --ammo;
         GameObject temp = Instantiate(bullet, firepoint.position, firepoint.rotation.normalized);
-        if (temp != null) temp.GetComponent<AltBullet>().assingVar(dmg * Mathf.Pow(maxChargeDmgMultiplier,  chargedTime / maxChargeTime), owner);
+        if (temp != null) temp.GetComponent<AltBullet>().assingVar(dmg * Mathf.Pow(maxChargeDmgMultiplier, chargedTime / maxChargeTime), owner);
         shootSounds[weaponType].Play();
         //Debug.Log(dmg * Mathf.Pow(maxChargeDmgMultiplier, chargedTime / maxChargeTime));
         isCharging = false;
@@ -134,7 +135,7 @@ public class AlternateWS : MonoBehaviour
 
     private void RealReload()
     {
-        if (GameManager.player.weapon != gameObject) { reloading = false;  return;}
+        if (GameManager.player.weapon != gameObject) { reloading = false; return; }
         if (reserve >= mag - ammo)
         {
             reserve -= mag - ammo;
@@ -146,9 +147,9 @@ public class AlternateWS : MonoBehaviour
             reserve = 0;
         }
         GameObject thrownMag = Instantiate(magPref, firepoint.position, Quaternion.identity);
-        if(rarity != 3) thrownMag.GetComponent<SpriteRenderer>().sprite = magSprites[weaponType];
-        else thrownMag.GetComponent<SpriteRenderer>().sprite = magSprites[weaponType+4];
-        if(rarity != 3 || weaponType != 2)thrownMag.GetComponent<Rigidbody2D>().AddForce(firepoint.transform.up * throwForceMag);
+        if (rarity != 3) thrownMag.GetComponent<SpriteRenderer>().sprite = magSprites[weaponType];
+        else thrownMag.GetComponent<SpriteRenderer>().sprite = magSprites[weaponType + 4];
+        if (rarity != 3 || weaponType != 2) thrownMag.GetComponent<Rigidbody2D>().AddForce(firepoint.transform.up * throwForceMag);
         else thrownMag.GetComponent<Rigidbody2D>().AddForce(firepoint.transform.right * throwForceMag);
         reloading = false;
 
@@ -167,9 +168,9 @@ public class AlternateWS : MonoBehaviour
         if (rTimer < rTime) rTimer += Time.deltaTime;
         if (reloading && rTimer >= rTime) RealReload();
         if (!owner) { reloading = false; rTimer = rTime; }
-        if (isCharging && Input.GetMouseButton(0) && owner.tag == "Player" && chargedTime < maxChargeTime) 
-        { 
-            chargedTime += Time.deltaTime; interval = 0; 
+        if (isCharging && Input.GetMouseButton(0) && owner.tag == "Player" && chargedTime < maxChargeTime)
+        {
+            chargedTime += Time.deltaTime; interval = 0;
             legendary_Sniper.speed = chargedTime / maxChargeTime * 2 + 0.5f;
         }
         else if (isCharging) chargedShot();

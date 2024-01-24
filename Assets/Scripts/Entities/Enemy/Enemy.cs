@@ -8,21 +8,23 @@ public class Enemy : MonoBehaviour
 {
     public RoomManagment manager;//""
     public Boss boss;
-    //public bool useAlternate;
+    public int enemyTier;
+    //1: Zombie
+    //2: Normal
+    //3: stronger
 
     public Transform target;
-    public float speed;
+    public float speed, health;
     public float nextWaypointDistance;
+    [SerializeField] float interval, timer, dmg;
     public GameObject weaponPrefab;
-    public float health;
     // level 0 is the worst armor and 10 is the best
-    public int armorLevel = 0; 
+    public int armorLevel = 0;
 
 
-    private Transform weaponSlot; 
+    private Transform weaponSlot;
     public GameObject weapon;
     public GameObject AWeapon; // alternate weapon
-    public bool EnemyUsePrediction;
 
     private Path path;
     private int currentWaypoint = 0;
@@ -53,69 +55,66 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float armorDropForce;
 
     void Start()
-    {   
-        if(GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>()){
-            DataPersistenceManager dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
-
-            // difficulty
-            health *=  DifficultyTracker.healthMultiplier;
-            speed *= DifficultyTracker.speedMultiplier;
-        }
-
-        //get player Transform by Cornell
-        //target = GameObject.FindGameObjectWithTag("Player").transform;
+    {
         target = GameManager.player.transform;
-        
+
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
 
         // updates the Path every half seconds
         InvokeRepeating("UpdatePath", 0f, 0.5f);
 
+        armorLevel = Random.Range(0, 11);
+
         // initialises the weaponSystem (random weapon)
         weaponSlot = transform.GetChild(0);
+
+        /*if (Random.value <= 0.8f) EnemyUsePrediction = true;
+        else EnemyUsePrediction = false;*/
 
         // selects a random weapon type
         weaponType = Random.Range(0, 3);
 
-        // creates the weapon
-        weapon = Instantiate(AWeapon, weaponSlot.position, weaponSlot.rotation);
-        weapon.GetComponent<AlternateWS>().weaponType = weaponType;
-        weapon.GetComponent<AlternateWS>().owner = gameObject;
-
-        if (Random.value <= 0.8f) EnemyUsePrediction = true;
-        else EnemyUsePrediction = false;
-
-
-        armorLevel = Random.Range(0, 11);
-
-        // sets the shoot / follow range depending on the weapon
-        switch(weaponType)
+        if (enemyTier != 1)
         {
-            case 0:
-                shootRange = 6;
-                followRange = 8;
-                break;
-            case 1:
-                shootRange = 9;
-                followRange = 11;
-                break;
-            case 2:
-                shootRange = 11;
-                followRange = 13;
-                break;
+            // creates the weapon if not zombie
+            weapon = Instantiate(AWeapon, weaponSlot.position, weaponSlot.rotation);
+            weapon.GetComponent<AlternateWS>().weaponType = weaponType;
+            weapon.GetComponent<AlternateWS>().owner = gameObject;
+            interval = 1 / DataBase.weaponBase(weapon.GetComponent<AlternateWS>().weaponType, weapon.GetComponent<AlternateWS>().rarity)[3];
         }
 
+        float[] assingValues = DataBase.enemyBase(enemyTier, weaponType);
+        shootRange = assingValues[0];
+        followRange = assingValues[1];
+        health = assingValues[2];
+        speed = assingValues[3];
+
+        if (enemyTier == 1)
+        {
+            dmg = assingValues[4];
+            interval = 1 / assingValues[5];
+        }
+
+        if (GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>())
+        {
+            DataPersistenceManager dataPersistenceManager = GameObject.FindGameObjectWithTag("DataManager").GetComponent<DataPersistenceManager>();
+
+            // difficulty
+            health *= DifficultyTracker.healthMultiplier;
+            speed *= DifficultyTracker.speedMultiplier;
+        }
     }
 
-    void UpdatePath(){
-        if(seeker.IsDone()) seeker.StartPath(rb.position, target.position, OnPathComplete);
+    void UpdatePath()
+    {
+        if (seeker.IsDone()) seeker.StartPath(rb.position, target.position, OnPathComplete);
     }
 
     // if the next part of the path is generated
     void OnPathComplete(Path p)
     {
-        if(!p.error)
+        if (!p.error)
         {
             path = p;
             currentWaypoint = 0;
@@ -126,7 +125,7 @@ public class Enemy : MonoBehaviour
         if (GameManager.isPaused) return;
 
 
-        if(path == null) return;
+        if (path == null) return;
 
         // check if enemy can hit the target (maybe a wall blocks the shot)
         RaycastHit2D hit = Physics2D.Raycast(rb.position, ((Vector2)target.position - rb.position).normalized);
@@ -139,47 +138,47 @@ public class Enemy : MonoBehaviour
 
         // if the Distance to the target is grater than 8 the enemy should follow the target
         // or the enemy's shot is blocked -> should rather follow the target
-        if (DistanceToTarget > followRange || (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy")) ) follow = true;
+        if (DistanceToTarget > followRange || (!hit.collider.CompareTag("Player") && !hit.collider.CompareTag("Enemy"))) follow = true;
 
         // if the Distance to the target is lower than 6 or out of the player's range the enemy shouldn't follow the target, instead he should shoot at the target
         // but only if the bullet will hit the Player
-        else if ((DistanceToTarget < shootRange || outOfRange) && (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy")) ) follow = false;
+        else if ((DistanceToTarget < shootRange || outOfRange) && (hit.collider.CompareTag("Player") || hit.collider.CompareTag("Enemy"))) follow = false;
 
 
-        // manages rotation while following target
+        // manages weapon rotation while following target
         Vector2 direction;
-        if(EnemyUsePrediction) direction = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(15f,target.gameObject) - rb.position).normalized;
-        else direction = ((Vector2)target.gameObject.transform.position - rb.position).normalized;
-        angleToPlayer = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg -180f;
-        
+        direction = ((Vector2)target.gameObject.transform.position - rb.position).normalized;
+        angleToPlayer = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 180f;
 
-        // update the position and rotation of the weapon if the enemy has one
-        if(weapon)
+        if (weapon)
         {
             weapon.transform.position = weaponSlot.position;
-            weapon.transform.rotation = Quaternion.Euler(0, 0, angleToPlayer + 180f); // cornell same as with player
+            if (follow || timer < interval) weapon.transform.rotation = Quaternion.Euler(0, 0, angleToPlayer + 180f); // cornell same as with player
         }
 
-        updateSprite();
-                
         //flip weapon sprite
-        if (weapon){
+        if (weapon)
+        {
             // left side
             if ((angleToPlayer > -90 && angleToPlayer <= 0) || (angleToPlayer < -270 && angleToPlayer >= -360)) weapon.GetComponent<SpriteRenderer>().flipY = true;
             //right side
-            else if(angleToPlayer <= -90 && angleToPlayer >= -270) weapon.GetComponent<SpriteRenderer>().flipY = false;
+            else if (angleToPlayer <= -90 && angleToPlayer >= -270) weapon.GetComponent<SpriteRenderer>().flipY = false;
         }
 
+
+        timer += Time.deltaTime;
+
+        updateSprite();
     }
 
     void FixedUpdate()
     {
         // shoot if the target is close enough
-        if (!follow) {shoot(); return;}
-        if(path == null) return;
-        
+        if (!follow) { shoot(); return; }
+        if (path == null) return;
+
         // checks if the end of the path is reached
-        if(currentWaypoint >= path.vectorPath.Count) return;
+        if (currentWaypoint >= path.vectorPath.Count) return;
 
         // calculates the force to follow the path
         Vector2 direction = ((Vector2)path.vectorPath[currentWaypoint] - rb.position).normalized;
@@ -187,43 +186,46 @@ public class Enemy : MonoBehaviour
 
         rb.AddForce(force);
 
-        
+
         // updates the current Waypoint        
         float distance = Vector2.Distance(rb.position, path.vectorPath[currentWaypoint]);
 
-        if(distance < nextWaypointDistance)
+        if (distance < nextWaypointDistance)
         {
             currentWaypoint++;
         }
 
     }
-    
+
     void shoot()
     {
         // if the enemy has no weapon he can't shoot
-        if(!weapon) return;
+        if (!weapon || outOfRange || enemyTier == 1) return;
 
-        // if the player is too far away
-        if(outOfRange) return;
+        if (timer < interval) return;
 
-        // manages rotation while shooting 50 % chance to use prediction
-        Vector2 PlayerDirection;
-        PlayerDirection = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(7.5f * DifficultyTracker.bulletSpeedMultiplier, target.gameObject) - rb.position).normalized;
+        while (timer >= interval)
+        {
+            // manages rotation while shooting
+            Vector2 direction;
+            if (Random.value < 0.8f) direction = ((Vector2)gameObject.GetComponent<BulletCalc>().CalcPath(7.5f * DifficultyTracker.bulletSpeedMultiplier, target.gameObject) - rb.position).normalized;
+            else direction = ((Vector2)target.gameObject.transform.position - rb.position).normalized;
+            angleToPlayer = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+            weapon.transform.rotation = Quaternion.Euler(0, 0, angleToPlayer);
 
-        float angleToPlayer = Mathf.Atan2(PlayerDirection.y, PlayerDirection.x) * Mathf.Rad2Deg - 90f;
-        Quaternion rotation = Quaternion.Euler(Vector3.forward * angleToPlayer);
-
-        weapon.SendMessage("shoot");
+            weapon.SendMessage("shoot");
+            timer -= interval;
+        }
     }
     void hit(float damage)
     {
         // this function -0.08x + 1 reduces the damage depending on the armor level
-        damage *=  (float)-0.08 * armorLevel + 1;
+        damage *= (float)-0.08 * armorLevel + 1;
         damage *= DifficultyTracker.damageReduceFactor;
         health -= damage;
 
-        
-        if(health <= 0)
+
+        if (health <= 0)
         {
             isDead = true;
             onDeath();
@@ -233,7 +235,7 @@ public class Enemy : MonoBehaviour
 
     void updateSprite()
     {
-        if(GameManager.enableSusMode)
+        if (GameManager.enableSusMode)
         {
             updateSusSprite();
             return;
@@ -260,7 +262,7 @@ public class Enemy : MonoBehaviour
 
     void onDeath()
     {
-        int dropWp = Random.Range(1, DataBase.weaponDropChance);  
+        int dropWp = Random.Range(1, DataBase.weaponDropChance);
         if (dropWp != 1)
         {
             Destroy(weapon);
@@ -268,22 +270,22 @@ public class Enemy : MonoBehaviour
             if (dropBoost == 1) Instantiate(boostPrefab, transform.position, Quaternion.identity);
         }
         // sniper can't be dropped
-        if(weapon.GetComponent<AlternateWS>().weaponType == 2) Destroy(weapon);
-        
+        if (weapon && weapon.GetComponent<AlternateWS>().weaponType == 2) Destroy(weapon);
+
         // target.gameObject.GetComponent<Player>().playerGold += Mathf.Round(Random.Range(0,DataBase.maxGold));//Cornell 
         GameObject coinSpawner = Instantiate(coinSpawnerPrefab, transform.position, Quaternion.identity);
-        coinSpawner.GetComponent<CoinSpawner>().amountCoins = (int)Mathf.Round(Random.Range(0,DataBase.maxGold));
+        coinSpawner.GetComponent<CoinSpawner>().amountCoins = (int)Mathf.Round(Random.Range(0, DataBase.maxGold));
 
         target.gameObject.GetComponent<Player>().enemyKilled();
         if (manager) manager.killEnemy(gameObject); //Cornell; manually deleting enemey elsewise error
-        else if(boss) boss.killEnemy(gameObject);
+        else if (boss) boss.killEnemy(gameObject);
         else Destroy(gameObject);
 
 
         // drops the armor if its level is not 0 and lower than 5
         // chance to drop: 1/7
         int random = Random.Range(0, 7);
-        if(armorLevel != 0 && armorLevel < 5 && random == 0)
+        if (armorLevel != 0 && armorLevel < 5 && random == 0)
         {
             // creates the armour
             GameObject oldArmour = Instantiate(armorPrefab, transform.position, Quaternion.identity);
@@ -296,5 +298,15 @@ public class Enemy : MonoBehaviour
         }
 
 
+    }
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (timer < interval || collision.gameObject.tag == gameObject.tag) return;
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("Obstacle"))
+        {
+            collision.gameObject.SendMessage("hit", dmg);
+            timer = 0;
+        }
     }
 }

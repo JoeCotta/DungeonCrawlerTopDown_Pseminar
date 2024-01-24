@@ -332,6 +332,7 @@ public class Player : MonoBehaviour, IDataPersistence
         secondWeapon = weaponStorage;
         if(secondWeapon) secondWeapon.GetComponent<SpriteRenderer>().sortingOrder = 0;
         if (secondWeapon) secondWeapon.GetComponent<SpriteRenderer>().flipY = false;
+        if (secondWeapon) secondWeapon.GetComponent<AlternateWS>().chargedShot();
         isChangingFOV = true;
         changeFOV();
         changeSpeed();

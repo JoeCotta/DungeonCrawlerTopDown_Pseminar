@@ -14,11 +14,12 @@ public class BulletCalc : MonoBehaviour
     {
         //reset variable to random low time
         float currentTravelTime = 0;
-
+        if (speed < 15) speed = 15;
         //find position of player at that point in the future 
         //then calculate time bullet needs to there 
         //calculate new position of player with new traveltime => travel time changes; repeat
-        for(int iteration = 0;  iteration <= maxIterations; iteration++) {
+        for (int iteration = 0; iteration <= maxIterations; iteration++)
+        {
             tempPos = new Vector3();
             float tempDistance = 0;
             tempPos = target.GetComponent<BasicPred>().predictPosition(currentTravelTime);
@@ -26,7 +27,12 @@ public class BulletCalc : MonoBehaviour
             tempDistance += Mathf.Abs(tempPos.y - transform.position.y);
             currentTravelTime = tempDistance / speed;
         }
-        if (currentTravelTime > 100) return target.transform.position;
+        if (currentTravelTime > 100)
+        {
+            if (target.CompareTag("Player") && !target.GetComponent<Player>().isDashing) Debug.LogError("Travletime is bigger than 100");
+            else if (!target.CompareTag("Player")) Debug.LogError("Travletime is bigger than 100");
+            return target.transform.position;
+        }
         else return tempPos;
         //Debug.DrawLine(transform.position, tempPos, Color.red, 10f);
 

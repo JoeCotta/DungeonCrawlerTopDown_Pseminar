@@ -6,9 +6,12 @@ public class AmmoBox : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") && collision.GetComponent<Player>().weapon)
         {
-            collision.GetComponent<Player>().weapon.GetComponent<AlternateWS>().reserve += collision.GetComponent<Player>().weapon.GetComponent<AlternateWS>().ammo;
+            AlternateWS alternateWS = collision.GetComponent<Player>().weapon.GetComponent<AlternateWS>();
+            //If minigun not 3 mags
+            if (alternateWS.mag != 500) alternateWS.reserve += alternateWS.mag * 3;
+            else alternateWS.reserve += alternateWS.mag;
             Destroy(gameObject);
         }
     }

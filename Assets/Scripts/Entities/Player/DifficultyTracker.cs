@@ -104,6 +104,7 @@ public class DifficultyTracker : MonoBehaviour, IDataPersistence
                 healthMultiplier = 2;
                 dmgMultiplier = 2;
                 bulletSpeedMultiplier = 1.5f;
+                speedMultiplier = 1.25f;
                 damageReduceFactor = 0.8f;
                 bossTimeBetweenAttacksReduceTime = 0.75f;
                 break;
@@ -111,6 +112,7 @@ public class DifficultyTracker : MonoBehaviour, IDataPersistence
                 healthMultiplier = 3f;
                 dmgMultiplier = 2;
                 bulletSpeedMultiplier = 1.75f;
+                speedMultiplier = 1.25f;
                 damageReduceFactor = 0.7f;
                 bossTimeBetweenAttacksReduceTime = 1f;
                 break;
@@ -118,6 +120,7 @@ public class DifficultyTracker : MonoBehaviour, IDataPersistence
                 healthMultiplier = 5;
                 dmgMultiplier = 3;
                 bulletSpeedMultiplier = 1.75f;
+                speedMultiplier = 1.25f;
                 damageReduceFactor = 0.7f;
                 bossTimeBetweenAttacksReduceTime = 1.25f;
                 break;
@@ -229,10 +232,10 @@ public class DifficultyTracker : MonoBehaviour, IDataPersistence
     void ChanceToSpawnEnemy()
     {
         interval += Time.deltaTime;
-        if(interval > 150)
+        if (interval > 150)
         {
             interval = 0;
-            if(Random.value < 0.8f)
+            if (Random.value < 0.8f)
             {
                 RaycastHit2D hit;
                 switch (Random.value)
